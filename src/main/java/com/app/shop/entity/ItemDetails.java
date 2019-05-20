@@ -17,7 +17,7 @@ public class ItemDetails {
     private String itemName;
     @Column(columnDefinition = "char default 'n'")
     private char status;
-    @OneToMany(mappedBy = "item_mst", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "itemDetails", cascade = CascadeType.ALL)
     private List<ItemPacking> itemPackings = new ArrayList<>();
 
     public int getItemId() {

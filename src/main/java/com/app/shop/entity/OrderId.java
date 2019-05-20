@@ -1,11 +1,12 @@
 package com.app.shop.entity;
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 import java.time.Year;
 import java.util.Calendar;
 
 @Embeddable
-public class OrderId {
+public class OrderId implements Serializable {
 
     private String year;
     private String month;
@@ -19,5 +20,13 @@ public class OrderId {
     @Override
     public String toString() {
         return year+month+counter;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 }

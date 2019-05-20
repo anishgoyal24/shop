@@ -1,7 +1,8 @@
 package com.app.shop.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "order_header")
@@ -109,5 +110,27 @@ public class OrderHeader {
 
     public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderHeader that = (OrderHeader) o;
+        return Objects.equals(orderId, that.orderId) &&
+                Objects.equals(partyDetails, that.partyDetails) &&
+                Objects.equals(warehouseDetails, that.warehouseDetails) &&
+                Objects.equals(orderDate, that.orderDate) &&
+                Objects.equals(expectedDeliveryDate, that.expectedDeliveryDate) &&
+                Objects.equals(paymentMode, that.paymentMode) &&
+                Objects.equals(status, that.status) &&
+                Objects.equals(closedBy, that.closedBy) &&
+                Objects.equals(receivedBy, that.receivedBy) &&
+                Objects.equals(deliveryDate, that.deliveryDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderId, partyDetails, warehouseDetails, orderDate, expectedDeliveryDate, paymentMode, status, closedBy, receivedBy, deliveryDate);
     }
 }

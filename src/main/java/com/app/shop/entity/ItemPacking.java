@@ -5,30 +5,21 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "item_packing_mapping")
-public class ItemPacking {
 
-    @EmbeddedId
-    private ItemPackingId id;
+public class ItemPacking {
+    @Id
+    private int id;
 
     @ManyToOne
-    @MapsId("itemId")
+    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
     private ItemDetails itemDetails;
 
     @ManyToOne
-    @MapsId("size")
+    @JoinColumn(name = "size", referencedColumnName = "size")
     private  PackingSizeDetails packingSizeDetails;
 
-    @Column(columnDefinition = "char default 'y'")
-    private char status;
-
-    public ItemPackingId getId() {
-        return id;
-    }
-
-    public void setId(ItemPackingId id) {
-        this.id = id;
-    }
-
+    @Embedded
+    private ItemPackingStatus status;
     public ItemDetails getItemDetails() {
         return itemDetails;
     }
@@ -45,23 +36,15 @@ public class ItemPacking {
         this.packingSizeDetails = packingSizeDetails;
     }
 
-    public char getStatus() {
-        return status;
-    }
-
-    public void setStatus(char status) {
-        this.status = status;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemPacking that = (ItemPacking) o;
-        return status == that.status &&
-                Objects.equals(id, that.id) &&
+        return id == that.id &&
                 Objects.equals(itemDetails, that.itemDetails) &&
-                Objects.equals(packingSizeDetails, that.packingSizeDetails);
+                Objects.equals(packingSizeDetails, that.packingSizeDetails) &&
+                Objects.equals(status, that.status);
     }
 
     @Override

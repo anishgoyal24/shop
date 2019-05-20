@@ -8,11 +8,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "item_packing_details")
 public class PackingSizeDetails {
+    @Id
+    @Column(name = "packing_id", nullable = false)
+    private int packingId;
     private int size;
     @Column(columnDefinition = "char default 'n'")
     private char status;
-    @OneToMany(mappedBy = "item_packing_details", cascade = CascadeType.ALL)
-    private List<ItemDetails> itemDetails = new ArrayList<>();
 
     public int getSize() {
         return size;
@@ -30,12 +31,12 @@ public class PackingSizeDetails {
         this.status = status;
     }
 
-    public List<ItemDetails> getItemDetails() {
-        return itemDetails;
+    public int getPackingId() {
+        return packingId;
     }
 
-    public void setItemDetails(List<ItemDetails> itemDetails) {
-        this.itemDetails = itemDetails;
+    public void setPackingId(int packingId) {
+        this.packingId = packingId;
     }
 
     @Override
@@ -43,13 +44,14 @@ public class PackingSizeDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PackingSizeDetails that = (PackingSizeDetails) o;
-        return size == that.size &&
-                status == that.status &&
-                Objects.equals(itemDetails, that.itemDetails);
+        return packingId == that.packingId &&
+                size == that.size &&
+                status == that.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(size, status, itemDetails);
+        return Objects.hash(packingId, size, status);
     }
 }
+

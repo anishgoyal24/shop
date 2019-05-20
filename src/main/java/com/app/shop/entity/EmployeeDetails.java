@@ -3,7 +3,8 @@ package com.app.shop.entity;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "emp_mst")
@@ -135,5 +136,30 @@ public class EmployeeDetails {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EmployeeDetails that = (EmployeeDetails) o;
+        return empId == that.empId &&
+                status == that.status &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(empName, that.empName) &&
+                Objects.equals(empEmail, that.empEmail) &&
+                Objects.equals(address, that.address) &&
+                Objects.equals(primaryPhone, that.primaryPhone) &&
+                Objects.equals(city, that.city) &&
+                Objects.equals(state, that.state) &&
+                Objects.equals(country, that.country) &&
+                Objects.equals(pincode, that.pincode) &&
+                Objects.equals(role, that.role) &&
+                Objects.equals(createDate, that.createDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(empId, password, empName, empEmail, address, primaryPhone, city, state, country, pincode, status, role, createDate);
     }
 }
