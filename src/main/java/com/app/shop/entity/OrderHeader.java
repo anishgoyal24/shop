@@ -8,8 +8,9 @@ import java.util.Objects;
 @Table(name = "order_header")
 public class OrderHeader {
 
-    @EmbeddedId
-    private OrderId orderId;
+    @Id
+    @Column(name = "order_id")
+    private String orderId;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "party_id", nullable = false)
     private PartyDetails partyDetails;
@@ -32,11 +33,11 @@ public class OrderHeader {
     @Column(name = "delivery_date")
     private Date deliveryDate;
 
-    public OrderId getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(OrderId orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 

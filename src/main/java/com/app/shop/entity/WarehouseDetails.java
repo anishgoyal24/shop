@@ -14,6 +14,7 @@ public class WarehouseDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "warehouse_id", nullable = false)
     private int warehouseId;
+    private String password;
     @Column(name = "warehouse_name", nullable = false)
     private String warehouseName;
     @Column(name = "person_of_contact", nullable = false)

@@ -30,7 +30,6 @@ public class PartyDetails {
     private String state;
     private String country;
     private String pincode;
-    @Column(columnDefinition = "char default 'n'")
     private char status;
     private String type;
     @CreationTimestamp
@@ -183,5 +182,17 @@ public class PartyDetails {
     @Override
     public int hashCode() {
         return Objects.hash(partyId, password, partyName, partyEmail, contactPerson, address, primaryPhone, secondaryPhone, city, state, country, pincode, status, type, createDate);
+    }
+
+    public void updateDetails(PartyDetails newPartyDetails){
+        this.partyName = newPartyDetails.getPartyName();
+        this.contactPerson = newPartyDetails.getContactPerson();
+        this.address = newPartyDetails.getAddress();
+        this.primaryPhone = newPartyDetails.getPrimaryPhone();
+        this.secondaryPhone = newPartyDetails.getSecondaryPhone();
+        this.city = newPartyDetails.getCity();
+        this.state = newPartyDetails.getState();
+        this.country = newPartyDetails.getCountry();
+        this.pincode = newPartyDetails.getPincode();
     }
 }
