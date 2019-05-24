@@ -1,7 +1,7 @@
 package com.app.shop.controllers.customer;
 
 import com.app.shop.entity.PartyDetails;
-import com.app.shop.services.customer.DetailsService;
+import com.app.shop.services.customer.CustomerDetailsService;
 import com.app.shop.utils.ChangePasswordClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,27 +13,27 @@ import java.util.HashMap;
 public class CustomerDetailsController {
 
     @Autowired
-    DetailsService detailsService;
+    private CustomerDetailsService customerDetailsService;
 
     @PostMapping(value = "/new")
     public HashMap<String, Object> addUser(@RequestBody PartyDetails partyDetails){
-        return detailsService.addNewUser(partyDetails);
+        return customerDetailsService.addNewUser(partyDetails);
     }
 
 
 
     @PostMapping(value = "/updatedetails")
     public HashMap<String, Object> updateDetails(@RequestBody PartyDetails partyDetails){
-        return detailsService.updateUserDetails(partyDetails);
+        return customerDetailsService.updateUserDetails(partyDetails);
     }
 
     @PostMapping(value = "/delete")
     public HashMap<String, Object> deleteUser(@RequestParam String email){
-        return detailsService.deleteUser(email);
+        return customerDetailsService.deleteUser(email);
     }
 
     @PostMapping(value = "/changepassword")
     public HashMap<String, Object> changePassword(@RequestBody ChangePasswordClass object){
-        return detailsService.changePassword(object);
+        return customerDetailsService.changePassword(object);
     }
 }

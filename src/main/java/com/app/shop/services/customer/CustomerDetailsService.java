@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 import java.util.HashMap;
 
 @Service
-public class DetailsService {
+public class CustomerDetailsService {
 
     @PersistenceContext
     private EntityManager entityManager;
