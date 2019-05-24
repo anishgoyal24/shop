@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class ItemStock {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private int id;
     @ManyToOne
     @JoinColumn(name = "item_id", referencedColumnName = "item_id")

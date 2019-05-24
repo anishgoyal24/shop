@@ -2,11 +2,9 @@ package com.app.shop.controllers.employee;
 
 import com.app.shop.entity.EmployeeDetails;
 import com.app.shop.services.employee.EmployeeDetailsService;
+import com.app.shop.utils.ChangePasswordClass;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
@@ -20,5 +18,20 @@ public class EmployeeDetailsController {
     @PostMapping(value = "new")
     public HashMap<String, Object> addNewEmployee(@RequestBody EmployeeDetails employeeDetails){
         return employeeDetailsService.addNewEmployee(employeeDetails);
+    }
+
+    @PostMapping(value = "/updatedetails")
+    public HashMap<String, Object> updateDetails(@RequestBody EmployeeDetails employeeDetails){
+        return employeeDetailsService.updateEmployeeDetails(employeeDetails);
+    }
+
+    @PostMapping(value = "/delete")
+    public HashMap<String, Object> deleteUser(@RequestParam String email){
+        return employeeDetailsService.deleteEmployee(email);
+    }
+
+    @PostMapping(value = "/changepassword")
+    public HashMap<String, Object> changePassword(@RequestBody ChangePasswordClass object){
+        return employeeDetailsService.changePassword(object);
     }
 }

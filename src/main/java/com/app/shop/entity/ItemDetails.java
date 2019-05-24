@@ -11,7 +11,7 @@ public class ItemDetails {
 
     @Id
     @Column(name = "item_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private int itemId;
     @Column(name = "item_name", nullable = false)
     private String itemName;

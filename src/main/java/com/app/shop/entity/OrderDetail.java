@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class OrderDetail {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private int id;
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "order_id")

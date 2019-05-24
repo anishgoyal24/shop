@@ -11,7 +11,7 @@ import java.util.Objects;
 public class EmployeeDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @Column(name = "emp_id")
     private int empId;
     private String password;
@@ -161,5 +161,14 @@ public class EmployeeDetails {
     @Override
     public int hashCode() {
         return Objects.hash(empId, password, empName, empEmail, address, primaryPhone, city, state, country, pincode, status, role, createDate);
+    }
+
+    public void updateDetails(EmployeeDetails employeeDetails) {
+        this.address = employeeDetails.getAddress();
+        this.primaryPhone = employeeDetails.getPrimaryPhone();
+        this.city = employeeDetails.getCity();
+        this.state = employeeDetails.getState();
+        this.country = employeeDetails.getCountry();
+        this.pincode = employeeDetails.getPincode();
     }
 }

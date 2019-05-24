@@ -18,13 +18,14 @@ public class CustomerDetailsService {
     private EntityManager entityManager;
     @Autowired
     DetailsRepository detailsRepository;
-    HashMap<String, Object> returnObject = new HashMap<>();
+    HashMap<String, Object> returnObject;
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     private void detachParty(PartyDetails partyDetails){
         entityManager.detach(partyDetails);
     }
     public HashMap<String, Object> addNewUser(PartyDetails partyDetails){
+        returnObject = new HashMap<>();
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
         if (oldPartyDetails==null){
             partyDetails.setStatus('n');
@@ -43,6 +44,7 @@ public class CustomerDetailsService {
     }
 
     public HashMap<String, Object> updateUserDetails(PartyDetails partyDetails) {
+        returnObject = new HashMap<>();
         PartyDetails foundPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
         if (foundPartyDetails!=null){
             foundPartyDetails.updateDetails(partyDetails);
@@ -60,6 +62,7 @@ public class CustomerDetailsService {
     }
 
     public HashMap<String, Object> deleteUser(String email) {
+        returnObject = new HashMap<>();
         PartyDetails foundPartyDetails = detailsRepository.findByPartyEmail(email);
         if (foundPartyDetails!=null){
             foundPartyDetails.setStatus('n');
@@ -72,6 +75,7 @@ public class CustomerDetailsService {
     }
 
     public HashMap<String, Object> changePassword(ChangePasswordClass object){
+        returnObject = new HashMap<>();
         PartyDetails foundPartyDetails = detailsRepository.findByPartyEmail(object.getEmail());
         if (foundPartyDetails!=null && bCryptPasswordEncoder.matches(object.getOldPassword(), foundPartyDetails.getPassword())){
             foundPartyDetails.setPassword(bCryptPasswordEncoder.encode(object.getNewPassword()));

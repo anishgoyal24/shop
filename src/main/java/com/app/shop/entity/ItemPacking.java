@@ -8,6 +8,7 @@ import java.util.Objects;
 
 public class ItemPacking {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private int id;
 
     @ManyToOne

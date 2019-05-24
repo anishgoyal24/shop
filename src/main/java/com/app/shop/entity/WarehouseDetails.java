@@ -11,7 +11,7 @@ import java.util.Objects;
 public class WarehouseDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     @Column(name = "warehouse_id", nullable = false)
     private int warehouseId;
     private String password;

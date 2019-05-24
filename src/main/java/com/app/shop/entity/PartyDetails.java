@@ -10,7 +10,7 @@ import java.util.Objects;
 @Table(name = "party_mst")
 public class PartyDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     @Column(name = "party_id")
     private int partyId;
     private String password;
