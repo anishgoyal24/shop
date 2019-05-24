@@ -195,4 +195,25 @@ public class PartyDetails {
         this.country = newPartyDetails.getCountry();
         this.pincode = newPartyDetails.getPincode();
     }
+
+    @Override
+    public String toString() {
+        return "PartyDetails{" +
+                "partyId=" + partyId +
+                ", password='" + password + '\'' +
+                ", partyName='" + partyName + '\'' +
+                ", partyEmail='" + partyEmail + '\'' +
+                ", contactPerson='" + contactPerson + '\'' +
+                ", address='" + address + '\'' +
+                ", primaryPhone='" + primaryPhone + '\'' +
+                ", secondaryPhone='" + secondaryPhone + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", pincode='" + pincode + '\'' +
+                ", status=" + status +
+                ", type='" + type + '\'' +
+                ", createDate=" + createDate +
+                '}';
+    }
 }

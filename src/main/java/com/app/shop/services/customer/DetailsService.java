@@ -2,22 +2,36 @@ package com.app.shop.services.customer;
 
 import com.app.shop.entity.PartyDetails;
 import com.app.shop.repository.customer.DetailsRepository;
+import com.app.shop.utils.ChangePasswordClass;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.HashMap;
 
 @Service
 public class DetailsService {
 
+    @PersistenceContext
+    private EntityManager entityManager;
     @Autowired
     DetailsRepository detailsRepository;
     HashMap<String, Object> returnObject = new HashMap<>();
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+    private void detachParty(PartyDetails partyDetails){
+        entityManager.detach(partyDetails);
+    }
     public HashMap<String, Object> addNewUser(PartyDetails partyDetails){
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
         if (oldPartyDetails==null){
             partyDetails.setStatus('n');
+            partyDetails.setPassword(bCryptPasswordEncoder.encode(partyDetails.getPassword()));
             detailsRepository.save(partyDetails);
+            detachParty(partyDetails);
+            partyDetails.setPassword(null);
             returnObject.put("message", "success");
             returnObject.put("data", partyDetails);
         }
@@ -33,6 +47,8 @@ public class DetailsService {
         if (foundPartyDetails!=null){
             foundPartyDetails.updateDetails(partyDetails);
             detailsRepository.save(foundPartyDetails);
+            detachParty(foundPartyDetails);
+            foundPartyDetails.setPassword(null);
             returnObject.put("message", "success");
             returnObject.put("data", foundPartyDetails);
         }
@@ -49,6 +65,18 @@ public class DetailsService {
             foundPartyDetails.setStatus('n');
             detailsRepository.save(foundPartyDetails);
             returnObject.put("message", "deleted successfully");
+        }
+        else
+            returnObject.put("message", "failure");
+        return returnObject;
+    }
+
+    public HashMap<String, Object> changePassword(ChangePasswordClass object){
+        PartyDetails foundPartyDetails = detailsRepository.findByPartyEmail(object.getEmail());
+        if (foundPartyDetails!=null && bCryptPasswordEncoder.matches(object.getOldPassword(), foundPartyDetails.getPassword())){
+            foundPartyDetails.setPassword(bCryptPasswordEncoder.encode(object.getNewPassword()));
+            detailsRepository.save(foundPartyDetails);
+            returnObject.put("message", "success");
         }
         else
             returnObject.put("message", "failure");

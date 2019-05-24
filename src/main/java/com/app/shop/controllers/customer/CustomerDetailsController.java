@@ -2,6 +2,7 @@ package com.app.shop.controllers.customer;
 
 import com.app.shop.entity.PartyDetails;
 import com.app.shop.services.customer.DetailsService;
+import com.app.shop.utils.ChangePasswordClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,5 +30,10 @@ public class CustomerDetailsController {
     @PostMapping(value = "/delete")
     public HashMap<String, Object> deleteUser(@RequestParam String email){
         return detailsService.deleteUser(email);
+    }
+
+    @PostMapping(value = "/changepassword")
+    public HashMap<String, Object> changePassword(@RequestBody ChangePasswordClass object){
+        return detailsService.changePassword(object);
     }
 }
