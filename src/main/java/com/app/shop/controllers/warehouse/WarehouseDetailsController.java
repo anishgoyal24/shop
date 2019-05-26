@@ -1,4 +1,4 @@
-package com.app.shop.controllers;
+package com.app.shop.controllers.warehouse;
 
 import com.app.shop.entity.WarehouseDetails;
 import com.app.shop.services.warehouse.WarehouseDetailsService;

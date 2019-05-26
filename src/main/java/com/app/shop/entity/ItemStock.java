@@ -10,11 +10,51 @@ public class ItemStock {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private int id;
     @ManyToOne
-    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
-    private ItemPacking itemPacking;
+    @JoinColumn(name = "item_id", referencedColumnName = "id")
+    private ItemPackingDetails itemDetails;
     @ManyToOne
     @JoinColumn(name = "warehouse_id", referencedColumnName = "warehouse_id")
     private WarehouseDetails warehouseDetails;
     private int quantity;
     private double price;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public ItemPackingDetails getItemDetails() {
+        return itemDetails;
+    }
+
+    public void setItemDetails(ItemPackingDetails itemDetails) {
+        this.itemDetails = itemDetails;
+    }
+
+    public WarehouseDetails getWarehouseDetails() {
+        return warehouseDetails;
+    }
+
+    public void setWarehouseDetails(WarehouseDetails warehouseDetails) {
+        this.warehouseDetails = warehouseDetails;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }

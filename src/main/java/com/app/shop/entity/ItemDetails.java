@@ -1,5 +1,7 @@
 package com.app.shop.entity;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "item_mst")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class ItemDetails {
 
     @Id
@@ -15,10 +19,12 @@ public class ItemDetails {
     private int itemId;
     @Column(name = "item_name", nullable = false)
     private String itemName;
-    @Column(columnDefinition = "char default 'n'")
     private char status;
-    @OneToMany(mappedBy = "itemDetails", cascade = CascadeType.ALL)
-    private List<ItemPacking> itemPackings = new ArrayList<>();
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany
+    @JoinColumn(name = "item_id")
+    private List<ItemPackingDetails> itemPackingDetails = new ArrayList<>();
+
 
     public int getItemId() {
         return itemId;
@@ -44,12 +50,12 @@ public class ItemDetails {
         this.status = status;
     }
 
-    public List<ItemPacking> getItemPackings() {
-        return itemPackings;
+    public List<ItemPackingDetails> getItemPackingDetails() {
+        return itemPackingDetails;
     }
 
-    public void setItemPackings(List<ItemPacking> itemPackings) {
-        this.itemPackings = itemPackings;
+    public void setItemPackingDetails(ArrayList<ItemPackingDetails> itemPackingDetails) {
+        this.itemPackingDetails = itemPackingDetails;
     }
 
     @Override
@@ -59,12 +65,11 @@ public class ItemDetails {
         ItemDetails that = (ItemDetails) o;
         return itemId == that.itemId &&
                 status == that.status &&
-                Objects.equals(itemName, that.itemName) &&
-                Objects.equals(itemPackings, that.itemPackings);
+                Objects.equals(itemName, that.itemName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemId, itemName, status, itemPackings);
+        return Objects.hash(itemId, itemName, status);
     }
 }

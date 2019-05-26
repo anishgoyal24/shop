@@ -13,8 +13,8 @@ public class OrderDetail {
     @JoinColumn(name = "order_id", referencedColumnName = "order_id")
     private OrderHeader orderHeader;
     @OneToOne
-    @JoinColumn(name = "item_id", referencedColumnName = "id")
-    private ItemPacking itemPacking;
+    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
+    private ItemDetails itemDetails;
     private int quantity;
     private double cost;
 
@@ -26,12 +26,12 @@ public class OrderDetail {
         this.orderHeader = orderHeader;
     }
 
-    public ItemPacking getItemPacking() {
-        return itemPacking;
+    public ItemDetails getItemPacking() {
+        return itemDetails;
     }
 
-    public void setItemPacking(ItemPacking itemPacking) {
-        this.itemPacking = itemPacking;
+    public void setItemPacking(ItemDetails itemPacking) {
+        this.itemDetails = itemPacking;
     }
 
     public int getQuantity() {
