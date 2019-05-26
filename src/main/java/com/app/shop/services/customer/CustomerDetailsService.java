@@ -1,8 +1,11 @@
 package com.app.shop.services.customer;
 
+import com.app.shop.entity.HashTable;
 import com.app.shop.entity.PartyDetails;
+import com.app.shop.repository.common.HashRepository;
 import com.app.shop.repository.customer.DetailsRepository;
 import com.app.shop.utils.ChangePasswordClass;
+import com.app.shop.utils.EmailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,9 +20,13 @@ public class CustomerDetailsService {
     @PersistenceContext
     private EntityManager entityManager;
     @Autowired
-    DetailsRepository detailsRepository;
-    HashMap<String, Object> returnObject;
+    private HashRepository hashRepository;
+    @Autowired
+    private DetailsRepository detailsRepository;
+    private HashMap<String, Object> returnObject;
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private EmailServiceImpl emailService;
 
     private void detachParty(PartyDetails partyDetails){
         entityManager.detach(partyDetails);
@@ -33,6 +40,14 @@ public class CustomerDetailsService {
             detailsRepository.save(partyDetails);
             detachParty(partyDetails);
             partyDetails.setPassword(null);
+            String encodedEmail = bCryptPasswordEncoder.encode(partyDetails.getPartyEmail());
+            String verificationAddress = "/" + encodedEmail;
+            hashRepository.save(new HashTable(partyDetails.getPartyEmail(),encodedEmail));
+            try {
+                emailService.sendMail(partyDetails.getPartyEmail(), verificationAddress, "Please verify you account");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             returnObject.put("message", "success");
             returnObject.put("data", partyDetails);
         }
@@ -85,5 +100,15 @@ public class CustomerDetailsService {
         else
             returnObject.put("message", "failure");
         return returnObject;
+    }
+
+    public String verify(String email) {
+        PartyDetails foundPartyDetails = detailsRepository.findByPartyEmail(email);
+        if (foundPartyDetails!=null){
+            foundPartyDetails.setStatus('y');
+            detailsRepository.save(foundPartyDetails);
+            return "Successfully Verified";
+        }
+        return "Invalid Request";
     }
 }

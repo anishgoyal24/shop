@@ -17,6 +17,8 @@ public class WarehouseDetails {
     private String password;
     @Column(name = "warehouse_name", nullable = false)
     private String warehouseName;
+    @Column(name = "warehouse_email", unique = true, nullable = false)
+    private String warehouseEmail;
     @Column(name = "person_of_contact", nullable = false)
     private String personOfContact;
     private String address;
@@ -140,6 +142,22 @@ public class WarehouseDetails {
         this.createDate = createDate;
     }
 
+    public String getWarehouseEmail() {
+        return warehouseEmail;
+    }
+
+    public void setWarehouseEmail(String warehouseEmail) {
+        this.warehouseEmail = warehouseEmail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -148,6 +166,7 @@ public class WarehouseDetails {
         return warehouseId == that.warehouseId &&
                 status == that.status &&
                 Objects.equals(warehouseName, that.warehouseName) &&
+                Objects.equals(warehouseEmail, that.warehouseEmail) &&
                 Objects.equals(personOfContact, that.personOfContact) &&
                 Objects.equals(address, that.address) &&
                 Objects.equals(primaryPhone, that.primaryPhone) &&
@@ -162,6 +181,20 @@ public class WarehouseDetails {
 
     @Override
     public int hashCode() {
-        return Objects.hash(warehouseId, warehouseName, personOfContact, address, primaryPhone, secondaryPhone, city, state, country, pincode, status, type, createDate);
+        return Objects.hash(warehouseId, warehouseName, warehouseEmail, personOfContact, address, primaryPhone, secondaryPhone, city, state, country, pincode, status, type, createDate);
+    }
+
+    public void updateDetails(WarehouseDetails warehouseDetails) {
+        this.warehouseName = warehouseDetails.getWarehouseName();
+        this.warehouseEmail = warehouseDetails.getWarehouseEmail();
+        this.personOfContact = warehouseDetails.getPersonOfContact();
+        this.address = warehouseDetails.getAddress();
+        this.primaryPhone = warehouseDetails.getPrimaryPhone();
+        this.secondaryPhone = warehouseDetails.getSecondaryPhone();
+        this.city = warehouseDetails.getCity();
+        this.state = warehouseDetails.getState();
+        this.country = warehouseDetails.getCountry();
+        this.pincode = warehouseDetails.getPincode();
+        this.type = warehouseDetails.getType();
     }
 }

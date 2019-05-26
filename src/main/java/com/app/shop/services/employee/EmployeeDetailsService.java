@@ -1,8 +1,11 @@
 package com.app.shop.services.employee;
 
 import com.app.shop.entity.EmployeeDetails;
+import com.app.shop.entity.HashTable;
+import com.app.shop.repository.common.HashRepository;
 import com.app.shop.repository.employee.EmployeeRepository;
 import com.app.shop.utils.ChangePasswordClass;
+import com.app.shop.utils.EmailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,9 +20,13 @@ public class EmployeeDetailsService {
     @PersistenceContext
     private EntityManager entityManager;
     @Autowired
-    EmployeeRepository employeeRepository;
-    HashMap<String, Object> returnObject;
+    private HashRepository hashRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
+    private HashMap<String, Object> returnObject;
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private EmailServiceImpl emailService;
 
     private void detachObject(EmployeeDetails employeeDetails){
         entityManager.detach(employeeDetails);
@@ -34,6 +41,14 @@ public class EmployeeDetailsService {
             employeeRepository.save(employeeDetails);
             detachObject(employeeDetails);
             employeeDetails.setPassword(null);
+            String encodedEmail = bCryptPasswordEncoder.encode(employeeDetails.getEmpEmail());
+            String verificationAddress = "/" + encodedEmail;
+            hashRepository.save(new HashTable(employeeDetails.getEmpEmail(),encodedEmail));
+            try {
+                emailService.sendMail(employeeDetails.getEmpEmail(), verificationAddress, "Please verify you account");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             returnObject.put("message", "success");
             returnObject.put("data", employeeDetails);
         }
@@ -86,5 +101,15 @@ public class EmployeeDetailsService {
         else
             returnObject.put("message", "failure");
         return returnObject;
+    }
+
+    public String verify(String email) {
+        EmployeeDetails foundEmployeeDetails = employeeRepository.findByEmpEmail(email);
+        if (foundEmployeeDetails!=null){
+            foundEmployeeDetails.setStatus('y');
+            employeeRepository.save(foundEmployeeDetails);
+            return "Successfully Verified";
+        }
+        return "Invalid Request";
     }
 }
