@@ -23,6 +23,7 @@ public class AccountVerificationService {
     public String verifyAccount(String hash, String type){
         HashTable hashTable = hashRepository.findByHash(hash);
         if (hashTable!=null){
+            hashRepository.delete(hashTable);
             if (type.equals("customer"))
                 return customerDetailsService.verify(hashTable.getEmail());
             else if (type.equals("employee"))

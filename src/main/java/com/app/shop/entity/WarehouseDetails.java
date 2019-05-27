@@ -197,4 +197,7 @@ public class WarehouseDetails {
         this.pincode = warehouseDetails.getPincode();
         this.type = warehouseDetails.getType();
     }
+
+    public WarehouseDetails() {
+    }
 }

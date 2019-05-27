@@ -1,13 +1,10 @@
 package com.app.shop.controllers.customer;
 
-import com.app.shop.entity.ItemDetails;
 import com.app.shop.services.customer.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping(value = "/product")
@@ -17,7 +14,12 @@ public class ProductController {
     private ProductService productService;
 
     @RequestMapping(value = "/search")
-    public List<ItemDetails> searchItem(@RequestParam String searchQuery){
+    public HashMap<String, Object> searchItem(@RequestParam String searchQuery){
         return productService.searchItem(searchQuery);
+    }
+
+    @GetMapping(value = "/getitem")
+    public HashMap<String, Object> getItem(@RequestParam String state, Integer itemId){
+        return productService.retrieveItem(itemId, state);
     }
 }

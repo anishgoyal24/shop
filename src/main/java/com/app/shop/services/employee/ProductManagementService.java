@@ -19,6 +19,9 @@ public class ProductManagementService {
     public HashMap<String, Object> addProduct(ItemDetails itemDetails){
         returnObject = new HashMap<>();
         if (productManagementRepository.findByItemName(itemDetails.getItemName())==null) {
+            itemDetails.setStatus('y');
+            for(ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails())
+                itemPackingDetails.setStatus('y');
             productManagementRepository.save(itemDetails);
             returnObject.put("message", "success");
         }
@@ -47,8 +50,10 @@ public class ProductManagementService {
         returnObject = new HashMap<>();
         ItemDetails foundItemDetails = productManagementRepository.findByItemId(itemDetails.getItemId());
         if (foundItemDetails!=null){
-            for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails())
+            for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
+                itemPackingDetails.setStatus('y');
                 foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
+            }
             productManagementRepository.save(foundItemDetails);
             returnObject.put("message", "success");
         }

@@ -32,4 +32,7 @@ public class HashTable {
     public void setHash(String hash) {
         this.hash = hash;
     }
+
+    public HashTable() {
+    }
 }

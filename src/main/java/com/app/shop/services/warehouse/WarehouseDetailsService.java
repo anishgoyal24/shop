@@ -5,7 +5,6 @@ import com.app.shop.entity.WarehouseDetails;
 import com.app.shop.repository.common.HashRepository;
 import com.app.shop.repository.warehouse.WarehouseRepository;
 import com.app.shop.utils.ChangePasswordClass;
-import com.app.shop.utils.EmailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,8 +24,6 @@ public class WarehouseDetailsService {
     private HashRepository hashRepository;
     private HashMap<String, Object> returnObject;
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-    @Autowired
-    private EmailServiceImpl emailService;
 
     private void detachObject(WarehouseDetails warehouseDetails){
         entityManager.detach(warehouseDetails);
@@ -42,13 +39,7 @@ public class WarehouseDetailsService {
             detachObject(warehouseDetails);
             warehouseDetails.setPassword(null);
             String encodedEmail = bCryptPasswordEncoder.encode(warehouseDetails.getWarehouseEmail());
-            String verificationAddress = "/" + encodedEmail;
             hashRepository.save(new HashTable(warehouseDetails.getWarehouseEmail(),encodedEmail));
-            try {
-                emailService.sendMail(warehouseDetails.getWarehouseEmail(), verificationAddress, "Please verify you account");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             returnObject.put("message", "success");
             returnObject.put("data", warehouseDetails);
         }
