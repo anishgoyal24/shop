@@ -29,7 +29,7 @@ public class ItemPackingDetails {
         this.size = size;
     }
 
-    public int getStatus() {
+    public char getStatus() {
         return status;
     }
 

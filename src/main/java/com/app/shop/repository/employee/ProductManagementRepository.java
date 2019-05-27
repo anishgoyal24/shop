@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ProductManagementRepository extends JpaRepository<ItemDetails, Integer> {
 
     public ItemDetails findByItemName(String itemName);
+    public ItemDetails findByItemId(int id);
 }

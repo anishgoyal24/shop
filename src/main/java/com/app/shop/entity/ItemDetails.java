@@ -21,7 +21,7 @@ public class ItemDetails {
     private String itemName;
     private char status;
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id")
     private List<ItemPackingDetails> itemPackingDetails = new ArrayList<>();
 

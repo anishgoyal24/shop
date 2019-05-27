@@ -18,4 +18,24 @@ public class ProductManagementController {
     public HashMap<String, Object> addProduct(@RequestBody ItemDetails itemDetails){
         return productManagementService.addProduct(itemDetails);
     }
+
+    @PostMapping(value = "/delete/{itemId}")
+    public HashMap<String, Object> deleteProduct(@PathVariable Integer itemId){
+        return productManagementService.deleteProduct(itemId);
+    }
+
+    @PostMapping(value = "/addpacking")
+    public HashMap<String, Object> addPacking(@RequestBody ItemDetails itemDetails){
+        return productManagementService.addPacking(itemDetails);
+    }
+
+    @PostMapping(value = "/deletepacking")
+    public HashMap<String, Object> deletePacking(@RequestBody ItemDetails itemDetails){
+        return productManagementService.deletePacking(itemDetails);
+    }
+
+    @GetMapping(value = "/listproducts")
+    public HashMap<String, Object> listProducts(){
+        return productManagementService.listProducts();
+    }
 }
