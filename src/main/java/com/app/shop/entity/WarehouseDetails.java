@@ -3,6 +3,7 @@ package com.app.shop.entity;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 

@@ -12,6 +12,17 @@ public class ItemPackingDetails {
     private int id;
     private Integer size;
     private char status;
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private ItemDetails itemDetails;
+
+    public ItemDetails getItemDetails() {
+        return itemDetails;
+    }
+
+    public void setItemDetails(ItemDetails itemDetails) {
+        this.itemDetails = itemDetails;
+    }
 
     public int getId() {
         return id;

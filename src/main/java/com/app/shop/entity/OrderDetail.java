@@ -9,22 +9,12 @@ public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
-    private OrderHeader orderHeader;
     @OneToOne
     @JoinColumn(name = "item_id", referencedColumnName = "item_id")
     private ItemDetails itemDetails;
     private int quantity;
     private double cost;
 
-    public OrderHeader getOrderHeader() {
-        return orderHeader;
-    }
-
-    public void setOrderHeader(OrderHeader orderHeader) {
-        this.orderHeader = orderHeader;
-    }
 
     public ItemDetails getItemPacking() {
         return itemDetails;

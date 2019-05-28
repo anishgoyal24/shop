@@ -30,7 +30,20 @@ public class ProductService {
     }
 
     public HashMap retrieveItem(Integer itemId, String state){
-        System.out.println(customerStockRepository.findStockAndPrice(state, itemId));
-        return null;
+        returnObject = new HashMap<>();
+        Object[][] objects = customerStockRepository.findStockAndPrice(state, itemId);
+        if (objects.length>0 && objects!=null){
+            if ((long)objects[0][0]>0) {
+                returnObject.put("message", "success");
+                returnObject.put("itemId", itemId);
+                returnObject.put("stock", objects[0][0]);
+                returnObject.put("price", objects[0][1]);
+            }
+            else
+                returnObject.put("message", "Out of stock");
+        }
+        else
+            returnObject.put("message", "Not available in your area");
+        return returnObject;
     }
 }

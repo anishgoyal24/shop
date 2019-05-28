@@ -10,7 +10,7 @@ public class ItemStock {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private int id;
     @ManyToOne
-    @JoinColumn(name = "item_id", referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private ItemPackingDetails itemDetails;
     @ManyToOne
     @JoinColumn(name = "warehouse_id", referencedColumnName = "warehouse_id")

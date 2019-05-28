@@ -1,7 +1,9 @@
 package com.app.shop.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -32,6 +34,9 @@ public class OrderHeader {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "delivery_date")
     private Date deliveryDate;
+    @OneToMany
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
+    private List<OrderDetail> orderDetails;
 
     public String getOrderId() {
         return orderId;
@@ -111,6 +116,14 @@ public class OrderHeader {
 
     public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
+    }
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(ArrayList<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
     @Override

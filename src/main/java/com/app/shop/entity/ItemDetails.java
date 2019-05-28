@@ -21,10 +21,12 @@ public class ItemDetails {
     private String itemName;
     private char status;
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemDetails")
     private List<ItemPackingDetails> itemPackingDetails = new ArrayList<>();
 
+    public void setItemPackingDetails(List<ItemPackingDetails> itemPackingDetails) {
+        this.itemPackingDetails = itemPackingDetails;
+    }
 
     public int getItemId() {
         return itemId;
