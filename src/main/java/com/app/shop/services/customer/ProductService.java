@@ -1,6 +1,7 @@
 package com.app.shop.services.customer;
 
 import com.app.shop.entity.ItemDetails;
+import com.app.shop.repository.customer.DiscountRepository;
 import com.app.shop.repository.customer.ProductRepository;
 import com.app.shop.repository.customer.CustomerStockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class ProductService {
     private HashMap<String, Object> returnObject;
     @Autowired
     private CustomerStockRepository customerStockRepository;
+    @Autowired
+    private DiscountRepository discountRepository;
+
     public HashMap<String, Object> searchItem(String searchQuery){
         returnObject = new HashMap<>();
         List<ItemDetails> itemDetailsList = productRepository.findByItemNameContainingIgnoreCase(searchQuery);
@@ -44,6 +48,16 @@ public class ProductService {
         }
         else
             returnObject.put("message", "Not available in your area");
+        return returnObject;
+    }
+
+    public HashMap<String, Object> getDiscount(String type, Integer itemId){
+        returnObject = new HashMap<>();
+        float discount = discountRepository.findDiscount(type, itemId);
+        if (discount>=0)
+            returnObject.put("discount", discount);
+        else
+            returnObject.put("discount", 0);
         return returnObject;
     }
 }

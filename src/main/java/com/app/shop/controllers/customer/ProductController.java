@@ -22,4 +22,9 @@ public class ProductController {
     public HashMap<String, Object> getItem(@RequestParam String state, Integer itemId){
         return productService.retrieveItem(itemId, state);
     }
+
+    @GetMapping(value = "/discount")
+    public HashMap<String, Object> getDiscount(@RequestParam String type, Integer itemId){
+        return productService.getDiscount(type, itemId);
+    }
 }
