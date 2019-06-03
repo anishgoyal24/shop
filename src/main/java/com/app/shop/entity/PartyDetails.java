@@ -36,6 +36,7 @@ public class PartyDetails {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date")
     private Date createDate;
+    private float discount;
 
     public int getPartyId() {
         return partyId;
@@ -157,6 +158,14 @@ public class PartyDetails {
         this.createDate = createDate;
     }
 
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -164,6 +173,7 @@ public class PartyDetails {
         PartyDetails that = (PartyDetails) o;
         return partyId == that.partyId &&
                 status == that.status &&
+                Float.compare(that.discount, discount) == 0 &&
                 Objects.equals(password, that.password) &&
                 Objects.equals(partyName, that.partyName) &&
                 Objects.equals(partyEmail, that.partyEmail) &&
@@ -181,7 +191,7 @@ public class PartyDetails {
 
     @Override
     public int hashCode() {
-        return Objects.hash(partyId, password, partyName, partyEmail, contactPerson, address, primaryPhone, secondaryPhone, city, state, country, pincode, status, type, createDate);
+        return Objects.hash(partyId, password, partyName, partyEmail, contactPerson, address, primaryPhone, secondaryPhone, city, state, country, pincode, status, type, createDate, discount);
     }
 
     public void updateDetails(PartyDetails newPartyDetails){

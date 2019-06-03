@@ -8,7 +8,7 @@ public class OrderDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
-    private int id;
+    private double id;
     @OneToOne
     @JoinColumn(name = "item_id", referencedColumnName = "item_id")
     private ItemDetails itemDetails;

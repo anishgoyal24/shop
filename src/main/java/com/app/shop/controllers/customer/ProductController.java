@@ -14,8 +14,8 @@ public class ProductController {
     private ProductService productService;
 
     @RequestMapping(value = "/search")
-    public HashMap<String, Object> searchItem(@RequestParam String searchQuery){
-        return productService.searchItem(searchQuery);
+    public HashMap<String, Object> searchItem(@RequestParam String searchQuery, @RequestParam String type){
+        return productService.searchItem(searchQuery, type);
     }
 
     @GetMapping(value = "/getitem")

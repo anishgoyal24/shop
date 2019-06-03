@@ -21,9 +21,9 @@ public class ProductService {
     @Autowired
     private DiscountRepository discountRepository;
 
-    public HashMap<String, Object> searchItem(String searchQuery){
+    public HashMap<String, Object> searchItem(String searchQuery, String type){
         returnObject = new HashMap<>();
-        List<ItemDetails> itemDetailsList = productRepository.findByItemNameContainingIgnoreCase(searchQuery);
+        List<ItemDetails> itemDetailsList = productRepository.findByItemNameContainingIgnoreCase(searchQuery, type);
         if (itemDetailsList!=null){
             returnObject.put("message", "success");
             returnObject.put("data", itemDetailsList);

@@ -23,6 +23,8 @@ public class ItemDetails {
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemDetails")
     private List<ItemPackingDetails> itemPackingDetails = new ArrayList<>();
+    @Column(name = "customer_allowed")
+    private String customerAllowed;
 
     public void setItemPackingDetails(List<ItemPackingDetails> itemPackingDetails) {
         this.itemPackingDetails = itemPackingDetails;
@@ -58,6 +60,14 @@ public class ItemDetails {
 
     public void setItemPackingDetails(ArrayList<ItemPackingDetails> itemPackingDetails) {
         this.itemPackingDetails = itemPackingDetails;
+    }
+
+    public String getCustomerAllowed() {
+        return customerAllowed;
+    }
+
+    public void setCustomerAllowed(String customerAllowed) {
+        this.customerAllowed = customerAllowed;
     }
 
     @Override
