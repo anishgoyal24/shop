@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping(value = "/discount")
-public class PartyController {
+public class DiscountController {
 
     @Autowired
     private DiscountService discountService;

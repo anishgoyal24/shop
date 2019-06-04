@@ -36,4 +36,14 @@ public class CustomerDetailsController {
     public HashMap<String, Object> changePassword(@RequestBody ChangePasswordClass object){
         return customerDetailsService.changePassword(object);
     }
+
+    @GetMapping(value = "/getdiscount")
+    public HashMap<String, Object> getDiscount(@PathVariable int partyId){
+        return customerDetailsService.getDiscount(partyId);
+    }
+
+    @PostMapping(value = "/savediscount")
+    public HashMap<String, Object> saveDiscount(@PathVariable int partyId, float discount){
+        return customerDetailsService.addDiscount(partyId, discount);
+    }
 }

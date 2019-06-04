@@ -31,7 +31,9 @@ public class PartyDetails {
     private String country;
     private String pincode;
     private char status;
-    private String type;
+    @OneToOne
+    @JoinColumn(name = "party_type", referencedColumnName = "id")
+    private PartyType partyType;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date")
@@ -142,12 +144,12 @@ public class PartyDetails {
         this.status = status;
     }
 
-    public String getType() {
-        return type;
+    public PartyType getPartyType() {
+        return partyType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setPartyType(PartyType partyType) {
+        this.partyType = partyType;
     }
 
     public Date getCreateDate() {
@@ -165,6 +167,19 @@ public class PartyDetails {
     public void setDiscount(float discount) {
         this.discount = discount;
     }
+
+    public void updateDetails(PartyDetails newPartyDetails){
+        this.partyName = newPartyDetails.getPartyName();
+        this.contactPerson = newPartyDetails.getContactPerson();
+        this.address = newPartyDetails.getAddress();
+        this.primaryPhone = newPartyDetails.getPrimaryPhone();
+        this.secondaryPhone = newPartyDetails.getSecondaryPhone();
+        this.city = newPartyDetails.getCity();
+        this.state = newPartyDetails.getState();
+        this.country = newPartyDetails.getCountry();
+        this.pincode = newPartyDetails.getPincode();
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -185,45 +200,12 @@ public class PartyDetails {
                 Objects.equals(state, that.state) &&
                 Objects.equals(country, that.country) &&
                 Objects.equals(pincode, that.pincode) &&
-                Objects.equals(type, that.type) &&
+                Objects.equals(partyType, that.partyType) &&
                 Objects.equals(createDate, that.createDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(partyId, password, partyName, partyEmail, contactPerson, address, primaryPhone, secondaryPhone, city, state, country, pincode, status, type, createDate, discount);
-    }
-
-    public void updateDetails(PartyDetails newPartyDetails){
-        this.partyName = newPartyDetails.getPartyName();
-        this.contactPerson = newPartyDetails.getContactPerson();
-        this.address = newPartyDetails.getAddress();
-        this.primaryPhone = newPartyDetails.getPrimaryPhone();
-        this.secondaryPhone = newPartyDetails.getSecondaryPhone();
-        this.city = newPartyDetails.getCity();
-        this.state = newPartyDetails.getState();
-        this.country = newPartyDetails.getCountry();
-        this.pincode = newPartyDetails.getPincode();
-    }
-
-    @Override
-    public String toString() {
-        return "PartyDetails{" +
-                "partyId=" + partyId +
-                ", password='" + password + '\'' +
-                ", partyName='" + partyName + '\'' +
-                ", partyEmail='" + partyEmail + '\'' +
-                ", contactPerson='" + contactPerson + '\'' +
-                ", address='" + address + '\'' +
-                ", primaryPhone='" + primaryPhone + '\'' +
-                ", secondaryPhone='" + secondaryPhone + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", country='" + country + '\'' +
-                ", pincode='" + pincode + '\'' +
-                ", status=" + status +
-                ", type='" + type + '\'' +
-                ", createDate=" + createDate +
-                '}';
+        return Objects.hash(partyId, password, partyName, partyEmail, contactPerson, address, primaryPhone, secondaryPhone, city, state, country, pincode, status, partyType, createDate, discount);
     }
 }

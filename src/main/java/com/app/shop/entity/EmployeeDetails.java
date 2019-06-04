@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -34,9 +35,9 @@ public class EmployeeDetails {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date")
     private Date createDate;
-    @OneToMany
+    @ElementCollection
     @JoinTable(name = "employee_role_mapping")
-    private ArrayList<String> roles = new ArrayList<>();
+    private List<String> roles = new ArrayList<>();
 
     public int getEmpId() {
         return empId;

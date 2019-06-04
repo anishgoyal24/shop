@@ -13,7 +13,7 @@ public interface PointsRepository extends JpaRepository<PartyPoints, Double> {
 
     public PartyPoints findByReferenceId(String id);
 
-    @Query("select sum(order.points) from PartyPoints order where order.partyDetails.partyId=:partyId")
+    @Query("select sum(points) from PartyPoints where partyDetails.partyId =:partyId")
     public int findTotalPoints(@Param("partyId") int partyId);
 
     public ArrayList<PartyPoints> findByPartyDetailsPartyId(int partyId);

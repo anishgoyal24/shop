@@ -111,4 +111,29 @@ public class CustomerDetailsService {
         }
         return "Invalid Request";
     }
+
+    public HashMap<String, Object> getDiscount(int partyId){
+        returnObject = new HashMap<>();
+        if (detailsRepository.findById(partyId).isPresent()){
+            PartyDetails foundPartyDetails = detailsRepository.findById(partyId).get();
+            returnObject.put("message", "success");
+            returnObject.put("data", foundPartyDetails.getDiscount());
+        }
+        else
+            returnObject.put("message", "failure");
+        return returnObject;
+    }
+
+    public HashMap<String, Object> addDiscount(int partyId, float discount){
+        returnObject = new HashMap<>();
+        if (detailsRepository.findById(partyId).isPresent()){
+            PartyDetails foundPartyDetails = detailsRepository.findById(partyId).get();
+            foundPartyDetails.setDiscount(discount);
+            detailsRepository.save(foundPartyDetails);
+            returnObject.put("message", "success");
+        }
+        else
+            returnObject.put("message", "failure");
+        return returnObject;
+    }
 }
