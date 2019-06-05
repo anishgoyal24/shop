@@ -19,8 +19,6 @@ public class WarehouseDetailsService {
     private WarehouseRepository warehouseRepository;
     @PersistenceContext
     private EntityManager entityManager;
-    @Autowired
-    private HashRepository hashRepository;
     private HashMap<String, Object> returnObject;
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 

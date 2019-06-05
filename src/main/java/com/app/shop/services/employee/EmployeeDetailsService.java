@@ -1,7 +1,6 @@
 package com.app.shop.services.employee;
 
 import com.app.shop.entity.EmployeeDetails;
-import com.app.shop.entity.HashTable;
 import com.app.shop.repository.common.HashRepository;
 import com.app.shop.repository.employee.EmployeeRepository;
 import com.app.shop.utils.ChangePasswordClass;
@@ -18,8 +17,6 @@ public class EmployeeDetailsService {
 
     @PersistenceContext
     private EntityManager entityManager;
-    @Autowired
-    private HashRepository hashRepository;
     @Autowired
     private EmployeeRepository employeeRepository;
     private HashMap<String, Object> returnObject;
