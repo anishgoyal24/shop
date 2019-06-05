@@ -25,7 +25,7 @@ public class DiscountService {
 
     public HashMap<String, Object> addDiscount(Discount discount){
         returnObject = new HashMap<>();
-        Discount foundDiscount = discountRepository.findExistingDiscount(discount.getItemPackingDetails().getId(), discount.getPartyType().getType());
+        Discount foundDiscount = discountRepository.findExistingDiscount(discount.getItemPackingDetails().getId());
         if (foundDiscount==null){
             discountRepository.save(discount);
             returnObject.put("message", "success");
@@ -37,7 +37,7 @@ public class DiscountService {
 
     public HashMap<String, Object> updateDiscount(Discount discount){
         returnObject = new HashMap<>();
-        Discount foundDiscount = discountRepository.findExistingDiscount(discount.getItemPackingDetails().getId(), discount.getPartyType().getType());
+        Discount foundDiscount = discountRepository.findExistingDiscount(discount.getItemPackingDetails().getId());
         if (foundDiscount!=null){
             foundDiscount.setDiscount(discount.getDiscount());
             returnObject.put("message", "success");

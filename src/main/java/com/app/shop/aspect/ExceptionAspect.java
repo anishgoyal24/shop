@@ -16,7 +16,6 @@ public class ExceptionAspect {
     @AfterThrowing(pointcut = "execution(* com.app.shop.*.*(..))", throwing = "exception")
     public void afterThrowing(JoinPoint joinPoint, Throwable exception){
         logger.error(joinPoint.getSignature().getName(), exception);
-        System.out.println("here");
     }
 
 }

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface DetailsRepository extends JpaRepository<PartyDetails, Integer> {
 
     PartyDetails findByPartyEmail(String email);
-
+    PartyDetails findByPartyId(Integer partyId);
 }

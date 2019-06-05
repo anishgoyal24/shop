@@ -24,7 +24,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "/discount")
-    public HashMap<String, Object> getDiscount(@RequestParam String type, Integer itemId){
-        return productService.getDiscount(type, itemId);
+    public HashMap<String, Object> getDiscount(@RequestParam Integer itemId){
+        return productService.getDiscount(itemId);
     }
 }

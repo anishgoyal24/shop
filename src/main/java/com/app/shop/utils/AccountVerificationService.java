@@ -2,7 +2,7 @@ package com.app.shop.utils;
 
 import com.app.shop.entity.HashTable;
 import com.app.shop.repository.common.HashRepository;
-import com.app.shop.services.customer.CustomerDetailsService;
+import com.app.shop.services.customer.PartyDetailsService;
 import com.app.shop.services.employee.EmployeeDetailsService;
 import com.app.shop.services.warehouse.WarehouseDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class AccountVerificationService {
     @Autowired
     private EmployeeDetailsService employeeDetailsService;
     @Autowired
-    private CustomerDetailsService customerDetailsService;
+    private PartyDetailsService partyDetailsService;
     @Autowired
     private WarehouseDetailsService warehouseDetailsService;
 
@@ -25,7 +25,7 @@ public class AccountVerificationService {
         if (hashTable!=null){
             hashRepository.delete(hashTable);
             if (type.equals("customer"))
-                return customerDetailsService.verify(hashTable.getEmail());
+                return partyDetailsService.verify(hashTable.getEmail());
             else if (type.equals("employee"))
                 return employeeDetailsService.verify(hashTable.getEmail());
             else if (type.equals("warehouse"))

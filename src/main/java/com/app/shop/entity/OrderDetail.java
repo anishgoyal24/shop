@@ -11,17 +11,20 @@ public class OrderDetail {
     private double id;
     @OneToOne
     @JoinColumn(name = "item_id", referencedColumnName = "item_id")
-    private ItemDetails itemDetails;
+    private ItemPackingDetails itemDetails;
     private int quantity;
-    private double cost;
+    @Column(name = "actual_cost")
+    private double actualCost;
+    @Column(name = "discounted_cost")
+    private double discountedCost;
 
 
-    public ItemDetails getItemPacking() {
+    public ItemPackingDetails getItemDetails() {
         return itemDetails;
     }
 
-    public void setItemPacking(ItemDetails itemPacking) {
-        this.itemDetails = itemPacking;
+    public void setItemDetails(ItemPackingDetails itemDetails) {
+        this.itemDetails = itemDetails;
     }
 
     public int getQuantity() {
@@ -32,11 +35,19 @@ public class OrderDetail {
         this.quantity = quantity;
     }
 
-    public double getCost() {
-        return cost;
+    public double getActualCost() {
+        return actualCost;
     }
 
-    public void setCost(double cost) {
-        this.cost = cost;
+    public void setActualCost(double actualCost) {
+        this.actualCost = actualCost;
+    }
+
+    public double getDiscountedCost() {
+        return discountedCost;
+    }
+
+    public void setDiscountedCost(double discountedCost) {
+        this.discountedCost = discountedCost;
     }
 }

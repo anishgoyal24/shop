@@ -10,9 +10,6 @@ public class Discount {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private int id;
     @ManyToOne
-    @JoinColumn(name = "party_id")
-    private PartyType partyType;
-    @ManyToOne
     @JoinColumn(name = "item_id")
     private ItemPackingDetails itemPackingDetails;
     private float discount;
@@ -24,14 +21,6 @@ public class Discount {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public PartyType getPartyType() {
-        return partyType;
-    }
-
-    public void setPartyType(PartyType partyType) {
-        this.partyType = partyType;
     }
 
     public ItemPackingDetails getItemPackingDetails() {

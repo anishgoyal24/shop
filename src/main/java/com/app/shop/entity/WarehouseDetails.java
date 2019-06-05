@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -38,6 +39,9 @@ public class WarehouseDetails {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date")
     private Date createDate;
+    @ElementCollection
+    @JoinTable(name = "employee_role_mapping")
+    private List<String> roles = new ArrayList<>();
 
     public int getWarehouseId() {
         return warehouseId;
@@ -178,6 +182,14 @@ public class WarehouseDetails {
                 Objects.equals(pincode, that.pincode) &&
                 Objects.equals(type, that.type) &&
                 Objects.equals(createDate, that.createDate);
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 
     @Override

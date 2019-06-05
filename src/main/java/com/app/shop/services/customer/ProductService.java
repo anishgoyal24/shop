@@ -3,7 +3,7 @@ package com.app.shop.services.customer;
 import com.app.shop.entity.ItemDetails;
 import com.app.shop.repository.customer.DiscountRepository;
 import com.app.shop.repository.customer.ProductRepository;
-import com.app.shop.repository.customer.CustomerStockRepository;
+import com.app.shop.repository.customer.PartyStockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class ProductService {
     private ProductRepository productRepository;
     private HashMap<String, Object> returnObject;
     @Autowired
-    private CustomerStockRepository customerStockRepository;
+    private PartyStockRepository partyStockRepository;
     @Autowired
     private DiscountRepository discountRepository;
 
@@ -35,7 +35,7 @@ public class ProductService {
 
     public HashMap retrieveItem(Integer itemId, String state){
         returnObject = new HashMap<>();
-        Object[][] objects = customerStockRepository.findStockAndPrice(state, itemId);
+        Object[][] objects = partyStockRepository.findStockAndPrice(state, itemId);
         if (objects.length>0 && objects!=null){
             if ((long)objects[0][0]>0) {
                 returnObject.put("message", "success");
@@ -51,9 +51,9 @@ public class ProductService {
         return returnObject;
     }
 
-    public HashMap<String, Object> getDiscount(String type, Integer itemId){
+    public HashMap<String, Object> getDiscount(Integer itemId){
         returnObject = new HashMap<>();
-        float discount = discountRepository.findDiscount(type, itemId);
+        float discount = discountRepository.findExistingDiscount(itemId).getDiscount();
         if (discount>=0)
             returnObject.put("discount", discount);
         else
