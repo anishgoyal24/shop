@@ -34,12 +34,10 @@ public class EmployeeDetailsService {
         EmployeeDetails foundEmployee = employeeRepository.findByEmpEmail(employeeDetails.getEmpEmail());
         if (foundEmployee==null){
             employeeDetails.setPassword(bCryptPasswordEncoder.encode(employeeDetails.getPassword()));
-            employeeDetails.setStatus('n');
+            employeeDetails.setStatus('y');
             employeeRepository.save(employeeDetails);
             detachObject(employeeDetails);
             employeeDetails.setPassword(null);
-            String encodedEmail = bCryptPasswordEncoder.encode(employeeDetails.getEmpEmail());
-            hashRepository.save(new HashTable(employeeDetails.getEmpEmail(),encodedEmail));
             returnObject.put("message", "success");
             returnObject.put("data", employeeDetails);
         }
@@ -75,6 +73,7 @@ public class EmployeeDetailsService {
             foundEmployeeDetails.setStatus('n');
             employeeRepository.save(foundEmployeeDetails);
             returnObject.put("message", "deleted successfully");
+            returnObject.put("email", email);
         }
         else
             returnObject.put("message", "failure");

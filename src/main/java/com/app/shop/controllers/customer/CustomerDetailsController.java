@@ -20,16 +20,9 @@ public class CustomerDetailsController {
         return partyDetailsService.addNewUser(partyDetails);
     }
 
-
-
     @PostMapping(value = "/updatedetails")
     public HashMap<String, Object> updateDetails(@RequestBody PartyDetails partyDetails){
         return partyDetailsService.updateUserDetails(partyDetails);
-    }
-
-    @PostMapping(value = "/delete")
-    public HashMap<String, Object> deleteUser(@RequestParam String email){
-        return partyDetailsService.deleteUser(email);
     }
 
     @PostMapping(value = "/changepassword")

@@ -1,6 +1,5 @@
 package com.app.shop.services.warehouse;
 
-import com.app.shop.entity.HashTable;
 import com.app.shop.entity.WarehouseDetails;
 import com.app.shop.repository.common.HashRepository;
 import com.app.shop.repository.warehouse.WarehouseRepository;
@@ -34,12 +33,10 @@ public class WarehouseDetailsService {
         WarehouseDetails foundEmployee = warehouseRepository.findByWarehouseEmail(warehouseDetails.getWarehouseEmail());
         if (foundEmployee==null){
             warehouseDetails.setPassword(bCryptPasswordEncoder.encode(warehouseDetails.getPassword()));
-            warehouseDetails.setStatus('n');
+            warehouseDetails.setStatus('y');
             warehouseRepository.save(warehouseDetails);
             detachObject(warehouseDetails);
             warehouseDetails.setPassword(null);
-            String encodedEmail = bCryptPasswordEncoder.encode(warehouseDetails.getWarehouseEmail());
-            hashRepository.save(new HashTable(warehouseDetails.getWarehouseEmail(),encodedEmail));
             returnObject.put("message", "success");
             returnObject.put("data", warehouseDetails);
         }
@@ -75,6 +72,7 @@ public class WarehouseDetailsService {
             foundWarehouseDetails.setStatus('n');
             warehouseRepository.save(foundWarehouseDetails);
             returnObject.put("message", "deleted successfully");
+            returnObject.put("email", email);
         }
         else
             returnObject.put("message", "failure");

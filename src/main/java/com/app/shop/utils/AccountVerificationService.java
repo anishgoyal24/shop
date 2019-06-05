@@ -20,16 +20,11 @@ public class AccountVerificationService {
     @Autowired
     private WarehouseDetailsService warehouseDetailsService;
 
-    public String verifyAccount(String hash, String type){
+    public String verifyAccount(String hash){
         HashTable hashTable = hashRepository.findByHash(hash);
         if (hashTable!=null){
             hashRepository.delete(hashTable);
-            if (type.equals("customer"))
-                return partyDetailsService.verify(hashTable.getEmail());
-            else if (type.equals("employee"))
-                return employeeDetailsService.verify(hashTable.getEmail());
-            else if (type.equals("warehouse"))
-                return warehouseDetailsService.verify(hashTable.getEmail());
+            return partyDetailsService.verify(hashTable.getEmail());
         }
         return "failure";
     }

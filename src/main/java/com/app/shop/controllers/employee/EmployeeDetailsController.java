@@ -25,11 +25,6 @@ public class EmployeeDetailsController {
         return employeeDetailsService.updateEmployeeDetails(employeeDetails);
     }
 
-    @PostMapping(value = "/delete")
-    public HashMap<String, Object> deleteUser(@RequestParam String email){
-        return employeeDetailsService.deleteEmployee(email);
-    }
-
     @PostMapping(value = "/changepassword")
     public HashMap<String, Object> changePassword(@RequestBody ChangePasswordClass object){
         return employeeDetailsService.changePassword(object);

@@ -40,7 +40,7 @@ public class WarehouseDetails {
     @Column(name = "creation_date")
     private Date createDate;
     @ElementCollection
-    @JoinTable(name = "employee_role_mapping")
+    @JoinTable(name = "warehouse_role_mapping")
     private List<String> roles = new ArrayList<>();
 
     public int getWarehouseId() {

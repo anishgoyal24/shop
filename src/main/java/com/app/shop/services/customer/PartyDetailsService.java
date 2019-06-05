@@ -83,6 +83,7 @@ public class PartyDetailsService {
             foundPartyDetails.setStatus('n');
             detailsRepository.save(foundPartyDetails);
             returnObject.put("message", "deleted successfully");
+            returnObject.put("email", email);
         }
         else
             returnObject.put("message", "failure");
