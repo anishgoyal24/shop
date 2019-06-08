@@ -18,7 +18,7 @@ public class StockService {
     public HashMap<String, Object> addStock(ArrayList<ItemStock> itemStocks){
         returnObject = new HashMap<>();
         for (ItemStock itemStock : itemStocks){
-            ItemStock foundStock = warehouseStockRepository.findStock(itemStock.getItemDetails().getId(), itemStock.getWarehouseDetails().getWarehouseId());
+            ItemStock foundStock = warehouseStockRepository.findStock(itemStock.getItemPackingDetails().getId(), itemStock.getWarehouseDetails().getWarehouseId());
             if (foundStock==null){
                 warehouseStockRepository.save(itemStock);
                 returnObject.put("message", "successfully added stock");

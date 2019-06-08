@@ -11,7 +11,7 @@ public class ItemStock {
     private int id;
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private ItemPackingDetails itemDetails;
+    private ItemPackingDetails itemPackingDetails;
     @ManyToOne
     @JoinColumn(name = "warehouse_id", referencedColumnName = "warehouse_id")
     private WarehouseDetails warehouseDetails;
@@ -26,12 +26,12 @@ public class ItemStock {
         this.id = id;
     }
 
-    public ItemPackingDetails getItemDetails() {
-        return itemDetails;
+    public ItemPackingDetails getItemPackingDetails() {
+        return itemPackingDetails;
     }
 
-    public void setItemDetails(ItemPackingDetails itemDetails) {
-        this.itemDetails = itemDetails;
+    public void setItemPackingDetails(ItemPackingDetails itemPackingDetails) {
+        this.itemPackingDetails = itemPackingDetails;
     }
 
     public WarehouseDetails getWarehouseDetails() {

@@ -14,11 +14,7 @@ public class AccountVerificationService {
     @Autowired
     private HashRepository hashRepository;
     @Autowired
-    private EmployeeDetailsService employeeDetailsService;
-    @Autowired
     private PartyDetailsService partyDetailsService;
-    @Autowired
-    private WarehouseDetailsService warehouseDetailsService;
 
     public String verifyAccount(String hash){
         HashTable hashTable = hashRepository.findByHash(hash);

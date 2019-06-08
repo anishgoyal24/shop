@@ -22,13 +22,10 @@ public class ItemDetails {
     private char status;
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemDetails")
-    private List<ItemPackingDetails> itemPackingDetails = new ArrayList<>();
+    private List<ItemPackingDetails> itemPackingDetails;
     @Column(name = "customer_allowed")
     private String customerAllowed;
 
-    public void setItemPackingDetails(List<ItemPackingDetails> itemPackingDetails) {
-        this.itemPackingDetails = itemPackingDetails;
-    }
 
     public int getItemId() {
         return itemId;
