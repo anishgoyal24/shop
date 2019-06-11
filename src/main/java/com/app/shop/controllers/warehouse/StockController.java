@@ -3,6 +3,7 @@ package com.app.shop.controllers.warehouse;
 import com.app.shop.entity.ItemStock;
 import com.app.shop.services.warehouse.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class StockController {
     @Autowired
     private StockService stockService;
 
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
     @PostMapping(value = "/add")
     public HashMap<String, Object> addStock(@RequestBody ItemStock[] itemStocks){
         ArrayList<ItemStock> stockArrayList = new ArrayList<ItemStock>(Arrays.asList(itemStocks));

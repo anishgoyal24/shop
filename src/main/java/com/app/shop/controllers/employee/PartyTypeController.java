@@ -3,6 +3,7 @@ package com.app.shop.controllers.employee;
 import com.app.shop.entity.PartyType;
 import com.app.shop.services.employee.PartyTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -15,16 +16,19 @@ public class PartyTypeController {
     private PartyTypeService partyTypeService;
 
     @PostMapping(value = "/new")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
     public HashMap<String, Object> addPartyType(@RequestBody PartyType partyType){
         return partyTypeService.addPartyType(partyType);
     }
 
     @PostMapping(value = "/delete/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
     public HashMap<String, Object> deletePartyType(@PathVariable Integer id){
         return partyTypeService.deletePartyType(id);
     }
 
     @GetMapping(value = "/list")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
     public HashMap<String, Object> getPartyTypes(){
         return partyTypeService.listAll();
     }

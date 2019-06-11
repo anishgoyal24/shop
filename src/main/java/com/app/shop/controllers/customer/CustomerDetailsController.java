@@ -4,6 +4,7 @@ import com.app.shop.entity.PartyDetails;
 import com.app.shop.services.customer.PartyDetailsService;
 import com.app.shop.utils.ChangePasswordClass;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -21,21 +22,25 @@ public class CustomerDetailsController {
     }
 
     @PostMapping(value = "/updatedetails")
+    @PreAuthorize("hasAnyAuthority('ROLE_party', 'ROLE_employee')")
     public HashMap<String, Object> updateDetails(@RequestBody PartyDetails partyDetails){
         return partyDetailsService.updateUserDetails(partyDetails);
     }
 
     @PostMapping(value = "/changepassword")
+    @PreAuthorize("hasAnyAuthority('ROLE_party')")
     public HashMap<String, Object> changePassword(@RequestBody ChangePasswordClass object){
         return partyDetailsService.changePassword(object);
     }
 
     @GetMapping(value = "/getdiscount")
+    @PreAuthorize("hasAnyAuthority('ROLE_party', 'ROLE_employee')")
     public HashMap<String, Object> getDiscount(@PathVariable int partyId){
         return partyDetailsService.getDiscount(partyId);
     }
 
     @PostMapping(value = "/savediscount")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee')")
     public HashMap<String, Object> saveDiscount(@PathVariable int partyId, float discount){
         return partyDetailsService.addDiscount(partyId, discount);
     }

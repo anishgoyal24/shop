@@ -26,6 +26,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "/discount")
+    @PreAuthorize("hasAnyAuthority('ROLE_party')")
     public HashMap<String, Object> getDiscount(@RequestParam Integer itemId){
         return productService.getDiscount(itemId);
     }
