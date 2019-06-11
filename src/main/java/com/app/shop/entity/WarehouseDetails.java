@@ -39,9 +39,7 @@ public class WarehouseDetails {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date")
     private Date createDate;
-    @ElementCollection
-    @JoinTable(name = "warehouse_role_mapping")
-    private List<String> roles = new ArrayList<>();
+    private String role;
 
     public int getWarehouseId() {
         return warehouseId;
@@ -184,12 +182,12 @@ public class WarehouseDetails {
                 Objects.equals(createDate, that.createDate);
     }
 
-    public List<String> getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

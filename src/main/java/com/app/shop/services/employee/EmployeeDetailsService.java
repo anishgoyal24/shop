@@ -1,7 +1,8 @@
 package com.app.shop.services.employee;
 
 import com.app.shop.entity.EmployeeDetails;
-import com.app.shop.repository.common.HashRepository;
+import com.app.shop.entity.UserDetails;
+import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.employee.EmployeeRepository;
 import com.app.shop.utils.ChangePasswordClass;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class EmployeeDetailsService {
     private EntityManager entityManager;
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
+    private UserAuthRepository userAuthRepository;
     private HashMap<String, Object> returnObject;
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -30,10 +33,12 @@ public class EmployeeDetailsService {
         returnObject = new HashMap<>();
         EmployeeDetails foundEmployee = employeeRepository.findByEmpEmail(employeeDetails.getEmpEmail());
         if (foundEmployee==null){
-            employeeDetails.setPassword(bCryptPasswordEncoder.encode(employeeDetails.getPassword()));
+            String encodedPassword = bCryptPasswordEncoder.encode(employeeDetails.getPassword());
+            employeeDetails.setPassword(encodedPassword);
             employeeDetails.setStatus('y');
             employeeRepository.save(employeeDetails);
             detachObject(employeeDetails);
+            userAuthRepository.save(new UserDetails(employeeDetails.getEmpEmail(), encodedPassword, 1, employeeDetails.getRole()));
             employeeDetails.setPassword(null);
             returnObject.put("message", "success");
             returnObject.put("data", employeeDetails);
@@ -69,6 +74,9 @@ public class EmployeeDetailsService {
         if (foundEmployeeDetails!=null){
             foundEmployeeDetails.setStatus('n');
             employeeRepository.save(foundEmployeeDetails);
+            UserDetails userDetails = userAuthRepository.findByUsername(email);
+            userDetails.setEnabled(0);
+            userAuthRepository.save(userDetails);
             returnObject.put("message", "deleted successfully");
             returnObject.put("email", email);
         }
@@ -81,8 +89,12 @@ public class EmployeeDetailsService {
         returnObject = new HashMap<>();
         EmployeeDetails foundEmployeeDetails = employeeRepository.findByEmpEmail(object.getEmail());
         if (foundEmployeeDetails!=null && bCryptPasswordEncoder.matches(object.getOldPassword(), foundEmployeeDetails.getPassword())){
-            foundEmployeeDetails.setPassword(bCryptPasswordEncoder.encode(object.getNewPassword()));
+            String encodedPassword = bCryptPasswordEncoder.encode(object.getNewPassword());
+            foundEmployeeDetails.setPassword(encodedPassword);
             employeeRepository.save(foundEmployeeDetails);
+            UserDetails userDetails = userAuthRepository.findByUsername(object.getEmail());
+            userDetails.setPassword(encodedPassword);
+            userAuthRepository.save(userDetails);
             returnObject.put("message", "success");
         }
         else

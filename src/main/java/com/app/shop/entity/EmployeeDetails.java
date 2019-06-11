@@ -35,9 +35,6 @@ public class EmployeeDetails {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date")
     private Date createDate;
-    @ElementCollection
-    @JoinTable(name = "employee_role_mapping")
-    private List<String> roles = new ArrayList<>();
 
     public int getEmpId() {
         return empId;
@@ -142,6 +139,8 @@ public class EmployeeDetails {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

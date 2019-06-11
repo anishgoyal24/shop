@@ -2,6 +2,7 @@ package com.app.shop.controllers.customer;
 
 import com.app.shop.services.customer.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -18,6 +19,7 @@ public class ProductController {
         return productService.searchItem(searchQuery, type);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_party')")
     @GetMapping(value = "/getitem")
     public HashMap<String, Object> getItem(@RequestParam String state, Integer itemId){
         return productService.retrieveItem(itemId, state);

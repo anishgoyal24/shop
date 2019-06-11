@@ -1,7 +1,9 @@
 package com.app.shop.services.warehouse;
 
+import com.app.shop.entity.UserDetails;
 import com.app.shop.entity.WarehouseDetails;
 import com.app.shop.repository.common.HashRepository;
+import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.warehouse.WarehouseRepository;
 import com.app.shop.utils.ChangePasswordClass;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class WarehouseDetailsService {
 
     @Autowired
     private WarehouseRepository warehouseRepository;
+    @Autowired
+    private UserAuthRepository userAuthRepository;
     @PersistenceContext
     private EntityManager entityManager;
     private HashMap<String, Object> returnObject;
@@ -30,10 +34,12 @@ public class WarehouseDetailsService {
         returnObject = new HashMap<>();
         WarehouseDetails foundEmployee = warehouseRepository.findByWarehouseEmail(warehouseDetails.getWarehouseEmail());
         if (foundEmployee==null){
-            warehouseDetails.setPassword(bCryptPasswordEncoder.encode(warehouseDetails.getPassword()));
+            String encodedPassword = bCryptPasswordEncoder.encode(warehouseDetails.getPassword());
+            warehouseDetails.setPassword(encodedPassword);
             warehouseDetails.setStatus('y');
             warehouseRepository.save(warehouseDetails);
             detachObject(warehouseDetails);
+            userAuthRepository.save(new UserDetails(warehouseDetails.getWarehouseEmail(), encodedPassword, 1, warehouseDetails.getRole()));
             warehouseDetails.setPassword(null);
             returnObject.put("message", "success");
             returnObject.put("data", warehouseDetails);
@@ -69,6 +75,9 @@ public class WarehouseDetailsService {
         if (foundWarehouseDetails!=null){
             foundWarehouseDetails.setStatus('n');
             warehouseRepository.save(foundWarehouseDetails);
+            UserDetails userDetails = userAuthRepository.findByUsername(email);
+            userDetails.setEnabled(0);
+            userAuthRepository.save(userDetails);
             returnObject.put("message", "deleted successfully");
             returnObject.put("email", email);
         }
@@ -81,8 +90,12 @@ public class WarehouseDetailsService {
         returnObject = new HashMap<>();
         WarehouseDetails foundWarehouseDetails = warehouseRepository.findByWarehouseEmail(object.getEmail());
         if (foundWarehouseDetails!=null && bCryptPasswordEncoder.matches(object.getOldPassword(), foundWarehouseDetails.getPassword())){
-            foundWarehouseDetails.setPassword(bCryptPasswordEncoder.encode(object.getNewPassword()));
+            String encodedPassword = bCryptPasswordEncoder.encode(object.getNewPassword());
+            foundWarehouseDetails.setPassword(encodedPassword);
             warehouseRepository.save(foundWarehouseDetails);
+            UserDetails userDetails = userAuthRepository.findByUsername(object.getEmail());
+            userDetails.setPassword(encodedPassword);
+            userAuthRepository.save(userDetails);
             returnObject.put("message", "success");
         }
         else

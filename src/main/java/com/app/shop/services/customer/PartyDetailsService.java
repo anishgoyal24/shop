@@ -2,7 +2,9 @@ package com.app.shop.services.customer;
 
 import com.app.shop.entity.HashTable;
 import com.app.shop.entity.PartyDetails;
+import com.app.shop.entity.UserDetails;
 import com.app.shop.repository.common.HashRepository;
+import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.customer.DetailsRepository;
 import com.app.shop.utils.ChangePasswordClass;
 import com.app.shop.utils.EmailServiceImpl;
@@ -27,6 +29,8 @@ public class PartyDetailsService {
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     @Autowired
     private EmailServiceImpl emailService;
+    @Autowired
+    private UserAuthRepository userAuthRepository;
 
     private void detachParty(PartyDetails partyDetails){
         entityManager.detach(partyDetails);
@@ -36,13 +40,14 @@ public class PartyDetailsService {
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
         if (oldPartyDetails==null){
             partyDetails.setStatus('n');
-            partyDetails.setPassword(bCryptPasswordEncoder.encode(partyDetails.getPassword()));
+            String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
+            partyDetails.setPassword(encodedPassword);
             detailsRepository.save(partyDetails);
             detachParty(partyDetails);
+            userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 0, "party"));
             partyDetails.setPassword(null);
-            String encodedEmail = bCryptPasswordEncoder.encode(partyDetails.getPartyEmail());
-            String verificationAddress = "/" + encodedEmail;
-            hashRepository.save(new HashTable(partyDetails.getPartyEmail(),encodedEmail));
+            String verificationAddress = "/" + encodedPassword;
+            hashRepository.save(new HashTable(partyDetails.getPartyEmail(),encodedPassword));
             try {
                 emailService.sendMail(partyDetails.getPartyEmail(), verificationAddress, "Please verify you account");
             } catch (Exception e) {
@@ -82,6 +87,9 @@ public class PartyDetailsService {
         if (foundPartyDetails!=null){
             foundPartyDetails.setStatus('n');
             detailsRepository.save(foundPartyDetails);
+            UserDetails userDetails = userAuthRepository.findByUsername(email);
+            userDetails.setEnabled(0);
+            userAuthRepository.save(userDetails);
             returnObject.put("message", "deleted successfully");
             returnObject.put("email", email);
         }
@@ -94,8 +102,12 @@ public class PartyDetailsService {
         returnObject = new HashMap<>();
         PartyDetails foundPartyDetails = detailsRepository.findByPartyEmail(object.getEmail());
         if (foundPartyDetails!=null && bCryptPasswordEncoder.matches(object.getOldPassword(), foundPartyDetails.getPassword())){
-            foundPartyDetails.setPassword(bCryptPasswordEncoder.encode(object.getNewPassword()));
+            String encodedPassword = bCryptPasswordEncoder.encode(object.getNewPassword());
+            foundPartyDetails.setPassword(encodedPassword);
             detailsRepository.save(foundPartyDetails);
+            UserDetails userDetails = userAuthRepository.findByUsername(object.getEmail());
+            userDetails.setPassword(encodedPassword);
+            userAuthRepository.save(userDetails);
             returnObject.put("message", "success");
         }
         else
@@ -108,6 +120,9 @@ public class PartyDetailsService {
         if (foundPartyDetails!=null){
             foundPartyDetails.setStatus('y');
             detailsRepository.save(foundPartyDetails);
+            UserDetails userDetails = userAuthRepository.findByUsername(email);
+            userDetails.setEnabled(1);
+            userAuthRepository.save(userDetails);
             return "Successfully Verified";
         }
         return "Invalid Request";
