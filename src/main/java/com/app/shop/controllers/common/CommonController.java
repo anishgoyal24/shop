@@ -25,20 +25,27 @@ public class CommonController {
     @Autowired
     private WarehouseDetailsService warehouseDetailsService;
 
-    @PostMapping(value = "/verify/{hash}/{type}")
+    @PostMapping(value = "/verify/{hash}")
     public String verifyAccount(@PathVariable String hash){
         return new AccountVerificationService().verifyAccount(hash);
     }
 
     @MessageMapping(value = "/delete")
-    @SendTo(value = "/devices/public")
-    public HashMap<String, Object> delete(@Payload WebSocketPayload webSocketPayload){
+    @SendTo(value = "/devices")
+    public WebSocketPayload delete(@Payload WebSocketPayload webSocketPayload){
+        HashMap<String, Object> response = new HashMap<>();
+        WebSocketPayload returnPayload = new WebSocketPayload();
         if (webSocketPayload.getUserType().equalsIgnoreCase("party"))
-            return partyDetailsService.deleteUser(webSocketPayload.getUserEmail());
+             response = partyDetailsService.deleteUser(webSocketPayload.getUserEmail());
         else if (webSocketPayload.getUserType().equalsIgnoreCase("warehouse"))
-            return warehouseDetailsService.deleteWarehouse(webSocketPayload.getUserEmail());
+            response = warehouseDetailsService.deleteWarehouse(webSocketPayload.getUserEmail());
         else if (webSocketPayload.getUserType().equalsIgnoreCase("employee"))
-            return employeeDetailsService.deleteEmployee(webSocketPayload.getUserEmail());
+            response =  employeeDetailsService.deleteEmployee(webSocketPayload.getUserEmail());
+        if (((String)response.get("message")).equalsIgnoreCase("success")){
+            returnPayload.setMessage("delete");
+            returnPayload.setUserEmail((String)response.get("email"));
+            return returnPayload;
+        }
         else
             return null;
     }
