@@ -13,7 +13,7 @@ import java.util.Objects;
 public class EmployeeDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     @Column(name = "emp_id")
     private int empId;
     private String password;
