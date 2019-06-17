@@ -1,11 +1,16 @@
 package com.app.shop.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "order_header")
 public class OrderHeader {
@@ -37,94 +42,6 @@ public class OrderHeader {
     @OneToMany
     @JoinColumn(name = "order_id", referencedColumnName = "order_id")
     private List<OrderDetail> orderDetails;
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public PartyDetails getPartyDetails() {
-        return partyDetails;
-    }
-
-    public void setPartyDetails(PartyDetails partyDetails) {
-        this.partyDetails = partyDetails;
-    }
-
-    public WarehouseDetails getWarehouseDetails() {
-        return warehouseDetails;
-    }
-
-    public void setWarehouseDetails(WarehouseDetails warehouseDetails) {
-        this.warehouseDetails = warehouseDetails;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public Date getExpectedDeliveryDate() {
-        return expectedDeliveryDate;
-    }
-
-    public void setExpectedDeliveryDate(Date expectedDeliveryDate) {
-        this.expectedDeliveryDate = expectedDeliveryDate;
-    }
-
-    public String getPaymentMode() {
-        return paymentMode;
-    }
-
-    public void setPaymentMode(String paymentMode) {
-        this.paymentMode = paymentMode;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getClosedBy() {
-        return closedBy;
-    }
-
-    public void setClosedBy(String closedBy) {
-        this.closedBy = closedBy;
-    }
-
-    public String getReceivedBy() {
-        return receivedBy;
-    }
-
-    public void setReceivedBy(String receivedBy) {
-        this.receivedBy = receivedBy;
-    }
-
-    public Date getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(Date deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
-    public List<OrderDetail> getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(ArrayList<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
-    }
 
     @Override
     public boolean equals(Object o) {

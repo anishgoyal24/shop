@@ -1,7 +1,12 @@
 package com.app.shop.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "discount")
 public class Discount {
@@ -14,36 +19,4 @@ public class Discount {
     private ItemPackingDetails itemPackingDetails;
     private float discount;
     private char status;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public ItemPackingDetails getItemPackingDetails() {
-        return itemPackingDetails;
-    }
-
-    public void setItemPackingDetails(ItemPackingDetails itemPackingDetails) {
-        this.itemPackingDetails = itemPackingDetails;
-    }
-
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
-    }
-
-    public char getStatus() {
-        return status;
-    }
-
-    public void setStatus(char status) {
-        this.status = status;
-    }
 }

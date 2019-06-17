@@ -1,5 +1,7 @@
 package com.app.shop.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
@@ -7,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "item_mst")
 @Cacheable
@@ -25,47 +29,6 @@ public class ItemDetails {
     private List<ItemPackingDetails> itemPackingDetails;
     @Column(name = "customer_allowed")
     private String customerAllowed;
-
-
-    public int getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public char getStatus() {
-        return status;
-    }
-
-    public void setStatus(char status) {
-        this.status = status;
-    }
-
-    public List<ItemPackingDetails> getItemPackingDetails() {
-        return itemPackingDetails;
-    }
-
-    public void setItemPackingDetails(ArrayList<ItemPackingDetails> itemPackingDetails) {
-        this.itemPackingDetails = itemPackingDetails;
-    }
-
-    public String getCustomerAllowed() {
-        return customerAllowed;
-    }
-
-    public void setCustomerAllowed(String customerAllowed) {
-        this.customerAllowed = customerAllowed;
-    }
 
     @Override
     public boolean equals(Object o) {

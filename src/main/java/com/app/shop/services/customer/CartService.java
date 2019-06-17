@@ -31,8 +31,15 @@ public class CartService {
 
     public HashMap<String, Object> deleteItem(Cart cart){
         returnObject = new HashMap<>();
-        if (cartRepository.findByPartyDetailsPartyIdAndItemPackingDetailsId(cart.getPartyDetails().getPartyId(), cart.getItemPackingDetails().getId()) !=null){
-            cartRepository.delete(cart);
+        Cart found = cartRepository.findByPartyDetailsPartyIdAndItemPackingDetailsId(cart.getPartyDetails().getPartyId(), cart.getItemPackingDetails().getId());
+        if (found!=null){
+            if (found.getQuantity() > cart.getQuantity()){
+                found.setQuantity(found.getQuantity() - cart.getQuantity());
+                cartRepository.save(found);
+                returnObject.put("data", found);
+            }
+            else
+                cartRepository.delete(cart);
             returnObject.put("message", "success");
         }
         else {

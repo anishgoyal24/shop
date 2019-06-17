@@ -1,5 +1,7 @@
 package com.app.shop.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -8,6 +10,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "warehouse_mst")
 public class WarehouseDetails {
@@ -32,7 +36,6 @@ public class WarehouseDetails {
     private String state;
     private String country;
     private String pincode;
-    @Column(columnDefinition = "char default 'n'")
     private char status;
     private String type;
     @CreationTimestamp
@@ -40,126 +43,6 @@ public class WarehouseDetails {
     @Column(name = "creation_date")
     private Date createDate;
     private String role;
-
-    public int getWarehouseId() {
-        return warehouseId;
-    }
-
-    public void setWarehouseId(int warehouseId) {
-        this.warehouseId = warehouseId;
-    }
-
-    public String getWarehouseName() {
-        return warehouseName;
-    }
-
-    public void setWarehouseName(String warehouseName) {
-        this.warehouseName = warehouseName;
-    }
-
-    public String getPersonOfContact() {
-        return personOfContact;
-    }
-
-    public void setPersonOfContact(String personOfContact) {
-        this.personOfContact = personOfContact;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPrimaryPhone() {
-        return primaryPhone;
-    }
-
-    public void setPrimaryPhone(String primaryPhone) {
-        this.primaryPhone = primaryPhone;
-    }
-
-    public String getSecondaryPhone() {
-        return secondaryPhone;
-    }
-
-    public void setSecondaryPhone(String secondaryPhone) {
-        this.secondaryPhone = secondaryPhone;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getPincode() {
-        return pincode;
-    }
-
-    public void setPincode(String pincode) {
-        this.pincode = pincode;
-    }
-
-    public char getStatus() {
-        return status;
-    }
-
-    public void setStatus(char status) {
-        this.status = status;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getWarehouseEmail() {
-        return warehouseEmail;
-    }
-
-    public void setWarehouseEmail(String warehouseEmail) {
-        this.warehouseEmail = warehouseEmail;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -206,7 +89,6 @@ public class WarehouseDetails {
         this.state = warehouseDetails.getState();
         this.country = warehouseDetails.getCountry();
         this.pincode = warehouseDetails.getPincode();
-        this.type = warehouseDetails.getType();
     }
 
     public WarehouseDetails() {

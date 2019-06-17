@@ -1,10 +1,14 @@
 package com.app.shop.entity;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "packing_details")
 @Cacheable
@@ -19,36 +23,4 @@ public class ItemPackingDetails {
     @ManyToOne
     @JoinColumn(name = "item_id")
     private ItemDetails itemDetails;
-
-    public ItemDetails getItemDetails() {
-        return itemDetails;
-    }
-
-    public void setItemDetails(ItemDetails itemDetails) {
-        this.itemDetails = itemDetails;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
-    }
-
-    public char getStatus() {
-        return status;
-    }
-
-    public void setStatus(char status) {
-        this.status = status;
-    }
 }

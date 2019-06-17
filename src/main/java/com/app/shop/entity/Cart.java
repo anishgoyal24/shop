@@ -1,7 +1,12 @@
 package com.app.shop.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "user_cart")
 public class Cart {
@@ -17,36 +22,4 @@ public class Cart {
     private ItemPackingDetails itemPackingDetails;
     private int quantity;
     private double price;
-
-    public PartyDetails getPartyDetails() {
-        return partyDetails;
-    }
-
-    public void setPartyDetails(PartyDetails partyDetails) {
-        this.partyDetails = partyDetails;
-    }
-
-    public ItemPackingDetails getItemPackingDetails() {
-        return itemPackingDetails;
-    }
-
-    public void setItemPackingDetails(ItemPackingDetails itemPackingDetails) {
-        this.itemPackingDetails = itemPackingDetails;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 }

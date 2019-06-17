@@ -33,15 +33,15 @@ public class CustomerDetailsController {
         return partyDetailsService.changePassword(object);
     }
 
-    @GetMapping(value = "/getdiscount")
+    @GetMapping(value = "/getdiscount/{partyId}")
     @PreAuthorize("hasAnyAuthority('ROLE_party', 'ROLE_employee')")
     public HashMap<String, Object> getDiscount(@PathVariable int partyId){
         return partyDetailsService.getDiscount(partyId);
     }
 
-    @PostMapping(value = "/savediscount")
+    @PostMapping(value = "/savediscount/{partyId}/{discount}")
     @PreAuthorize("hasAnyAuthority('ROLE_employee')")
-    public HashMap<String, Object> saveDiscount(@PathVariable int partyId, float discount){
+    public HashMap<String, Object> saveDiscount(@PathVariable int partyId, @PathVariable float discount){
         return partyDetailsService.addDiscount(partyId, discount);
     }
 }

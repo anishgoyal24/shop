@@ -14,14 +14,14 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/search")
+    @GetMapping(value = "/search")
     public HashMap<String, Object> searchItem(@RequestParam String searchQuery, @RequestParam String type){
         return productService.searchItem(searchQuery, type);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_party')")
     @GetMapping(value = "/getitem")
-    public HashMap<String, Object> getItem(@RequestParam String state, Integer itemId){
+    public HashMap<String, Object> getItem(@RequestParam String state, @RequestParam Integer itemId){
         return productService.retrieveItem(itemId, state);
     }
 
