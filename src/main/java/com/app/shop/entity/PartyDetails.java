@@ -44,7 +44,7 @@ public class PartyDetails {
     private PartyType partyType;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "creation_date")
+    @Column(name = "creation_date", updatable = false)
     private Date createDate;
     private float discount;
 

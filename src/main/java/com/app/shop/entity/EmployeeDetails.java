@@ -37,7 +37,7 @@ public class EmployeeDetails {
     private String role;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "creation_date")
+    @Column(name = "creation_date", updatable = false)
     private Date createDate;
 
     @Override

@@ -40,7 +40,7 @@ public class WarehouseDetails {
     private String type;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "creation_date")
+    @Column(name = "creation_date", updatable = false)
     private Date createDate;
     private String role;
 
