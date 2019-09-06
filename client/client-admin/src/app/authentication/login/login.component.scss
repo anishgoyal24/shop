@@ -1,0 +1,146 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+
+$prim: #53e3a6;
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    font-family: 'Source Sans Pro', sans-serif;
+        color:    white;
+    font-weight: 300;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-family: 'Source Sans Pro', sans-serif;
+     color:    white;
+     opacity:  1;
+    font-weight: 300;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-family: 'Source Sans Pro', sans-serif;
+     color:    white;
+     opacity:  1;
+    font-weight: 300;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    font-family: 'Source Sans Pro', sans-serif;
+     color:    white;
+    font-weight: 300;
+}
+
+.body-container{
+    // background: linear-gradient(110deg, #50a3a2 60%, #53e3a6 60%);
+    // background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+
+    font-family: 'Source Sans Pro', sans-serif;
+	color: white;
+	font-weight: 300;
+
+    background: #50a3a2;
+    background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+    background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+    background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+    background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+    text-shadow: 2px 2px 4px #000000;
+	
+	&.form-success{
+		.container{
+			h1{
+				transform: translateY(85px);
+			}
+		}
+	}
+}
+
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	
+	font-weight: 300;
+}
+
+.container{
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 80px 0;
+	height: 400px;
+	text-align: center;
+	
+	h1{
+        font-size: 80px;
+        font-weight: bold;
+		// font-weight: 400;
+	}
+}
+
+.back{
+    margin-left: 2rem;
+    margin-top: 1rem;
+
+    i{
+        cursor: pointer;
+    }
+}
+
+form{
+	padding: 20px 0;
+	position: relative;
+	z-index: 2;
+	
+	input{
+		display: block;
+		appearance: none;
+		outline: 0;
+        border: 1px solid white;
+        // border-radius: 3;
+        // border: 0;
+        background-color: white;
+        opacity: 0.9;
+        background: transparent;
+
+		width: 250px;
+		
+		border-radius: 3px;
+		padding: 10px 15px;
+		margin: 0 auto 10px auto;
+		display: block;
+		text-align: center;
+		font-size: 18px;
+		
+		color: white;
+		
+		transition-duration: 0.25s;
+		font-weight: 300;
+		
+		&:hover{
+            // background-color:white;
+            color: white;
+            opacity: 0.8;
+		}
+		
+		&:focus{
+			background-color: white;
+			width: 300px;
+            color: $prim;
+            font-weight: bold;
+        }
+	}
+	
+	button{
+		appearance: none;
+		outline: 0;
+		background-color: white;
+		border: 0;
+		padding: 10px 15px;
+		color: $prim;
+		border-radius: 3px;
+		width: 250px;
+		cursor: pointer;
+        font-size: 24px;
+        font-weight: bold;
+		transition-duration: 0.25s;
+		
+		&:hover{
+            background-color: rgb(245, 247, 249);
+            opacity: 0.9;
+		}
+	}
+}
