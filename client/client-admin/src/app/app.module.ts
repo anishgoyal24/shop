@@ -11,6 +11,14 @@ import { SignupComponent } from './authentication/signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './dashboard/navbar/navbar.component';
 import { OverviewComponent } from './dashboard/overview/overview.component';
+import { StocksComponent } from './dashboard/stocks/stocks.component';
+import { ProductsComponent } from './dashboard/products/products.component';
+import { CategoriesComponent } from './dashboard/categories/categories.component';
+import { AccountComponent } from './dashboard/account/account.component';
+import { AccountsHeaderComponent } from './dashboard/account/accounts-header/accounts-header.component';
+import { NewAccountsComponent } from './dashboard/account/new-accounts/new-accounts.component';
+import { ManageAccountsComponent } from './dashboard/account/manage-accounts/manage-accounts.component';
+import { RolesComponent } from './dashboard/account/roles/roles.component';
 
 const colors: any = ["#fa7c30", "#fdcd3b", "#53e3a6", "#28c3d4"]
 
@@ -53,7 +61,15 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SignupComponent,
     DashboardComponent,
     NavbarComponent,
-    OverviewComponent
+    OverviewComponent,
+    StocksComponent,
+    ProductsComponent,
+    CategoriesComponent,
+    AccountComponent,
+    AccountsHeaderComponent,
+    NewAccountsComponent,
+    ManageAccountsComponent,
+    RolesComponent
   ],
   imports: [
     BrowserModule,
