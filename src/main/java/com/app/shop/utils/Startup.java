@@ -17,6 +17,12 @@ public class Startup {
     public void addAdminStartup(ApplicationReadyEvent applicationReadyEvent){
         EmployeeDetails defaultAdmin = new EmployeeDetails();
         // Add all necessary details for defaultAdmin
+        defaultAdmin.setRole("owner");
+        defaultAdmin.setEmpName("Parveen Goel");
+        defaultAdmin.setPassword("admin");
+        defaultAdmin.setCountry("India");
+        defaultAdmin.setState("Haryana");
+        defaultAdmin.setPrimaryPhone("7027770150");
         employeeDetailsService.addNewEmployee(defaultAdmin);
     }
 }

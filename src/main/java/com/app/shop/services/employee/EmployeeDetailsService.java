@@ -31,6 +31,10 @@ public class EmployeeDetailsService {
 
     public HashMap<String, Object> addNewEmployee(EmployeeDetails employeeDetails){
         returnObject = new HashMap<>();
+        if (employeeDetails.getRole().equalsIgnoreCase("owner")){
+            returnObject.put("message", "invalid role");
+            return returnObject;
+        }
         EmployeeDetails foundEmployee = employeeRepository.findByEmpEmail(employeeDetails.getEmpEmail());
         if (foundEmployee==null){
             String encodedPassword = bCryptPasswordEncoder.encode(employeeDetails.getPassword());
@@ -102,13 +106,13 @@ public class EmployeeDetailsService {
         return returnObject;
     }
 
-    public String verify(String email) {
-        EmployeeDetails foundEmployeeDetails = employeeRepository.findByEmpEmail(email);
-        if (foundEmployeeDetails!=null){
-            foundEmployeeDetails.setStatus('y');
-            employeeRepository.save(foundEmployeeDetails);
-            return "Successfully Verified";
-        }
-        return "Invalid Request";
-    }
+//    public String verify(String email) {
+//        EmployeeDetails foundEmployeeDetails = employeeRepository.findByEmpEmail(email);
+//        if (foundEmployeeDetails!=null){
+//            foundEmployeeDetails.setStatus('y');
+//            employeeRepository.save(foundEmployeeDetails);
+//            return "Successfully Verified";
+//        }
+//        return "Invalid Request";
+//    }
 }
