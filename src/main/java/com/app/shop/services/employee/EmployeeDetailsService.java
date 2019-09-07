@@ -106,6 +106,27 @@ public class EmployeeDetailsService {
         return returnObject;
     }
 
+    public HashMap<String, Object> getList() {
+        returnObject = new HashMap<>();
+        returnObject.put("data", employeeRepository.findAll());
+        return returnObject;
+    }
+
+    public HashMap<String, Object> updateRole(String email, String role){
+        returnObject = new HashMap<>();
+        EmployeeDetails foundEmployee = employeeRepository.findByEmpEmail(email);
+        if (foundEmployee!=null){
+            foundEmployee.setRole(role);
+            employeeRepository.save(foundEmployee);
+            returnObject.put("message", "success");
+            returnObject.put("role", role);
+        }
+        else{
+            returnObject.put("message", "no such employee");
+        }
+        return returnObject;
+    }
+
 //    public String verify(String email) {
 //        EmployeeDetails foundEmployeeDetails = employeeRepository.findByEmpEmail(email);
 //        if (foundEmployeeDetails!=null){

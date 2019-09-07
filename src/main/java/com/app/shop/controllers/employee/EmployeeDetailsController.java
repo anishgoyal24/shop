@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/employee")
@@ -32,5 +33,17 @@ public class EmployeeDetailsController {
     @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> changePassword(@RequestBody ChangePasswordClass object){
         return employeeDetailsService.changePassword(object);
+    }
+
+    @GetMapping(value = "/list")
+    @PreAuthorize("hasAnyAuthority('ROLE_admin', 'ROLE_owner')")
+    public HashMap<String, Object> getList(){
+        return employeeDetailsService.getList();
+    }
+
+    @PostMapping(value = "/changerole")
+    @PreAuthorize("hasAnyAuthority('ROLE_admin', 'ROLE_owner')")
+    public HashMap<String, Object> changeRole(@RequestBody Map<String, String> request){
+        return employeeDetailsService.updateRole(request.get("email"), request.get("role"));
     }
 }
