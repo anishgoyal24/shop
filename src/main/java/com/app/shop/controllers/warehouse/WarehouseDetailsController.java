@@ -16,7 +16,7 @@ public class WarehouseDetailsController {
     @Autowired
     private WarehouseDetailsService warehouseDetailsService;
 
-    @PostMapping(value = "new")
+    @PostMapping(value = "/new")
     @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
     public HashMap<String, Object> addNewWarehouse(@RequestBody WarehouseDetails warehouseDetails) {
         return warehouseDetailsService.addNewWarehouse(warehouseDetails);
