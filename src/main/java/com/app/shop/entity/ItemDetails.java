@@ -29,6 +29,8 @@ public class ItemDetails {
     private List<ItemPackingDetails> itemPackingDetails;
     @Column(name = "customer_allowed")
     private String customerAllowed;
+    @OneToMany(mappedBy = "itemDetails")
+    private List<Category> categories;
 
     @Override
     public boolean equals(Object o) {
