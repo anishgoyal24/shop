@@ -19,6 +19,11 @@ import { AccountsHeaderComponent } from './dashboard/account/accounts-header/acc
 import { NewAccountsComponent } from './dashboard/account/new-accounts/new-accounts.component';
 import { ManageAccountsComponent } from './dashboard/account/manage-accounts/manage-accounts.component';
 import { RolesComponent } from './dashboard/account/roles/roles.component';
+import { AccountHomeComponent } from './dashboard/account/account-home/account-home.component';
+import { CategoriesHeaderComponent } from './dashboard/categories/categories-header/categories-header.component';
+import { CategoriesHomeComponent } from './dashboard/categories/categories-home/categories-home.component';
+import { NewCategoriesComponent } from './dashboard/categories/new-categories/new-categories.component';
+import { ManageCategoriesComponent } from './dashboard/categories/manage-categories/manage-categories.component';
 
 const colors: any = ["#fa7c30", "#fdcd3b", "#53e3a6", "#28c3d4"]
 
@@ -69,7 +74,12 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AccountsHeaderComponent,
     NewAccountsComponent,
     ManageAccountsComponent,
-    RolesComponent
+    RolesComponent,
+    AccountHomeComponent,
+    CategoriesHeaderComponent,
+    CategoriesHomeComponent,
+    NewCategoriesComponent,
+    ManageCategoriesComponent
   ],
   imports: [
     BrowserModule,

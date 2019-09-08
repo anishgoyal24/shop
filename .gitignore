@@ -30,4 +30,4 @@ HELP.md
 
 node_modules
 
-package-lock.json
+/client/client-admin/package-lock.json
