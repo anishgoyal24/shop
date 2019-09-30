@@ -30,6 +30,6 @@ public class Startup {
         defaultAdmin.setState("Haryana");
         defaultAdmin.setPrimaryPhone("7027770150");
         employeeDetailsService.addNewEmployee(defaultAdmin);
-        userAuthRepository.save(new UserDetails("Parveen Goel", new BCryptPasswordEncoder().encode("admin"), 1, "admin"));
+        if (userAuthRepository.findByUsername("Parveen Goel") == null) userAuthRepository.save(new UserDetails("Parveen Goel", new BCryptPasswordEncoder().encode("admin"), 1, "admin"));
     }
 }
