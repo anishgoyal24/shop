@@ -35,7 +35,7 @@ import { StocksHomeComponent } from './dashboard/stocks/stocks-home/stocks-home.
 
 const colors: any = ["#fa7c30", "#fdcd3b", "#53e3a6", "#28c3d4"]
 
-function getRandomInt(min, max) {
+export function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -43,7 +43,8 @@ function getRandomInt(min, max) {
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 
-  "bgsColor": colors[getRandomInt(0, colors.length-1)],
+  //"bgsColor": colors[getRandomInt(0, colors.length-1)],
+  "bgsColor": colors[0],
   "bgsOpacity": 0.9,
   "bgsPosition": "center-center",
   "bgsSize": 100,
@@ -56,7 +57,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "gap": 24,
   "logoPosition": "center-center",
   "logoSize": 120,
-  "overlayColor": colors[getRandomInt(0, colors.length)],
+  //"overlayColor": colors[getRandomInt(0, colors.length)],
+  "overlayColor": colors[3],
   "pbColor": "#fff",
   "pbDirection": "ltr",
   "pbThickness": 5,
