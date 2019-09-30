@@ -13,7 +13,7 @@ public class Startup {
     @Autowired
     private EmployeeDetailsService employeeDetailsService;
 
-    @EventListener
+    @EventListener(ApplicationReadyEvent.class)
     public void addAdminStartup(ApplicationReadyEvent applicationReadyEvent){
         EmployeeDetails defaultAdmin = new EmployeeDetails();
         // Add all necessary details for defaultAdmin
