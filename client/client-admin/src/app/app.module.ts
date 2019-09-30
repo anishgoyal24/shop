@@ -24,6 +24,14 @@ import { CategoriesHeaderComponent } from './dashboard/categories/categories-hea
 import { CategoriesHomeComponent } from './dashboard/categories/categories-home/categories-home.component';
 import { NewCategoriesComponent } from './dashboard/categories/new-categories/new-categories.component';
 import { ManageCategoriesComponent } from './dashboard/categories/manage-categories/manage-categories.component';
+import { ProductsHeaderComponent } from './dashboard/products/products-header/products-header.component';
+import { NewProductsComponent } from './dashboard/products/new-products/new-products.component';
+import { ManageProductsComponent } from './dashboard/products/manage-products/manage-products.component';
+import { ProductsHomeComponent } from './dashboard/products/products-home/products-home.component';
+import { StocksHeaderComponent } from './dashboard/stocks/stocks-header/stocks-header.component';
+import { NewStocksComponent } from './dashboard/stocks/new-stocks/new-stocks.component';
+import { ManageStocksComponent } from './dashboard/stocks/manage-stocks/manage-stocks.component';
+import { StocksHomeComponent } from './dashboard/stocks/stocks-home/stocks-home.component';
 
 const colors: any = ["#fa7c30", "#fdcd3b", "#53e3a6", "#28c3d4"]
 
@@ -79,7 +87,15 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     CategoriesHeaderComponent,
     CategoriesHomeComponent,
     NewCategoriesComponent,
-    ManageCategoriesComponent
+    ManageCategoriesComponent,
+    ProductsHeaderComponent,
+    NewProductsComponent,
+    ManageProductsComponent,
+    ProductsHomeComponent,
+    StocksHeaderComponent,
+    NewStocksComponent,
+    ManageStocksComponent,
+    StocksHomeComponent
   ],
   imports: [
     BrowserModule,
