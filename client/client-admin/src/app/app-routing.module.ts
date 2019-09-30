@@ -21,9 +21,15 @@ import { OverviewComponent } from './dashboard/overview/overview.component';
 
 // Stocks
 import { StocksComponent } from './dashboard/stocks/stocks.component';
+import { StocksHomeComponent } from './dashboard/stocks/stocks-home/stocks-home.component';
+import { NewStocksComponent } from './dashboard/stocks/new-stocks/new-stocks.component';
+import { ManageStocksComponent } from './dashboard/stocks/manage-stocks/manage-stocks.component';
 
 // Products
 import { ProductsComponent } from './dashboard/products/products.component';
+import { ProductsHomeComponent } from './dashboard/products/products-home/products-home.component';
+import { NewProductsComponent } from './dashboard/products/new-products/new-products.component';
+import { ManageProductsComponent } from './dashboard/products/manage-products/manage-products.component';
 
 // Categories
 import { CategoriesComponent } from './dashboard/categories/categories.component';
@@ -47,8 +53,23 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, 
     children: [
       { path: 'overview', component: OverviewComponent },
-      { path: 'stocks', component: StocksComponent },
-      { path: 'products', component: ProductsComponent },
+
+      { path: 'stocks', component: StocksComponent,
+        children:[
+          { path: 'home', component: StocksHomeComponent },
+          { path: 'new', component: NewStocksComponent },
+          { path: 'manage', component: ManageStocksComponent }
+        ] 
+      },
+
+      { path: 'products', component: ProductsComponent, 
+        children: [
+          { path: 'home', component: ProductsHomeComponent },
+          { path: 'new', component: NewProductsComponent },
+          { path: 'manage', component: ManageProductsComponent }
+        ] 
+      },
+
       { path: 'categories', component: CategoriesComponent, 
         children:[
           { path: 'home', component: CategoriesHomeComponent },
@@ -56,6 +77,7 @@ const routes: Routes = [
           { path: 'manage', component: ManageCategoriesComponent } ,
         ] 
       },
+      
       { path: 'accounts', component: AccountComponent,
         children: [
           { path: 'home', component: AccountHomeComponent },
