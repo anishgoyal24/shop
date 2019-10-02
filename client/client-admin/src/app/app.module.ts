@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 import { NgxUiLoaderModule, NgxUiLoaderConfig } from  'ngx-ui-loader';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -102,6 +105,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],

@@ -9,10 +9,10 @@
     <div class="container">
         <h1>Login to Dashboard</h1>
 
-        <form class="form">
-            <input type="email" placeholder="Email">
-            <input  type="password" placeholder="Password">
+        <div class="form">
+            <input type="text" placeholder="Username" [(ngModel)]="userName">
+            <input  type="password" placeholder="Password" [(ngModel)]="password">
             <button type="submit" id="login-button" (click) = "login()">Login</button>
-        </form>
+        </div>
     </div>
 </div>
