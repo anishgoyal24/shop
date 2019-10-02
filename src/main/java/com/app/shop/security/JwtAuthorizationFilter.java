@@ -44,7 +44,6 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         }
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        response.setHeader("Access-Control-Expose-Headers", "Authorization");
         filterChain.doFilter(request, response);
     }
 
