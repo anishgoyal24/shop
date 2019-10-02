@@ -14,22 +14,10 @@ export class AdminService {
    * @param userData 
    */
   authenticate(userData: any){
-     let headers = new HttpHeaders({ 
-      'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
-    });
-    //  headers.append("Content-Type", "application/json");
-
-    //  const httpOptions = {
-    //   headers: new HttpHeaders({ 
-    //     'Access-Control-Allow-Origin':'*',
-    //     'Authorization':'authkey',
-    //   }),
-    //   observe: 'response'
-    // };
-    
-    return this._http.post<any>(environment.BASE_URL_API + '/user/authenticate', userData, 
-    {observe: 'response', 
-      // headers : headers
-  });
+    console.log(userData);
+    return this._http.post(environment.BASE_URL_API + '/user/authenticate', userData, {
+      responseType: 'text',
+      observe: 'response'
+    })
   }
 }
