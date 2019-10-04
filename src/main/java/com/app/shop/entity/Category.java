@@ -16,7 +16,7 @@ public class Category {
     @Column(name = "category_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private int id;
-    @Column(name = "categpry_name")
+    @Column(name = "category_name")
     private String category;
     @Column(name = "status", columnDefinition = "char default 'n'")
     private char status;
