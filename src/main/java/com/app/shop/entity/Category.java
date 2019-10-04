@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,7 +20,7 @@ public class Category {
     private String category;
     @Column(name = "status", columnDefinition = "char default 'n'")
     private char status;
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private ItemDetails itemDetails;
+    @ManyToMany
+    @JoinTable(name = "product_category_mapping", joinColumns = {@JoinColumn(name = "category_id")}, inverseJoinColumns = {@JoinColumn(name = "item_id")})
+    private List<ItemDetails> itemDetails;
 }
