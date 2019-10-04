@@ -1,7 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 import { NgxUiLoaderModule, NgxUiLoaderConfig } from  'ngx-ui-loader';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -102,9 +106,16 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
+    HttpClientModule,
+    FormsModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    SnotifyModule
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    
+    SnotifyService,
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
