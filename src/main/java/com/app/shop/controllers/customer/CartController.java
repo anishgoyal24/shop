@@ -29,7 +29,7 @@ public class CartController {
 
     @GetMapping(value = "/get")
     @PreAuthorize("hasAnyAuthority('ROLE_party')")
-    public HashMap<String, Object> getCart(@RequestParam String username){
-        return cartService.getCart(username);
+    public HashMap<String, Object> getCart(@RequestParam String username, @RequestParam String state){
+        return cartService.getCart(username, state);
     }
 }

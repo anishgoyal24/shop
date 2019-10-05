@@ -44,4 +44,10 @@ public class CustomerDetailsController {
     public HashMap<String, Object> saveDiscount(@PathVariable int partyId, @PathVariable float discount){
         return partyDetailsService.addDiscount(partyId, discount);
     }
+
+    @GetMapping(value = "/getdetails")
+    @PreAuthorize("hasAnyAuthority('ROLE_party')")
+    public HashMap<String, Object> getDetails(@RequestParam String usernane){
+        return partyDetailsService.getDetails(usernane);
+    }
 }

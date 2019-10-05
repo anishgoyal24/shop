@@ -152,4 +152,14 @@ public class PartyDetailsService {
             returnObject.put("message", "failure");
         return returnObject;
     }
+
+    public HashMap<String, Object> getDetails(String username){
+        returnObject = new HashMap<>();
+        PartyDetails partyDetails = detailsRepository.findByPartyEmail(username);
+        detachParty(partyDetails);
+        partyDetails.setPassword("");
+        returnObject.put("message", "success");
+        returnObject.put("data", partyDetails);
+        return returnObject;
+    }
 }

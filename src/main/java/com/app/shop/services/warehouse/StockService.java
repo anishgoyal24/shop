@@ -31,4 +31,8 @@ public class StockService {
         }
         return returnObject;
     }
+
+    public double getItemPrice(String state, Integer itemId){
+        return warehouseStockRepository.findPrice(state, itemId);
+    }
 }

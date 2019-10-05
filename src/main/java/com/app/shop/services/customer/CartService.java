@@ -2,6 +2,7 @@ package com.app.shop.services.customer;
 
 import com.app.shop.entity.Cart;
 import com.app.shop.repository.customer.CartRepository;
+import com.app.shop.services.warehouse.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ public class CartService {
     @Autowired
     private CartRepository cartRepository;
     private HashMap<String, Object> returnObject;
+    @Autowired
+    private StockService stockService;
 
     public HashMap<String, Object> addItem(Cart cart){
         returnObject = new HashMap<>();
@@ -49,9 +52,12 @@ public class CartService {
         return returnObject;
     }
 
-    public HashMap<String, Object> getCart(String username){
+    public HashMap<String, Object> getCart(String username, String state){
         returnObject = new HashMap<>();
         List<Cart> cart = cartRepository.findByPartyDetailsPartyEmail(username);
+        for (Cart item : cart){
+            item.setPrice(stockService.getItemPrice(state, item.getId()));
+        }
         returnObject.put("message", "success");
         returnObject.put("data", cart);
         return returnObject;
