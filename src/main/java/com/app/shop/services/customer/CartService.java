@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class CartService {
@@ -45,6 +46,14 @@ public class CartService {
         else {
             returnObject.put("message", "failure");
         }
+        return returnObject;
+    }
+
+    public HashMap<String, Object> getCart(String username){
+        returnObject = new HashMap<>();
+        List<Cart> cart = cartRepository.findByPartyDetailsPartyEmail(username);
+        returnObject.put("message", "success");
+        returnObject.put("data", cart);
         return returnObject;
     }
 }
