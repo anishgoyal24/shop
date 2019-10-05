@@ -17,8 +17,7 @@ public class Cart {
     @ManyToOne
     @JoinColumn(name = "party_id")
     private PartyDetails partyDetails;
-    @Column(name = "packing")
-    @OneToOne
+    @OneToOne(targetEntity = ItemPackingDetails.class)
     private ItemPackingDetails itemPackingDetails;
     private int quantity;
     private double price;
