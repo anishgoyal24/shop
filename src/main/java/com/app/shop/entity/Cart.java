@@ -18,6 +18,7 @@ public class Cart {
     @JoinColumn(name = "party_id")
     private PartyDetails partyDetails;
     @Column(name = "packing")
+    @OneToOne
     private ItemPackingDetails itemPackingDetails;
     private int quantity;
     private double price;
