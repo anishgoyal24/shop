@@ -37,6 +37,11 @@ import { NewStocksComponent } from './dashboard/stocks/new-stocks/new-stocks.com
 import { ManageStocksComponent } from './dashboard/stocks/manage-stocks/manage-stocks.component';
 import { StocksHomeComponent } from './dashboard/stocks/stocks-home/stocks-home.component';
 
+
+// SERVICES
+import { AdminService } from 'src/shared/services/admin.service';
+import { CategoryService } from 'src/shared/services/category.service';
+
 const colors: any = ["#fa7c30", "#fdcd3b", "#53e3a6", "#28c3d4"]
 
 export function getRandomInt(min, max) {
@@ -113,7 +118,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    
+    AdminService,
+    CategoryService,
     SnotifyService,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },],
   bootstrap: [AppComponent]
