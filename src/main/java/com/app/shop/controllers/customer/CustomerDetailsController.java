@@ -47,7 +47,7 @@ public class CustomerDetailsController {
 
     @GetMapping(value = "/getdetails")
     @PreAuthorize("hasAnyAuthority('ROLE_party')")
-    public HashMap<String, Object> getDetails(@RequestParam String usernane){
-        return partyDetailsService.getDetails(usernane);
+    public HashMap<String, Object> getDetails(@RequestParam String username){
+        return partyDetailsService.getDetails(username);
     }
 }
