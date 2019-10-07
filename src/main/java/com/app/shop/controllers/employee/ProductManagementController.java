@@ -5,6 +5,7 @@ import com.app.shop.services.employee.ProductManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 
@@ -17,8 +18,8 @@ public class ProductManagementController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addProduct(@RequestBody ItemDetails itemDetails){
-        return productManagementService.addProduct(itemDetails);
+    public HashMap<String, Object> addProduct(@RequestBody ItemDetails itemDetails, @RequestParam("image")MultipartFile image){
+        return productManagementService.addProduct(itemDetails, image);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")

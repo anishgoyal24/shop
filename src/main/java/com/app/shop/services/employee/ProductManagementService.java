@@ -5,7 +5,11 @@ import com.app.shop.entity.ItemPackingDetails;
 import com.app.shop.repository.employee.ProductManagementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,13 +20,14 @@ public class ProductManagementService {
     private ProductManagementRepository productManagementRepository;
     HashMap<String, Object> returnObject;
 
-    public HashMap<String, Object> addProduct(ItemDetails itemDetails){
+    public HashMap<String, Object> addProduct(ItemDetails itemDetails, MultipartFile image){
         returnObject = new HashMap<>();
         if (productManagementRepository.findByItemName(itemDetails.getItemName())==null) {
             itemDetails.setStatus('y');
             for(ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails())
                 itemPackingDetails.setStatus('y');
             productManagementRepository.save(itemDetails);
+            uploadImage(image);
             returnObject.put("message", "success");
         }
         else
@@ -83,5 +88,19 @@ public class ProductManagementService {
         List<ItemDetails> itemDetailsList =  productManagementRepository.findAll();
         returnObject.put("data", itemDetailsList);
         return returnObject;
+    }
+
+    private String uploadImage(MultipartFile image){
+        if (image.isEmpty())return "failure";
+        try{
+            byte[] bytes = image.getBytes();
+            String UPLOADED_FOLDER="src/main/assets/images/product/";
+            Path path = Paths.get(UPLOADED_FOLDER + image.getOriginalFilename());
+            Files.write(path, bytes);
+            return "success";
+        }
+        catch (Exception e){
+            return "Exception failure"+e+" ";
+        }
     }
 }
