@@ -8,17 +8,12 @@
         </div>
     </div>
     
-    <div class="row" style="margin-bottom: 1rem;">
-        <div class="col-md-3 container-card">
-    
-        </div>
-        <div class="col-md-3 container-card">
-    
-        </div>
-        <div class="col-md-3 container-card">
-    
-        </div>
-        <div class="col-md-3 container-card">
-            
+    <div class="row" style="margin-bottom: 1rem; margin-left: 5rem;">
+        
+        <div *ngFor="let category of categoriesList">
+                <div class="container-card" style="margin: 1rem 1rem 1rem 1rem">
+                        <h2>{{category?.category}}</h2>
+                        <p>Status: {{category?.status}}</p>
+                </div>
         </div>
     </div>
