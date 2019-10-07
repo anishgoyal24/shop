@@ -19,17 +19,16 @@ export class NewCategoriesComponent implements OnInit {
   async createNewCategory() {
     try {
       return new Promise((resolve, reject) => {
-        let categoryData = {
-          name: this.categoryName
-        }
+        let categoryData = this.categoryName
         if (categoryData) {
           this.categoryService.addCategory(categoryData)
             .subscribe((res) => {
-              console.log('Headers List', res.headers.keys());
+              // console.log('Headers List', res.headers.keys());
               console.log('Category Added', res);
+              this.categoryName = "";
               resolve();
             }, (err) => {
-              console.log('Headers List', err.headers.keys());
+              // console.log('Headers List', err.headers.keys());
               console.log('Category Not added', err);
               reject();
             })
