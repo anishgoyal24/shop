@@ -2,7 +2,6 @@ package com.app.shop.services.warehouse;
 
 import com.app.shop.entity.UserDetails;
 import com.app.shop.entity.WarehouseDetails;
-import com.app.shop.repository.common.HashRepository;
 import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.warehouse.WarehouseRepository;
 import com.app.shop.utils.ChangePasswordClass;
