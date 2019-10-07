@@ -33,6 +33,7 @@ public class PartyDetailsService {
     }
     public HashMap<String, Object> addNewUser(PartyDetails partyDetails){
         returnObject = new HashMap<>();
+        partyDetails.setPartyEmail(partyDetails.getPartyEmail().toLowerCase());
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
         if (oldPartyDetails==null){
             partyDetails.setStatus('n');
