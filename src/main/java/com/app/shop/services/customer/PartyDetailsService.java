@@ -1,5 +1,6 @@
 package com.app.shop.services.customer;
 
+import com.app.shop.entity.OTP;
 import com.app.shop.entity.PartyDetails;
 import com.app.shop.entity.UserDetails;
 import com.app.shop.repository.common.UserAuthRepository;
@@ -14,6 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @Service
 public class PartyDetailsService {
@@ -28,24 +30,32 @@ public class PartyDetailsService {
     private EmailServiceImpl emailService;
     @Autowired
     private UserAuthRepository userAuthRepository;
+    @Autowired
+    private OtpService otpService;
 
     private void detachParty(PartyDetails partyDetails){
         entityManager.detach(partyDetails);
     }
-    public HashMap<String, Object> addNewUser(PartyDetails partyDetails){
+    public HashMap<String, Object> addNewUser(PartyDetails partyDetails, Integer receivedOTP){
         returnObject = new HashMap<>();
         partyDetails.setPartyEmail(partyDetails.getPartyEmail().toLowerCase());
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
         if (oldPartyDetails==null){
-            partyDetails.setStatus('y');
-            String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
-            partyDetails.setPassword(encodedPassword);
-            detailsRepository.save(partyDetails);
-            detachParty(partyDetails);
-            userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party"));
-            partyDetails.setPassword(null);
-            returnObject.put("message", "success");
-            returnObject.put("data", partyDetails);
+            OTP otp = otpService.getOtp(partyDetails.getPartyEmail());
+            if (otp != null && otp.getOtp()==receivedOTP){
+                partyDetails.setStatus('y');
+                String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
+                partyDetails.setPassword(encodedPassword);
+                detailsRepository.save(partyDetails);
+                detachParty(partyDetails);
+                userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party"));
+                partyDetails.setPassword(null);
+                returnObject.put("message", "success");
+                returnObject.put("data", partyDetails);
+            }
+            else returnObject.put("message", "Wrong OTP. Please request a new OTP");
+            otpService.deleteOtp(otp.getOtp());
+
         }
         else {
             returnObject.put("message", "user already exists");
@@ -141,10 +151,13 @@ public class PartyDetailsService {
         return returnObject;
     }
 
-    public HashMap<String, Object> sendOTP(Map<String, Object> body){
+    public HashMap<String, Object> sendOTP(String email){
         returnObject = new HashMap<>();
+        Random r = new Random();
+        int otp = (int)r.nextFloat()*899900 + 100000;
         try {
-            emailService.sendMail(body.get("email").toString(), "Your OTP for account verification is " + body.get("OTP"), "Please verigy your account");
+            emailService.sendMail(email, "Your OTP for account verification is " + otp, "Please verify your account");
+            otpService.saveOtp(new OTP(otp, email));
             returnObject.put("message", "success");
         }
         catch (Exception e){
@@ -153,5 +166,26 @@ public class PartyDetailsService {
         finally {
             return returnObject;
         }
+    }
+
+    public HashMap<String, Object> forgotPassword(Map<String, Object> body) {
+        returnObject = new HashMap<>();
+        OTP found = otpService.getOtp(body.get("email").toString());
+        if (found != null){
+            PartyDetails foundParty = detailsRepository.findByPartyEmail(body.get("email").toString());
+            if (foundParty!=null){
+                if (found.getOtp() == Integer.parseInt(body.get("otp").toString())){
+                    foundParty.setPassword((new BCryptPasswordEncoder()).encode(body.get("password").toString()));
+                    detailsRepository.save(foundParty);
+                    returnObject.put("message", "success");
+                }
+                else returnObject.put("message", "Wrong OTP");
+                otpService.deleteOtp(found.getOtp());
+            }
+        }
+        else {
+            returnObject.put("message", "no such customer");
+        }
+        return returnObject;
     }
 }
