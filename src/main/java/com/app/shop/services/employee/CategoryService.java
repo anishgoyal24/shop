@@ -17,6 +17,11 @@ public class CategoryService {
 
     public HashMap<String, Object> addCategory(String cat){
         returnObject = new HashMap<>();
+        cat.toLowerCase();
+        if (categoryRepository.findByCategory(cat) !=null){
+            returnObject.put("message", "duplicate");
+            return returnObject;
+        }
         Category category = new Category();
         category.setCategory(cat);
         category.setStatus('y');
@@ -42,6 +47,23 @@ public class CategoryService {
         List<Category> categories = categoryRepository.findByStatus('y');
         returnObject.put("message", "success");
         returnObject.put("data", categories);
+        return returnObject;
+    }
+
+    public HashMap<String, Object> updateCategory(Category category){
+        returnObject = new HashMap<>();
+        var foundCategory = categoryRepository.findById(category.getId());
+        if (foundCategory.isPresent()){
+            Category found = foundCategory.get();
+            found.setCategory(category.getCategory());
+            found.setDescription(category.getDescription());
+            categoryRepository.save(found);
+            returnObject.put("message", "success");
+            returnObject.put("data", found);
+        }
+        else{
+            returnObject.put("message", "no such category");
+        }
         return returnObject;
     }
 }

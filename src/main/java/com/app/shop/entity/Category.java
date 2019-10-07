@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,7 +20,8 @@ public class Category {
     private String category;
     @Column(name = "status", columnDefinition = "char default 'n'")
     private char status;
-    @ManyToMany
+    String description;
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "product_category_mapping", joinColumns = {@JoinColumn(name = "category_id")}, inverseJoinColumns = {@JoinColumn(name = "item_id")})
-    private List<ItemDetails> itemDetails;
+    private Set<ItemDetails> itemDetails;
 }

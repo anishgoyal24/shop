@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -30,7 +31,7 @@ public class ItemDetails {
     @Column(name = "customer_allowed")
     private String customerAllowed;
     @ManyToMany(mappedBy = "itemDetails")
-    private List<Category> categories;
+    private Set<Category> categories;
 
     @Override
     public boolean equals(Object o) {

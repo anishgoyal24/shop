@@ -1,5 +1,6 @@
 package com.app.shop.controllers.employee;
 
+import com.app.shop.entity.Category;
 import com.app.shop.services.employee.CategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,12 @@ public class CategoryController {
     @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
     public HashMap<String, Object> deleteCategory(@RequestBody String category){
         return categoryService.removeCategory(category);
+    }
+
+    @PostMapping(value = "/edit")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
+    public HashMap<String, Object> editCategory(@RequestBody Category category){
+        return categoryService.updateCategory(category);
     }
 
 }
