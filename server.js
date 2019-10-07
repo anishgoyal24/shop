@@ -7,7 +7,6 @@ const server = http.createServer(app);
 
 
 server.listen(port, (req, res) => {
-  // eslint-disable-next-line no-console
   console.log(`
 
 ⚙️  Server running at:\n\thttp://localhost:${port}
