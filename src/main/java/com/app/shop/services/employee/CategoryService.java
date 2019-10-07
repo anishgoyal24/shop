@@ -22,6 +22,7 @@ public class CategoryService {
         if (found !=null){
             if (found.getStatus() == 'n'){
                 found.setStatus('y');
+                categoryRepository.save(found);
                 returnObject.put("message", "success");
                 return returnObject;
             }
