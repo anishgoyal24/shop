@@ -16,6 +16,8 @@ public class OtpService {
     }
 
     public String saveOtp(OTP otp){
+       OTP found = otpRepository.findByEmail(otp.getEmail());
+       if (found!=null)otpRepository.delete(found);
        otpRepository.save(otp);
        return "success";
     }
