@@ -26,7 +26,7 @@ img{
 	}
 }
 
-form{
+div.form{
 	padding: 20px 0;
 	position: relative;
 	z-index: 2;
@@ -112,6 +112,7 @@ form{
 	
 	button{
 		appearance: none;
+		display: block;
 		outline: 0;
 		background-color: $prim;
 		border:1px solid black;

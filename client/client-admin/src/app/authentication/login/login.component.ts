@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         this.isLoading$.next(true);
         this.adminService.authenticate(userData)
           .subscribe((res) => {
-            //console.log('Successfully Logged In', res.headers.keys());
+            console.log('Successfully Logged In', res.headers.keys());
             if (res.headers.get('Authorization')) {
               //this.snotifyService.success('Example body content');
               localStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);

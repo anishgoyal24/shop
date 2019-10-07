@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/shared/services/category.service';
 
 @Component({
   selector: 'app-new-categories',
@@ -7,9 +8,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewCategoriesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private categoryService: CategoryService) { }
 
-  ngOnInit() {
+  categoryName: any;
+
+  async ngOnInit() {
+
+  }
+
+  async createNewCategory() {
+    try {
+      return new Promise((resolve, reject) => {
+        let categoryData = this.categoryName
+        if (categoryData) {
+          this.categoryService.addCategory(categoryData)
+            .subscribe((res) => {
+              // console.log('Headers List', res.headers.keys());
+              console.log('Category Added', res);
+              this.categoryName = "";
+              resolve();
+            }, (err) => {
+              // console.log('Headers List', err.headers.keys());
+              console.log('Category Not added', err);
+              reject();
+            })
+        }
+      })
+    } catch (err) {
+      console.log('Internal Server Error', err);
+    }
+
   }
 
 }

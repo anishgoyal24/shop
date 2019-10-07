@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/shared/services/category.service';
 
 @Component({
   selector: 'app-categories-home',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private categoryService: CategoryService) { }
 
-  ngOnInit() {
+  categoriesList: any;
+
+  async ngOnInit() {
+    await this.getAllCategories();
+  }
+
+  async getAllCategories() {
+    try {
+      return new Promise((resolve, reject) => {
+        this.categoryService.getAllCategories()
+          .subscribe((res) => {
+            console.log(res);
+            this.categoriesList = res['data'];
+            resolve();
+          }, (err) => {
+            console.log('Categories not fetched', err);
+            reject(err);
+          })
+      })
+    } catch (err) {
+      console.log('Internal Server Error', err);
+    }
   }
 
 }

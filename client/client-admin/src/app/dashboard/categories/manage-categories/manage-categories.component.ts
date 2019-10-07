@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/shared/services/category.service';
 
 @Component({
   selector: 'app-manage-categories',
@@ -7,9 +8,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageCategoriesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private categoryService: CategoryService) { }
 
-  ngOnInit() {
+  categoriesList: any;
+
+  async ngOnInit() {
+    await this.getAllCategories();
+  }
+
+  async getAllCategories() {
+    try {
+      return new Promise((resolve, reject) => {
+        this.categoryService.getAllCategories()
+          .subscribe((res) => {
+            console.log(res);
+            this.categoriesList = res['data'];
+            resolve();
+          }, (err) => {
+            console.log('Categories not fetched', err);
+            reject(err);
+          })
+      })
+    } catch (err) {
+      console.log('Internal Server Error', err);
+    }
+  }
+
+  async deleteCategory(categoryData, index){
+    try{
+      return new Promise((resolve, reject)=>{
+        this.categoryService.deleteCategory(categoryData)
+        .subscribe((res)=>{
+          this.categoriesList.splice(index, 1);
+          console.log('Category Deleted', res);
+          resolve();
+        }, (err) => {
+          console.log('Category not deleted', err);
+          reject(err);
+        })
+      })
+    } catch(err){
+      console.log('Internal Server Error', err);
+    }
   }
 
 }

@@ -1,16 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,  HttpBackend } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
+  
+  private _http: HttpClient;
 
-  constructor(private _http: HttpClient) { }
+  constructor(handler: HttpBackend) {
+    /**
+     * HTTP Backend to skip auth interception with Authorization Header
+     */
+    this._http = new HttpClient(handler);
+   }
 
   /**
    * Authenticate user and retrieve a token to store on client side
+   * DEFAULT ADMIN CREDENTIALS
+   * Email - parveengoel@gmail.com
+   * Password - admin
    * @param userData 
    */
   authenticate(userData: any){
