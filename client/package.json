@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "description": "Node server app for saifco",
   "engines": {
-    "node": "9.8.0",
+    "node": "10.9",
     "npm": "6.4.1"
   },
   "main": "app.js",
   "scripts": {
     "test": "jest",
     "dev": "nodemon server",
-    "start": "cd client-admin && ng build --prod && cd ../ && nodemon server"
+    "start": "nodemon server",
+    "deploy":"cd client-admin && ng build --prod && cd ../ && git add . && git commit -m \"deploying app now\" && git push heroku master"
   },
   "author": "shubham",
   "license": "MIT",
