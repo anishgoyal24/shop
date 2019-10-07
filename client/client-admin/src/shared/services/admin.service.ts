@@ -17,10 +17,13 @@ export class AdminService {
    }
 
   /**
-   * Authenticate user and retrieve a token to store on client side
-   * DEFAULT ADMIN CREDENTIALS
+   * Authenticate user and retrieve a token to store on client side.
+   * 
+   * !=== DEFAULT ADMIN CREDENTIALS ===!
+   * 
    * Email - parveengoel@gmail.com
    * Password - admin
+   * 
    * @param userData 
    */
   authenticate(userData: any){
