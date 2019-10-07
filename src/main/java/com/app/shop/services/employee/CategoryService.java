@@ -74,4 +74,11 @@ public class CategoryService {
         }
         return returnObject;
     }
+
+    public HashMap<String, Object> search(String cat) {
+        returnObject = new HashMap<>();
+        returnObject.put("message", "success");
+        returnObject.put("data", categoryRepository.search(cat));
+        return returnObject;
+    }
 }

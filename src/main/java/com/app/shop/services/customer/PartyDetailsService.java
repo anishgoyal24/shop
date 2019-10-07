@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class PartyDetailsService {
@@ -36,12 +37,12 @@ public class PartyDetailsService {
         partyDetails.setPartyEmail(partyDetails.getPartyEmail().toLowerCase());
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
         if (oldPartyDetails==null){
-            partyDetails.setStatus('n');
+            partyDetails.setStatus('y');
             String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
             partyDetails.setPassword(encodedPassword);
             detailsRepository.save(partyDetails);
             detachParty(partyDetails);
-            userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 0, "party"));
+            userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party"));
             partyDetails.setPassword(null);
             returnObject.put("message", "success");
             returnObject.put("data", partyDetails);
@@ -105,19 +106,6 @@ public class PartyDetailsService {
         return returnObject;
     }
 
-    public String verify(String email) {
-        PartyDetails foundPartyDetails = detailsRepository.findByPartyEmail(email);
-        if (foundPartyDetails!=null){
-            foundPartyDetails.setStatus('y');
-            detailsRepository.save(foundPartyDetails);
-            UserDetails userDetails = userAuthRepository.findByUsername(email);
-            userDetails.setEnabled(1);
-            userAuthRepository.save(userDetails);
-            return "Successfully Verified";
-        }
-        return "Invalid Request";
-    }
-
     public HashMap<String, Object> getDiscount(int partyId){
         returnObject = new HashMap<>();
         if (detailsRepository.findById(partyId).isPresent()){
@@ -151,5 +139,19 @@ public class PartyDetailsService {
         returnObject.put("message", "success");
         returnObject.put("data", partyDetails);
         return returnObject;
+    }
+
+    public HashMap<String, Object> sendOTP(Map<String, Object> body){
+        returnObject = new HashMap<>();
+        try {
+            emailService.sendMail(body.get("email").toString(), "Your OTP for account verification is " + body.get("OTP"), "Please verigy your account");
+            returnObject.put("message", "success");
+        }
+        catch (Exception e){
+            returnObject.put("message", "some exception occured");
+        }
+        finally {
+            return returnObject;
+        }
     }
 }

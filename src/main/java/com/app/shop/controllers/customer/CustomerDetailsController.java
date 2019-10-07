@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/customer")
@@ -49,5 +50,11 @@ public class CustomerDetailsController {
     @PreAuthorize("hasAnyAuthority('ROLE_party')")
     public HashMap<String, Object> getDetails(@RequestParam String username){
         return partyDetailsService.getDetails(username);
+    }
+
+    @PostMapping(value = "/otp")
+    @PreAuthorize("hasAnyAuthority('ROLE_party')")
+    public HashMap<String, Object> sendOTP(@RequestBody Map<String, Object> body){
+        return partyDetailsService.sendOTP(body);
     }
 }

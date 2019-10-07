@@ -42,4 +42,10 @@ public class CategoryController {
         return categoryService.updateCategory(category);
     }
 
+    @GetMapping(value = "/search")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
+    public HashMap<String, Object> searchCategory(@RequestParam String cat){
+        return categoryService.search(cat);
+    }
+
 }
