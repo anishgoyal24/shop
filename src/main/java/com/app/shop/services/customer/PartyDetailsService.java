@@ -1,9 +1,7 @@
 package com.app.shop.services.customer;
 
-import com.app.shop.entity.HashTable;
 import com.app.shop.entity.PartyDetails;
 import com.app.shop.entity.UserDetails;
-import com.app.shop.repository.common.HashRepository;
 import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.customer.DetailsRepository;
 import com.app.shop.utils.ChangePasswordClass;
@@ -21,8 +19,6 @@ public class PartyDetailsService {
 
     @PersistenceContext
     private EntityManager entityManager;
-    @Autowired
-    private HashRepository hashRepository;
     @Autowired
     private DetailsRepository detailsRepository;
     private HashMap<String, Object> returnObject;
@@ -46,13 +42,6 @@ public class PartyDetailsService {
             detachParty(partyDetails);
             userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 0, "party"));
             partyDetails.setPassword(null);
-            String verificationAddress = "/" + encodedPassword;
-            hashRepository.save(new HashTable(partyDetails.getPartyEmail(),encodedPassword));
-            try {
-                emailService.sendMail(partyDetails.getPartyEmail(), verificationAddress, "Please verify you account");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             returnObject.put("message", "success");
             returnObject.put("data", partyDetails);
         }
