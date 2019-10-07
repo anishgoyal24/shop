@@ -31,4 +31,12 @@ export class CategoryService {
   deleteCategory(categoryData){
     return this._http.post(environment.BASE_URL_API + '/category/delete', categoryData)
   }
+  
+  /**
+   * GET reqest to 
+   * @param categoryName 
+   */
+  searchCategory(categoryName){
+    return this._http.get(environment.BASE_URL_API + `/category/search?cat=${categoryName}`);
+  }
 }

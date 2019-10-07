@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/shared/services/category.service';
+import { SnotifyService } from 'ng-snotify';
 
 @Component({
   selector: 'app-new-categories',
@@ -8,7 +9,7 @@ import { CategoryService } from 'src/shared/services/category.service';
 })
 export class NewCategoriesComponent implements OnInit {
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService, private snotifyService: SnotifyService) { }
 
   categoryName: any;
 
@@ -26,16 +27,22 @@ export class NewCategoriesComponent implements OnInit {
               // console.log('Headers List', res.headers.keys());
               console.log('Category Added', res);
               this.categoryName = "";
+              if(res['message'] == "success")
+                this.snotifyService.success("New category added!");
+              else 
+                this.snotifyService.warning("Category already exists!");
               resolve();
             }, (err) => {
               // console.log('Headers List', err.headers.keys());
               console.log('Category Not added', err);
+              this.snotifyService.error("Category not added, please try again!");
               reject();
             })
         }
       })
     } catch (err) {
       console.log('Internal Server Error', err);
+      this.snotifyService.error("Some internal server occured, kindly check after some time...");
     }
 
   }
