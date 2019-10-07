@@ -10,6 +10,8 @@ export class CategoriesHomeComponent implements OnInit {
 
   constructor(private categoryService: CategoryService) { }
 
+  categoriesList: any;
+
   async ngOnInit() {
     await this.getAllCategories();
   }
@@ -20,6 +22,7 @@ export class CategoriesHomeComponent implements OnInit {
         this.categoryService.getAllCategories()
           .subscribe((res) => {
             console.log(res);
+            this.categoriesList = res['data'];
             resolve();
           }, (err) => {
             console.log('Categories not fetched', err);
