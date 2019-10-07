@@ -24,12 +24,13 @@ public class Startup {
         EmployeeDetails defaultAdmin = new EmployeeDetails();
         // Add all necessary details for defaultAdmin
         defaultAdmin.setRole("owner");
+        defaultAdmin.setEmpEmail("parveengoel@gmail.com");
         defaultAdmin.setEmpName("Parveen Goel");
         defaultAdmin.setPassword("admin");
         defaultAdmin.setCountry("India");
         defaultAdmin.setState("Haryana");
         defaultAdmin.setPrimaryPhone("7027770150");
         employeeDetailsService.addNewEmployee(defaultAdmin);
-        userAuthRepository.save(new UserDetails("Parveen Goel", new BCryptPasswordEncoder().encode("admin"), 1, "admin"));
+        userAuthRepository.save(new UserDetails("parveengoel@gmail.com", new BCryptPasswordEncoder().encode("admin"), 1, "admin"));
     }
 }
