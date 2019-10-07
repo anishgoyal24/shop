@@ -33,11 +33,11 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 // static folder
-app.use(express.static(path.join(__dirname, 'client/client-admin/dist/client-admin/'), {redirect: false}));
+app.use(express.static(path.join(__dirname, 'client-admin/dist/client-admin/'), {redirect: false}));
 
 // Routes which should handle request
 app.all('/', (req, res, next) => {
-  res.sendFile(path.join(__dirname, 'client/client-admin/dist/client-admin/index.html'));
+  res.sendFile(path.join(__dirname, 'client-admin/dist/client-admin/index.html'));
 });
 
 
