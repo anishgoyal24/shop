@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap);
+
 h1{
     margin: 1rem;
     font-size: 40px;
@@ -20,4 +22,19 @@ h1{
     text-align: center;
     pointer-events: none;
     color: #aaa;
+}
+
+h3{
+    font-size: 30px;
+    color: #007bff;
+    margin-left: 30%;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.empty-state{
+    max-width: 400px;
+    max-height: 400px;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 1%;
 }
