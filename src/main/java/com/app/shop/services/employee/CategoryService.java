@@ -17,10 +17,18 @@ public class CategoryService {
 
     public HashMap<String, Object> addCategory(String cat){
         returnObject = new HashMap<>();
-        cat.toLowerCase();
-        if (categoryRepository.findByCategory(cat) !=null){
-            returnObject.put("message", "duplicate");
-            return returnObject;
+        cat = cat.toLowerCase();
+        Category found = categoryRepository.findByCategory(cat);
+        if (found !=null){
+            if (found.getStatus() == 'n'){
+                found.setStatus('y');
+                returnObject.put("message", "success");
+                return returnObject;
+            }
+            else{
+                returnObject.put("message", "duplicate");
+                return returnObject;
+            }
         }
         Category category = new Category();
         category.setCategory(cat);

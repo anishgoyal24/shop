@@ -14,7 +14,6 @@ import java.util.HashMap;
 @RestController
 @RequestMapping(value = "/category")
 public class CategoryController {
-    Logger logger = LoggerFactory.getLogger(CategoryController.class);
 
     @Autowired
     private CategoryService categoryService;
