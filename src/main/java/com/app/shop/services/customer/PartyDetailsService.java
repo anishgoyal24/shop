@@ -154,7 +154,7 @@ public class PartyDetailsService {
     public HashMap<String, Object> sendOTP(String email){
         returnObject = new HashMap<>();
         Random r = new Random();
-        int otp = (int)r.nextFloat()*899900 + 100000;
+        int otp = (int)(r.nextFloat()*899900) + 100000;
         try {
             emailService.sendMail(email, "Your OTP for account verification is " + otp, "Please verify your account");
             otpService.saveOtp(new OTP(otp, email));
