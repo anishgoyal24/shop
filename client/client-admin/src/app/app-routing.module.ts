@@ -44,13 +44,18 @@ import { NewAccountsComponent } from './dashboard/account/new-accounts/new-accou
 import { ManageAccountsComponent } from './dashboard/account/manage-accounts/manage-accounts.component';
 import { RolesComponent } from './dashboard/account/roles/roles.component';
 
+// !!!----- GUARDS -----!!!
+import { AuthGuard } from 'src/shared/guards/auth.guard';
+import { NavigationGuard } from 'src/shared/guards/navigation.guard';
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent, canActivate: [NavigationGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [NavigationGuard] },
   { path: 'signup', component: NewAccountsComponent},
-  { path: 'dashboard', component: DashboardComponent, 
+  { path: 'dashboard', component: DashboardComponent, canActivate : [AuthGuard],
     children: [
       { path: 'overview', component: OverviewComponent },
 

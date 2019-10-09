@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap);
+
 h1{
     margin: 1rem;
     font-size: 40px;
@@ -7,15 +9,38 @@ h1{
 }
 
 h2{
-    padding: 1rem;
     font-size: 30px;
     font-weight: bold;
     color: #007bff;
     text-align: center;
+    top: 0;
+    margin-left: 40%;
+    margin-top: 5%;
+    position: absolute;
+}
+
+h3{
+    font-size: 30px;
+    color: #007bff;
+    margin-left: 30%;
+    font-family: 'Permanent Marker', cursive;
 }
 
 .has-search .form-control {
     padding-left: 2.375rem;
+    width: 1000px;
+    display: inline-block;
+    margin-top: 2%;
+    margin-left: 4.5%;
+    position: relative;
+}
+
+.empty-state{
+    max-width: 400px;
+    max-height: 400px;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 1%;
 }
 
 .has-search .form-control-feedback {
@@ -32,4 +57,10 @@ h2{
 
 .container{
     margin: 1rem;
+}
+
+p{
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
 }

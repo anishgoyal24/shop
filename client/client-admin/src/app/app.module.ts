@@ -15,8 +15,9 @@
  * 3. COMPONENTS
  * 4. SERVICES
  * 5. INTERCEPTORS
- * 6. CONFIG VARIABLES
- * 7. IMPORTS & DECLARATIONS
+ * 6. GUARDS
+ * 7. CONFIG VARIABLES
+ * 8. IMPORTS & DECLARATIONS
  */
 
 
@@ -35,7 +36,7 @@ import { FormsModule } from '@angular/forms';
 /**
  * !===== 2. THIRD PARTY MODULES =====!
  */
-import { NgxUiLoaderModule, NgxUiLoaderConfig } from  'ngx-ui-loader';
+import { NgxUiLoaderModule, NgxUiLoaderConfig } from 'ngx-ui-loader';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
 
@@ -98,6 +99,7 @@ import { ManageStocksComponent } from './dashboard/stocks/manage-stocks/manage-s
  */
 import { AdminService } from 'src/shared/services/admin.service';
 import { CategoryService } from 'src/shared/services/category.service';
+import { AuthService } from 'src/shared/services/auth.service';
 
 
 
@@ -109,14 +111,22 @@ import { AuthInterceptor } from 'src/shared/interceptors/auth.interceptor';
 
 
 /**
- * !===== 6. CONFIG VARIABLES =====!
+ * !===== 6. GUARDS =====!
+ */
+import { AuthGuard } from 'src/shared/guards/auth.guard';
+import { NavigationGuard } from 'src/shared/guards/navigation.guard';
+
+
+
+/**
+ * !===== 7. CONFIG VARIABLES =====!
  */
 import { ngxUiLoaderConfig } from 'src/shared/config/ngxUI.config';
 
 
 
 /**
- * 7. !===== IMPORTS & DECLARATIONS =====!
+ * 8. !===== IMPORTS & DECLARATIONS =====!
  */
 @NgModule({
   declarations: [
@@ -157,7 +167,7 @@ import { ngxUiLoaderConfig } from 'src/shared/config/ngxUI.config';
     NewProductsComponent,
     ManageProductsComponent,
     ProductsHomeComponent,
-    
+
     // STOCKS COMPONENTS
     StocksHeaderComponent,
     NewStocksComponent,
@@ -176,9 +186,12 @@ import { ngxUiLoaderConfig } from 'src/shared/config/ngxUI.config';
     AdminService,
     CategoryService,
     SnotifyService,
+    AuthService,
+    AuthGuard,
+    NavigationGuard,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

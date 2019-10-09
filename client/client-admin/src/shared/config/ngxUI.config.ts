@@ -11,7 +11,7 @@ function getRandomInt(min, max) {
 var ngxUiLoaderConfig: NgxUiLoaderConfig = {
 
     //"bgsColor": colors[getRandomInt(0, colors.length - 1)],
-    "bgsColor": colors[0],
+    "bgsColor": "#007BFF",
     "bgsOpacity": 0.9,
     "bgsPosition": "center-center",
     "bgsSize": 100,
