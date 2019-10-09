@@ -19,7 +19,7 @@ public class CustomerDetailsController {
     @Autowired
     private PartyDetailsService partyDetailsService;
 
-    @PostMapping(value = "/new")
+    @PostMapping(value = "/new/{otp}")
     public HashMap<String, Object> addUser(@RequestBody PartyDetails partyDetails, @PathVariable Integer otp){
         return partyDetailsService.addNewUser(partyDetails, otp);
     }
