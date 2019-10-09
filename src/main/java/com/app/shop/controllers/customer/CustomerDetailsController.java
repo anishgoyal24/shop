@@ -20,7 +20,6 @@ public class CustomerDetailsController {
     private PartyDetailsService partyDetailsService;
 
     @PostMapping(value = "/new")
-    @PermitAll
     public HashMap<String, Object> addUser(@RequestBody PartyDetails partyDetails, @PathVariable Integer otp){
         return partyDetailsService.addNewUser(partyDetails, otp);
     }
@@ -56,13 +55,11 @@ public class CustomerDetailsController {
     }
 
     @PostMapping(value = "/otp")
-    @PermitAll
     public HashMap<String, Object> sendOTP(@RequestBody String email){
         return partyDetailsService.sendOTP(email);
     }
 
     @PostMapping(value = "/forgotpassword")
-    @PermitAll
     public HashMap<String, Object> forgotPassword(@RequestBody Map<String, Object> body){
         return partyDetailsService.forgotPassword(body);
     }
