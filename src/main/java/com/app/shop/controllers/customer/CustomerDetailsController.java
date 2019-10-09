@@ -5,8 +5,10 @@ import com.app.shop.services.customer.PartyDetailsService;
 import com.app.shop.utils.ChangePasswordClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +20,7 @@ public class CustomerDetailsController {
     private PartyDetailsService partyDetailsService;
 
     @PostMapping(value = "/new")
+    @PermitAll
     public HashMap<String, Object> addUser(@RequestBody PartyDetails partyDetails, @PathVariable Integer otp){
         return partyDetailsService.addNewUser(partyDetails, otp);
     }
@@ -53,11 +56,13 @@ public class CustomerDetailsController {
     }
 
     @PostMapping(value = "/otp")
+    @PermitAll
     public HashMap<String, Object> sendOTP(@RequestBody String email){
         return partyDetailsService.sendOTP(email);
     }
 
     @PostMapping(value = "/forgotpassword")
+    @PermitAll
     public HashMap<String, Object> forgotPassword(@RequestBody Map<String, Object> body){
         return partyDetailsService.forgotPassword(body);
     }

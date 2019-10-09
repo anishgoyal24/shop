@@ -161,6 +161,7 @@ public class PartyDetailsService {
             returnObject.put("message", "success");
         }
         catch (Exception e){
+            returnObject.put("exception", e.getMessage());
             returnObject.put("message", "some exception occured");
         }
         finally {
