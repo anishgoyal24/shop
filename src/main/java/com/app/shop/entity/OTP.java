@@ -24,4 +24,6 @@ public class OTP {
         this.otp = otp;
         this.email = email;
     }
+
+    OTP(){}
 }
