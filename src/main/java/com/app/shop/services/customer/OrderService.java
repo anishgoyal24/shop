@@ -7,6 +7,7 @@ import com.app.shop.repository.customer.OrderRepository;
 import com.app.shop.repository.customer.PartyStockRepository;
 import com.app.shop.utils.OrderBookingThread;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -74,7 +75,7 @@ public class OrderService {
 
     public HashMap<String, Object> getOrders(String email) {
         returnObject = new HashMap<>();
-        List<OrderHeader> orders = orderRepository.findByPartyDetailsPartyEmail(email);
+        List<OrderHeader> orders = orderRepository.findByPartyDetailsPartyEmail(email, PageRequest.of(0,10));
         returnObject.put("message", "success");
         returnObject.put("data", orders);
         return returnObject;
