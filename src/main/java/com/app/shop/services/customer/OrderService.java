@@ -3,6 +3,7 @@ package com.app.shop.services.customer;
 import com.app.shop.entity.OrderDetail;
 import com.app.shop.entity.OrderHeader;
 import com.app.shop.repository.customer.DetailsRepository;
+import com.app.shop.repository.customer.OrderRepository;
 import com.app.shop.repository.customer.PartyStockRepository;
 import com.app.shop.utils.OrderBookingThread;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -23,6 +25,8 @@ public class OrderService {
     @Autowired
     private ProductService productService;
     private HashMap<String, Object> returnObject;
+    @Autowired
+    private OrderRepository orderRepository;
 
     public HashMap<String, Object> placeOrder(OrderHeader orderHeader){
         returnObject = new HashMap<>();
@@ -68,4 +72,11 @@ public class OrderService {
         return returnObject;
     }
 
+    public HashMap<String, Object> getOrders(String email) {
+        returnObject = new HashMap<>();
+        List<OrderHeader> orders = orderRepository.findByPartyDetailsPartyEmail(email);
+        returnObject.put("message", "success");
+        returnObject.put("data", orders);
+        return returnObject;
+    }
 }

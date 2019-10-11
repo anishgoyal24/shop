@@ -26,4 +26,10 @@ public class OrderController {
     public HashMap<String, Object> placeOrder(@RequestBody OrderHeader orderHeader){
         return orderService.placeOrder(orderHeader);
     }
+
+    @GetMapping(value = "/list")
+    @PreAuthorize("hasAnyAuthority('ROLE_party')")
+    public HashMap<String, Object> getOrder(@RequestParam String email){
+        return orderService.getOrders(email);
+    }
 }
