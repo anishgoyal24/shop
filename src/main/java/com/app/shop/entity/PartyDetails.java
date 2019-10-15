@@ -88,4 +88,26 @@ public class PartyDetails {
     public int hashCode() {
         return Objects.hash(partyId, password, partyName, partyEmail, contactPerson, address, primaryPhone, secondaryPhone, city, state, country, pincode, status, partyType, createDate, discount);
     }
+
+    @Override
+    public String toString() {
+        return "PartyDetails{" +
+                "partyId=" + partyId +
+                ", password='" + password + '\'' +
+                ", partyName='" + partyName + '\'' +
+                ", partyEmail='" + partyEmail + '\'' +
+                ", contactPerson='" + contactPerson + '\'' +
+                ", address='" + address + '\'' +
+                ", primaryPhone='" + primaryPhone + '\'' +
+                ", secondaryPhone='" + secondaryPhone + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", pincode='" + pincode + '\'' +
+                ", status=" + status +
+                ", partyType=" + partyType +
+                ", createDate=" + createDate +
+                ", discount=" + discount +
+                '}';
+    }
 }

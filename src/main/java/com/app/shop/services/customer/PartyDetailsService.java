@@ -42,6 +42,7 @@ public class PartyDetailsService {
     public HashMap<String, Object> addNewUser(PartyDetails partyDetails, Integer receivedOTP){
         returnObject = new HashMap<>();
         partyDetails.setPartyEmail(partyDetails.getPartyEmail().toLowerCase());
+        logger.info(partyDetails.toString());
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
         if (oldPartyDetails==null){
             OTP otp = otpService.getOtp(partyDetails.getPartyEmail());
