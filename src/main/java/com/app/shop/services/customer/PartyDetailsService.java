@@ -42,7 +42,6 @@ public class PartyDetailsService {
     public HashMap<String, Object> addNewUser(PartyDetails partyDetails, Integer receivedOTP){
         returnObject = new HashMap<>();
         partyDetails.setPartyEmail(partyDetails.getPartyEmail().toLowerCase());
-        logger.info(partyDetails.toString());
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
         if (oldPartyDetails==null){
             OTP otp = otpService.getOtp(partyDetails.getPartyEmail());
@@ -53,6 +52,7 @@ public class PartyDetailsService {
                 partyDetails.setStatus('y');
                 String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
                 partyDetails.setPassword(encodedPassword);
+                logger.info(partyDetails.toString());
                 detailsRepository.save(partyDetails);
                 detachParty(partyDetails);
                 userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party"));
