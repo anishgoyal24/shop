@@ -49,6 +49,7 @@ public class PartyDetailsService {
             logger.info("otp received " + receivedOTP);
             logger.info("otp found " + otp.getOtp());
             if (otp != null && otp.getOtp()==receivedOTP){
+                if (partyDetails.getSecondaryPhone()==null)partyDetails.setSecondaryPhone("");
                 partyDetails.setStatus('y');
                 String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
                 partyDetails.setPassword(encodedPassword);

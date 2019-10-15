@@ -28,7 +28,7 @@ public class PartyDetails {
     private String address;
     @Column(name = "primary_phone", nullable = false)
     private String primaryPhone;
-    @Column(name = "secondary_phone", columnDefinition = "default ''")
+    @Column(name = "secondary_phone")
     private String secondaryPhone;
     @Column(nullable = false)
     private String city;
