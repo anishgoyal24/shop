@@ -181,7 +181,7 @@ public class PartyDetailsService {
                     returnObject.put("message", "success");
                 }
                 else returnObject.put("message", "Wrong OTP");
-                otpService.deleteOtp(found.getOtp());
+                otpService.deleteOtp(found.getEmail());
             }
         }
         else {
