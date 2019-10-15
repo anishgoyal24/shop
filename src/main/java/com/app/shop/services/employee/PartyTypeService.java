@@ -18,7 +18,7 @@ public class PartyTypeService {
     public HashMap<String, Object> addPartyType(PartyType partyType){
         returnObject = new HashMap<>();
         PartyType foundPartyType = partyTypeRepository.findByType((partyType.getType()));
-        if (partyType==null){
+        if (foundPartyType==null){
             partyType.setStatus('y');
             partyTypeRepository.save(partyType);
             returnObject.put("message", "success");
