@@ -42,11 +42,14 @@ public class PartyDetails {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "party_type", referencedColumnName = "id")
     private PartyType partyType;
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date", updatable = false)
     private Date createDate;
     private float discount;
+
+    @PrePersist
+    protected void onCreate() {
+        createDate = new Date();
+    }
 
     public void updateDetails(PartyDetails newPartyDetails){
         this.partyName = newPartyDetails.getPartyName();
