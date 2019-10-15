@@ -33,10 +33,18 @@ export class CategoryService {
   }
   
   /**
-   * GET reqest to 
+   * GET reqest to search a category
    * @param categoryName 
    */
   searchCategory(categoryName){
     return this._http.get(environment.BASE_URL_API + `/category/search?cat=${categoryName}`);
+  }
+
+  /**
+   * POST Request to edit the category
+   * @param categoryData 
+   */
+  editCategory(categoryData){
+    return this._http.post(environment.BASE_URL_API + '/category/edit', categoryData);
   }
 }
