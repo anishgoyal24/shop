@@ -54,7 +54,7 @@ public class PartyDetailsService {
                 returnObject.put("data", partyDetails);
             }
             else returnObject.put("message", "Wrong OTP. Please request a new OTP");
-            otpService.deleteOtp(otp.getOtp());
+            if (otp!=null)otpService.deleteOtp(otp.getOtp());
 
         }
         else {
