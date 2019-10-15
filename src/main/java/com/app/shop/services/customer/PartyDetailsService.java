@@ -2,9 +2,11 @@ package com.app.shop.services.customer;
 
 import com.app.shop.entity.OTP;
 import com.app.shop.entity.PartyDetails;
+import com.app.shop.entity.PartyType;
 import com.app.shop.entity.UserDetails;
 import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.customer.DetailsRepository;
+import com.app.shop.services.employee.PartyTypeService;
 import com.app.shop.utils.ChangePasswordClass;
 import com.app.shop.utils.EmailServiceImpl;
 import org.slf4j.Logger;
@@ -35,6 +37,8 @@ public class PartyDetailsService {
     private UserAuthRepository userAuthRepository;
     @Autowired
     private OtpService otpService;
+    @Autowired
+    private PartyTypeService partyTypeService;
 
     private void detachParty(PartyDetails partyDetails){
         entityManager.detach(partyDetails);
@@ -48,7 +52,7 @@ public class PartyDetailsService {
             logger.info("otp received " + receivedOTP);
             logger.info("otp found " + otp.getOtp());
             if (otp != null && otp.getOtp()==receivedOTP){
-                if (partyDetails.getSecondaryPhone()==null)partyDetails.setSecondaryPhone("");
+                partyDetails.setPartyType(partyTypeService.getType(partyDetails.getPartyType().getId()));
                 partyDetails.setStatus('y');
                 String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
                 partyDetails.setPassword(encodedPassword);

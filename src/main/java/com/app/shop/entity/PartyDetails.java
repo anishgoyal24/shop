@@ -39,7 +39,7 @@ public class PartyDetails {
     @Column(nullable = false)
     private String pincode;
     private char status;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     @JoinColumn(name = "party_type", referencedColumnName = "id")
     private PartyType partyType;
     @Column(name = "creation_date", updatable = false)

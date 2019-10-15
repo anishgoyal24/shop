@@ -48,4 +48,8 @@ public class PartyTypeService {
         returnObject.put("data", partyTypes);
         return returnObject;
     }
+
+    public PartyType getType(Integer id){
+        return partyTypeRepository.findById(id).get();
+    }
 }
