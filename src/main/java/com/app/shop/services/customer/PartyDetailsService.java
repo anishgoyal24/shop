@@ -157,6 +157,7 @@ public class PartyDetailsService {
     }
 
     public HashMap<String, Object> sendOTP(String email){
+        logger.info(email);
         returnObject = new HashMap<>();
         Random r = new Random();
         int otp = (int)(r.nextFloat()*899900) + 100000;
