@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Table(name = "party_types")
 public class PartyType {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private int id;
     private String type;
     char status;

@@ -1,9 +1,11 @@
 package com.app.shop.utils;
 
 import com.app.shop.entity.EmployeeDetails;
+import com.app.shop.entity.PartyType;
 import com.app.shop.entity.UserDetails;
 import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.services.employee.EmployeeDetailsService;
+import com.app.shop.services.employee.PartyTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -18,6 +20,8 @@ public class Startup {
     private EmployeeDetailsService employeeDetailsService;
     @Autowired
     private UserAuthRepository userAuthRepository;
+    @Autowired
+    private PartyTypeService partyTypeService;
 
     @EventListener(ApplicationReadyEvent.class)
     public void addAdminStartup(ApplicationReadyEvent applicationReadyEvent){
@@ -32,5 +36,17 @@ public class Startup {
         defaultAdmin.setPrimaryPhone("7027770150");
         employeeDetailsService.addNewEmployee(defaultAdmin);
         userAuthRepository.save(new UserDetails("parveengoel@gmail.com", new BCryptPasswordEncoder().encode("admin"), 1, "admin"));
+        PartyType retail = new PartyType();
+        retail.setId(1);
+        retail.setType("retail");
+        partyTypeService.addPartyType(retail);
+        PartyType horeca = new PartyType();
+        horeca.setType("HORECA");
+        horeca.setId(2);
+        partyTypeService.addPartyType(horeca);
+        PartyType distributor = new PartyType();
+        distributor.setId(3);
+        distributor.setType("distributor");
+        partyTypeService.addPartyType(distributor);
     }
 }
