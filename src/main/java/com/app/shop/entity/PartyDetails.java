@@ -40,7 +40,7 @@ public class PartyDetails {
     private String pincode;
     private char status;
     @OneToOne
-    @JoinColumn(name = "party_type", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "party_type", referencedColumnName = "id")
     private PartyType partyType;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
