@@ -22,8 +22,8 @@ public class OtpService {
        return "success";
     }
 
-    public String deleteOtp(Integer otp){
-        OTP found = otpRepository.findByOtp(otp);
+    public String deleteOtp(String email){
+        OTP found = otpRepository.findByEmail(email);
         if (found!=null){
             otpRepository.delete(found);
             return "success";
