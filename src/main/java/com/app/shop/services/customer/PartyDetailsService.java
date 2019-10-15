@@ -7,6 +7,8 @@ import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.customer.DetailsRepository;
 import com.app.shop.utils.ChangePasswordClass;
 import com.app.shop.utils.EmailServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import java.util.Random;
 @Service
 public class PartyDetailsService {
 
+    Logger logger = LoggerFactory.getLogger(PartyDetailsService.class);
     @PersistenceContext
     private EntityManager entityManager;
     @Autowired
@@ -42,6 +45,8 @@ public class PartyDetailsService {
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
         if (oldPartyDetails==null){
             OTP otp = otpService.getOtp(partyDetails.getPartyEmail());
+            logger.info("otp received " + receivedOTP);
+            logger.info("otp found " + otp.getOtp());
             if (otp != null && otp.getOtp()==receivedOTP){
                 partyDetails.setStatus('y');
                 String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
