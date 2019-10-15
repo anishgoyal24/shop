@@ -20,8 +20,8 @@ public class CustomerDetailsController {
     private PartyDetailsService partyDetailsService;
 
     @PostMapping(value = "/new/{otp}")
-    public HashMap<String, Object> addUser(@RequestBody PartyDetails partyDetails, @PathVariable Integer otp){
-        return partyDetailsService.addNewUser(partyDetails, otp);
+    public HashMap<String, Object> addUser(@RequestBody PartyDetails partyDetails, @PathVariable String otp){
+        return partyDetailsService.addNewUser(partyDetails, Integer.parseInt(otp));
     }
 
     @PostMapping(value = "/updatedetails")
