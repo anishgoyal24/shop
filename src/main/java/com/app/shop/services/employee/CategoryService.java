@@ -82,4 +82,8 @@ public class CategoryService {
         returnObject.put("data", categoryRepository.search(cat));
         return returnObject;
     }
+
+    public Category getCategory(int id) {
+        return categoryRepository.findById(id).get();
+    }
 }

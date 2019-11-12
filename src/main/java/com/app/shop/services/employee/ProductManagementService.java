@@ -1,5 +1,6 @@
 package com.app.shop.services.employee;
 
+import com.app.shop.entity.Category;
 import com.app.shop.entity.ItemDetails;
 import com.app.shop.entity.ItemPackingDetails;
 import com.app.shop.repository.employee.ProductManagementRepository;
@@ -10,8 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ProductManagementService {
@@ -19,6 +19,8 @@ public class ProductManagementService {
     @Autowired
     private ProductManagementRepository productManagementRepository;
     HashMap<String, Object> returnObject;
+    @Autowired
+    private CategoryService categoryService;
 
     public HashMap<String, Object> addProduct(ItemDetails itemDetails, MultipartFile image){
         returnObject = new HashMap<>();
@@ -26,6 +28,11 @@ public class ProductManagementService {
             itemDetails.setStatus('y');
             for(ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails())
                 itemPackingDetails.setStatus('y');
+            Set<Category> categoryList = new HashSet<>();
+            for (Category category : itemDetails.getCategories())
+                categoryList.add(categoryService.getCategory(category.getId()));
+            itemDetails.setCategories(categoryList);
+            itemDetails.setImage(image.getOriginalFilename());
             productManagementRepository.save(itemDetails);
             uploadImage(image);
             returnObject.put("message", "success");

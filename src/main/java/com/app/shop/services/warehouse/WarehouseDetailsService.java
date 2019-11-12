@@ -111,4 +111,8 @@ public class WarehouseDetailsService {
         }
         return "Invalid Request";
     }
+
+    public WarehouseDetails getDetails(int warehouseId) {
+        return warehouseRepository.findById(warehouseId).get();
+    }
 }

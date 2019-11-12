@@ -14,7 +14,7 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private int id;
-    @ManyToOne
+    @ManyToOne(targetEntity = PartyDetails.class)
     @JoinColumn(name = "party_id")
     private PartyDetails partyDetails;
     @OneToOne(targetEntity = ItemPackingDetails.class)
