@@ -135,6 +135,12 @@ export class ManageCategoriesComponent implements OnInit {
     }
   }
 
+  editingToggle(category, index){
+    this.editStatus = true; 
+    this.categoryModel.category = category.category; 
+    this.categoryModel.description = category.description
+  }
+
   async editCategory(categoryData, categoryObj){
     try{
       // console.log(categoryData, categoryObj);
