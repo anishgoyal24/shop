@@ -57,8 +57,11 @@ const routes: Routes = [
   { path: 'signup', component: NewAccountsComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate : [AuthGuard],
     children: [
+      
+      // Overview
       { path: 'overview', component: OverviewComponent },
 
+      // Stocks
       { path: 'stocks', component: StocksComponent,
         children:[
           { path: 'home', component: StocksHomeComponent },
@@ -67,6 +70,7 @@ const routes: Routes = [
         ] 
       },
 
+      // Products
       { path: 'products', component: ProductsComponent, 
         children: [
           { path: 'home', component: ProductsHomeComponent },
@@ -75,6 +79,7 @@ const routes: Routes = [
         ] 
       },
 
+      // Categories
       { path: 'categories', component: CategoriesComponent, 
         children:[
           { path: 'home', component: CategoriesHomeComponent },
@@ -83,6 +88,7 @@ const routes: Routes = [
         ] 
       },
       
+      // Account Administration
       { path: 'accounts', component: AccountComponent,
         children: [
           { path: 'home', component: AccountHomeComponent },

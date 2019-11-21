@@ -1,84 +1,15 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
-
-$prim: #53e3a6;
-
 .container{
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 40px 0;
-	height: 400px;
-    text-align: center;
-	
 	h1{
         font-size: 40px;
         font-weight: bold;
         color: #007bff;
-		// font-weight: 400;
-	}
-}
-
-form{
-	padding: 20px 0;
-	position: relative;
-	z-index: 2;
-	
-	input{
-		display: block;
-		appearance: none;
-		outline: 0;
-        border: 1px solid black;
-        // border-radius: 3;
-        // border: 0;
-        background-color: white;
-        opacity: 0.9;
-        background: transparent;
-
-		width: 250px;
-		
-		border-radius: 3px;
-		padding: 10px 15px;
-		margin: 0 auto 10px auto;
-		display: block;
 		text-align: center;
-		font-size: 18px;
-		
-		color: $prim;
-		
-		transition-duration: 0.25s;
-		font-weight: 300;
-		
-		&:hover{
-            // background-color:white;
-            // color: white;
-            opacity: 0.8;
-		}
-		
-		&:focus{
-			background-color: white;
-			width: 300px;
-            color: $prim;
-            font-weight: bold;
-        }
 	}
-	
+
 	button{
-		appearance: none;
-		outline: 0;
-		background-color: $prim;
-		border:1px solid black;
-		padding: 10px 15px;
-		color: white;
-		border-radius: 3px;
-		width: 250px;
-		cursor: pointer;
-        font-size: 24px;
-        font-weight: bold;
-		transition-duration: 0.25s;
-		
-		&:hover{
-            background-color: white;
-            opacity: 0.9;
-            color: $prim
-		}
+		align-items: center;
 	}
 }

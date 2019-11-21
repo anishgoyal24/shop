@@ -47,4 +47,12 @@ export class CategoryService {
   editCategory(categoryData){
     return this._http.post(environment.BASE_URL_API + '/category/edit', categoryData);
   }
+  
+  /**
+   * POST request to add party
+   * @param partyData - It consist of JSON object "name"
+   */
+  addParty(partyData){
+    return this._http.post(environment.BASE_URL_API + '/party/new', partyData);
+  }
 }
