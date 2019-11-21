@@ -1,17 +1,59 @@
-<div class="card-media">
-                <div class="container">
-                    <h1><b>Generate New Account</b></h1>
-            
-                    <form class="form">
-                        <input type="text" placeholder="Full Name">
-                        <input type="email" placeholder="Email">
-                        <input type="text" list="roles" placeholder="Role">
-                        <datalist id="roles">
-                          <option value="Admin">
-                          <option value="Employee">
-                        </datalist>
-                        <input  type="password" placeholder="Password">
-                        <button type="submit">Create</button>
-                    </form>
-                </div>
+<div class="card-media"> 
+  <div class="container">
+    <h1><b>Generate New Account</b></h1>
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" class="form-control" id="fullName" placeholder="Enter full name" name="fullName">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+    </div>
+
+    <div class="form-group">
+      <label for="contactNumber">Contact Number</label>
+      <input type="number" class="form-control" id="contactNumber" placeholder="Enter Contact Number" name="contactNumber">
+    </div>
+
+    <div class="form-group">
+      <label for="address">Full Address</label>
+      <input type="text" class="form-control" id="address" placeholder="Enter address" name="address">
+    </div>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" class="form-control" id="city" placeholder="Enter city" name="city">
+    </div>
+
+    <div class="form-group">
+      <label for="state">State</label>
+      <input type="text" class="form-control" id="state" placeholder="Enter state" name="state">
+    </div>
+
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input type="text" class="form-control" id="country" placeholder="Enter country" name="country">
+    </div>
+
+    <div class="form-group">
+      <label for="pin">Pin Code</label>
+      <input type="number" class="form-control" id="pin" placeholder="Enter pin code" name="pin">
+    </div>
+
+    <div class="form-group">
+      <label for="pwd">Password</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+    </div>
+    <div class="radio">
+      <label for="radio">Select Role</label>
+      <div class="radio">
+        <label><input type="radio" name="optradio" checked>Employee</label>
+      </div>
+      <div class="radio">
+        <label><input type="radio" name="optradio">Admin</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary form-control">Submit</button>
+  </div>
 </div>

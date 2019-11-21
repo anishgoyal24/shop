@@ -33,4 +33,15 @@ export class AdminService {
       observe: 'response'
     })
   }
+
+  /**
+   * This service function calls the HTTP POST Request to create a new account!
+   * @param accountDetails 
+   */
+  createNewAccount(accountDetails: any){
+    return this._http.post(environment.BASE_URL_API + '/employee/new', accountDetails, {
+      responseType: 'text',
+      observe: 'response'
+    })
+  }
 }
