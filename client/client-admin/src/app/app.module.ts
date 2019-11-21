@@ -100,7 +100,7 @@ import { ManageStocksComponent } from './dashboard/stocks/manage-stocks/manage-s
 import { AdminService } from 'src/shared/services/admin.service';
 import { CategoryService } from 'src/shared/services/category.service';
 import { AuthService } from 'src/shared/services/auth.service';
-
+import { UtilityService } from 'src/shared/services/utility.service';
 
 
 /**
@@ -187,6 +187,7 @@ import { ngxUiLoaderConfig } from 'src/shared/config/ngxUI.config';
     CategoryService,
     SnotifyService,
     AuthService,
+    UtilityService,
     AuthGuard,
     NavigationGuard,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
