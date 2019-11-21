@@ -34,8 +34,7 @@
             "scripts": [
               "src/shared/utilities/jquery.js",
               "src/shared/utilities/popper.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/shared/utilities/stripe.checkout.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
