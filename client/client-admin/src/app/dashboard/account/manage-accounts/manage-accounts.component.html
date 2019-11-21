@@ -1,6 +1,6 @@
 <div class="card-media">
-    <h1><b>Accounts List</b></h1>
     <div class="container">
+        <h1><b>Accounts List</b></h1>
             <div class="form-group has-search">
                     <i class="material-icons form-control-feedback">
                             search
@@ -8,19 +8,37 @@
                     <input type="text" class="form-control" placeholder="Search">
             </div>
     </div>
-        <div class="media card-tile user-list" >
+    <ng-container *ngIf="listLength == 0">
+        <h3>No Categories to display...</h3>
+        <img class="empty-state" src="../../../assets/images/empty.svg">
+</ng-container>
+<ng-container *ngIf="isLoadingQuery$ | async">
+        <h3>No Results to display...</h3>
+        <img class="empty-state" src="../../../assets/images/search.svg">
+</ng-container>
+        <div class="media card-tile user-list" *ngFor="let employee of employees; let  i = index">
  
                 <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
                 <div class="media-body">
                   <div class="float-left">
-                    <h4 class="mt-0">Shubham Singh</h4>
-                    <p>Role: <a>Admin</a></p>
+                    <h4 class="mt-0">{{ employee?.empName }}</h4>
+                    <p><b>Email</b>: <a>{{ employee?.empEmail }}</a></p>
+                    <p><b>Role</b>: <a>{{ employee?.role }}</a></p>
+                    <p><b>Status</b>: <ng-container *ngIf="employee?.status == 'y'">Active</ng-container> <ng-container *ngIf="employee?.status == 'n'">Disabled</ng-container></p>
                   </div>
                   <div class="btn-group mr-3 float-right">
-                        <button class="btn btn-danger dropdown-toggle-split btn-sm">Remove Member</button>
-                      </div>
-                  <div class="btn-group mr-3 float-right">
-                      <button class="btn btn-warning dropdown-toggle-split btn-sm">Disable Member</button>
+                      <div class="dropdown">
+                          <button class="btn btn-md btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Manage this account
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a *ngIf="employee?.status == 'y'" class="dropdown-item" (click)="changeRole(employee, 'admin')">Change to Admin</a>
+                            <a *ngIf="employee?.status == 'y'" class="dropdown-item" (click)="changeRole(employee, 'employee')">Change to Employee</a>
+                            <div *ngIf="employee?.status == 'y'" class="dropdown-divider"></div>
+                            <a *ngIf="employee?.status == 'n'" class="dropdown-item" (click)="changeStatus(employee, 'y')">Enable this Employee</a>
+                            <a *ngIf="employee?.status == 'y'" class="dropdown-item" (click)="changeStatus(employee, 'n')">Disable this Employee</a>
+                          </div>
+                        </div>
                     </div>
                   </div>
             

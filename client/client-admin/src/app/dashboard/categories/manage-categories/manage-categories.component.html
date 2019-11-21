@@ -19,24 +19,26 @@
         </ng-container>
         <div class="media card-tile user-list" *ngFor="let category of categoriesList; let i = index;">
                 <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
-                <ng-container *ngIf="!editStatus">
+                <ng-container *ngIf="!category.editCategory">
                         <div class="media-body">
                                 <div class="float-left">
                                         <h4 class="mt-0">{{category?.category}}</h4>
                                         <p><b>Description:</b> {{category?.description}}</p>
-                                        <p><b>Status:</b> {{category?.status}}</p>
+                                        <!-- <p><b>Status:</b> {{category?.status}}</p> -->
                                 </div>
-                                <div class="btn-group mr-3 float-right">
+                                <div *ngIf="!category.editCategory" class="btn-group mr-3 float-right">
                                         <button class="btn btn-danger dropdown-toggle-split btn-sm"
                                                 (click)="deleteCategory(category?.category, i)">Remove Category</button>
                                 </div>
-                                <div class="btn-group mr-3 float-right">
+                                <div *ngIf="!category.editCategory" class="btn-group mr-3 float-right">
                                         <button class="btn btn-primary dropdown-toggle-split btn-sm" 
-                                        (click)="editingToggle(category, i)">Edit Category</button>
+                                        (click)="category.editCategory = true; 
+                                        categoryModel.category = category?.category; 
+                                        categoryModel.description = category?.description">Edit Category</button>
                                 </div>
                         </div>
                 </ng-container>
-                <ng-container *ngIf="editStatus">
+                <ng-container *ngIf="category.editCategory">
                         <div class="media-body">
                                 <div class="row float-left">
                                         <input class="mt-0 form-control" placeholder="Add category name here" type="text" [(ngModel)]="categoryModel.category" [value]="category?.category">
@@ -44,10 +46,10 @@
                                 </div>
                                 <div class="btn-group mr-3 float-right">
                                         <button class="btn btn-danger dropdown-toggle-split btn-sm"
-                                                (click)="editStatus = false;">Cancel</button>
+                                                (click)="category.editCategory = false;">Cancel</button>
                                 </div>
                                 <div class="btn-group mr-3 float-right">
-                                        <button class="btn btn-primary dropdown-toggle-split btn-sm" (click)="editStatus = false;categoryModel.id = category?.id ;editCategory(categoryModel, category)">Save changes</button>
+                                        <button class="btn btn-primary dropdown-toggle-split btn-sm" (click)="category.editCategory = false;categoryModel.id = category?.id ;editCategory(categoryModel, category)">Save changes</button>
                                 </div>
                         </div>
                 </ng-container>
