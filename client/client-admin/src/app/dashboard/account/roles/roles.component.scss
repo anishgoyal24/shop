@@ -1,10 +1,4 @@
-h1{
-    margin: 1rem;
-    font-size: 40px;
-    font-weight: bold;
-    color: #007bff;
-    text-align: center;
-}
+
 
 .has-search .form-control {
     padding-left: 2.375rem;
@@ -20,4 +14,24 @@ h1{
     text-align: center;
     pointer-events: none;
     color: #aaa;
+}
+
+.container{
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 40px 0;
+	// height: 400px;
+    // text-align: center;
+	
+	h1{
+        font-size: 40px;
+        font-weight: bold;
+        color: #007bff;
+		text-align: center;
+		// font-weight: 400;
+	}
+
+	button{
+		align-items: center;
+	}
 }

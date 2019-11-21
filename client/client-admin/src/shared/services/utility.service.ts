@@ -11,15 +11,23 @@ export class UtilityService {
     ) { }
 
   snotifySucessConfig: SnotifyToastConfig = {
-    timeout: 2000,
+    timeout: 3000,
     type: 'success',
     closeOnClick: true,
     pauseOnHover: true,
     showProgressBar: true
   }
 
+  snotifyInfoConfig: SnotifyToastConfig = {
+    timeout: 3000,
+    type: 'info',
+    closeOnClick: true,
+    pauseOnHover: true,
+    showProgressBar: true
+  }
+
   snotifyErrorConfig: SnotifyToastConfig = {
-    timeout: 2000,
+    timeout: 3000,
     type: 'error',
     closeOnClick: true,
     pauseOnHover: true,
@@ -38,36 +46,68 @@ export class UtilityService {
    * This function generates a custom snotify notification for success event
    * @param text
    * @param title - optional 
+   * @param config - optional
    */
-  successNotification(text: string, title?: string){
-    return this.snotifyService.success(text, title);
+  successNotification(text: string, title?: string, config?: SnotifyToastConfig){
+    return this.snotifyService.success(text, title, config);
   }
 
   /**
    * This function generates a custom snotify notification for warning event
    * @param text 
    * @param title - optional
+   * @param config - optional
    */
-  warningNotification(text: string, title?: string){
-    return this.snotifyService.warning(text, title);
+  warningNotification(text: string, title?: string, config?: SnotifyToastConfig){
+    return this.snotifyService.warning(text, title, config);
   }
 
   /**
    * This function generates a custom snotify notification for error event
    * @param text 
    * @param title - optional
+   * @param config - optional
    */
-  errorNotification(text: string, title?: string){
-    return this.snotifyService.error(text, title);
+  errorNotification(text: string, title?: string, config?: SnotifyToastConfig){
+    return this.snotifyService.error(text, title, config);
   }
 
   /**
    * This function generates a custom snotify notification for asynchronous event
    * @param text 
    * @param promise - which resolves() or rejects() on the basis of response
+   * @param config - optional
    */
-  asyncNotification(text: string, promise){
-    return this.snotifyService.async(text, promise);
+  asyncNotification(text: string, promise: Promise<any>, config?: SnotifyToastConfig){
+    return this.snotifyService.async(text, promise, config);
+  }
+
+  /**
+   * This function generates a custom snotify notification for info event
+   * @param text 
+   * @param title - optional
+   * @param config - optional 
+   */
+  infoNotfication(text: string, title?: string, config?: SnotifyToastConfig){
+    return this.snotifyService.info(text, title, config);
+  }
+
+  /**
+   * This function generates a custom snotify notification for confirm event
+   * @param text 
+   * @param title - optional
+   * @param config - optional
+   */
+  confirmNotification(text: string, title?: string, config?: SnotifyToastConfig){
+    return this.snotifyService.confirm(text, title, config);
+  }
+
+  /**
+   * This function removes the toast notification
+   * @param toastId 
+   */
+  removeToast(toastId: number){
+    return this.snotifyService.remove(toastId);
   }
 
   /**
@@ -80,6 +120,17 @@ export class UtilityService {
       config: this.snotifySucessConfig
     }
   }
+
+  /**
+   * This function will be called when @function asyncNotification resolves the promise
+   * @param text 
+   */
+  resolveInfoAsyncPromise(text: string){
+    return {
+      body: text,
+      config: this.snotifyInfoConfig
+    }
+  }  
 
   /**
    * This function will be called when @function asyncNotification rejects the promise

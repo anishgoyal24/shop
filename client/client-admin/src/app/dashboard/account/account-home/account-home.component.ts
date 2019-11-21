@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxUiLoaderService, Loader, SPINNER } from 'ngx-ui-loader';
+import { AdminService } from 'src/shared/services/admin.service';
+import { UtilityService } from 'src/shared/services/utility.service';
 
 @Component({
   selector: 'app-account-home',
@@ -8,9 +9,39 @@ import { NgxUiLoaderService, Loader, SPINNER } from 'ngx-ui-loader';
 })
 export class AccountHomeComponent implements OnInit {
 
-  constructor(private ngxService: NgxUiLoaderService) { }
+  constructor(
+    private adminService: AdminService,
+    private utilityService: UtilityService
+  ) { }
 
-  ngOnInit() {
+  // EMPLOYEES DATA
+  employees: any;
+
+  async ngOnInit() {
+    this.employees = await this.getAllEmployess();
+    this.adminService.changeData(this.employees);
   }
+
+  /**
+   * This function is responsible for fetching all the employees present in the database
+   */
+  async getAllEmployess(){ 
+    try{
+      return new Promise((resolve, reject)=>{
+        this.adminService.getAllAccounts()
+        .subscribe((res)=>{
+          resolve(res['data']);
+        }, (err)=>{
+          console.log('Some error has occured while fetching all the employees', err);
+          this.utilityService.errorNotification('Oops, we couldn\'t fetch the accounts for you, please try again!')
+          reject([]);
+        })
+      })
+
+    } catch(err){
+      console.log('There\'s some unexpected error occurred, please try again later!', err);
+      this.utilityService.errorNotification('There\'s some unexpected error occurred, please try again later!');
+    }
+  }  
 
 }

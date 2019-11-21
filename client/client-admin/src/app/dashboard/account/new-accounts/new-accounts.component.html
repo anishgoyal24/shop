@@ -3,57 +3,57 @@
     <h1><b>Generate New Account</b></h1>
     <div class="form-group">
       <label for="fullName">Full Name</label>
-      <input type="text" class="form-control" id="fullName" placeholder="Enter full name" name="fullName">
+      <input type="text" class="form-control" id="fullName" placeholder="Enter full name" name="fullName" [(ngModel)]="accountDetails.empName">
     </div>
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" [(ngModel)]="accountDetails.empEmail">
     </div>
 
     <div class="form-group">
       <label for="contactNumber">Contact Number</label>
-      <input type="number" class="form-control" id="contactNumber" placeholder="Enter Contact Number" name="contactNumber">
+      <input type="number" class="form-control" id="contactNumber" placeholder="Enter Contact Number" name="contactNumber" [(ngModel)]="accountDetails.primaryPhone">
     </div>
 
     <div class="form-group">
       <label for="address">Full Address</label>
-      <input type="text" class="form-control" id="address" placeholder="Enter address" name="address">
+      <input type="text" class="form-control" id="address" placeholder="Enter address" name="address" [(ngModel)]="accountDetails.address">
     </div>
 
     <div class="form-group">
       <label for="city">City</label>
-      <input type="text" class="form-control" id="city" placeholder="Enter city" name="city">
+      <input type="text" class="form-control" id="city" placeholder="Enter city" name="city" [(ngModel)]="accountDetails.city">
     </div>
 
     <div class="form-group">
       <label for="state">State</label>
-      <input type="text" class="form-control" id="state" placeholder="Enter state" name="state">
+      <input type="text" class="form-control" id="state" placeholder="Enter state" name="state" [(ngModel)]="accountDetails.state">
     </div>
 
     <div class="form-group">
       <label for="country">Country</label>
-      <input type="text" class="form-control" id="country" placeholder="Enter country" name="country">
+      <input type="text" class="form-control" id="country" placeholder="Enter country" name="country" [(ngModel)]="accountDetails.country">
     </div>
 
     <div class="form-group">
       <label for="pin">Pin Code</label>
-      <input type="number" class="form-control" id="pin" placeholder="Enter pin code" name="pin">
+      <input type="number" class="form-control" id="pin" placeholder="Enter pin code" name="pin" [(ngModel)]="accountDetails.pincode">
     </div>
 
     <div class="form-group">
       <label for="pwd">Password</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" [(ngModel)]="accountDetails.password">
     </div>
     <div class="radio">
       <label for="radio">Select Role</label>
       <div class="radio">
-        <label><input type="radio" name="optradio" checked>Employee</label>
+        <label><input type="radio" name="optradio" [(ngModel)]="accountDetails.role" value="employee"> Employee</label>
       </div>
       <div class="radio">
-        <label><input type="radio" name="optradio">Admin</label>
+        <label><input type="radio" [(ngModel)]="accountDetails.role" name="optradio" value="admin" > Admin</label>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary form-control">Submit</button>
+    <button type="submit" class="btn btn-primary form-control" (click)="createAccount(accountDetails)">Submit</button>
   </div>
 </div>

@@ -12,6 +12,7 @@ export class NewCategoriesComponent implements OnInit {
   constructor(private categoryService: CategoryService, private snotifyService: SnotifyService) { }
 
   categoryName: any;
+  partyType: any;
 
   async ngOnInit() {
 

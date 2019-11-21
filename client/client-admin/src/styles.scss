@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~bootstrap/dist/css/bootstrap.min.css';
-@import '~bootstrap/scss/bootstrap.scss';
+// @import '~bootstrap/dist/css/bootstrap.min.css';
+// @import '~bootstrap/scss/bootstrap.scss';
 @import "~ng-snotify/styles/material";
 
 $poppins: 'Poppins', sans-serif;
+$border-color: #DCDCDC;
 $dark-text: #242D3A;
 
 body, html {
@@ -13,8 +14,6 @@ body, html {
     font-family: -apple-system, BlinkMacSystemFont, 'Open Sans', sans-serif;
     background: #DCDCDC;
     overflow-x: hidden;
-    // overflow-y: auto;
-    // Maybe we can use this as well - #DCDCDC
   }
 
 body, h1, h2, h3, h4, h5, h6, p, div, a{
@@ -34,7 +33,6 @@ a{
   background: #fff;
   font-family: $poppins;
   border-radius: 2px;
-  // display: inline-block;
   min-height: 100px;
   margin-top: 2%;
   margin-left: 7%;
@@ -48,7 +46,6 @@ a{
   background: #fff;
   font-family: $poppins;
   border-radius: 2px;
-  // display: inline-block;
   height: 300px;
   margin-top: 2%;
   margin-left: 7%;
@@ -70,7 +67,6 @@ a{
   background: #fff;
   font-family: $poppins;
   border-radius: 2px;
-  // display: inline-block;
   min-height: 500px;
   margin-top: 2%;
   margin-left: 7%;
