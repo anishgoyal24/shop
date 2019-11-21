@@ -32,6 +32,7 @@ public class ItemDetails {
     private String customerAllowed;
     @ManyToMany(mappedBy = "itemDetails")
     private Set<Category> categories;
+    String image;
 
     @Override
     public boolean equals(Object o) {

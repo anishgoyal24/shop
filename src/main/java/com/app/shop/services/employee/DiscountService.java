@@ -2,6 +2,7 @@ package com.app.shop.services.employee;
 
 import com.app.shop.entity.Discount;
 import com.app.shop.repository.customer.DiscountRepository;
+import com.app.shop.services.customer.ItemPackingDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ public class DiscountService {
     @Autowired
     private DiscountRepository discountRepository;
     private HashMap<String, Object> returnObject;
+    @Autowired
+    private ItemPackingDetailsService itemPackingDetailsService;
 
     public HashMap<String, Object> listAll(){
         returnObject = new HashMap<>();
@@ -27,6 +30,7 @@ public class DiscountService {
         returnObject = new HashMap<>();
         Discount foundDiscount = discountRepository.findExistingDiscount(discount.getItemPackingDetails().getId());
         if (foundDiscount==null){
+            discount.setItemPackingDetails(itemPackingDetailsService.getDetails(discount.getItemPackingDetails().getId()));
             discountRepository.save(discount);
             returnObject.put("message", "success");
         }

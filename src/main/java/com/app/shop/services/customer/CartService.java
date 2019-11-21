@@ -1,6 +1,8 @@
 package com.app.shop.services.customer;
 
 import com.app.shop.entity.Cart;
+import com.app.shop.entity.ItemPackingDetails;
+import com.app.shop.entity.PartyDetails;
 import com.app.shop.repository.customer.CartRepository;
 import com.app.shop.services.warehouse.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +19,17 @@ public class CartService {
     private HashMap<String, Object> returnObject;
     @Autowired
     private StockService stockService;
+    @Autowired
+    private PartyDetailsService partyDetailsService;
+    @Autowired
+    private ItemPackingDetailsService itemPackingDetailsService;
 
     public HashMap<String, Object> addItem(Cart cart){
         returnObject = new HashMap<>();
         Cart foundItem = cartRepository.findByPartyDetailsPartyIdAndItemPackingDetailsId(cart.getPartyDetails().getPartyId(), cart.getItemPackingDetails().getId());
         if (foundItem==null){
+            cart.setPartyDetails((PartyDetails)partyDetailsService.getDetails(cart.getPartyDetails().getPartyEmail()).get("data"));
+            cart.setItemPackingDetails(itemPackingDetailsService.getDetails(cart.getItemPackingDetails().getId()));
             cartRepository.save(cart);
         }
         else {

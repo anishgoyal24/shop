@@ -1,6 +1,7 @@
 package com.app.shop.services.customer;
 
 import com.app.shop.entity.PartyPoints;
+import com.app.shop.repository.customer.DetailsRepository;
 import com.app.shop.repository.customer.PointsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ public class PointsService {
     @Autowired
     private PointsRepository pointsRepository;
     private HashMap<String, Object> returnObject;
+    @Autowired
+    private DetailsRepository detailsRepository;
 
     public HashMap<String, Object> seeHistory(int partyId){
         returnObject = new HashMap<>();
@@ -32,6 +35,7 @@ public class PointsService {
         returnObject = new HashMap<>();
         PartyPoints foundPartyPoints = pointsRepository.findByReferenceId(partyPoints.getReferenceId());
         if (foundPartyPoints==null){
+            partyPoints.setPartyDetails(detailsRepository.findByPartyId(partyPoints.getPartyDetails().getPartyId()));
             pointsRepository.save(partyPoints);
             returnObject.put("message", "success");
         }
