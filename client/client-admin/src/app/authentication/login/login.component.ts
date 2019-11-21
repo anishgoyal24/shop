@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { NgxUiLoaderService, Loader, SPINNER } from 'ngx-ui-loader';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/shared/services/admin.service';
-import { SnotifyService, SnotifyPosition, SnotifyToastConfig } from 'ng-snotify';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { UtilityService } from 'src/shared/services/utility.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private adminService: AdminService,
-    private snotifyService: SnotifyService) { }
+    private utilityService: UtilityService
+  ) { }
 
   userName: String;
   password: String;
@@ -44,20 +45,23 @@ export class LoginComponent implements OnInit {
       }
       if (userData) {
         this.isLoading$.next(true);
-        this.adminService.authenticate(userData)
-          .subscribe((res) => {
-            console.log('Successfully Logged In', res.headers.keys());
-            if (res.headers.get('Authorization')) {
-              //this.snotifyService.success('Example body content');
-              localStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
-              this.isLoading$.next(false);
-              this.router.navigate(['/dashboard', 'overview']);
-            }
+        this.utilityService.asyncNotification('Please wait we are logging you in!', new Promise((resolve, reject) => {
+          this.adminService.authenticate(userData)
+            .subscribe((res) => {
+              console.log('Successfully Logged In', res.headers.keys());
+              if (res.headers.get('Authorization')) {
+                //this.snotifyService.success('Example body content');
+                sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
+                this.isLoading$.next(false);
+                this.router.navigate(['/dashboard', 'overview']);
+                resolve(this.utilityService.resolveAsyncPromise(`Welcome back ${userData.username}!`))
+              }
 
-          }, (err) => {
-            console.log('HTTP Response Error', err);
-          })
-
+            }, (err) => {
+              console.log('HTTP Response Error', err);
+              reject(this.utilityService.rejectAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`))
+            })
+        }))
 
       }
 
