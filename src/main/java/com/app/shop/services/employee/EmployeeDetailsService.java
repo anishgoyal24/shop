@@ -127,6 +127,22 @@ public class EmployeeDetailsService {
         return returnObject;
     }
 
+    public HashMap<String, Object> changeStatus(String email, String status) {
+        returnObject = new HashMap<>();
+        EmployeeDetails foundEmployee = employeeRepository.findByEmpEmail(email);
+        if (foundEmployee != null){
+            foundEmployee.setStatus(status.charAt(0));
+            employeeRepository.save(foundEmployee);
+            UserDetails userDetails = userAuthRepository.findByUsername(email);
+            if (status.equals("y"))userDetails.setEnabled(1);
+            else if (status.equals("n"))userDetails.setEnabled(0);
+            userAuthRepository.save(userDetails);
+            returnObject.put("message", "success");
+        }
+        else returnObject.put("message", "no such user");
+        return returnObject;
+    }
+
 //    public String verify(String email) {
 //        EmployeeDetails foundEmployeeDetails = employeeRepository.findByEmpEmail(email);
 //        if (foundEmployeeDetails!=null){
