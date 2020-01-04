@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PartyTypeService {
@@ -51,5 +52,18 @@ public class PartyTypeService {
 
     public PartyType getType(Integer id){
         return partyTypeRepository.findById(id).get();
+    }
+
+    public HashMap<String, Object> enablePartyType(Integer partyId){
+        returnObject = new HashMap<>();
+        Optional<PartyType> optional = partyTypeRepository.findById(partyId);
+        if (optional.isPresent()) {
+            PartyType foundPartyType = optional.get();
+            foundPartyType.setStatus('y');
+            partyTypeRepository.save(foundPartyType);
+            returnObject.put("message", "success");
+        }
+        else returnObject.put("message", "no such party id");
+        return returnObject;
     }
 }

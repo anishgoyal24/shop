@@ -32,4 +32,8 @@ public class PartyTypeController {
     public HashMap<String, Object> getPartyTypes(){
         return partyTypeService.listAll();
     }
+
+    @PostMapping(value = "/enable/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    public HashMap<String, Object> enablePartyType(@PathVariable Integer id){ return partyTypeService.enablePartyType(id); }
 }
