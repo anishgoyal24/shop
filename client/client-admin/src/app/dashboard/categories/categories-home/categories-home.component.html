@@ -1,24 +1,16 @@
-<!-- <h1><b>Categories List</b></h1> -->
+<div class="card-media">
 <div class="container">
+        <h1><b>Categories List</b></h1>
         <div class="form-group has-search">
-                <!-- <i class="material-icons has-search">
+                <i class="material-icons form-control-feedback">
                         search
-                        </i> -->
-                <input type="text" [(ngModel)]="categoryQuery" class="form-control" placeholder="Search Categories"
+                    </i>
+                <input type="text" class="form-control" [(ngModel)]="categoryQuery" class="form-control" placeholder="Search Categories"
                         (keyup)="searchQuery(categoryQuery)">
         </div>
 </div>
 
 <div class="row" style="margin-bottom: 1rem; margin-left: 5rem;">
-        <ng-container *ngIf="listLength == 0">
-                <h3>No Categories to display...</h3>
-                <img class="empty-state" src="../../../assets/images/empty.svg">
-        </ng-container>
-        <ng-container *ngIf="isLoadingQuery$ | async">
-                <h3>No Results to display...</h3>
-                <img class="empty-state" src="../../../assets/images/search.svg">
-        </ng-container>
-
         <div *ngFor="let category of categoriesList">
                 <div class="container-card" style="margin: 1rem 1rem 1rem 1rem">
                         <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
@@ -27,4 +19,13 @@
                 </div>
         </div>
 
+</div>
+<ng-container *ngIf="listLength == 0">
+        <h3>No Categories to display...</h3>
+        <img class="empty-state" src="../../../assets/images/empty.svg">
+</ng-container>
+<ng-container *ngIf="isLoadingQuery$ | async">
+        <h3>No Results to display...</h3>
+        <img class="empty-state" src="../../../assets/images/search.svg">
+</ng-container>
 </div>
