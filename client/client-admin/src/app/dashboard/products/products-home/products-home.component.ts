@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from 'src/shared/services/product.service';
 
 @Component({
   selector: 'app-products-home',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
-  ngOnInit() {
+  public products: any = [];
+  public productsLength = this.products.length || 0;
+
+  async ngOnInit() {
+   this.products = await this.getAllProducts();
+  }
+
+  /**
+   * Fetches all the products from the server
+   */
+  getAllProducts(){
+    return new Promise((resolve, reject)=>{
+      this.productService.getAllProducts()
+      .then((res)=> resolve(res['data']))
+      .catch(()=> reject([]))
+    })
   }
 
 }

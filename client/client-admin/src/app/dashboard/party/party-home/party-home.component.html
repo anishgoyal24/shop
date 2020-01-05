@@ -1,0 +1,25 @@
+<div class="card-media" style="text-align: center;">
+    <div class="container">
+        <h1><b>Parties List</b></h1>
+        <div class="form-group has-search">
+            <i class="material-icons form-control-feedback">
+                search
+            </i>
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 1rem" *ngIf="parties !== undefined">
+        <div *ngFor="let party of parties" class="col-md-3 container-card">
+        <h2> {{party?.type}}</h2>
+        </div>
+    </div>
+    <ng-container *ngIf="parties.length === 0 && !(isLoading$ | async)">
+        <h3>No Parties to display...</h3>
+        <img class="empty-state" src="../../../assets/images/empty.svg">
+    </ng-container>
+    <ng-container style="margin: auto" *ngIf="isLoading$ | async">
+        <h3>Please wait...</h3>
+        <app-loading-spinner></app-loading-spinner>
+</ng-container>
+</div>

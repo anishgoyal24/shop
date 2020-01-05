@@ -43,6 +43,17 @@ export class UtilityService {
   }
 
   /**
+   * 
+   * @param myArr 
+   * @param prop 
+   */
+  removeDuplicates(myArr: any, prop: string) {
+    return myArr.filter((obj, pos, arr) => {
+      return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
+    });
+  }
+
+  /**
    * This function generates a custom snotify notification for success event
    * @param text
    * @param title - optional 

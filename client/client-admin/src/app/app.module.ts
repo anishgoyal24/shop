@@ -85,6 +85,13 @@ import { ProductsHomeComponent } from './dashboard/products/products-home/produc
 import { NewProductsComponent } from './dashboard/products/new-products/new-products.component';
 import { ManageProductsComponent } from './dashboard/products/manage-products/manage-products.component';
 
+// ----- PARTY -----
+import { PartyComponent } from './dashboard/party/party.component';
+import { PartyHeaderComponent } from './dashboard/party/party-header/party-header.component';
+import { PartyHomeComponent } from './dashboard/party/party-home/party-home.component';
+import { NewPartyComponent } from './dashboard/party/new-party/new-party.component';
+import { ManagePartyComponent } from './dashboard/party/manage-party/manage-party.component';
+
 // ----- STOCKS -----
 import { StocksComponent } from './dashboard/stocks/stocks.component';
 import { StocksHeaderComponent } from './dashboard/stocks/stocks-header/stocks-header.component';
@@ -101,6 +108,8 @@ import { AdminService } from 'src/shared/services/admin.service';
 import { CategoryService } from 'src/shared/services/category.service';
 import { AuthService } from 'src/shared/services/auth.service';
 import { UtilityService } from 'src/shared/services/utility.service';
+import { ProductService } from 'src/shared/services/product.service';
+import { PartyService } from 'src/shared/services/party.service';
 
 
 /**
@@ -122,6 +131,7 @@ import { NavigationGuard } from 'src/shared/guards/navigation.guard';
  * !===== 7. CONFIG VARIABLES =====!
  */
 import { ngxUiLoaderConfig } from 'src/shared/config/ngxUI.config';
+import { LoadingSpinnerComponent } from './common/loading-spinner/loading-spinner.component';
 
 
 
@@ -172,7 +182,15 @@ import { ngxUiLoaderConfig } from 'src/shared/config/ngxUI.config';
     StocksHeaderComponent,
     NewStocksComponent,
     ManageStocksComponent,
-    StocksHomeComponent
+    StocksHomeComponent,
+
+    // PARTY COMPONENTS
+    PartyHomeComponent,
+    PartyHeaderComponent,
+    NewPartyComponent,
+    ManagePartyComponent,
+    PartyComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -188,6 +206,8 @@ import { ngxUiLoaderConfig } from 'src/shared/config/ngxUI.config';
     SnotifyService,
     AuthService,
     UtilityService,
+    ProductService,
+    PartyService,
     AuthGuard,
     NavigationGuard,
     { provide: LocationStrategy, useClass: HashLocationStrategy },

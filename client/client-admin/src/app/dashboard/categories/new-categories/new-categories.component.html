@@ -1,26 +1,15 @@
 <div class="card-media">
-        <img src = "../../../../assets/images/create.svg">
-        <div class="container">
-            <h1><b>New Category</b></h1>
-    
-            <div class="form">
-                <input type="text" placeholder="Category Name" [(ngModel)]="categoryName">
-                <!-- <textarea placeholder="Category Description"></textarea>
-                <input type="file" placeholder="Select Image" name="myImage" accept="image/*" /> -->
-                <button type="submit" (click)= "createNewCategory()">Create</button>
-                </div>
-        </div>
+    <img src="../../../../assets/images/create.svg">
+    <div class="container">
+        <h1><b>New Category</b></h1>
 
-        <div class="container">
-                        <h1><b>New Party</b></h1>
-                
-                        <div class="form">
-                            <input type="text" placeholder="Party Type" [(ngModel)]="partyType">
-                            <!-- <textarea placeholder="Category Description"></textarea>
-                            <input type="file" placeholder="Select Image" name="myImage" accept="image/*" /> -->
-                            <button type="submit" (click)= "createNewCategory()">Create</button>
-                            </div>
-                    </div>
-            
+        <div class="form">
+            <input type="text" placeholder="Category Name" [(ngModel)]="categoryName">
+            <!-- <textarea placeholder="Category Description"></textarea>
+                <input type="file" placeholder="Select Image" name="myImage" accept="image/*" /> -->
+            <button type="submit" (click)="createNewCategory()">Create</button>
+        </div>
+    </div>
+
 
 </div>

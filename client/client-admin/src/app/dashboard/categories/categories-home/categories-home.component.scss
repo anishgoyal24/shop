@@ -26,15 +26,6 @@ h3{
     font-family: 'Permanent Marker', cursive;
 }
 
-.has-search .form-control {
-    padding-left: 2.375rem;
-    max-width: 1000px;
-    display: inline-block;
-    margin-top: 2%;
-    margin-left: 4.5%;
-    position: relative;
-}
-
 .empty-state{
     max-width: 400px;
     max-height: 400px;
@@ -43,11 +34,31 @@ h3{
     margin-top: 1%;
 }
 
+.container{
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px 0;
+	h1{
+        font-size: 40px;
+        font-weight: bold;
+        color: #007bff;
+		text-align: center;
+	}
+
+	button{
+		align-items: center;
+	}
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
 .has-search .form-control-feedback {
     position: absolute;
     z-index: 2;
     display: block;
-    max-width: 2.375rem;
+    width: 2.375rem;
     height: 2.375rem;
     line-height: 2.375rem;
     text-align: center;
@@ -55,9 +66,25 @@ h3{
     color: #aaa;
 }
 
-.container{
-    margin: 1rem;
-}
+// .has-search .form-control {
+//     padding-left: 2.375rem;
+// }
+
+// .has-search .form-control-feedback {
+//     position: absolute;
+//     z-index: 2;
+//     display: block;
+//     width: 2.375rem;
+//     height: 2.375rem;
+//     line-height: 2.375rem;
+//     text-align: center;
+//     pointer-events: none;
+//     color: #aaa;
+// }
+
+// .container{
+//     margin: 1rem;
+// }
 
 p{
     padding-right: 1rem;
