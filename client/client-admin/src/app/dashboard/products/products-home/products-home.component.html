@@ -1,24 +1,21 @@
-<!-- <h1><b>Categories List</b></h1> -->
-<div class="container">
-    <div class="form-group has-search">
-            <!-- <i class="material-icons has-search">
-                    search
-                    </i> -->
-            <input type="text" class="form-control" placeholder="Search Products">
+<div class="card-media">
+    <div class="container">
+        <h1><b>Products List</b></h1>
+        <div class="form-group has-search">
+            <i class="material-icons form-control-feedback">
+                search
+            </i>
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
     </div>
-</div>
 
-<div class="row" style="margin-bottom: 1rem;">
-    <div class="col-md-3 container-card">
+    <div class="row" style="margin-bottom: 1rem;" *ngIf="products !== undefined">
+        <div *ngFor="let product of products" class="col-md-3 container-card">
 
-    </div>
-    <div class="col-md-3 container-card">
-
-    </div>
-    <div class="col-md-3 container-card">
-
-    </div>
-    <div class="col-md-3 container-card">
-        
+        </div>
+        <ng-container *ngIf="products.length === 0">
+            <h3>No Products to display...</h3>
+            <img class="empty-state" src="../../../assets/images/empty.svg">
+        </ng-container>
     </div>
 </div>

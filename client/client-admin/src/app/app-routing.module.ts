@@ -31,6 +31,12 @@ import { ProductsHomeComponent } from './dashboard/products/products-home/produc
 import { NewProductsComponent } from './dashboard/products/new-products/new-products.component';
 import { ManageProductsComponent } from './dashboard/products/manage-products/manage-products.component';
 
+// Party
+import { PartyComponent } from './dashboard/party/party.component';
+import { PartyHomeComponent } from './dashboard/party/party-home/party-home.component';
+import { NewPartyComponent } from './dashboard/party/new-party/new-party.component';
+import { ManagePartyComponent } from './dashboard/party/manage-party/manage-party.component';
+
 // Categories
 import { CategoriesComponent } from './dashboard/categories/categories.component';
 import { CategoriesHomeComponent } from './dashboard/categories/categories-home/categories-home.component';
@@ -76,6 +82,15 @@ const routes: Routes = [
           { path: 'home', component: ProductsHomeComponent },
           { path: 'new', component: NewProductsComponent },
           { path: 'manage', component: ManageProductsComponent }
+        ] 
+      },
+
+      // Party
+      { path: 'party', component: PartyComponent, 
+        children: [
+          { path: 'home', component: PartyHomeComponent },
+          { path: 'new', component: NewPartyComponent },
+          { path: 'manage', component: ManagePartyComponent }
         ] 
       },
 

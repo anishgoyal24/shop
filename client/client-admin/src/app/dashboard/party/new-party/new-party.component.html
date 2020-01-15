@@ -1,0 +1,9 @@
+<div class="card-media"> 
+    <div class="container">
+      <h1><b>Generate New Party</b></h1>
+      <div class="form-group">
+        <input type="text" class="form-control" id="partyType" placeholder="Enter the party name" name="partyType" [(ngModel)]="type">
+      </div>
+      <button type="submit" [disabled]= "type === '' || type === undefined" class="btn btn-primary form-control" (click)="createParty(type)">Submit</button>
+    </div>
+  </div>
