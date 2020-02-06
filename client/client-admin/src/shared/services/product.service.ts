@@ -17,4 +17,13 @@ export class ProductService {
     .toPromise();
   }
 
+  /**
+   * 
+   * @param productDetails 
+   */
+  createNewProduct(productDetails: Object){
+    return this._http.post(environment.BASE_URL_API + '/product/management/add', productDetails)
+    .toPromise();
+  }
+
 }

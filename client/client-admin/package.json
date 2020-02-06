@@ -24,11 +24,12 @@
     "ngx-ui-loader": "^8.0.0",
     "rxjs": "~6.5.3",
     "subsink": "^1.0.0",
+    "sweetalert2": "^9.5.4",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.19",
+    "@angular-devkit/build-angular": "^0.803.22",
     "@angular/cli": "~8.3.19",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",

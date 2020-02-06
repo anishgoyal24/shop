@@ -132,6 +132,17 @@ import { NavigationGuard } from 'src/shared/guards/navigation.guard';
  */
 import { ngxUiLoaderConfig } from 'src/shared/config/ngxUI.config';
 import { LoadingSpinnerComponent } from './common/loading-spinner/loading-spinner.component';
+import { PartyAdminComponent } from './dashboard/party-admin/party-admin.component';
+import { PartyNewCustomerComponent } from './dashboard/party-admin/party-new-customer/party-new-customer.component';
+import { PartyManageCustomerComponent } from './dashboard/party-admin/party-manage-customer/party-manage-customer.component';
+import { PartyAdminHomeComponent } from './dashboard/party-admin/party-admin-home/party-admin-home.component';
+import { PartyAdminHeaderComponent } from './dashboard/party-admin/party-admin-header/party-admin-header.component';
+import { WarehouseComponent } from './dashboard/warehouse/warehouse.component';
+import { WarehouseHomeComponent } from './dashboard/warehouse/warehouse-home/warehouse-home.component';
+import { WarehouseHeaderComponent } from './dashboard/warehouse/warehouse-header/warehouse-header.component';
+import { ManageWarehouseComponent } from './dashboard/warehouse/manage-warehouse/manage-warehouse.component';
+import { NewWarehouseComponent } from './dashboard/warehouse/new-warehouse/new-warehouse.component';
+import { ManageSectionComponent } from './common/manage-section/manage-section.component';
 
 
 
@@ -190,7 +201,18 @@ import { LoadingSpinnerComponent } from './common/loading-spinner/loading-spinne
     NewPartyComponent,
     ManagePartyComponent,
     PartyComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    PartyAdminComponent,
+    PartyNewCustomerComponent,
+    PartyManageCustomerComponent,
+    PartyAdminHomeComponent,
+    PartyAdminHeaderComponent,
+    WarehouseComponent,
+    WarehouseHomeComponent,
+    WarehouseHeaderComponent,
+    ManageWarehouseComponent,
+    NewWarehouseComponent,
+    ManageSectionComponent
   ],
   imports: [
     BrowserModule,

@@ -49,6 +49,23 @@ export class PartyService {
   enableParty(partyId: string){
     return this._http.post(environment.BASE_URL_API + `/party/enable/${partyId}`, '')
     .toPromise();
-  }  
+  }
+  
+  /**
+   * POST request to create a new customer
+   *
+   */
+  newCustomer(customerData: Object){
+    return this._http.post(environment.BASE_URL_API + `/customer/new`, customerData)
+    .toPromise();
+  }
+
+  /**
+   * @param customerData
+   */
+  sendOTP(email: string){
+    return this._http.post(environment.BASE_URL_API + `/customer/otp`, email)
+    .toPromise();
+  }
 
 }

@@ -1,14 +1,19 @@
 <div class="card-media">
-    <img src = "../../../../assets/images/new_product.svg">
+    <!-- <img src="../../../../assets/images/new_product.svg"> -->
     <div class="container">
         <h1><b>New Products</b></h1>
 
-        <form class="form">
-            <input type="text" placeholder="Product Name">
-            <textarea placeholder="Product Description"></textarea>
-            <input type="file" placeholder="Select Image" name="myImage" accept="image/*" />
-            <button type="submit">Create</button>
-        </form>
+        <div class="form-group">
+            <label for="fullName">Product Name</label>
+            <input type="text" class="form-control" id="fullProduct" placeholder="Product Name" name="fullProduct">
+        </div>
+        <div class="form-group">
+            <label for="fullName">Item Quantity</label>
+            <input type="number" class="form-control" id="quantity" placeholder="Item Quantity" name="quantity">
+        </div>
+        <div class="form-group">
+            <button class="btn form-control btn-md btn-primary">Create Product</button>
+        </div>
     </div>
 
 </div>

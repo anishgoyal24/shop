@@ -37,6 +37,12 @@ import { PartyHomeComponent } from './dashboard/party/party-home/party-home.comp
 import { NewPartyComponent } from './dashboard/party/new-party/new-party.component';
 import { ManagePartyComponent } from './dashboard/party/manage-party/manage-party.component';
 
+// Party Admin
+import { PartyAdminComponent } from './dashboard/party-admin/party-admin.component';
+import { PartyAdminHomeComponent } from './dashboard/party-admin/party-admin-home/party-admin-home.component';
+import { PartyNewCustomerComponent } from './dashboard/party-admin/party-new-customer/party-new-customer.component';
+import { PartyManageCustomerComponent } from './dashboard/party-admin/party-manage-customer/party-manage-customer.component';
+
 // Categories
 import { CategoriesComponent } from './dashboard/categories/categories.component';
 import { CategoriesHomeComponent } from './dashboard/categories/categories-home/categories-home.component';
@@ -50,9 +56,16 @@ import { NewAccountsComponent } from './dashboard/account/new-accounts/new-accou
 import { ManageAccountsComponent } from './dashboard/account/manage-accounts/manage-accounts.component';
 import { RolesComponent } from './dashboard/account/roles/roles.component';
 
+// Warehouse
+import { WarehouseComponent } from './dashboard/warehouse/warehouse.component';
+import { WarehouseHomeComponent } from './dashboard/warehouse/warehouse-home/warehouse-home.component';
+import { NewWarehouseComponent } from './dashboard/warehouse/new-warehouse/new-warehouse.component';
+import { ManageWarehouseComponent } from './dashboard/warehouse/manage-warehouse/manage-warehouse.component';
+
 // !!!----- GUARDS -----!!!
 import { AuthGuard } from 'src/shared/guards/auth.guard';
 import { NavigationGuard } from 'src/shared/guards/navigation.guard';
+
 
 
 
@@ -67,12 +80,12 @@ const routes: Routes = [
       // Overview
       { path: 'overview', component: OverviewComponent },
 
-      // Stocks
-      { path: 'stocks', component: StocksComponent,
+      // Warehouse
+      { path: 'warehouse', component: WarehouseComponent,
         children:[
-          { path: 'home', component: StocksHomeComponent },
-          { path: 'new', component: NewStocksComponent },
-          { path: 'manage', component: ManageStocksComponent }
+          { path: 'home', component: WarehouseHomeComponent },
+          { path: 'new', component: NewWarehouseComponent },
+          { path: 'manage', component: ManageWarehouseComponent }
         ] 
       },
 
@@ -85,14 +98,23 @@ const routes: Routes = [
         ] 
       },
 
-      // Party
-      { path: 'party', component: PartyComponent, 
+      // Party Type
+      { path: 'party-type', component: PartyComponent, 
         children: [
           { path: 'home', component: PartyHomeComponent },
           { path: 'new', component: NewPartyComponent },
           { path: 'manage', component: ManagePartyComponent }
         ] 
       },
+
+      // Party
+      { path: 'party', component: PartyAdminComponent, 
+        children: [
+          { path: 'home', component: PartyAdminHomeComponent },
+          { path: 'new', component: PartyNewCustomerComponent },
+          { path: 'manage', component: PartyManageCustomerComponent }
+        ] 
+      },      
 
       // Categories
       { path: 'categories', component: CategoriesComponent, 

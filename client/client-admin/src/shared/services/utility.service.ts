@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SnotifyService, SnotifyToastConfig } from 'ng-snotify';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -159,6 +160,56 @@ export class UtilityService {
    */
   clearAllNotifications(){
     return this.snotifyService.clear();
+  }
+
+  /**
+   * This function is resposible for showing a confirm dialog, with a function attached to the "Confirm"-button
+   * and by passing a parameter, we can execute something else for "Cancel
+   */
+  public getConfirmDialogAlert(){
+    return Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, I am sure!'
+    })
+  }
+
+  /**
+   * This function return the SWAL modal
+   * @param title 
+   * @param text 
+   * @param icon 
+   */
+  public getSwalFire(title?: string, text?: string, icon?: SweetAlertIcon){
+    return Swal.fire(title, text, icon);
+  }
+
+  /**
+   * This function is responsible for showing the swal toast
+   * @param icon - 'success', 'error', 'warning', 'info', 'question'
+   */
+  public getSwalToast(icon: SweetAlertIcon, title: string, text: string){
+    let Toast = Swal.mixin({
+      toast: true,
+      position: 'bottom-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      onOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    return Toast.fire({
+      icon: icon,
+      title: title,
+      text: text
+    })
   }
 
 }

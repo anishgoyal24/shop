@@ -1,0 +1,91 @@
+<div class="card-media">
+  <div class="container">
+    <h1><b>Generate New Account</b></h1>
+    <ng-container style=" text-align: center; margin: auto" *ngIf="isLoading$ | async">
+      <h3>Please wait...</h3>
+      <app-loading-spinner></app-loading-spinner>
+    </ng-container>
+    <ng-container *ngIf="!(isLoading$ | async)">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" class="form-control" id="fullName" placeholder="Enter full name" name="fullName"
+          [(ngModel)]="accountDetails.partyName">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"
+          [(ngModel)]="accountDetails.partyEmail">
+      </div>
+
+      <div class="form-group">
+        <label for="contactNumber">Contact Person</label>
+        <input type="text" class="form-control" id="contactPerson" placeholder="Enter Contact Person"
+          name="contactPerson" [(ngModel)]="accountDetails.contactPerson">
+      </div>
+
+      <div class="form-group">
+        <label for="contactNumber">Primary Phone Number</label>
+        <input type="number" class="form-control" id="contactNumber" placeholder="Enter Contact Number"
+          name="contactNumber" [(ngModel)]="accountDetails.primaryPhone">
+      </div>
+
+      <div class="form-group">
+        <label for="contactNumber">Secondary Phone Number</label>
+        <input type="number" class="form-control" id="secondaryContactNumber"
+          placeholder="Enter Secondary Contact Number" name="secondaryContactNumber"
+          [(ngModel)]="accountDetails.secondaryPhone">
+      </div>
+
+      <div class="form-group">
+        <label for="address">Full Address</label>
+        <input type="text" class="form-control" id="address" placeholder="Enter address" name="address"
+          [(ngModel)]="accountDetails.address">
+      </div>
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" placeholder="Enter city" name="city"
+          [(ngModel)]="accountDetails.city">
+      </div>
+
+      <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" class="form-control" id="state" placeholder="Enter state" name="state"
+          [(ngModel)]="accountDetails.state">
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input type="text" class="form-control" id="country" placeholder="Enter country" name="country"
+          [(ngModel)]="accountDetails.country">
+      </div>
+
+      <div class="form-group">
+        <label for="pin">Pin Code</label>
+        <input type="number" class="form-control" id="pin" placeholder="Enter pin code" name="pin"
+          [(ngModel)]="accountDetails.pincode">
+      </div>
+
+      <div class="form-group">
+        <label for="pwd">Password</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd"
+          [(ngModel)]="accountDetails.password">
+      </div>
+
+      <div class="form-group">
+        <div class="dropdown">
+          <button class="btn btn-md btn-light form-control dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Party Type
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" *ngFor="let party of parties" (click)="accountDetails.partyType = party.id;">{{party?.type}}</a>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary form-control" (click)="sendOTP(accountDetails.partyEmail)">Submit</button>
+  </ng-container>
+
+
+</div>
