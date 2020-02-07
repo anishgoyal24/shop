@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Node server app for saifco",
   "engines": {
-    "node": "10.9",
+    "node": "12.15.0",
     "npm": "6.4.1"
   },
   "main": "app.js",
