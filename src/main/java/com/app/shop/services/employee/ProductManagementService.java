@@ -26,11 +26,15 @@ public class ProductManagementService {
         returnObject = new HashMap<>();
         if (productManagementRepository.findByItemName(itemDetails.getItemName())==null) {
             itemDetails.setStatus('y');
-            for(ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails())
-                itemPackingDetails.setStatus('y');
+            if (itemDetails.getItemPackingDetails()!=null){
+                for(ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails())
+                    itemPackingDetails.setStatus('y');
+            }
             Set<Category> categoryList = new HashSet<>();
-            for (Category category : itemDetails.getCategories())
-                categoryList.add(categoryService.getCategory(category.getId()));
+            if (itemDetails.getCategories()!=null){
+                for (Category category : itemDetails.getCategories())
+                    categoryList.add(categoryService.getCategory(category.getId()));
+            }
             itemDetails.setCategories(categoryList);
             itemDetails.setImage(image.getOriginalFilename());
             productManagementRepository.save(itemDetails);
