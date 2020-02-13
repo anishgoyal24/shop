@@ -20,7 +20,7 @@ public class ItemPackingDetails {
     private int id;
     private Integer size;
     private char status;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "item_id")
     private ItemDetails itemDetails;
 }
