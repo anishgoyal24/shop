@@ -18,7 +18,7 @@ public class ProductManagementController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     @PostMapping(value = "/add", consumes = {"multipart/form-data" })
-    public HashMap<String, Object> addProduct(@RequestParam("itemDetails") ItemDetails itemDetails, @RequestParam("image")MultipartFile image){
+    public HashMap<String, Object> addProduct(@RequestPart("itemDetails") ItemDetails itemDetails, @RequestPart("image")MultipartFile image){
         return productManagementService.addProduct(itemDetails, image);
     }
 
