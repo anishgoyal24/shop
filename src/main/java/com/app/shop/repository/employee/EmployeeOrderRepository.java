@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface EmployeeOrderRepository extends JpaRepository<OrderHeader, Integer> {
 
+    @Query("select orderHeader from OrderHeader orderHeader where FUNCTION('MONTH', orderHeader.orderDate) = :month and FUNCTION('YEAR', orderHeader.orderDate) = :year")
     List<OrderHeader> findAllByOrderDate_MonthAndOrderDate_Year(int month, int year);
 
     @Query("select count(orderHeader.orderId) from OrderHeader orderHeader, OrderDetail orderDetail where FUNCTION('MONTH', orderHeader.orderDate) = :month and FUNCTION('YEAR', orderHeader.orderDate) = :year group by orderDetail.itemDetails.itemDetails")
