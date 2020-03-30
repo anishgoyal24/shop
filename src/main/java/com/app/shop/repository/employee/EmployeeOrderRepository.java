@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface EmployeeOrderRepository extends JpaRepository<OrderHeader, Integer> {
 
-    List<OrderHeader> findOrderHeadersByOrderDate_MonthAndOrderDate_Year(int month, int year);
+    List<OrderHeader> findByOrderDate_MonthAndOrderDate_Year(int month, int year);
 
     @Query("select count(orderHeader.orderId) from OrderHeader orderHeader, OrderDetail orderDetail where FUNCTION('MONTH', orderHeader.orderDate) = :month and FUNCTION('YEAR', orderHeader.orderDate) = :year group by orderDetail.itemDetails.itemDetails")
     Object[] findProductOverview(@Param("month") int month, @Param("year") int year);

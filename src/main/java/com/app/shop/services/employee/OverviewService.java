@@ -22,14 +22,14 @@ public class OverviewService {
 
     public HashMap<String, Object> getOrdersOverview(int month, int year) {
         returnObject = new HashMap<>();
-        List<OrderHeader> orders = employeeOrderRepository.findOrderHeadersByOrderDate_MonthAndOrderDate_Year(month, year);
+        List<OrderHeader> orders = employeeOrderRepository.findByOrderDate_MonthAndOrderDate_Year(month, year);
         returnObject.put("data", orders);
         return returnObject;
     }
 
     public HashMap<String, Object> getOrdersCount(int month, int year) {
         returnObject = new HashMap<>();
-        int count = employeeOrderRepository.findOrderHeadersByOrderDate_MonthAndOrderDate_Year(month, year).size();
+        int count = employeeOrderRepository.findByOrderDate_MonthAndOrderDate_Year(month, year).size();
         returnObject.put("count", count);
         return returnObject;
     }
