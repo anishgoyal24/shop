@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends JpaRepository<OrderHeader, Integer> {
+public interface EmployeeOrderRepository extends JpaRepository<OrderHeader, Integer> {
 
     List<OrderHeader> findOrderHeadersByOrderDate_MonthAndOrderDate_Year(int month, int year);
 
