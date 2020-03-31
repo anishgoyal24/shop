@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+
+const HttpUploadOptions = {
+  headers: new HttpHeaders({ "Content-Type": "multipart/form-data" })
+}
 
 @Injectable({
   providedIn: 'root'

@@ -5,14 +5,51 @@
 
         <div class="form-group">
             <label for="fullName">Product Name</label>
-            <input type="text" class="form-control" id="fullProduct" placeholder="Product Name" name="fullProduct">
+            <input type="text" [(ngModel)]="productDetails.itemName" class="form-control" id="fullProduct" placeholder="Product Name" name="fullProduct">
         </div>
         <div class="form-group">
             <label for="fullName">Item Quantity</label>
-            <input type="number" class="form-control" id="quantity" placeholder="Item Quantity" name="quantity">
+            <input type="number" [(ngModel)]="productDetails.itemPackingDetails.size" class="form-control" id="quantity" placeholder="Item Quantity" name="quantity">
         </div>
+
         <div class="form-group">
-            <button class="btn form-control btn-md btn-primary">Create Product</button>
+            <div class="dropdown">
+              <button class="btn btn-md btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Category
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div *ngFor="let category of this.categories">
+                    <a class="dropdown-item" (click)="setCategory(category)">{{category?.category}}</a>
+                </div>
+              </div>
+            </div>
+            <p *ngIf="this.category" style="margin-top: 2%;">Selected Category: <strong>{{this.category}}</strong></p>
+          </div>
+
+          <div class="form-group">
+            <div class="dropdown">
+              <button class="btn btn-md btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Party Type
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" *ngFor="let party of parties" (click)="this.selectedParty = party.type; this.productDetails.customerAllowed = this.selectedParty">{{party?.type}}</a>
+              </div>
+            </div>
+    
+            <p *ngIf="this.selectedParty" style="margin-top: 2%;">Selected Party: <strong>{{this.selectedParty}}</strong></p>
+          </div>
+
+          <div class="form-group">
+            <label for="fullName">Select Product Image</label>
+            <button type="button" class="btn btn-link">
+                <input #fileInput type="file" class="btn btn-warning btn-md file-input" (input)="onAttach($event)" placeholder="File" accept="image/*" />
+            </button>
+        </div>
+
+        <div class="form-group">
+            <button class="btn form-control btn-md btn-primary" (click)="onCreateProduct(this.productDetails)">Create Product</button>
         </div>
     </div>
 
