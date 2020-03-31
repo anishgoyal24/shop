@@ -31,7 +31,7 @@ public class ProductManagementService {
         try {
             itemDetails = objectMapper.readValue(itemDetail, ItemDetails.class);
         } catch (IOException e) {
-            returnObject.put("message", e);
+            returnObject.put("message", "Object Mapper error");
             return returnObject;
         }
         if (productManagementRepository.findByItemName(itemDetails.getItemName())==null) {
