@@ -4,10 +4,12 @@ import com.app.shop.entity.Category;
 import com.app.shop.entity.ItemDetails;
 import com.app.shop.entity.ItemPackingDetails;
 import com.app.shop.repository.employee.ProductManagementRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,8 +24,16 @@ public class ProductManagementService {
     @Autowired
     private CategoryService categoryService;
 
-    public HashMap<String, Object> addProduct(ItemDetails itemDetails, MultipartFile image){
+    public HashMap<String, Object> addProduct(String itemDetail, MultipartFile image) {
         returnObject = new HashMap<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        ItemDetails itemDetails = null;
+        try {
+            itemDetails = objectMapper.readValue(itemDetail, ItemDetails.class);
+        } catch (IOException e) {
+            returnObject.put("message", e);
+            return returnObject;
+        }
         if (productManagementRepository.findByItemName(itemDetails.getItemName())==null) {
             itemDetails.setStatus('y');
             if (itemDetails.getItemPackingDetails()!=null){

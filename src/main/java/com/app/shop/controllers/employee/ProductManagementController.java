@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 @RestController
@@ -17,8 +18,8 @@ public class ProductManagementController {
     private ProductManagementService productManagementService;
 
     @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
-    @PostMapping(value = "/add", consumes = {"multipart/form-data" })
-    public HashMap<String, Object> addProduct(@RequestPart("itemDetails") ItemDetails itemDetails, @RequestPart("image")MultipartFile image){
+    @PostMapping(value = "/add")
+    public HashMap<String, Object> addProduct(@RequestParam("itemDetails") String itemDetails, @RequestParam("image")MultipartFile image){
         return productManagementService.addProduct(itemDetails, image);
     }
 
