@@ -40,8 +40,11 @@ public class ProductManagementService {
             }
             Set<Category> categoryList = new HashSet<>();
             if (itemDetails.getCategories()!=null){
-                for (Category category : itemDetails.getCategories())
-                    categoryList.add(categoryService.getCategory(category.getId()));
+                for (Category category : itemDetails.getCategories()) {
+                    Category cat = categoryService.getCategory(category.getId());
+                    categoryList.add(cat);
+                    cat.getItemDetails().add(itemDetails);
+                }
             }
             itemDetails.setCategories(categoryList);
             itemDetails.setImage(image.getOriginalFilename());
