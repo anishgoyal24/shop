@@ -5,6 +5,7 @@ import com.app.shop.entity.ItemDetails;
 import com.app.shop.entity.ItemPackingDetails;
 import com.app.shop.repository.employee.ProductManagementRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,14 +27,9 @@ public class ProductManagementService {
 
     public HashMap<String, Object> addProduct(String itemDetail, MultipartFile image) {
         returnObject = new HashMap<>();
-        ObjectMapper objectMapper = new ObjectMapper();
         ItemDetails itemDetails = null;
-        try {
-            itemDetails = objectMapper.readValue(itemDetail, ItemDetails.class);
-        } catch (IOException e) {
-            returnObject.put("message", "Object Mapper error");
-            return returnObject;
-        }
+        Gson gson = new Gson();
+        itemDetails = gson.fromJson(itemDetail, ItemDetails.class);
         if (productManagementRepository.findByItemName(itemDetails.getItemName())==null) {
             itemDetails.setStatus('y');
             if (itemDetails.getItemPackingDetails()!=null){
