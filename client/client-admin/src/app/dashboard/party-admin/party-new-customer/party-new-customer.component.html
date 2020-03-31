@@ -75,14 +75,16 @@
 
       <div class="form-group">
         <div class="dropdown">
-          <button class="btn btn-md btn-light form-control dropdown-toggle" type="button" id="dropdownMenuButton"
+          <button class="btn btn-md btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Party Type
+            Select Party Type
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" *ngFor="let party of parties" (click)="accountDetails.partyType = party.id;">{{party?.type}}</a>
+            <a class="dropdown-item" *ngFor="let party of parties" (click)="accountDetails.partyType = party.id; this.selectedParty = party.type">{{party?.type}}</a>
           </div>
         </div>
+
+        <p *ngIf="this.selectedParty" style="margin-top: 2%;">Selected Party: <strong>{{this.selectedParty}}</strong></p>
       </div>
       <button type="submit" class="btn btn-primary form-control" (click)="sendOTP(accountDetails.partyEmail)">Submit</button>
   </ng-container>

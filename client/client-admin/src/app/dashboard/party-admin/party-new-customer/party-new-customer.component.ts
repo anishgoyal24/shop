@@ -37,6 +37,8 @@ export class PartyNewCustomerComponent implements OnInit {
 
   parties:any = [];
 
+  selectedParty: any;
+
   public isLoading$ = new BehaviorSubject(false);
 
   async ngOnInit() {

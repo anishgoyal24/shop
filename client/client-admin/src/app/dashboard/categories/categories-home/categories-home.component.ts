@@ -40,7 +40,7 @@ export class CategoriesHomeComponent implements OnInit {
             });
             this.listLength = res['data'].length;
             this.ngxService.stopBackground();
-            resolve();
+            resolve(res);
           }, (err) => {
             console.log('Categories not fetched', err);
             this.ngxService.stopBackground();
@@ -71,7 +71,7 @@ export class CategoriesHomeComponent implements OnInit {
               this.isLoadingQuery$.next(false);
   
             this.ngxService.stopBackground();
-            resolve();
+            resolve(res);
           }, (err) =>{
             console.log('Categories not found', err);
             this.isLoadingQuery$.next(false);
