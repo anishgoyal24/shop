@@ -33,8 +33,10 @@ public class ProductManagementService {
         if (productManagementRepository.findByItemName(itemDetails.getItemName())==null) {
             itemDetails.setStatus('y');
             if (itemDetails.getItemPackingDetails()!=null){
-                for(ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails())
+                for(ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                     itemPackingDetails.setStatus('y');
+                    itemPackingDetails.setItemDetails(itemDetails);
+                }
             }
             Set<Category> categoryList = new HashSet<>();
             if (itemDetails.getCategories()!=null){
