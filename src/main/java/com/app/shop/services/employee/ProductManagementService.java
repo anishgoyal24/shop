@@ -4,10 +4,13 @@ import com.app.shop.entity.Category;
 import com.app.shop.entity.ItemDetails;
 import com.app.shop.entity.ItemPackingDetails;
 import com.app.shop.repository.employee.ProductManagementRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,15 +25,27 @@ public class ProductManagementService {
     @Autowired
     private CategoryService categoryService;
 
-    public HashMap<String, Object> addProduct(ItemDetails itemDetails, MultipartFile image){
+    public HashMap<String, Object> addProduct(String itemDetail, MultipartFile image) {
         returnObject = new HashMap<>();
+        ItemDetails itemDetails = null;
+        Gson gson = new Gson();
+        itemDetails = gson.fromJson(itemDetail, ItemDetails.class);
         if (productManagementRepository.findByItemName(itemDetails.getItemName())==null) {
             itemDetails.setStatus('y');
-            for(ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails())
-                itemPackingDetails.setStatus('y');
+            if (itemDetails.getItemPackingDetails()!=null){
+                for(ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
+                    itemPackingDetails.setStatus('y');
+                    itemPackingDetails.setItemDetails(itemDetails);
+                }
+            }
             Set<Category> categoryList = new HashSet<>();
-            for (Category category : itemDetails.getCategories())
-                categoryList.add(categoryService.getCategory(category.getId()));
+            if (itemDetails.getCategories()!=null){
+                for (Category category : itemDetails.getCategories()) {
+                    Category cat = categoryService.getCategory(category.getId());
+                    categoryList.add(cat);
+                    cat.getItemDetails().add(itemDetails);
+                }
+            }
             itemDetails.setCategories(categoryList);
             itemDetails.setImage(image.getOriginalFilename());
             productManagementRepository.save(itemDetails);

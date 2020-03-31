@@ -38,6 +38,7 @@ public class ProductService {
         Object[][] objects = partyStockRepository.findStockAndPrice(state, itemId);
         if (objects.length>0 && objects!=null){
             if ((long)objects[0][0]>0) {
+                returnObject.put("data", productRepository.findById(itemId));
                 returnObject.put("message", "success");
                 returnObject.put("itemId", itemId);
                 returnObject.put("stock", objects[0][0]);
