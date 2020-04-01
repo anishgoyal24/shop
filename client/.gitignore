@@ -2,4 +2,6 @@
 ### VS Code ###
 .vscode/
 
+dist
+
 node_modules
