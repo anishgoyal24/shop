@@ -33,6 +33,7 @@ public class CategoryService {
         }
         Category category = new Category();
         category.setCategory(cat);
+        category.setDescription(category1.getDescription());
         category.setStatus('y');
         categoryRepository.save(category);
         returnObject.put("message", "success");
