@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductManagementRepository extends JpaRepository<ItemDetails, Integer> {
 
-    public ItemDetails findByItemName(String itemName);
+    public ItemDetails findByItemNameIgnoreCase(String itemName);
     public ItemDetails findByItemId(int id);
 }

@@ -30,7 +30,7 @@ public class ProductManagementService {
         ItemDetails itemDetails = null;
         Gson gson = new Gson();
         itemDetails = gson.fromJson(itemDetail, ItemDetails.class);
-        if (productManagementRepository.findByItemName(itemDetails.getItemName())==null) {
+        if (productManagementRepository.findByItemNameIgnoreCase(itemDetails.getItemName())==null) {
             itemDetails.setStatus('y');
             if (itemDetails.getItemPackingDetails()!=null){
                 for(ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
@@ -47,9 +47,9 @@ public class ProductManagementService {
                 }
             }
             itemDetails.setCategories(categoryList);
-            itemDetails.setImage(image.getOriginalFilename());
+            itemDetails.setImage(itemDetails.getItemName().toLowerCase());
             productManagementRepository.save(itemDetails);
-            uploadImage(image);
+            uploadImage(image, itemDetails.getItemName().toLowerCase());
             returnObject.put("message", "success");
         }
         else
@@ -112,12 +112,12 @@ public class ProductManagementService {
         return returnObject;
     }
 
-    private String uploadImage(MultipartFile image){
+    private String uploadImage(MultipartFile image, String name){
         if (image.isEmpty())return "failure";
         try{
             byte[] bytes = image.getBytes();
             String UPLOADED_FOLDER="src/main/assets/images/product/";
-            Path path = Paths.get(UPLOADED_FOLDER + image.getOriginalFilename());
+            Path path = Paths.get(UPLOADED_FOLDER + name);
             Files.write(path, bytes);
             return "success";
         }
