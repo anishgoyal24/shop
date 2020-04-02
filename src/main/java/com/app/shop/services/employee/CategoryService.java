@@ -15,9 +15,9 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
     private HashMap<String, Object> returnObject;
 
-    public HashMap<String, Object> addCategory(String cat){
+    public HashMap<String, Object> addCategory(Category category1){
         returnObject = new HashMap<>();
-        cat = cat.toLowerCase();
+        String cat = category1.getCategory().toLowerCase();
         Category found = categoryRepository.findByCategory(cat);
         if (found !=null){
             if (found.getStatus() == 'n'){
