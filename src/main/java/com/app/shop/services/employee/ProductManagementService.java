@@ -117,7 +117,7 @@ public class ProductManagementService {
         try{
             byte[] bytes = image.getBytes();
             String UPLOADED_FOLDER="src/main/assets/images/product/";
-            Path path = Paths.get(UPLOADED_FOLDER + name);
+            Path path = Paths.get(UPLOADED_FOLDER + name + ".jpg");
             Files.write(path, bytes);
             return "success";
         }
