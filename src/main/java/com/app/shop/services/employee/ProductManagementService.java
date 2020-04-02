@@ -49,7 +49,7 @@ public class ProductManagementService {
             itemDetails.setCategories(categoryList);
             itemDetails.setImage(itemDetails.getItemName().toLowerCase());
             productManagementRepository.save(itemDetails);
-            uploadImage(image, itemDetails.getItemName().toLowerCase());
+            uploadImage(image, itemDetails.getItemName().toLowerCase().replaceAll("\\s", ""));
             returnObject.put("message", "success");
         }
         else
@@ -116,7 +116,7 @@ public class ProductManagementService {
         if (image.isEmpty())return "failure";
         try{
             byte[] bytes = image.getBytes();
-            String UPLOADED_FOLDER="src/main/resource/assets/images/product/";
+            String UPLOADED_FOLDER="src/main/resource/static/images/product/";
             Path path = Paths.get(UPLOADED_FOLDER + name + ".jpg");
             Files.write(path, bytes);
             return "success";
