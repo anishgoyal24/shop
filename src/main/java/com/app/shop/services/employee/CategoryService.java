@@ -19,17 +19,17 @@ public class CategoryService {
         returnObject = new HashMap<>();
         String cat = category1.getCategory().toLowerCase();
         Category found = categoryRepository.findByCategory(cat);
-        if (found !=null){
-            if (found.getStatus() == 'n'){
+        if (found !=null) {
+            if (found.getStatus() == 'n') {
                 found.setStatus('y');
                 categoryRepository.save(found);
                 returnObject.put("message", "success");
                 return returnObject;
-            }
-            else{
+            } else {
                 returnObject.put("message", "duplicate");
                 return returnObject;
             }
+        }
         category1.setStatus('y');
         categoryRepository.save(category1);
         returnObject.put("message", "success");
