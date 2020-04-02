@@ -48,4 +48,11 @@ public class WarehouseDetailsController {
     public HashMap<String, Object> getName(){
         return warehouseDetailsService.getNames();
     }
+
+//  Get warehouse details
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
+    @GetMapping(value = "/details")
+    public HashMap<String, Object> getName(@RequestParam("warehouseId") Integer warehouseId){
+        return warehouseDetailsService.getWarehouseDetails(warehouseId);
+    }
 }
