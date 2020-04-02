@@ -13,13 +13,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+// Controller to manage stocks
 @RestController
 @RequestMapping(value = "/stock")
 public class StockController {
 
-    @Autowired
     private StockService stockService;
 
+    @Autowired
+    public StockController(StockService stockService) {
+        this.stockService = stockService;
+    }
+
+//  Add Stock
     @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
     @PostMapping(value = "/add")
     public HashMap<String, Object> addStock(@RequestBody ItemStock[] itemStocks){
