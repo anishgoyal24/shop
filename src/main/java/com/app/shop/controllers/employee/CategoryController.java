@@ -34,7 +34,7 @@ public class CategoryController {
 //  Add a category
     @PostMapping(value = "/new")
     @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
-    public HashMap<String, Object> addCategory(@RequestBody String category){
+    public HashMap<String, Object> addCategory(@RequestBody Category category){
         return categoryService.addCategory(category);
     }
 
