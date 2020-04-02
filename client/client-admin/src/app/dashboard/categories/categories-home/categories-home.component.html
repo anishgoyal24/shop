@@ -1,4 +1,4 @@
-<div class="card-media">
+<!-- <div class="card-media">
 <div class="container">
         <h1><b>Categories List</b></h1>
         <div class="form-group has-search">
@@ -13,8 +13,7 @@
 <div class="row" style="margin-bottom: 1rem; margin-left: 5rem;">
         <div *ngFor="let category of categoriesList">
                 <div class="container-card" style="margin: 1rem 1rem 1rem 1rem">
-                        <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
-                        <h2>{{category?.category}}</h2>
+                        <p><b>Category:</b> {{category?.category}}</p>
                         <p><b>Description:</b> {{category?.description}} </p>
                 </div>
         </div>
@@ -28,4 +27,12 @@
         <h3>No Results to display...</h3>
         <img class="empty-state" src="../../../assets/images/search.svg">
 </ng-container>
+</div> -->
+
+<div class="card-media">
+        <div class="container">
+                <h1><b>Welcome to Categories Administration</b></h1>
+                <img class="empty-state" src="../../../assets/images/create.svg">
+        </div>
+
 </div>

@@ -42,3 +42,19 @@ h3{
 h4{
     text-transform: capitalize;
 }
+
+.container{
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px 0;
+	h1{
+        font-size: 40px;
+        font-weight: bold;
+        color: #007bff;
+		text-align: center;
+	}
+
+	button{
+		align-items: center;
+	}
+}

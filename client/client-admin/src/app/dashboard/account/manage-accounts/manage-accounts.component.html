@@ -7,15 +7,16 @@
       </i>
       <input type="text" class="form-control" placeholder="Search">
     </div>
+    <ng-container *ngIf="listLength == 0">
+      <h3>No Accounts to display...</h3>
+      <img class="empty-state" src="../../../assets/images/empty.svg">
+    </ng-container>
+    <ng-container *ngIf="isLoadingQuery$ | async">
+      <h3>No Results to display...</h3>
+      <img class="empty-state" src="../../../assets/images/search.svg">
+    </ng-container>
   </div>
-  <ng-container *ngIf="listLength == 0">
-    <h3>No Categories to display...</h3>
-    <img class="empty-state" src="../../../assets/images/empty.svg">
-  </ng-container>
-  <ng-container *ngIf="isLoadingQuery$ | async">
-    <h3>No Results to display...</h3>
-    <img class="empty-state" src="../../../assets/images/search.svg">
-  </ng-container>
+
   <div class="media card-tile user-list" *ngFor="let employee of employees; let  i = index">
 
     <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">

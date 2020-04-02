@@ -20,7 +20,7 @@ export class CategoriesHomeComponent implements OnInit {
   isLoadingQuery$ = new BehaviorSubject(false);
 
   async ngOnInit() {
-    await this.getAllCategories();
+    // await this.getAllCategories();
   }
 
   firstLetterCaptialise(string) {

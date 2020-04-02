@@ -26,14 +26,6 @@ h3{
     font-family: 'Permanent Marker', cursive;
 }
 
-.empty-state{
-    max-width: 400px;
-    max-height: 400px;
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 1%;
-}
-
 .container{
 	max-width: 800px;
 	margin: 0 auto;
@@ -47,7 +39,14 @@ h3{
 
 	button{
 		align-items: center;
-	}
+    }
+    .empty-state{
+        max-width: 400px;
+        max-height: 400px;
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-top: 1%;
+    }
 }
 
 .has-search .form-control {
