@@ -25,7 +25,7 @@ public class CategoryController {
 
 //  List all categories
     @GetMapping(value = "/list")
-    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> getList(){
         return categoryService.listAll();
     }
@@ -33,28 +33,28 @@ public class CategoryController {
 
 //  Add a category
     @PostMapping(value = "/new")
-    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> addCategory(@RequestBody Category category){
         return categoryService.addCategory(category);
     }
 
 //  Delete a category
     @PostMapping(value = "/delete")
-    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> deleteCategory(@RequestBody String category){
         return categoryService.removeCategory(category);
     }
 
 //  Edit a category
     @PostMapping(value = "/edit")
-    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> editCategory(@RequestBody Category category){
         return categoryService.updateCategory(category);
     }
 
 //  Search a category
     @GetMapping(value = "/search")
-    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> searchCategory(@RequestParam String cat){
         return categoryService.search(cat);
     }

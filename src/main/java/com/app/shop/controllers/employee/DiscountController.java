@@ -28,21 +28,21 @@ public class DiscountController {
 
 //  Add a discount
     @PostMapping(value = "/new")
-    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> newDiscount(@RequestBody Discount discount){
         return discountService.addDiscount(discount);
     }
 
 //  Update a discount
     @PostMapping(value = "/update")
-    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> updateDiscount(@RequestBody Discount discount){
         return discountService.updateDiscount(discount);
     }
 
 //  Delete a discount
     @PostMapping(value = "/delete/{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> deleteDiscount(@PathVariable Integer id){
         return discountService.deleteDiscount(id);
     }

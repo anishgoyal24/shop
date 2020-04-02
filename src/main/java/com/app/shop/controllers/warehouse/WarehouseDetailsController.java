@@ -43,14 +43,14 @@ public class WarehouseDetailsController {
     }
 
 //  List Names of Warehouse
-    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager', 'ROLE_employee', 'ROLE_admin')")
     @GetMapping(value = "/get-name")
     public HashMap<String, Object> getName(){
         return warehouseDetailsService.getNames();
     }
 
 //  Get warehouse details
-    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager', 'ROLE_employee', 'ROLE_admin')")
     @GetMapping(value = "/details")
     public HashMap<String, Object> getName(@RequestParam("warehouseId") Integer warehouseId){
         return warehouseDetailsService.getWarehouseDetails(warehouseId);

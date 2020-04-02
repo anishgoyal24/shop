@@ -17,4 +17,8 @@ export class WarehouseService {
     return this._http.post(environment.BASE_URL_API + '/warehouse/new', warehouseDetails).toPromise();
   }
 
+  getWarehouseList(){
+    return this._http.get(environment.BASE_URL_API + '/warehouse/get-name').toPromise();
+  }
+
 }
