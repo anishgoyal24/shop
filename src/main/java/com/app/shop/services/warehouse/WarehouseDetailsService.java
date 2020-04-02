@@ -115,4 +115,10 @@ public class WarehouseDetailsService {
     public WarehouseDetails getDetails(int warehouseId) {
         return warehouseRepository.findById(warehouseId).get();
     }
+
+    public HashMap<String, Object> getNames() {
+        returnObject = new HashMap<>();
+        returnObject.put("data", warehouseRepository.getNames());
+        return returnObject;
+    }
 }

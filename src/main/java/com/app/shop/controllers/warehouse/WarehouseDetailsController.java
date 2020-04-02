@@ -41,4 +41,11 @@ public class WarehouseDetailsController {
     public HashMap<String, Object> changePassword(@RequestBody ChangePasswordClass object) {
         return warehouseDetailsService.changePassword(object);
     }
+
+//  List Names of Warehouse
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
+    @GetMapping(value = "/get-name")
+    public HashMap<String, Object> getName(){
+        return warehouseDetailsService.getNames();
+    }
 }
