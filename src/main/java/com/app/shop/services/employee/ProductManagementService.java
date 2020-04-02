@@ -116,7 +116,7 @@ public class ProductManagementService {
         if (image.isEmpty())return "failure";
         try{
             byte[] bytes = image.getBytes();
-            String UPLOADED_FOLDER="src/main/webapp/WEB-INF/images/";
+            String UPLOADED_FOLDER="src/main/resources/static/images/";
             Path path = Paths.get(UPLOADED_FOLDER + name + ".jpg");
             Files.write(path, bytes);
             return "success";
