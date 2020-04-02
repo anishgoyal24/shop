@@ -15,26 +15,23 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
     private HashMap<String, Object> returnObject;
 
-    public HashMap<String, Object> addCategory(String cat){
+    public HashMap<String, Object> addCategory(Category category1){
         returnObject = new HashMap<>();
-        cat = cat.toLowerCase();
+        String cat = category1.getCategory().toLowerCase();
         Category found = categoryRepository.findByCategory(cat);
-        if (found !=null){
-            if (found.getStatus() == 'n'){
+        if (found !=null) {
+            if (found.getStatus() == 'n') {
                 found.setStatus('y');
                 categoryRepository.save(found);
                 returnObject.put("message", "success");
                 return returnObject;
-            }
-            else{
+            } else {
                 returnObject.put("message", "duplicate");
                 return returnObject;
             }
         }
-        Category category = new Category();
-        category.setCategory(cat);
-        category.setStatus('y');
-        categoryRepository.save(category);
+        category1.setStatus('y');
+        categoryRepository.save(category1);
         returnObject.put("message", "success");
         return returnObject;
     }

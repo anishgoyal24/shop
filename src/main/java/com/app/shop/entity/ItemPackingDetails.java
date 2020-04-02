@@ -1,6 +1,7 @@
 package com.app.shop.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -20,6 +21,7 @@ public class ItemPackingDetails {
     private int id;
     private Integer size;
     private char status;
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "item_id")
     private ItemDetails itemDetails;

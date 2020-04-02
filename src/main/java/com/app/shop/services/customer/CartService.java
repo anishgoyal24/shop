@@ -14,15 +14,19 @@ import java.util.List;
 @Service
 public class CartService {
 
-    @Autowired
     private CartRepository cartRepository;
     private HashMap<String, Object> returnObject;
-    @Autowired
     private StockService stockService;
-    @Autowired
     private PartyDetailsService partyDetailsService;
-    @Autowired
     private ItemPackingDetailsService itemPackingDetailsService;
+
+    @Autowired
+    public CartService(CartRepository cartRepository, StockService stockService, PartyDetailsService partyDetailsService, ItemPackingDetailsService itemPackingDetailsService) {
+        this.cartRepository = cartRepository;
+        this.stockService = stockService;
+        this.partyDetailsService = partyDetailsService;
+        this.itemPackingDetailsService = itemPackingDetailsService;
+    }
 
     public HashMap<String, Object> addItem(Cart cart){
         returnObject = new HashMap<>();

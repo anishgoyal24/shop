@@ -8,25 +8,33 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
+// Controller for functions related to user cart
 @RestController
 @RequestMapping(value = "/cart")
 public class CartController {
 
-    @Autowired
     private CartService cartService;
 
+    @Autowired
+    public CartController(CartService cartService){
+        this.cartService = cartService;
+    }
+
+//  Add item to a cart
     @PostMapping(value = "/add")
     @PreAuthorize("hasAnyAuthority('ROLE_party')")
     public HashMap<String, Object> addItem(@RequestBody Cart cart){
         return cartService.addItem(cart);
     }
 
+//  Delete item from a cart
     @PostMapping(value = "/delete")
     @PreAuthorize("hasAnyAuthority('ROLE_party')")
     public HashMap<String, Object> deleteItem(@RequestBody Cart cart){
         return cartService.deleteItem(cart);
     }
 
+//  Get items in the cart
     @GetMapping(value = "/get")
     @PreAuthorize("hasAnyAuthority('ROLE_party')")
     public HashMap<String, Object> getCart(@RequestParam String username, @RequestParam String state){
