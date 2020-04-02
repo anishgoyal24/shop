@@ -32,4 +32,18 @@ export class ManageWarehouseComponent implements OnInit {
     }))
   }
 
+  getWarehouseDetails(warehouseId){
+    this.utilityService.asyncNotification('Fetching Warehouse Details', 
+    new Promise((resolve, reject)=>{
+      this.warehouseService.getWarehouseDetails(warehouseId)
+      .then((data)=>{
+        resolve(this.utilityService.resolveAsyncPromise('Successfully Fetched Warehouse Details'));
+        console.log(data)
+      })
+      .catch(()=>{
+        reject(this.utilityService.rejectAsyncPromise('Some error occured, while fetching the warehouse details!'))
+      })
+    }))
+  }
+
 }

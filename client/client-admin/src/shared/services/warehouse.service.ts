@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -19,6 +19,11 @@ export class WarehouseService {
 
   getWarehouseList(){
     return this._http.get(environment.BASE_URL_API + '/warehouse/get-name').toPromise();
+  }
+
+  getWarehouseDetails(warehouseId: any){
+    let params = new HttpParams().set("warehouseId", warehouseId);
+    return this._http.get(environment.BASE_URL_API + '/warehouse/details', {params: params}).toPromise();
   }
 
 }
