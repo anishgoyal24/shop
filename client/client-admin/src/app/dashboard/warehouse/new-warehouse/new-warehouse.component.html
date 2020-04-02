@@ -9,19 +9,19 @@
         <div class="form-group">
           <label for="fullName">Full Name</label>
           <input type="text" class="form-control" id="fullName" placeholder="Enter full name" name="fullName"
-            [(ngModel)]="accountDetails.partyName">
+            [(ngModel)]="accountDetails.warehouseName">
         </div>
   
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"
-            [(ngModel)]="accountDetails.partyEmail">
+            [(ngModel)]="accountDetails.warehouseEmail">
         </div>
   
         <div class="form-group">
           <label for="contactNumber">Contact Person</label>
           <input type="text" class="form-control" id="contactPerson" placeholder="Enter Contact Person"
-            name="contactPerson" [(ngModel)]="accountDetails.contactPerson">
+            name="contactPerson" [(ngModel)]="accountDetails.personOfContact">
         </div>
   
         <div class="form-group">
@@ -73,7 +73,15 @@
             [(ngModel)]="accountDetails.password">
         </div>
 
-        <button type="submit" class="btn btn-primary form-control">Submit</button>
+        <div class="form-group">
+          <label for="role">Role</label>
+          <input type="text" class="form-control" id="role" placeholder="Enter role" name="role"
+            [(ngModel)]="accountDetails.role">
+        </div>
+
+        <div class="form-group">
+          <button class="btn form-control btn-md btn-primary" (click)="createWarehouse(this.accountDetails)">Create Warehouse</button>
+      </div>
     </ng-container>
   
   
