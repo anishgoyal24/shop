@@ -30,12 +30,8 @@ public class CategoryService {
                 returnObject.put("message", "duplicate");
                 return returnObject;
             }
-        }
-        Category category = new Category();
-        category.setCategory(cat);
-        category.setDescription(category1.getDescription());
-        category.setStatus('y');
-        categoryRepository.save(category);
+        category1.setStatus('y');
+        categoryRepository.save(category1);
         returnObject.put("message", "success");
         return returnObject;
     }
