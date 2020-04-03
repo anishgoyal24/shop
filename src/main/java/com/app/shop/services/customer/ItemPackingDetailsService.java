@@ -8,9 +8,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ItemPackingDetailsService {
 
-    @Autowired
     private ItemPackingDetailsRepository itemPackingDetailsRepository;
 
+    @Autowired
+    public ItemPackingDetailsService(ItemPackingDetailsRepository itemPackingDetailsRepository) {
+        this.itemPackingDetailsRepository = itemPackingDetailsRepository;
+    }
+
+//  Get item packing details
     public ItemPackingDetails getDetails(Integer id){
         return itemPackingDetailsRepository.findById(id).get();
     }

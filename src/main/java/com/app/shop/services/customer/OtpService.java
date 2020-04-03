@@ -8,13 +8,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class OtpService {
 
-    @Autowired
     private OtpRepository otpRepository;
 
+    @Autowired
+    public OtpService(OtpRepository otpRepository) {
+        this.otpRepository = otpRepository;
+    }
+
+//  Get already generated otp
     public OTP getOtp(String email){
         return otpRepository.findByEmail(email);
     }
 
+//  Generate and new OTP
     public String saveOtp(OTP otp){
        OTP found = otpRepository.findByEmail(otp.getEmail());
        if (found!=null)otpRepository.delete(found);
@@ -22,6 +28,7 @@ public class OtpService {
        return "success";
     }
 
+//  Delete otp
     public String deleteOtp(String email){
         OTP found = otpRepository.findByEmail(email);
         if (found!=null){

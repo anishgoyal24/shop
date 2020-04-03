@@ -19,24 +19,32 @@ import java.util.List;
 @Service
 public class OrderService {
 
-    @Autowired
     private DetailsRepository detailsRepository;
-    @Autowired
     private PartyStockRepository partyStockRepository;
-    @Autowired
     private ProductService productService;
     private HashMap<String, Object> returnObject;
-    @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    public OrderService(DetailsRepository detailsRepository, PartyStockRepository partyStockRepository, ProductService productService, OrderRepository orderRepository) {
+        this.detailsRepository = detailsRepository;
+        this.partyStockRepository = partyStockRepository;
+        this.productService = productService;
+        this.orderRepository = orderRepository;
+    }
+
+//  Place order
     public HashMap<String, Object> placeOrder(OrderHeader orderHeader){
         returnObject = new HashMap<>();
+//      Check if party exists
         if (detailsRepository.findByPartyId(orderHeader.getPartyDetails().getPartyId())!=null) {
+//          Generate a new order ID
             orderHeader.setOrderId(createOrderId(orderHeader.getPartyDetails().getPartyId()));
+//          Create a thread for booking the order
             OrderBookingThread orderBookingThread = new OrderBookingThread();
             orderBookingThread.setOrderHeader(orderHeader);
             Thread thread = new Thread(orderBookingThread);
-            thread.run();
+            thread.start();
             returnObject.put("message", "waiting for confimation");
             returnObject.put("data", orderHeader);
         }
@@ -45,6 +53,8 @@ public class OrderService {
         return returnObject;
     }
 
+
+//  Helper function to generate orderId
     private String createOrderId(int partyId){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddssMMmmyyyyHH");
         Date date = new Date();
@@ -52,11 +62,14 @@ public class OrderService {
         return orderId;
     }
 
+//  Function to check if all items in a order are in stock or not
+//  Also returns updated price and discounts
     public HashMap<String, Object> checkStock(OrderHeader orderHeader){
         returnObject = new HashMap<>();
         HashMap<Integer, Integer> outOfStock = new HashMap<>();
         ArrayList<Float> discount = new ArrayList<>();
         for (OrderDetail orderDetails: orderHeader.getOrderDetails()){
+//          Check stock of item
             Object[][] objects = partyStockRepository.findStockAndPrice(orderHeader.getPartyDetails().getState(), orderDetails.getItemDetails().getId());
             if ((int)objects[0][0] < orderDetails.getQuantity()){
                 outOfStock.put(orderDetails.getItemDetails().getId(), (int)objects[0][0]);
@@ -73,6 +86,7 @@ public class OrderService {
         return returnObject;
     }
 
+//  Get orders by order email
     public HashMap<String, Object> getOrders(String email) {
         returnObject = new HashMap<>();
         List<OrderHeader> orders = orderRepository.findByPartyDetailsPartyEmail(email, PageRequest.of(0,10));

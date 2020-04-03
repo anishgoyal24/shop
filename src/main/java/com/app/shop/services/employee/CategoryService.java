@@ -83,4 +83,8 @@ public class CategoryService {
     public Category getCategory(int id) {
         return categoryRepository.findById(id).get();
     }
+
+    public void saveCategory(Category category){
+        categoryRepository.save(category);
+    }
 }
