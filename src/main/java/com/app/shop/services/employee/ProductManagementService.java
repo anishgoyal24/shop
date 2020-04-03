@@ -89,8 +89,8 @@ public class ProductManagementService {
         ItemDetails foundItemDetails = productManagementRepository.findById(itemDetails.getItemId());
         if (foundItemDetails!=null){
             logger.error(foundItemDetails.toString());
+            logger.error(itemDetails.getItemPackingDetails().toString());
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
-                logger.error("Packing " + itemPackingDetails.toString());
                 itemPackingDetails.setStatus('y');
                 itemPackingDetails.setItemDetails(foundItemDetails);
                 foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
