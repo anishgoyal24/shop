@@ -3,6 +3,7 @@ package com.app.shop.services.employee;
 import com.app.shop.entity.Category;
 import com.app.shop.entity.ItemDetails;
 import com.app.shop.entity.ItemPackingDetails;
+import com.app.shop.repository.employee.PackingRepository;
 import com.app.shop.repository.employee.ProductManagementRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -22,11 +23,13 @@ public class ProductManagementService {
     private ProductManagementRepository productManagementRepository;
     HashMap<String, Object> returnObject;
     private CategoryService categoryService;
+    private PackingRepository packingRepository;
 
     @Autowired
-    public ProductManagementService(ProductManagementRepository productManagementRepository, CategoryService categoryService) {
+    public ProductManagementService(ProductManagementRepository productManagementRepository, CategoryService categoryService, PackingRepository packingRepository) {
         this.productManagementRepository = productManagementRepository;
         this.categoryService = categoryService;
+        this.packingRepository = packingRepository;
     }
 
     public HashMap<String, Object> addProduct(String itemDetail, MultipartFile image) {
@@ -82,11 +85,12 @@ public class ProductManagementService {
         ItemDetails foundItemDetails = productManagementRepository.findById(itemDetails.getItemId());
         if (foundItemDetails!=null){
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
-                itemPackingDetails.setItemDetails(foundItemDetails);
                 itemPackingDetails.setStatus('y');
                 foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
+                itemPackingDetails.setItemDetails(foundItemDetails);
             }
             productManagementRepository.save(foundItemDetails);
+            packingRepository.saveAll(itemDetails.getItemPackingDetails());
             returnObject.put("message", "success");
         }
         else
