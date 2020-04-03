@@ -22,7 +22,7 @@ public class ItemPackingDetails {
     private int size;
     private char status;
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "item_id")
     private ItemDetails itemDetails;
 
