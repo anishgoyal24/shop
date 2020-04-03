@@ -86,8 +86,8 @@ public class ProductManagementService {
         if (foundItemDetails!=null){
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                 itemPackingDetails.setStatus('y');
-                foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
                 itemPackingDetails.setItemDetails(foundItemDetails);
+                foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
             }
             productManagementRepository.save(foundItemDetails);
             packingRepository.saveAll(itemDetails.getItemPackingDetails());
@@ -171,8 +171,8 @@ public class ProductManagementService {
         ItemDetails found = productManagementRepository.findById(itemId).isPresent()?productManagementRepository.findById(itemId).get():null;
         Category foundCategory = categoryService.getCategory(categoryId);
         if (found!=null && foundCategory!=null){
-            foundCategory.getItemDetails().add(found);
             found.getCategories().add(foundCategory);
+            foundCategory.getItemDetails().add(found);
             productManagementRepository.save(found);
             categoryService.saveCategory(foundCategory);
             returnObject.put("message", "success");
