@@ -23,7 +23,7 @@ public class WarehouseOrdersService {
 
     public HashMap<String, Object> getOrderHeader(Integer warehouseId){
         returnObject = new HashMap<>();
-        List<OrderHeader> orderHeaders = warehouseOrdersRepository.findBYWarehouseId(warehouseId);
+        List<OrderHeader> orderHeaders = warehouseOrdersRepository.findByWarehouseDetailsWarehouseId(warehouseId);
         returnObject.put("message", "success");
         returnObject.put("data", orderHeaders);
         return returnObject;

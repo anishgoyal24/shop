@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface WarehouseOrdersRepository extends JpaRepository<OrderHeader, Integer> {
 
-    public List<OrderHeader> findBYWarehouseId(Integer warehouseId);
+    public List<OrderHeader> findByWarehouseDetailsWarehouseId(Integer warehouseId);
 
     public OrderHeader findByOrderId(String orderId);
 }
