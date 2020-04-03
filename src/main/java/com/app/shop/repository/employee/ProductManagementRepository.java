@@ -11,6 +11,5 @@ public interface ProductManagementRepository extends JpaRepository<ItemDetails, 
 
     public ItemDetails findByItemNameIgnoreCase(String itemName);
 
-    @Query("select itemdetails from ItemDetails itemdetails where itemDetails.itemId=:itemId")
-    public ItemDetails findByItemId(@Param("itemId") int itemId);
+    public ItemDetails findByItemId(int itemId);
 }
