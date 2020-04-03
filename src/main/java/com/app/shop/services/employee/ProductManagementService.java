@@ -51,7 +51,7 @@ public class ProductManagementService {
                 }
             }
             itemDetails.setCategories(categoryList);
-            itemDetails.setImage(itemDetails.getItemName().toLowerCase());
+            itemDetails.setImage(itemDetails.getItemName().toLowerCase().replaceAll("\\s", ""));
             productManagementRepository.save(itemDetails);
             uploadImage(image, itemDetails.getItemName().toLowerCase().replaceAll("\\s", ""));
             returnObject.put("message", "success");
