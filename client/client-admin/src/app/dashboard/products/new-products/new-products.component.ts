@@ -28,7 +28,8 @@ export class NewProductsComponent implements OnInit {
     categories: [],
     itemPackingDetails:{
       size: 0
-    }
+    },
+    description: ''
   }
 
   image: any

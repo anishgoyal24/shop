@@ -19,10 +19,20 @@ public class ItemPackingDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private int id;
-    private Integer size;
+    private int size;
     private char status;
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "item_id")
     private ItemDetails itemDetails;
+
+    @Override
+    public String toString() {
+        return "ItemPackingDetails{" +
+                "id=" + id +
+                ", size=" + size +
+                ", status=" + status +
+                ", itemDetails=" + itemDetails +
+                '}';
+    }
 }
