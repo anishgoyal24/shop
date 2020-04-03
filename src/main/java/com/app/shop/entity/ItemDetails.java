@@ -25,6 +25,7 @@ public class ItemDetails {
     @Column(name = "item_name", nullable = false)
     private String itemName;
     private char status;
+    private String description;
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemDetails")
     private List<ItemPackingDetails> itemPackingDetails;

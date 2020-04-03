@@ -19,18 +19,22 @@ import java.util.*;
 @Service
 public class ProductManagementService {
 
-    @Autowired
     private ProductManagementRepository productManagementRepository;
     HashMap<String, Object> returnObject;
-    @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    public ProductManagementService(ProductManagementRepository productManagementRepository, CategoryService categoryService) {
+        this.productManagementRepository = productManagementRepository;
+        this.categoryService = categoryService;
+    }
 
     public HashMap<String, Object> addProduct(String itemDetail, MultipartFile image) {
         returnObject = new HashMap<>();
         ItemDetails itemDetails = null;
         Gson gson = new Gson();
         itemDetails = gson.fromJson(itemDetail, ItemDetails.class);
-        if (productManagementRepository.findByItemName(itemDetails.getItemName())==null) {
+        if (productManagementRepository.findByItemNameIgnoreCase(itemDetails.getItemName())==null) {
             itemDetails.setStatus('y');
             if (itemDetails.getItemPackingDetails()!=null){
                 for(ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
@@ -47,9 +51,9 @@ public class ProductManagementService {
                 }
             }
             itemDetails.setCategories(categoryList);
-            itemDetails.setImage(image.getOriginalFilename());
+            itemDetails.setImage(itemDetails.getItemName().toLowerCase().replaceAll("\\s", ""));
             productManagementRepository.save(itemDetails);
-            uploadImage(image);
+            uploadImage(image, itemDetails.getItemName().toLowerCase().replaceAll("\\s", ""));
             returnObject.put("message", "success");
         }
         else
@@ -59,7 +63,7 @@ public class ProductManagementService {
 
     public HashMap<String, Object> deleteProduct(int itemId){
         returnObject = new HashMap<>();
-        ItemDetails foundItemDetails = productManagementRepository.findByItemId(itemId);
+        ItemDetails foundItemDetails = productManagementRepository.findById(itemId);
         if (foundItemDetails!=null){
             foundItemDetails.setStatus('n');
             for (ItemPackingDetails itemPackingDetails: foundItemDetails.getItemPackingDetails())
@@ -75,9 +79,10 @@ public class ProductManagementService {
 
     public HashMap<String, Object> addPacking(ItemDetails itemDetails){
         returnObject = new HashMap<>();
-        ItemDetails foundItemDetails = productManagementRepository.findByItemId(itemDetails.getItemId());
+        ItemDetails foundItemDetails = productManagementRepository.findById(itemDetails.getItemId());
         if (foundItemDetails!=null){
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
+                itemPackingDetails.setItemDetails(foundItemDetails);
                 itemPackingDetails.setStatus('y');
                 foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
             }
@@ -85,13 +90,13 @@ public class ProductManagementService {
             returnObject.put("message", "success");
         }
         else
-            returnObject.put("message", "failure");
+            returnObject.put("message", "failure" + itemDetails.getItemId());
         return returnObject;
     }
 
     public HashMap<String, Object> deletePacking(ItemDetails itemDetails){
         returnObject = new HashMap<>();
-        ItemDetails foundItemDetails = productManagementRepository.findByItemId(itemDetails.getItemId());
+        ItemDetails foundItemDetails = productManagementRepository.findById(itemDetails.getItemId());
         if (foundItemDetails!=null){
             for (ItemPackingDetails itemPackingDetails : foundItemDetails.getItemPackingDetails()){
                 if (itemPackingDetails.getSize() == itemDetails.getItemPackingDetails().get(0).getSize())
@@ -112,17 +117,80 @@ public class ProductManagementService {
         return returnObject;
     }
 
-    private String uploadImage(MultipartFile image){
+    private String uploadImage(MultipartFile image, String name){
         if (image.isEmpty())return "failure";
         try{
             byte[] bytes = image.getBytes();
-            String UPLOADED_FOLDER="src/main/assets/images/product/";
-            Path path = Paths.get(UPLOADED_FOLDER + image.getOriginalFilename());
+            String UPLOADED_FOLDER="src/main/resources/static/images/";
+            Path path = Paths.get(UPLOADED_FOLDER + name + ".jpg");
             Files.write(path, bytes);
             return "success";
         }
         catch (Exception e){
             return "Exception failure"+e+" ";
         }
+    }
+
+    public HashMap<String, Object> updateProduct(ItemDetails itemDetails){
+        returnObject = new HashMap<>();
+        ItemDetails found = productManagementRepository.findById(itemDetails.getItemId());
+        if (found!=null){
+            found.setCustomerAllowed(itemDetails.getCustomerAllowed());
+            found.setDescription(itemDetails.getDescription());
+            productManagementRepository.save(found);
+            returnObject.put("message", "success");
+            returnObject.put("data", found);
+            return returnObject;
+        }
+        returnObject.put("message", "no such product exists");
+        return returnObject;
+    }
+
+    public HashMap<String, Object> enablePacking(Integer itemId, Integer packingId){
+        returnObject = new HashMap<>();
+        ItemDetails found = productManagementRepository.findById(itemId).isPresent()?productManagementRepository.findById(itemId).get():null;
+        if (found!=null){
+            for (ItemPackingDetails itemPackingDetails: found.getItemPackingDetails()) {
+                if (itemPackingDetails.getId() == packingId)
+                    itemPackingDetails.setStatus('y');
+            }
+            productManagementRepository.save(found);
+            returnObject.put("message", "success");
+            return returnObject;
+        }
+        returnObject.put("message", "failure");
+        return returnObject;
+    }
+
+    public HashMap<String, Object> addCategory(Integer itemId, Integer categoryId) {
+        returnObject = new HashMap<>();
+        ItemDetails found = productManagementRepository.findById(itemId).isPresent()?productManagementRepository.findById(itemId).get():null;
+        Category foundCategory = categoryService.getCategory(categoryId);
+        if (found!=null && foundCategory!=null){
+            found.getCategories().add(foundCategory);
+            foundCategory.getItemDetails().add(found);
+            productManagementRepository.save(found);
+            categoryService.saveCategory(foundCategory);
+            returnObject.put("message", "success");
+            return returnObject;
+        }
+        returnObject.put("message", "failure");
+        return returnObject;
+    }
+
+    public HashMap<String, Object> removeCategory(Integer itemId, Integer categoryId) {
+        returnObject = new HashMap<>();
+        ItemDetails found = productManagementRepository.findById(itemId).isPresent()?productManagementRepository.findById(itemId).get():null;
+        Category foundCategory = categoryService.getCategory(categoryId);
+        if (found!=null && foundCategory!=null){
+            found.getCategories().remove(foundCategory);
+            foundCategory.getItemDetails().remove(found);
+            productManagementRepository.save(found);
+            categoryService.saveCategory(foundCategory);
+            returnObject.put("message", "success");
+            return returnObject;
+        }
+        returnObject.put("message", "failure");
+        return returnObject;
     }
 }

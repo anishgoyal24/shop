@@ -57,4 +57,32 @@ public class ProductManagementController {
     public HashMap<String, Object> listProducts(){
         return productManagementService.listProducts();
     }
+
+//  Update product
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    @GetMapping(value = "/update")
+    public HashMap<String, Object> updateProduct(@RequestBody ItemDetails itemDetails){
+        return productManagementService.updateProduct(itemDetails);
+    }
+
+//  Enable packing
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    @PostMapping(value = "/enablepacking")
+    public HashMap<String, Object> enablePacking(@RequestParam Integer itemId, @RequestParam Integer packingId){
+        return productManagementService.enablePacking(itemId, packingId);
+    }
+
+//  Add Category
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    @PostMapping(value = "/addcategory")
+    public HashMap<String, Object> addCategory(@RequestParam Integer itemId, @RequestParam Integer categoryId){
+        return productManagementService.addCategory(itemId, categoryId);
+    }
+
+    //  Remove Category
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    @PostMapping(value = "/removecategory")
+    public HashMap<String, Object> removeCategory(@RequestParam Integer itemId, @RequestParam Integer categoryId){
+        return productManagementService.removeCategory(itemId, categoryId);
+    }
 }

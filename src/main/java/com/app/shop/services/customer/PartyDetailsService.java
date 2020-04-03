@@ -27,30 +27,41 @@ public class PartyDetailsService {
     Logger logger = LoggerFactory.getLogger(PartyDetailsService.class);
     @PersistenceContext
     private EntityManager entityManager;
-    @Autowired
+
     private DetailsRepository detailsRepository;
     private HashMap<String, Object> returnObject;
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-    @Autowired
     private EmailServiceImpl emailService;
-    @Autowired
     private UserAuthRepository userAuthRepository;
-    @Autowired
     private OtpService otpService;
-    @Autowired
     private PartyTypeService partyTypeService;
 
+    @Autowired
+    public PartyDetailsService(DetailsRepository detailsRepository, EmailServiceImpl emailService, UserAuthRepository userAuthRepository, OtpService otpService, PartyTypeService partyTypeService) {
+        this.detailsRepository = detailsRepository;
+        this.emailService = emailService;
+        this.userAuthRepository = userAuthRepository;
+        this.otpService = otpService;
+        this.partyTypeService = partyTypeService;
+    }
+
+//  Detach persisted object
     private void detachParty(PartyDetails partyDetails){
         entityManager.detach(partyDetails);
     }
+
+
+//  Add a new party
     public HashMap<String, Object> addNewUser(PartyDetails partyDetails, Integer receivedOTP){
         returnObject = new HashMap<>();
         partyDetails.setPartyEmail(partyDetails.getPartyEmail().toLowerCase());
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
+//      Check if party already exists
         if (oldPartyDetails==null){
             OTP otp = otpService.getOtp(partyDetails.getPartyEmail());
             logger.info("otp received " + receivedOTP);
             logger.info("otp found " + otp.getOtp());
+//          Check if otp is valid or not
             if (otp != null && otp.getOtp()==receivedOTP){
                 partyDetails.setPartyType(partyTypeService.getType(partyDetails.getPartyType().getId()));
                 partyDetails.setStatus('y');

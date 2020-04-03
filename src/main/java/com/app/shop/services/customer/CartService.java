@@ -28,15 +28,19 @@ public class CartService {
         this.itemPackingDetailsService = itemPackingDetailsService;
     }
 
+//  Add item to a cart
     public HashMap<String, Object> addItem(Cart cart){
         returnObject = new HashMap<>();
+//      Check if item is already present in cart
         Cart foundItem = cartRepository.findByPartyDetailsPartyIdAndItemPackingDetailsId(cart.getPartyDetails().getPartyId(), cart.getItemPackingDetails().getId());
         if (foundItem==null){
+//          Not present then add
             cart.setPartyDetails((PartyDetails)partyDetailsService.getDetails(cart.getPartyDetails().getPartyEmail()).get("data"));
             cart.setItemPackingDetails(itemPackingDetailsService.getDetails(cart.getItemPackingDetails().getId()));
             cartRepository.save(cart);
         }
         else {
+//          Item already present in cart. Update quantity
             foundItem.setQuantity(foundItem.getQuantity() + cart.getQuantity());
             cartRepository.save(foundItem);
         }
@@ -45,25 +49,31 @@ public class CartService {
         return returnObject;
     }
 
+//  Delete item from cart
     public HashMap<String, Object> deleteItem(Cart cart){
         returnObject = new HashMap<>();
+//      Check if item is present in cart
         Cart found = cartRepository.findByPartyDetailsPartyIdAndItemPackingDetailsId(cart.getPartyDetails().getPartyId(), cart.getItemPackingDetails().getId());
-        if (found!=null){
+        if (found!=null){ //Item preset in cart
+//          Reduce quantity
             if (found.getQuantity() > cart.getQuantity()){
                 found.setQuantity(found.getQuantity() - cart.getQuantity());
                 cartRepository.save(found);
                 returnObject.put("data", found);
             }
             else
+//              Delete item from cart
                 cartRepository.delete(cart);
             returnObject.put("message", "success");
         }
+//      Item not present in cart
         else {
             returnObject.put("message", "failure");
         }
         return returnObject;
     }
 
+//  Retrieve cart details
     public HashMap<String, Object> getCart(String username, String state){
         returnObject = new HashMap<>();
         List<Cart> cart = cartRepository.findByPartyDetailsPartyEmail(username);
