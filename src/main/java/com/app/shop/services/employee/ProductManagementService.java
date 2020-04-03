@@ -90,6 +90,7 @@ public class ProductManagementService {
         if (foundItemDetails!=null){
             logger.error(foundItemDetails.toString());
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
+                logger.error("Packing " + itemPackingDetails.toString());
                 itemPackingDetails.setStatus('y');
                 itemPackingDetails.setItemDetails(foundItemDetails);
                 foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
