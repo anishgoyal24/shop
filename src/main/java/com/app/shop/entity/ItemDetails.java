@@ -49,4 +49,18 @@ public class ItemDetails {
     public int hashCode() {
         return Objects.hash(itemId, itemName, status);
     }
+
+    @Override
+    public String toString() {
+        return "ItemDetails{" +
+                "itemId=" + itemId +
+                ", itemName='" + itemName + '\'' +
+                ", status=" + status +
+                ", description='" + description + '\'' +
+                ", itemPackingDetails=" + itemPackingDetails +
+                ", customerAllowed='" + customerAllowed + '\'' +
+                ", categories=" + categories +
+                ", image='" + image + '\'' +
+                '}';
+    }
 }

@@ -7,6 +7,8 @@ import com.app.shop.repository.employee.PackingRepository;
 import com.app.shop.repository.employee.ProductManagementRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +21,8 @@ import java.util.*;
 
 @Service
 public class ProductManagementService {
+
+    Logger logger = LoggerFactory.getLogger(ProductManagementService.class);
 
     private ProductManagementRepository productManagementRepository;
     HashMap<String, Object> returnObject;
@@ -84,6 +88,7 @@ public class ProductManagementService {
         returnObject = new HashMap<>();
         ItemDetails foundItemDetails = productManagementRepository.findById(itemDetails.getItemId());
         if (foundItemDetails!=null){
+            logger.debug(foundItemDetails.toString());
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                 itemPackingDetails.setStatus('y');
                 itemPackingDetails.setItemDetails(foundItemDetails);

@@ -103,7 +103,7 @@ export class ManageProductsComponent implements OnInit {
         itemId: product.itemId,
         itemPackingDetails: [{size: this.packing}]
       }
-
+      console.log(itemDetails);
       this.productService.addPacking(itemDetails)
       .then(()=>{
         product.itemPackingDetails.push({size: this.packing, status: 'y'})
