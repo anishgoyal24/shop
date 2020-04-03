@@ -93,10 +93,9 @@ public class ProductManagementService {
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                 logger.error("Size: " + itemPackingDetails.getSize());
                 itemPackingDetails.setStatus('y');
-                itemPackingDetails.setItemDetails(foundItemDetails);
                 foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
+                itemPackingDetails.setItemDetails(foundItemDetails);
             }
-            productManagementRepository.save(foundItemDetails);
             packingRepository.saveAll(itemDetails.getItemPackingDetails());
             returnObject.put("message", "success");
         }

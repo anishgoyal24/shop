@@ -27,7 +27,8 @@ export class NewProductsComponent implements OnInit {
     customerAllowed: '',
     categories: [],
     itemPackingDetails:{
-      size: 0
+      size: 0,
+      status: 'y'
     },
     description: ''
   }
