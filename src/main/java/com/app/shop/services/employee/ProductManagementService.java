@@ -63,7 +63,7 @@ public class ProductManagementService {
 
     public HashMap<String, Object> deleteProduct(int itemId){
         returnObject = new HashMap<>();
-        ItemDetails foundItemDetails = productManagementRepository.findByItemId(itemId);
+        ItemDetails foundItemDetails = productManagementRepository.findById(itemId);
         if (foundItemDetails!=null){
             foundItemDetails.setStatus('n');
             for (ItemPackingDetails itemPackingDetails: foundItemDetails.getItemPackingDetails())
@@ -79,7 +79,7 @@ public class ProductManagementService {
 
     public HashMap<String, Object> addPacking(ItemDetails itemDetails){
         returnObject = new HashMap<>();
-        ItemDetails foundItemDetails = productManagementRepository.findByItemId(itemDetails.getItemId());
+        ItemDetails foundItemDetails = productManagementRepository.findById(itemDetails.getItemId());
         if (foundItemDetails!=null){
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                 itemPackingDetails.setItemDetails(foundItemDetails);
@@ -96,7 +96,7 @@ public class ProductManagementService {
 
     public HashMap<String, Object> deletePacking(ItemDetails itemDetails){
         returnObject = new HashMap<>();
-        ItemDetails foundItemDetails = productManagementRepository.findByItemId(itemDetails.getItemId());
+        ItemDetails foundItemDetails = productManagementRepository.findById(itemDetails.getItemId());
         if (foundItemDetails!=null){
             for (ItemPackingDetails itemPackingDetails : foundItemDetails.getItemPackingDetails()){
                 if (itemPackingDetails.getSize() == itemDetails.getItemPackingDetails().get(0).getSize())
@@ -133,7 +133,7 @@ public class ProductManagementService {
 
     public HashMap<String, Object> updateProduct(ItemDetails itemDetails){
         returnObject = new HashMap<>();
-        ItemDetails found = productManagementRepository.findByItemId(itemDetails.getItemId());
+        ItemDetails found = productManagementRepository.findById(itemDetails.getItemId());
         if (found!=null){
             found.setCustomerAllowed(itemDetails.getCustomerAllowed());
             found.setDescription(itemDetails.getDescription());
@@ -148,7 +148,7 @@ public class ProductManagementService {
 
     public HashMap<String, Object> enablePacking(Integer itemId, Integer packingId){
         returnObject = new HashMap<>();
-        ItemDetails found = productManagementRepository.findByItemId(itemId);
+        ItemDetails found = productManagementRepository.findById(itemId).isPresent()?productManagementRepository.findById(itemId).get():null;
         if (found!=null){
             for (ItemPackingDetails itemPackingDetails: found.getItemPackingDetails()) {
                 if (itemPackingDetails.getId() == packingId)
@@ -164,7 +164,7 @@ public class ProductManagementService {
 
     public HashMap<String, Object> addCategory(Integer itemId, Integer categoryId) {
         returnObject = new HashMap<>();
-        ItemDetails found = productManagementRepository.findByItemId(itemId);
+        ItemDetails found = productManagementRepository.findById(itemId).isPresent()?productManagementRepository.findById(itemId).get():null;
         Category foundCategory = categoryService.getCategory(categoryId);
         if (found!=null && foundCategory!=null){
             found.getCategories().add(foundCategory);
@@ -180,7 +180,7 @@ public class ProductManagementService {
 
     public HashMap<String, Object> removeCategory(Integer itemId, Integer categoryId) {
         returnObject = new HashMap<>();
-        ItemDetails found = productManagementRepository.findByItemId(itemId);
+        ItemDetails found = productManagementRepository.findById(itemId).isPresent()?productManagementRepository.findById(itemId).get():null;
         Category foundCategory = categoryService.getCategory(categoryId);
         if (found!=null && foundCategory!=null){
             found.getCategories().remove(foundCategory);
