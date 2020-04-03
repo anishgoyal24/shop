@@ -132,6 +132,7 @@ public class ProductManagementService {
     }
 
     public HashMap<String, Object> updateProduct(ItemDetails itemDetails){
+        System.out.println(itemDetails);
         returnObject = new HashMap<>();
         ItemDetails found = productManagementRepository.findById(itemDetails.getItemId());
         if (found!=null){
