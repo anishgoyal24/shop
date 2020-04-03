@@ -26,13 +26,4 @@ public class ItemPackingDetails {
     @JoinColumn(name = "item_id")
     private ItemDetails itemDetails;
 
-    @Override
-    public String toString() {
-        return "ItemPackingDetails{" +
-                "id=" + id +
-                ", size=" + size +
-                ", status=" + status +
-                ", itemDetails=" + itemDetails +
-                '}';
-    }
 }
