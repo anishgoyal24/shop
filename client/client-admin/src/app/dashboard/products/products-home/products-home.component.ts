@@ -14,7 +14,7 @@ export class ProductsHomeComponent implements OnInit {
   public productsLength = this.products.length || 0;
 
   async ngOnInit() {
-   this.products = await this.getAllProducts();
+  //  this.products = await this.getAllProducts();
   }
 
   /**

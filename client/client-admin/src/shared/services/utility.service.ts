@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SnotifyService, SnotifyToastConfig } from 'ng-snotify';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 @Injectable({
@@ -8,8 +9,9 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
 export class UtilityService {
 
   constructor(
-    private snotifyService: SnotifyService
-    ) { }
+    private snotifyService: SnotifyService,
+    private modalService: NgbModal,
+  ) { }
 
   snotifySucessConfig: SnotifyToastConfig = {
     timeout: 3000,
@@ -60,7 +62,7 @@ export class UtilityService {
    * @param title - optional 
    * @param config - optional
    */
-  successNotification(text: string, title?: string, config?: SnotifyToastConfig){
+  successNotification(text: string, title?: string, config?: SnotifyToastConfig) {
     return this.snotifyService.success(text, title, config);
   }
 
@@ -70,7 +72,7 @@ export class UtilityService {
    * @param title - optional
    * @param config - optional
    */
-  warningNotification(text: string, title?: string, config?: SnotifyToastConfig){
+  warningNotification(text: string, title?: string, config?: SnotifyToastConfig) {
     return this.snotifyService.warning(text, title, config);
   }
 
@@ -80,7 +82,7 @@ export class UtilityService {
    * @param title - optional
    * @param config - optional
    */
-  errorNotification(text: string, title?: string, config?: SnotifyToastConfig){
+  errorNotification(text: string, title?: string, config?: SnotifyToastConfig) {
     return this.snotifyService.error(text, title, config);
   }
 
@@ -90,7 +92,7 @@ export class UtilityService {
    * @param promise - which resolves() or rejects() on the basis of response
    * @param config - optional
    */
-  asyncNotification(text: string, promise: Promise<any>, config?: SnotifyToastConfig){
+  asyncNotification(text: string, promise: Promise<any>, config?: SnotifyToastConfig) {
     return this.snotifyService.async(text, promise, config);
   }
 
@@ -100,7 +102,7 @@ export class UtilityService {
    * @param title - optional
    * @param config - optional 
    */
-  infoNotfication(text: string, title?: string, config?: SnotifyToastConfig){
+  infoNotfication(text: string, title?: string, config?: SnotifyToastConfig) {
     return this.snotifyService.info(text, title, config);
   }
 
@@ -110,7 +112,7 @@ export class UtilityService {
    * @param title - optional
    * @param config - optional
    */
-  confirmNotification(text: string, title?: string, config?: SnotifyToastConfig){
+  confirmNotification(text: string, title?: string, config?: SnotifyToastConfig) {
     return this.snotifyService.confirm(text, title, config);
   }
 
@@ -118,7 +120,7 @@ export class UtilityService {
    * This function removes the toast notification
    * @param toastId 
    */
-  removeToast(toastId: number){
+  removeToast(toastId: number) {
     return this.snotifyService.remove(toastId);
   }
 
@@ -126,7 +128,7 @@ export class UtilityService {
    * This function will be called when @function asyncNotification resolves the promise
    * @param text 
    */
-  resolveAsyncPromise(text: string){
+  resolveAsyncPromise(text: string) {
     return {
       body: text,
       config: this.snotifySucessConfig
@@ -137,18 +139,18 @@ export class UtilityService {
    * This function will be called when @function asyncNotification resolves the promise
    * @param text 
    */
-  resolveInfoAsyncPromise(text: string){
+  resolveInfoAsyncPromise(text: string) {
     return {
       body: text,
       config: this.snotifyInfoConfig
     }
-  }  
+  }
 
   /**
    * This function will be called when @function asyncNotification rejects the promise
    * @param text 
    */
-  rejectAsyncPromise(text: string){
+  rejectAsyncPromise(text: string) {
     return {
       body: text,
       config: this.snotifyErrorConfig
@@ -158,15 +160,31 @@ export class UtilityService {
   /**
    * This function clears all the snotify toasts present in the DOM
    */
-  clearAllNotifications(){
+  clearAllNotifications() {
     return this.snotifyService.clear();
+  }
+
+  /**
+ * This function opens up the bootstrap modal from the library
+ * @param content - content to be displayed in the modal
+ * @param config - config of the modal which you want to pass
+ */
+  openModal(content, config?) {
+    return this.modalService.open(content, config);
+  }
+
+  /**
+   * This function removes/dismiss all the modals that are opened
+   */
+  async closeAllModals() {
+    return this.modalService.dismissAll();
   }
 
   /**
    * This function is resposible for showing a confirm dialog, with a function attached to the "Confirm"-button
    * and by passing a parameter, we can execute something else for "Cancel
    */
-  public getConfirmDialogAlert(){
+  public getConfirmDialogAlert() {
     return Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -184,7 +202,7 @@ export class UtilityService {
    * @param text 
    * @param icon 
    */
-  public getSwalFire(title?: string, text?: string, icon?: SweetAlertIcon){
+  public getSwalFire(title?: string, text?: string, icon?: SweetAlertIcon) {
     return Swal.fire(title, text, icon);
   }
 
@@ -192,7 +210,7 @@ export class UtilityService {
    * This function is responsible for showing the swal toast
    * @param icon - 'success', 'error', 'warning', 'info', 'question'
    */
-  public getSwalToast(icon: SweetAlertIcon, title: string, text: string){
+  public getSwalToast(icon: SweetAlertIcon, title: string, text: string) {
     let Toast = Swal.mixin({
       toast: true,
       position: 'bottom-end',
@@ -204,7 +222,7 @@ export class UtilityService {
         toast.addEventListener('mouseleave', Swal.resumeTimer)
       }
     })
-    
+
     return Toast.fire({
       icon: icon,
       title: title,

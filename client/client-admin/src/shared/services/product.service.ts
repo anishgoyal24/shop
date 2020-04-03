@@ -16,18 +16,67 @@ export class ProductService {
   /**
    * GET request to fetch all the products from the server
    */
-  getAllProducts(){
-    return this._http.get(environment.BASE_URL_API + '/category/list')
-    .toPromise();
+  getAllProducts() {
+    return this._http.get(environment.BASE_URL_API + '/product/management/listproducts')
+      .toPromise();
   }
 
   /**
    * 
    * @param productDetails 
    */
-  createNewProduct(productDetails: Object){
+  createNewProduct(productDetails: Object) {
     return this._http.post(environment.BASE_URL_API + '/product/management/add', productDetails)
-    .toPromise();
+      .toPromise();
+  }
+
+  /**
+   * 
+   * @param itemDetails 
+   */
+  addPacking(itemDetails: Object) {
+    return this._http.post(environment.BASE_URL_API + '/product/management/addpacking', itemDetails)
+      .toPromise();
+  }
+
+  /**
+   * 
+   * @param itemDetails 
+   */
+  removePacking(itemDetails: Object) {
+    return this._http.post(environment.BASE_URL_API + '/product/management/removepacking', itemDetails)
+      .toPromise();
+  }
+
+
+  /**
+   * 
+   * @param itemId 
+   * @param packingId 
+   */
+  enablePacking(itemId: number, packingId: number) {
+    return this._http.post(environment.BASE_URL_API + `/product/management/enablepacking?itemId=${itemId}&&packingId=${packingId}`, '')
+      .toPromise();
+  }
+
+  /**
+   * This function adds the new category to the product
+   * @param itemId 
+   * @param categoryId 
+   */
+  addNewCategory(itemId: number, categoryId: number) {
+    return this._http.post(environment.BASE_URL_API + `/product/management/addcategory?itemId=${itemId}&&categoryId=${categoryId}`, '')
+      .toPromise();
+  }
+
+  /**
+   * This function removes the category from the product
+   * @param itemId 
+   * @param categoryId 
+   */
+  removeCategory(itemId: number, categoryId: number) {
+    return this._http.post(environment.BASE_URL_API + `/product/management/removecategory?itemId=${itemId}&&categoryId=${categoryId}`, '')
+      .toPromise();
   }
 
 }
