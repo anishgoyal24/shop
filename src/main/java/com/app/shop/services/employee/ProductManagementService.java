@@ -90,8 +90,8 @@ public class ProductManagementService {
         logger.error(foundItemDetails.toString());
         logger.error("Length: " + itemDetails.getItemPackingDetails().size());
         if (foundItemDetails!=null){
-            logger.error(itemDetails.getItemPackingDetails().toString());
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
+                logger.error("Size: " + itemPackingDetails.getSize());
                 itemPackingDetails.setStatus('y');
                 itemPackingDetails.setItemDetails(foundItemDetails);
                 foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
