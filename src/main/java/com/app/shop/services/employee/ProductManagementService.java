@@ -171,8 +171,8 @@ public class ProductManagementService {
         ItemDetails found = productManagementRepository.findById(itemId).isPresent()?productManagementRepository.findById(itemId).get():null;
         Category foundCategory = categoryService.getCategory(categoryId);
         if (found!=null && foundCategory!=null){
-            found.getCategories().add(foundCategory);
             foundCategory.getItemDetails().add(found);
+            found.getCategories().add(foundCategory);
             productManagementRepository.save(found);
             categoryService.saveCategory(foundCategory);
             returnObject.put("message", "success");
