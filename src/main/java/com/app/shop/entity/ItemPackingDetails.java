@@ -22,7 +22,7 @@ public class ItemPackingDetails {
     private Integer size;
     private char status;
     @JsonIgnore
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "item_id")
     private ItemDetails itemDetails;
 }
