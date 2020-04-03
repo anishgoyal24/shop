@@ -90,7 +90,7 @@ public class ProductManagementService {
             returnObject.put("message", "success");
         }
         else
-            returnObject.put("message", "failure");
+            returnObject.put("message", "failure" + itemDetails.getItemId());
         return returnObject;
     }
 
@@ -142,7 +142,7 @@ public class ProductManagementService {
             returnObject.put("data", found);
             return returnObject;
         }
-        returnObject.put("message", "no such product exists" + itemDetails.getItemId());
+        returnObject.put("message", "no such product exists");
         return returnObject;
     }
 
