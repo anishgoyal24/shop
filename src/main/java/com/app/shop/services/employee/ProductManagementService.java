@@ -87,8 +87,9 @@ public class ProductManagementService {
     public HashMap<String, Object> addPacking(ItemDetails itemDetails){
         returnObject = new HashMap<>();
         ItemDetails foundItemDetails = productManagementRepository.findById(itemDetails.getItemId());
+        logger.error(foundItemDetails.toString());
+        logger.error("Length: " + itemDetails.getItemPackingDetails().size());
         if (foundItemDetails!=null){
-            logger.error(foundItemDetails.toString());
             logger.error(itemDetails.getItemPackingDetails().toString());
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                 itemPackingDetails.setStatus('y');
