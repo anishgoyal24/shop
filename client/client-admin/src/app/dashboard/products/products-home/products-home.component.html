@@ -1,21 +1,6 @@
 <div class="card-media">
     <div class="container">
-        <h1><b>Products List</b></h1>
-        <div class="form-group has-search">
-            <i class="material-icons form-control-feedback">
-                search
-            </i>
-            <input type="text" class="form-control" placeholder="Search">
-        </div>
-    </div>
-
-    <div class="container" style="margin-bottom: 1rem;" *ngIf="products !== undefined">
-        <div *ngFor="let product of products" class="col-md-3 container-card">
-
-        </div>
-        <ng-container *ngIf="products.length === 0">
-            <h3>No Products to display...</h3>
-            <img class="empty-state" src="../../../assets/images/empty.svg">
-        </ng-container>
+        <h1><b>Welcome to Product Administration</b></h1>
+        <img class="empty-state" src="../../../assets/images/product.svg">
     </div>
 </div>

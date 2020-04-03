@@ -17,10 +17,10 @@ export class PartyHomeComponent implements OnInit {
   public isLoading$ = new BehaviorSubject(false);
 
   async ngOnInit() {
-    this.parties = await this.getAllParties()
-    .finally(() => this.isLoading$.next(false))
-    this.parties = this.parties.filter(party=> party.status === 'y');
-    console.log(this.parties)
+    // this.parties = await this.getAllParties()
+    // .finally(() => this.isLoading$.next(false))
+    // this.parties = this.parties.filter(party=> party.status === 'y');
+    // console.log(this.parties)
   }
 
   /**

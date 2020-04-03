@@ -38,6 +38,7 @@ import { FormsModule } from '@angular/forms';
  */
 import { NgxUiLoaderModule, NgxUiLoaderConfig } from 'ngx-ui-loader';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -220,7 +221,8 @@ import { ManageSectionComponent } from './common/manage-section/manage-section.c
     HttpClientModule,
     FormsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    SnotifyModule
+    SnotifyModule,
+    NgbModalModule,
   ],
   providers: [
     AdminService,

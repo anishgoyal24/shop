@@ -6,6 +6,36 @@ h1{
     text-align: center;
 }
 
+.flex-div{
+    display: flex; 
+    justify-content: space-between;
+}
+
+.container{
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px 0;
+	h1{
+        font-size: 35px;
+        font-weight: bold;
+        color: #007bff;
+		text-align: center;
+	}
+
+	button{
+		align-items: center;
+    }
+    .empty-state{
+        max-width: 400px;
+        max-height: 400px;
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-top: 1%;
+    }
+}
+
+
+
 .has-search .form-control {
     padding-left: 2.375rem;
 }
