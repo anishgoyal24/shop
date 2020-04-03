@@ -4,9 +4,11 @@ import com.app.shop.entity.ItemDetails;
 import com.app.shop.repository.customer.DiscountRepository;
 import com.app.shop.repository.customer.ProductRepository;
 import com.app.shop.repository.customer.PartyStockRepository;
+import com.app.shop.utils.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,8 +27,12 @@ public class ProductService {
         returnObject = new HashMap<>();
         List<ItemDetails> itemDetailsList = productRepository.findByItemNameContainingIgnoreCase(searchQuery, type);
         if (itemDetailsList!=null){
+            List<ProductDTO> productDTOS = new ArrayList<>();
             returnObject.put("message", "success");
-            returnObject.put("data", itemDetailsList);
+            for (ItemDetails itemDetails: itemDetailsList){
+                productDTOS.add(new ProductDTO(itemDetails, itemDetails.getItemPackingDetails()));
+            }
+            returnObject.put("data", productDTOS);
         }
         else
             returnObject.put("message", "no such item");
