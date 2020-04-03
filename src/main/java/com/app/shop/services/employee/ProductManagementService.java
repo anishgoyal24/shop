@@ -132,7 +132,6 @@ public class ProductManagementService {
     }
 
     public HashMap<String, Object> updateProduct(ItemDetails itemDetails){
-        System.out.println(itemDetails.getItemId());
         returnObject = new HashMap<>();
         ItemDetails found = productManagementRepository.findById(itemDetails.getItemId());
         if (found!=null){
@@ -143,7 +142,7 @@ public class ProductManagementService {
             returnObject.put("data", found);
             return returnObject;
         }
-        returnObject.put("message", "no such product exists");
+        returnObject.put("message", "no such product exists" + itemDetails.getItemId());
         return returnObject;
     }
 
