@@ -80,6 +80,7 @@ public class ProductManagementService {
     public HashMap<String, Object> addPacking(ItemDetails itemDetails){
         returnObject = new HashMap<>();
         ItemDetails foundItemDetails = productManagementRepository.findByItemId(itemDetails.getItemId());
+        System.out.println(foundItemDetails.getItemId());
         if (foundItemDetails!=null){
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                 itemPackingDetails.setItemDetails(foundItemDetails);
