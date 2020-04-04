@@ -73,10 +73,14 @@
             [(ngModel)]="accountDetails.password">
         </div>
 
-        <div class="form-group">
-          <label for="role">Role</label>
-          <input type="text" class="form-control" id="role" placeholder="Enter role" name="role"
-            [(ngModel)]="accountDetails.role">
+        <div class="radio">
+          <label for="radio">Select Role</label>
+          <div class="radio">
+            <label><input type="radio" name="optradio" [(ngModel)]="accountDetails.role" value="warehouse"> Warehouse</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" [(ngModel)]="accountDetails.role" name="optradio" value="manager" >Manager</label>
+          </div>
         </div>
 
         <div class="form-group">
