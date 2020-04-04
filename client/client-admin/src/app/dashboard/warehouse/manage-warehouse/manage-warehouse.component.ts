@@ -14,36 +14,66 @@ export class ManageWarehouseComponent implements OnInit {
     private warehouseService: WarehouseService
   ) { }
 
-  ngOnInit() {
-    this.getWarehouseNames();
+  warehouses: any;
+
+  warehouse: any
+
+  async ngOnInit() {
+    this.warehouses = await this.getWarehouseNames();
+    console.log(this.warehouses)
+  }
+
+  async openModal(content: any, warehouseId: any){
+    this.warehouse = await this.getWarehouseDetails(warehouseId)
+    console.log(this.warehouse)
+    this.utilityService.openModal(content,
+      {
+        size: 'xl',
+      })
   }
 
   getWarehouseNames(){
-    this.utilityService.asyncNotification('Fetching Warehouses', 
-    new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject)=>{
       this.warehouseService.getWarehouseList()
       .then((data)=>{
-        resolve(this.utilityService.resolveAsyncPromise('Successfully Fetched Warehouses'));
-        console.log(data)
+        data['data'] = data['data'].map((object)=>{
+          return {
+            id: object[0],
+            name: object[1]
+          }
+        })
+        resolve(data['data']);
       })
       .catch(()=>{
-        reject(this.utilityService.rejectAsyncPromise('Some error occured, while fetching the warehouses!'))
+        reject([])
       })
-    }))
+    })
   }
 
   getWarehouseDetails(warehouseId){
-    this.utilityService.asyncNotification('Fetching Warehouse Details', 
-    new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject)=>{
       this.warehouseService.getWarehouseDetails(warehouseId)
       .then((data)=>{
-        resolve(this.utilityService.resolveAsyncPromise('Successfully Fetched Warehouse Details'));
-        console.log(data)
+        resolve(data['data'])
       })
       .catch(()=>{
-        reject(this.utilityService.rejectAsyncPromise('Some error occured, while fetching the warehouse details!'))
+        reject({})
+      })
+    })
+  }
+
+  updateDetails(warehouseDetails, warehouseId){
+    warehouseDetails.warehouseId = warehouseId
+    this.utilityService.asyncNotification('Please wait while we are updating the data...', new Promise((resolve, reject)=>{
+      this.warehouseService.editWarehouse(warehouseDetails)
+      .then(()=>{
+        resolve(this.utilityService.resolveAsyncPromise('Details updated successfully!'))
+      })
+      .catch(()=>{
+        reject(this.utilityService.rejectAsyncPromise('Unable to update the contents, please try again!'))
       })
     }))
+
   }
 
 }
