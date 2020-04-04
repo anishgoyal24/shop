@@ -152,7 +152,11 @@ public class ProductManagementService {
 
     public HashMap<String, Object> updateProduct(ItemDetails itemDetails){
         returnObject = new HashMap<>();
-        ItemDetails found = productManagementRepository.findById(itemDetails.getItemId());
+        Optional<ItemDetails> optional = productManagementRepository.findById(itemDetails.getItemId());
+        ItemDetails found = null;
+        if (optional.isPresent()){
+            found = optional.get();
+        }
         if (found!=null){
             found.setCustomerAllowed(itemDetails.getCustomerAllowed());
             found.setDescription(itemDetails.getDescription());
