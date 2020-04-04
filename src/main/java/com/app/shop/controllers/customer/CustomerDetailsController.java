@@ -32,7 +32,7 @@ public class CustomerDetailsController {
 
 //  Update details of a user
     @PostMapping(value = "/updatedetails")
-    @PreAuthorize("hasAnyAuthority('ROLE_party', 'ROLE_employee', 'ROLE_owner', 'ROLE_party')")
+    @PreAuthorize("hasAnyAuthority('ROLE_party', 'ROLE_employee', 'ROLE_owner', 'ROLE_admin')")
     public HashMap<String, Object> updateDetails(@RequestBody PartyDetails partyDetails){
         return partyDetailsService.updateUserDetails(partyDetails);
     }
