@@ -33,7 +33,7 @@ public class Startup {
             defaultAdmin.setRole("owner");
             defaultAdmin.setEmpEmail("parveengoel@gmail.com");
             defaultAdmin.setEmpName("Parveen Goel");
-            defaultAdmin.setPassword("admin");
+            defaultAdmin.setPassword(new BCryptPasswordEncoder().encode("admin"));
             defaultAdmin.setCountry("India");
             defaultAdmin.setState("Haryana");
             defaultAdmin.setPrimaryPhone("7027770150");
