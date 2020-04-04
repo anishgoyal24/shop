@@ -4,6 +4,8 @@ import com.app.shop.entity.EmployeeDetails;
 import com.app.shop.entity.PartyType;
 import com.app.shop.entity.UserDetails;
 import com.app.shop.repository.common.UserAuthRepository;
+import com.app.shop.repository.employee.EmployeeOrderRepository;
+import com.app.shop.repository.employee.EmployeeRepository;
 import com.app.shop.services.employee.EmployeeDetailsService;
 import com.app.shop.services.employee.PartyTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class Startup {
 
     @Autowired
-    private EmployeeDetailsService employeeDetailsService;
+    private EmployeeRepository employeeRepository;
     @Autowired
     private UserAuthRepository userAuthRepository;
     @Autowired
@@ -34,7 +36,7 @@ public class Startup {
         defaultAdmin.setCountry("India");
         defaultAdmin.setState("Haryana");
         defaultAdmin.setPrimaryPhone("7027770150");
-        employeeDetailsService.addNewEmployee(defaultAdmin);
+        employeeRepository.save(defaultAdmin);
         userAuthRepository.save(new UserDetails("parveengoel@gmail.com", new BCryptPasswordEncoder().encode("admin"), 1, "admin"));
         PartyType retail = new PartyType();
         retail.setId(1);
