@@ -80,4 +80,9 @@ export class AdminService {
   changeStatus(employeeData: Object){
     return this.httpClient.post<any>(environment.BASE_URL_API + '/employee/changestatus', employeeData);
   }
+  
+
+  changePassword(object: Object){
+    return this._http.post(environment.BASE_URL_API + '/employee/changepassword', object).toPromise();
+  }
 }

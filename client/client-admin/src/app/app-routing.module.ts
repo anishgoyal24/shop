@@ -62,6 +62,8 @@ import { WarehouseHomeComponent } from './dashboard/warehouse/warehouse-home/war
 import { NewWarehouseComponent } from './dashboard/warehouse/new-warehouse/new-warehouse.component';
 import { ManageWarehouseComponent } from './dashboard/warehouse/manage-warehouse/manage-warehouse.component';
 
+import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
+
 // !!!----- GUARDS -----!!!
 import { AuthGuard } from 'src/shared/guards/auth.guard';
 import { NavigationGuard } from 'src/shared/guards/navigation.guard';
@@ -133,6 +135,10 @@ const routes: Routes = [
           { path: 'manage', component: ManageAccountsComponent } ,
           { path: 'roles', component: RolesComponent },
         ]
+      },
+
+      // Change Password
+      { path: 'change-password', component: ChangePasswordComponent,
       }
     ]
   },
