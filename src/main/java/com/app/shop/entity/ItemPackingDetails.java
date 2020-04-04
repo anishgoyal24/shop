@@ -12,8 +12,6 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "packing_details")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class ItemPackingDetails {
 
     @Id

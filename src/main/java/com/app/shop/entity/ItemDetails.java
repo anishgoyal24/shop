@@ -16,7 +16,6 @@ import java.util.Set;
 @Entity
 @Table(name = "item_mst")
 @Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class ItemDetails {
 
     @Id
@@ -27,7 +26,6 @@ public class ItemDetails {
     private String itemName;
     private char status;
     private String description;
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "itemDetails")
     @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.PERSIST})
     private List<ItemPackingDetails> itemPackingDetails;
