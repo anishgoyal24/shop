@@ -7,6 +7,7 @@ import com.app.shop.repository.employee.EmployeeRepository;
 import com.app.shop.utils.ChangePasswordClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -23,7 +24,8 @@ public class EmployeeDetailsService {
     @Autowired
     private UserAuthRepository userAuthRepository;
     private HashMap<String, Object> returnObject;
-    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private PasswordEncoder bCryptPasswordEncoder;
 
     private void detachObject(EmployeeDetails employeeDetails){
         entityManager.detach(employeeDetails);

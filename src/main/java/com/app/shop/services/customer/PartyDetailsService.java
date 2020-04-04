@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -30,19 +31,20 @@ public class PartyDetailsService {
 
     private DetailsRepository detailsRepository;
     private HashMap<String, Object> returnObject;
-    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     private EmailServiceImpl emailService;
     private UserAuthRepository userAuthRepository;
     private OtpService otpService;
     private PartyTypeService partyTypeService;
+    private PasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public PartyDetailsService(DetailsRepository detailsRepository, EmailServiceImpl emailService, UserAuthRepository userAuthRepository, OtpService otpService, PartyTypeService partyTypeService) {
+    public PartyDetailsService(DetailsRepository detailsRepository, EmailServiceImpl emailService, UserAuthRepository userAuthRepository, OtpService otpService, PartyTypeService partyTypeService, PasswordEncoder bCryptPasswordEncoder) {
         this.detailsRepository = detailsRepository;
         this.emailService = emailService;
         this.userAuthRepository = userAuthRepository;
         this.otpService = otpService;
         this.partyTypeService = partyTypeService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
 //  Detach persisted object
