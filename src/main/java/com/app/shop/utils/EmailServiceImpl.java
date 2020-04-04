@@ -31,7 +31,7 @@ public class EmailServiceImpl{
         props.put("mail.smtp.sasl.mechanisms", "XOAUTH2");
         props.put("mail.smtp.auth.login.disable", "true");
         props.put("mail.smtp.auth.plain.disable", "true");
-        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.port", "465");
 
         Session session = Session.getInstance(props);
         Transport transport = session.getTransport("smtp");
