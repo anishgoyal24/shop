@@ -3,6 +3,7 @@ package com.app.shop.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,7 +28,8 @@ public class ItemDetails {
     private char status;
     private String description;
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @OneToMany(mappedBy = "itemDetails", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @OneToMany(mappedBy = "itemDetails")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<ItemPackingDetails> itemPackingDetails;
     @Column(name = "customer_allowed")
     private String customerAllowed;
