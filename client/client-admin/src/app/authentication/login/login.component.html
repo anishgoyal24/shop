@@ -11,8 +11,8 @@
 
         <div class="form">
             <input type="text" placeholder="Username" [(ngModel)]="userName">
-            <input  type="password" placeholder="Password" [(ngModel)]="password">
-            <button type="submit" id="login-button" (click) = "login()">Login</button>
+            <input  type="password" placeholder="Password" [(ngModel)]="password" (keyup.enter)="submit.click()">
+            <button #submit type="submit" id="login-button" (click) = "login()">Login</button>
         </div>
     </div>
 </div>
