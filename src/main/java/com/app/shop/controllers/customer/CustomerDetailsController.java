@@ -32,7 +32,7 @@ public class CustomerDetailsController {
 
 //  Update details of a user
     @PostMapping(value = "/updatedetails")
-    @PreAuthorize("hasAnyAuthority('ROLE_party', 'ROLE_employee')")
+    @PreAuthorize("hasAnyAuthority('ROLE_party', 'ROLE_employee', 'ROLE_owner', 'ROLE_party')")
     public HashMap<String, Object> updateDetails(@RequestBody PartyDetails partyDetails){
         return partyDetailsService.updateUserDetails(partyDetails);
     }
@@ -46,21 +46,21 @@ public class CustomerDetailsController {
 
 //  Get discount allowed for a party
     @GetMapping(value = "/getdiscount/{partyId}")
-    @PreAuthorize("hasAnyAuthority('ROLE_party', 'ROLE_employee')")
+    @PreAuthorize("hasAnyAuthority('ROLE_party', 'ROLE_employee', 'ROLE_owner', 'ROLE_party')")
     public HashMap<String, Object> getDiscount(@PathVariable int partyId){
         return partyDetailsService.getDiscount(partyId);
     }
 
 //  Assign discount to a party
     @PostMapping(value = "/savediscount/{partyId}/{discount}")
-    @PreAuthorize("hasAnyAuthority('ROLE_employee')")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_owner', 'ROLE_admin')")
     public HashMap<String, Object> saveDiscount(@PathVariable int partyId, @PathVariable float discount){
         return partyDetailsService.addDiscount(partyId, discount);
     }
 
 //  Get details for a party
     @GetMapping(value = "/getdetails")
-    @PreAuthorize("hasAnyAuthority('ROLE_party')")
+    @PreAuthorize("hasAnyAuthority('ROLE_party', 'ROLE_employee', 'ROLE_owner', , 'ROLE_admin')")
     public HashMap<String, Object> getDetails(@RequestParam String username){
         return partyDetailsService.getDetails(username);
     }
