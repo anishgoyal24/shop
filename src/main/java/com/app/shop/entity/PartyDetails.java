@@ -17,6 +17,7 @@ public class PartyDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     @Column(name = "party_id")
     private int partyId;
+    @Column(length = 60)
     private String password;
     @Column(name = "party_name", nullable = false)
     private String partyName;

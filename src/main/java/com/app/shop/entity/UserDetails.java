@@ -13,6 +13,7 @@ public class UserDetails {
 
     @Id
     private String username;
+    @Column(length = 60)
     private String password;
     private int enabled;
     private String role;

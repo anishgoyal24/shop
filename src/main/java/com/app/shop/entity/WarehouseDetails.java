@@ -20,6 +20,7 @@ public class WarehouseDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     @Column(name = "warehouse_id", nullable = false)
     private int warehouseId;
+    @Column(length = 60)
     private String password;
     @Column(name = "warehouse_name", nullable = false)
     private String warehouseName;

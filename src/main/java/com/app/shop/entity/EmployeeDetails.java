@@ -20,6 +20,7 @@ public class EmployeeDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     @Column(name = "emp_id")
     private int empId;
+    @Column(length = 60)
     private String password;
     @Column(name = "emp_name", nullable = false)
     private String empName;
