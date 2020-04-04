@@ -23,34 +23,34 @@ public class WarehouseDetailsController {
 
 //  New warehouse account
     @PostMapping(value = "/new")
-    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> addNewWarehouse(@RequestBody WarehouseDetails warehouseDetails) {
         return warehouseDetailsService.addNewWarehouse(warehouseDetails);
     }
 
 //  Update details of a warehouse
     @PostMapping(value = "/updatedetails")
-    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin')")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> updateDetails(@RequestBody WarehouseDetails warehouseDetails) {
         return warehouseDetailsService.updateWarehouseDetails(warehouseDetails);
     }
 
 //  Change password of a warehouse
-    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager', 'ROLE_owner')")
     @PostMapping(value = "/changepassword")
     public HashMap<String, Object> changePassword(@RequestBody ChangePasswordClass object) {
         return warehouseDetailsService.changePassword(object);
     }
 
 //  List Names of Warehouse
-    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager', 'ROLE_employee', 'ROLE_admin')")
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager', 'ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     @GetMapping(value = "/get-name")
     public HashMap<String, Object> getName(){
         return warehouseDetailsService.getNames();
     }
 
 //  Get warehouse details
-    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager', 'ROLE_employee', 'ROLE_admin')")
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager', 'ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     @GetMapping(value = "/details")
     public HashMap<String, Object> getName(@RequestParam("warehouseId") Integer warehouseId){
         return warehouseDetailsService.getWarehouseDetails(warehouseId);

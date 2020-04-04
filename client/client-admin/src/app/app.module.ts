@@ -144,6 +144,8 @@ import { WarehouseHeaderComponent } from './dashboard/warehouse/warehouse-header
 import { ManageWarehouseComponent } from './dashboard/warehouse/manage-warehouse/manage-warehouse.component';
 import { NewWarehouseComponent } from './dashboard/warehouse/new-warehouse/new-warehouse.component';
 import { ManageSectionComponent } from './common/manage-section/manage-section.component';
+import { ForgotPasswordComponent } from './dashboard/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
 
 
 
@@ -213,7 +215,9 @@ import { ManageSectionComponent } from './common/manage-section/manage-section.c
     WarehouseHeaderComponent,
     ManageWarehouseComponent,
     NewWarehouseComponent,
-    ManageSectionComponent
+    ManageSectionComponent,
+    ForgotPasswordComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
