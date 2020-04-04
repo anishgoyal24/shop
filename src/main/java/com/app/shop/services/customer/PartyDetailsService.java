@@ -58,16 +58,29 @@ public class PartyDetailsService {
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
 //      Check if party already exists
         if (oldPartyDetails==null){
-            OTP otp = otpService.getOtp(partyDetails.getPartyEmail());
-            logger.info("otp received " + receivedOTP);
-            logger.info("otp found " + otp.getOtp());
-//          Check if otp is valid or not
-            if (otp != null && otp.getOtp()==receivedOTP){
+//          Party created by admins. OTP not required
+            if (!partyDetails.getPartyType().getType().equals("retail")){
                 partyDetails.setPartyType(partyTypeService.getType(partyDetails.getPartyType().getId()));
                 partyDetails.setStatus('y');
                 String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
                 partyDetails.setPassword(encodedPassword);
-                logger.info(partyDetails.toString());
+                detailsRepository.save(partyDetails);
+                detachParty(partyDetails);
+                userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party"));
+                partyDetails.setPassword(null);
+                returnObject.put("message", "success");
+                returnObject.put("data", partyDetails);
+                return returnObject;
+            }
+            OTP otp = otpService.getOtp(partyDetails.getPartyEmail());
+            logger.info("otp received " + receivedOTP);
+            logger.info("otp found " + otp.getOtp());
+//          Check if otp is valid or not
+            if (otp != null && otp.getOtp()==receivedOTP && partyDetails.getPartyType().getType().equals("retail")){
+                partyDetails.setPartyType(partyTypeService.getType(partyDetails.getPartyType().getId()));
+                partyDetails.setStatus('y');
+                String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
+                partyDetails.setPassword(encodedPassword);
                 detailsRepository.save(partyDetails);
                 detachParty(partyDetails);
                 userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party"));
