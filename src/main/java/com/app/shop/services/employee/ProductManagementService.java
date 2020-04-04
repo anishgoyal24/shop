@@ -90,6 +90,7 @@ public class ProductManagementService {
         if (foundItemDetails!=null){
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                 itemPackingDetails.setStatus('y');
+                itemPackingDetails.setItemDetails(foundItemDetails);
                 foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
             }
             productManagementRepository.save(foundItemDetails);

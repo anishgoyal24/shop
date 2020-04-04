@@ -27,7 +27,7 @@ public class ItemDetails {
     private char status;
     private String description;
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @OneToMany(mappedBy = "itemDetails", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "itemDetails", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private List<ItemPackingDetails> itemPackingDetails;
     @Column(name = "customer_allowed")
     private String customerAllowed;
