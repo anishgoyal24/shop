@@ -36,6 +36,13 @@ public class ProductManagementController {
         return productManagementService.deleteProduct(itemId);
     }
 
+//  Enable product
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    @PostMapping(value = "/enable/{itemId}")
+    public HashMap<String, Object> enableProduct(@PathVariable Integer itemId){
+        return productManagementService.enableProduct(itemId);
+    }
+
 //  Add product packing
     @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     @PostMapping(value = "/addpacking")
