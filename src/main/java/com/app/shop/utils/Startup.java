@@ -27,32 +27,34 @@ public class Startup {
 
     @EventListener(ApplicationReadyEvent.class)
     public void addAdminStartup(ApplicationReadyEvent applicationReadyEvent){
-        EmployeeDetails defaultAdmin = new EmployeeDetails();
-        // Add all necessary details for defaultAdmin
-        defaultAdmin.setRole("owner");
-        defaultAdmin.setEmpEmail("parveengoel@gmail.com");
-        defaultAdmin.setEmpName("Parveen Goel");
-        defaultAdmin.setPassword("admin");
-        defaultAdmin.setCountry("India");
-        defaultAdmin.setState("Haryana");
-        defaultAdmin.setPrimaryPhone("7027770150");
-        defaultAdmin.setAddress("Karnal");
-        defaultAdmin.setCity("Karnal");
-        defaultAdmin.setPincode("");
-        defaultAdmin.setStatus('y');
-        employeeRepository.save(defaultAdmin);
-        userAuthRepository.save(new UserDetails("parveengoel@gmail.com", new BCryptPasswordEncoder().encode("admin"), 1, "owner"));
-        PartyType retail = new PartyType();
-        retail.setId(1);
-        retail.setType("retail");
-        partyTypeService.addPartyType(retail);
-        PartyType horeca = new PartyType();
-        horeca.setType("HORECA");
-        horeca.setId(2);
-        partyTypeService.addPartyType(horeca);
-        PartyType distributor = new PartyType();
-        distributor.setId(3);
-        distributor.setType("distributor");
-        partyTypeService.addPartyType(distributor);
+        if (employeeRepository.findByEmpEmail("parveengoel@gmail.com")==null){
+            EmployeeDetails defaultAdmin = new EmployeeDetails();
+            // Add all necessary details for defaultAdmin
+            defaultAdmin.setRole("owner");
+            defaultAdmin.setEmpEmail("parveengoel@gmail.com");
+            defaultAdmin.setEmpName("Parveen Goel");
+            defaultAdmin.setPassword("admin");
+            defaultAdmin.setCountry("India");
+            defaultAdmin.setState("Haryana");
+            defaultAdmin.setPrimaryPhone("7027770150");
+            defaultAdmin.setAddress("Karnal");
+            defaultAdmin.setCity("Karnal");
+            defaultAdmin.setPincode("");
+            defaultAdmin.setStatus('y');
+            employeeRepository.save(defaultAdmin);
+            userAuthRepository.save(new UserDetails("parveengoel@gmail.com", new BCryptPasswordEncoder().encode("admin"), 1, "owner"));
+            PartyType retail = new PartyType();
+            retail.setId(1);
+            retail.setType("retail");
+            partyTypeService.addPartyType(retail);
+            PartyType horeca = new PartyType();
+            horeca.setType("HORECA");
+            horeca.setId(2);
+            partyTypeService.addPartyType(horeca);
+            PartyType distributor = new PartyType();
+            distributor.setId(3);
+            distributor.setType("distributor");
+            partyTypeService.addPartyType(distributor);
+        }
     }
 }
