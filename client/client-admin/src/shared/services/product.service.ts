@@ -32,6 +32,16 @@ export class ProductService {
 
   /**
    * 
+   * @param productDetails 
+   */
+  updateProduct(itemDetails: Object) {
+    return this._http.post(environment.BASE_URL_API + '/product/management/update', itemDetails)
+      .toPromise();
+  }
+
+
+  /**
+   * 
    * @param itemDetails 
    */
   addPacking(itemDetails: Object) {
@@ -44,7 +54,7 @@ export class ProductService {
    * @param itemDetails 
    */
   removePacking(itemDetails: Object) {
-    return this._http.post(environment.BASE_URL_API + '/product/management/removepacking', itemDetails)
+    return this._http.post(environment.BASE_URL_API + '/product/management/deletepacking', itemDetails)
       .toPromise();
   }
 
@@ -78,5 +88,22 @@ export class ProductService {
     return this._http.post(environment.BASE_URL_API + `/product/management/removecategory?itemId=${itemId}&&categoryId=${categoryId}`, '')
       .toPromise();
   }
+
+  /**
+   * 
+   * @param itemId 
+   */
+  disableProduct(itemId: number) {
+    return this._http.post(environment.BASE_URL_API + `/product/management/delete/${itemId}`, '').toPromise()
+  }
+
+/**
+ * 
+ * @param itemId 
+ */
+  enableProduct(itemId: number) {
+    return this._http.post(environment.BASE_URL_API + `/product/management/enable/${itemId}`, '').toPromise()
+  }
+
 
 }

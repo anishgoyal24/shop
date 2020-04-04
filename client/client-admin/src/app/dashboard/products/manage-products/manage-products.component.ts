@@ -65,6 +65,18 @@ export class ManageProductsComponent implements OnInit {
     })
   }
 
+  editProduct(itemDetails){
+    this.utilityService.asyncNotification('Please wait we are editing the product...', new Promise((resolve, reject)=>{
+      this.productService.updateProduct(itemDetails)
+      .then(()=>{
+        resolve(this.utilityService.resolveAsyncPromise('Product edited!'))
+      })
+      .catch(()=>{
+        reject(this.utilityService.rejectAsyncPromise('Unable to edit the product, please try again!'))
+      })
+    }))
+  }
+
   setCategory(category: any){
     console.log(category)
     this.category = category;
@@ -113,6 +125,73 @@ export class ManageProductsComponent implements OnInit {
         reject(this.utilityService.rejectAsyncPromise('Unable to add the packing, please try again!'))
       })
     }))
+  }
+
+  disableProduct(itemId: number, index: number){
+    this.utilityService.asyncNotification('Please wait we are disabling the product...', new Promise((resolve, reject)=>{
+      this.productService.disableProduct(itemId)
+      .then(()=>{
+        this.products[index].status = 'n'
+        resolve(this.utilityService.resolveAsyncPromise('Product Disabled!'))
+      })
+      .catch(()=>{
+        reject(this.utilityService.rejectAsyncPromise('Unable to disable the product, please try again!'))
+      })
+    }))
+
+  }
+
+  enableProduct(itemId, index){
+    this.utilityService.asyncNotification('Please wait we are enabling the product...', new Promise((resolve, reject)=>{
+      this.productService.enableProduct(itemId)
+      .then(()=>{
+        this.products[index].status = 'y'
+        resolve(this.utilityService.resolveAsyncPromise('Product Enabled!'))
+      })
+      .catch(()=>{
+        reject(this.utilityService.rejectAsyncPromise('Unable to enable the product, please try again!'))
+      })
+    }))
+
+  }
+
+  enablePacking(product, index){
+    this.utilityService.asyncNotification('Please wait we are enabling the packing...', new Promise((resolve, reject)=>{
+
+      let itemDetails = {
+        itemId: product.itemId,
+        itemPackingDetails: [{size: product.itemPackingDetails[index].size }]
+      }
+
+      this.productService.enablePacking(product.itemId, product.itemPackingDetails[index].id)
+      .then(()=>{
+        product.itemPackingDetails[index].status = 'y'
+        resolve(this.utilityService.resolveAsyncPromise('Packing Enabled!'))
+      })
+      .catch(()=>{
+        reject(this.utilityService.rejectAsyncPromise('Unable to enable the packing, please try again!'))
+      })
+    }))
+  }
+
+  disablePacking(product, index){
+    this.utilityService.asyncNotification('Please wait we are enabling the packing...', new Promise((resolve, reject)=>{
+
+      let itemDetails = {
+        itemId: product.itemId,
+        itemPackingDetails: [{size: product.itemPackingDetails[index].size }]
+      }
+
+      this.productService.removePacking(itemDetails)
+      .then(()=>{
+        product.itemPackingDetails[index].status = 'n'
+        resolve(this.utilityService.resolveAsyncPromise('Packing Disabled!'))
+      })
+      .catch(()=>{
+        reject(this.utilityService.rejectAsyncPromise('Unable to disable the packing, please try again!'))
+      })
+    }))
+   
   }
 
   async getCategories(){

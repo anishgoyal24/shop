@@ -89,14 +89,25 @@ export class NewProductsComponent implements OnInit {
     this.createNewProduct(formData);
   }
 
+  clearForm(productDetails){
+    productDetails.itemPackingDetails.size = 0;
+    productDetails.itemName = ''
+    this.category = undefined
+    this.selectedParty = undefined
+    this.image = undefined
+    productDetails.description = ''
+  }
+
   createNewProduct(productDetails: any){
     this.utilityService.asyncNotification('Creating New Product', 
     new Promise((resolve, reject)=>{
       this.productService.createNewProduct(productDetails)
       .then(()=>{
+        this.clearForm(this.productDetails)
         resolve(this.utilityService.resolveAsyncPromise('Product Created!'))
       })
       .catch(()=>{
+        this.clearForm(this.productDetails)
         reject(this.utilityService.rejectAsyncPromise('Some error occured, while creating the product!'))
       })
     }))
