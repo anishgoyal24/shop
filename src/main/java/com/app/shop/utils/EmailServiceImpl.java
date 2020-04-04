@@ -26,6 +26,7 @@ public class EmailServiceImpl{
 //        javaMailSender.send(mimeMessage);
 
         Properties props = new Properties();
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.ssl.enable", "true"); // required for Gmail
         props.put("mail.smtp.sasl.enable", "true");
         props.put("mail.smtp.sasl.mechanisms", "XOAUTH2");
