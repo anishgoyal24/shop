@@ -58,9 +58,9 @@ public class PartyDetailsService {
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
 //      Check if party already exists
         if (oldPartyDetails==null){
+            partyDetails.setPartyType(partyTypeService.getType(partyDetails.getPartyType().getId()));
 //          Party created by admins. OTP not required
             if (!partyDetails.getPartyType().getType().equals("retail")){
-                partyDetails.setPartyType(partyTypeService.getType(partyDetails.getPartyType().getId()));
                 partyDetails.setStatus('y');
                 String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
                 partyDetails.setPassword(encodedPassword);
@@ -77,7 +77,6 @@ public class PartyDetailsService {
             logger.info("otp found " + otp.getOtp());
 //          Check if otp is valid or not
             if (otp != null && otp.getOtp()==receivedOTP && partyDetails.getPartyType().getType().equals("retail")){
-                partyDetails.setPartyType(partyTypeService.getType(partyDetails.getPartyType().getId()));
                 partyDetails.setStatus('y');
                 String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
                 partyDetails.setPassword(encodedPassword);

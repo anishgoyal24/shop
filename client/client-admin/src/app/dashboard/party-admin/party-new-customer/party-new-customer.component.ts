@@ -18,7 +18,7 @@ export class PartyNewCustomerComponent implements OnInit {
   /**
    * Defining account details object for which a new account will be created
    */
-  accountDetails: {partyName: string, partyEmail: string, contactPerson: string,  primaryPhone: Number, secondaryPhone: Number, address: string, city: string, state: string, country: string, pincode: number, password: string, partyType: Number} = {
+  accountDetails: {partyName: string, partyEmail: string, contactPerson: string,  primaryPhone: Number, secondaryPhone: Number, address: string, city: string, state: string, country: string, pincode: number, password: string, partyType: any} = {
     partyName: null,
     partyEmail: null,
     primaryPhone: null,
@@ -30,7 +30,9 @@ export class PartyNewCustomerComponent implements OnInit {
     country: null,
     pincode: null,
     password: null,
-    partyType: null
+    partyType: {
+      id: 0
+    }
   }
 
   partyHomeComponent = new PartyHomeComponent(this.partyService);

@@ -55,8 +55,8 @@ export class PartyService {
    * POST request to create a new customer
    *
    */
-  newCustomer(customerData: Object){
-    return this._http.post(environment.BASE_URL_API + `/customer/new`, customerData)
+  newCustomer(partyDetails: Object){
+    return this._http.post(environment.BASE_URL_API + `/customer/new/123456`, partyDetails)
     .toPromise();
   }
 

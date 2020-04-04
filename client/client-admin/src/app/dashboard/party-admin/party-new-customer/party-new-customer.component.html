@@ -80,13 +80,13 @@
             Select Party Type
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" *ngFor="let party of parties" (click)="accountDetails.partyType = party.id; this.selectedParty = party.type">{{party?.type}}</a>
+            <a class="dropdown-item" *ngFor="let party of parties" (click)="accountDetails.partyType.id = party.id; this.selectedParty = party.type">{{party?.type}}</a>
           </div>
         </div>
 
         <p *ngIf="this.selectedParty" style="margin-top: 2%;">Selected Party: <strong>{{this.selectedParty}}</strong></p>
       </div>
-      <button type="submit" class="btn btn-primary form-control" (click)="sendOTP(accountDetails.partyEmail)">Submit</button>
+      <button type="submit" class="btn btn-primary form-control" (click)="createAccount(accountDetails)">Submit</button>
   </ng-container>
 
 
