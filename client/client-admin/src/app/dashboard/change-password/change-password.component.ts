@@ -29,7 +29,6 @@ export class ChangePasswordComponent implements OnInit {
   changePassword(object: Object){
     this.utilityService.asyncNotification('Changing your password...', 
       new Promise((resolve, reject)=>{
-        console.log(object);
         this.adminService.changePassword(object)
         .then((res)=>{
           resolve(this.utilityService.resolveAsyncPromise('Password Changed!'));
