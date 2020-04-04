@@ -178,6 +178,10 @@ public class PartyDetailsService {
     public HashMap<String, Object> getDetails(String username){
         returnObject = new HashMap<>();
         PartyDetails partyDetails = detailsRepository.findByPartyEmail(username);
+        if (partyDetails==null){
+            returnObject.put("message", "no such user");
+            return returnObject;
+        }
         detachParty(partyDetails);
         partyDetails.setPassword("");
         returnObject.put("message", "success");
