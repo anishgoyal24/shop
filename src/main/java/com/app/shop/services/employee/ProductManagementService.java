@@ -100,6 +100,7 @@ public class ProductManagementService {
                 itemPackingDetails.setStatus('y');
                 itemPackingDetails.setItemDetails(foundItemDetails);
                 foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
+                packingRepository.save(itemPackingDetails);
             }
             productManagementRepository.save(foundItemDetails);
             returnObject.put("message", "success");

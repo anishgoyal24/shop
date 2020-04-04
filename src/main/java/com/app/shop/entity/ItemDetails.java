@@ -29,7 +29,7 @@ public class ItemDetails {
     private String description;
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "itemDetails")
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
     private List<ItemPackingDetails> itemPackingDetails;
     @Column(name = "customer_allowed")
     private String customerAllowed;
