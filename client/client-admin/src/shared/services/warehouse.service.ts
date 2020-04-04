@@ -27,7 +27,7 @@ export class WarehouseService {
   }
 
   editWarehouse(warehouseDetails: any){
-    return this._http.post(environment.BASE_URL_API + '/warehouse/update', warehouseDetails).toPromise();
+    return this._http.post(environment.BASE_URL_API + '/warehouse/updatedetails', warehouseDetails).toPromise();
   }
 
 }
