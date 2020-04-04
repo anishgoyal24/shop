@@ -67,7 +67,7 @@ public class ProductManagementController {
 
 //  Update product
     @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
-    @GetMapping(value = "/update")
+    @PostMapping(value = "/update")
     public HashMap<String, Object> updateProduct(@RequestBody ItemDetails itemDetails){
         return productManagementService.updateProduct(itemDetails);
     }
