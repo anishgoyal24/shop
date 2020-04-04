@@ -33,7 +33,7 @@ public class EmailServiceImpl{
         props.put("mail.smtp.auth.plain.disable", "true");
 
         Session session = Session.getInstance(props);
-        Transport transport = session.getTransport("smpt");
+        Transport transport = session.getTransport("smtp");
         transport.connect("smtp.gmail.com", "saifcoapp@gmail.com", "4/yQENJuf5T4srV1m-0rRas9sGVYQAwNml2f80oxItVI7ml_icYSseX7g");
 
         MimeMessage mimeMessage = new MimeMessage(session);
