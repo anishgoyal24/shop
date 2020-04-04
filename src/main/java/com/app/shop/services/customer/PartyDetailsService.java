@@ -38,13 +38,13 @@ public class PartyDetailsService {
     private PasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public PartyDetailsService(DetailsRepository detailsRepository, EmailServiceImpl emailService, UserAuthRepository userAuthRepository, OtpService otpService, PartyTypeService partyTypeService, PasswordEncoder bCryptPasswordEncoder) {
+    public PartyDetailsService(DetailsRepository detailsRepository, EmailServiceImpl emailService, UserAuthRepository userAuthRepository, OtpService otpService, PartyTypeService partyTypeService, PasswordEncoder passwordEncoder) {
         this.detailsRepository = detailsRepository;
         this.emailService = emailService;
         this.userAuthRepository = userAuthRepository;
         this.otpService = otpService;
         this.partyTypeService = partyTypeService;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.bCryptPasswordEncoder = passwordEncoder;
     }
 
 //  Detach persisted object
