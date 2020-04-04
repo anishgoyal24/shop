@@ -1,1 +1,79 @@
-<p>party-manage-customer works!</p>
+<div class="card-media">
+    <div class="container">
+        <h1><b>Party List</b></h1>
+        <div class="form-group has-search">
+            <i class="material-icons form-control-feedback">
+                search
+            </i>
+            <input type="text" class="form-control" placeholder="Search Party" (input)="getDetails($event)">
+        </div>
+
+        <div *ngIf="party" class="media card-tile user-list">
+            <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
+            <div class="media-body">
+                <div class="float-left">
+                    <h4 class="mt-3">{{ party?.partyName }}</h4>
+                </div>
+                <div class="btn-group float-right mt-3">
+                    <button (click)="openModal(content, party?.email)" class="btn btn-primary dropdown-toggle-split btn-sm">View
+                        Details</button>
+                </div>
+            </div>
+
+            <ng-template #content let-modal>
+                <div class="modal-header">
+                    <h4 class="mt-0">Party Details</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p><b>Party Name: </b>{{ this.party?.partyName }}</p>
+                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.partyName">
+                    </div>
+
+                    <div class="form-group">
+                        <p><b>Party Email: </b>{{ this.party?.partyEmail }}</p>
+                    </div>
+
+                    <div class="form-group">
+                        <p><b>Person of Contact: </b>{{ this.party?.personOfContact }}</p>
+                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.contactPerson">
+                    </div>
+
+                    <div class="form-group">
+                        <p><b>Party Discount: </b>{{ this.party?.discount }}</p>
+                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.discount">
+                    </div>
+
+                    <div class="form-group">
+                        <p><b>Address: </b>{{ this.party?.address }}, {{ this.party?.city }}, {{ this.party?.state }}, {{ this.party?.country }} - {{ this.party?.pincode }}</p>
+                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.address">
+                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.city">
+                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.state">
+                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.country">
+                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.pincode">
+                    </div>
+
+                    <div class="form-group">
+                        <p><b>Primary Phone: </b>{{ this.party?.primaryPhone }}</p>
+                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.primaryPhone">
+                    </div>
+
+                    <div class="form-group">
+                        <p><b>Secondary Phone: </b>{{ this.party?.secondaryPhone }}</p>
+                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.secondaryPhone">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group float-right">
+                        <button class="btn btn-primary dropdown-toggle-split btn-sm" *ngIf="this.party.edit" (click)="this.party.edit = !this.party.edit; updateDetails(this.party)">Save
+                                party details</button>
+                                <button class="btn btn-primary dropdown-toggle-split btn-sm" *ngIf="!this.party.edit" (click)="this.party.edit = !this.party.edit">Edit
+                                    party details</button>
+                </div>
+
+                </div>
+            </ng-template>
+        </div>
+    </div>
+
+</div>

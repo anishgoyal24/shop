@@ -68,4 +68,22 @@ export class PartyService {
     .toPromise();
   }
 
+  /**
+   * @param customerData
+   */
+  customerDetails(email: string){
+    return this._http.get(environment.BASE_URL_API + `/customer/getdetails?username=`+email)
+    .toPromise();
+  }
+
+  /**
+   * POST request to create a new customer
+   *
+   */
+  updateCustomer(partyDetails: Object){
+    return this._http.post(environment.BASE_URL_API + `/customer/updatedetails`, partyDetails)
+    .toPromise();
+  }
+
+
 }
