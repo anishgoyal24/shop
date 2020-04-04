@@ -96,11 +96,12 @@ public class ProductManagementService {
             foundItemDetails = optional.get();
         }
         if (foundItemDetails!=null){
+            List<ItemPackingDetails> found = foundItemDetails.getItemPackingDetails();
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                 itemPackingDetails.setStatus('y');
-                itemPackingDetails.setItemDetails(foundItemDetails);
-                foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
+                found.add(itemPackingDetails);
             }
+            foundItemDetails.setItemPackingDetails(found);
             productManagementRepository.save(foundItemDetails);
             returnObject.put("message", "success");
         }
