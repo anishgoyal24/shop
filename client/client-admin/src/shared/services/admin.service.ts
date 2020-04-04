@@ -83,6 +83,6 @@ export class AdminService {
   
 
   changePassword(object: Object){
-    return this._http.post(environment.BASE_URL_API + '/employee/changepassword', object).toPromise();
+    return this.httpClient.post(environment.BASE_URL_API + '/employee/changepassword', object).toPromise();
   }
 }
