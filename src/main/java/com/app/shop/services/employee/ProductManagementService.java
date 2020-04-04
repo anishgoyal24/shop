@@ -99,7 +99,6 @@ public class ProductManagementService {
             List<ItemPackingDetails> found = foundItemDetails.getItemPackingDetails();
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                 itemPackingDetails.setStatus('y');
-                itemPackingDetails.setItemDetails(foundItemDetails);
                 found.add(itemPackingDetails);
             }
             foundItemDetails.setItemPackingDetails(found);
