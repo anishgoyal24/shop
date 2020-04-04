@@ -70,7 +70,11 @@ public class ProductManagementService {
 
     public HashMap<String, Object> deleteProduct(int itemId){
         returnObject = new HashMap<>();
-        ItemDetails foundItemDetails = productManagementRepository.findById(itemId);
+        Optional<ItemDetails> optional = productManagementRepository.findById(itemId);
+        ItemDetails foundItemDetails = null;
+        if (optional.isPresent()){
+            foundItemDetails = optional.get();
+        }
         if (foundItemDetails!=null){
             foundItemDetails.setStatus('n');
             for (ItemPackingDetails itemPackingDetails: foundItemDetails.getItemPackingDetails())
@@ -86,7 +90,11 @@ public class ProductManagementService {
 
     public HashMap<String, Object> addPacking(ItemDetails itemDetails){
         returnObject = new HashMap<>();
-        ItemDetails foundItemDetails = productManagementRepository.findById(itemDetails.getItemId());
+        Optional<ItemDetails> optional = productManagementRepository.findById(itemDetails.getItemId());
+        ItemDetails foundItemDetails = null;
+        if (optional.isPresent()){
+            foundItemDetails = optional.get();
+        }
         if (foundItemDetails!=null){
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                 itemPackingDetails.setStatus('y');
@@ -103,7 +111,11 @@ public class ProductManagementService {
 
     public HashMap<String, Object> deletePacking(ItemDetails itemDetails){
         returnObject = new HashMap<>();
-        ItemDetails foundItemDetails = productManagementRepository.findById(itemDetails.getItemId());
+        Optional<ItemDetails> optional = productManagementRepository.findById(itemDetails.getItemId());
+        ItemDetails foundItemDetails = null;
+        if (optional.isPresent()){
+            foundItemDetails = optional.get();
+        }
         if (foundItemDetails!=null){
             for (ItemPackingDetails itemPackingDetails : foundItemDetails.getItemPackingDetails()){
                 if (itemPackingDetails.getSize() == itemDetails.getItemPackingDetails().get(0).getSize())

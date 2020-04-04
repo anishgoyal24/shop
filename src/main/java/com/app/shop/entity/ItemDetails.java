@@ -45,10 +45,6 @@ public class ItemDetails {
                 Objects.equals(itemName, that.itemName);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(itemId, itemName, status);
-    }
 
     @Override
     public String toString() {
