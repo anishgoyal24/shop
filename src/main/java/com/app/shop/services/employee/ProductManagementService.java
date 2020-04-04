@@ -87,16 +87,12 @@ public class ProductManagementService {
     public HashMap<String, Object> addPacking(ItemDetails itemDetails){
         returnObject = new HashMap<>();
         ItemDetails foundItemDetails = productManagementRepository.findById(itemDetails.getItemId());
-        logger.error(foundItemDetails.toString());
-        logger.error("Length: " + itemDetails.getItemPackingDetails().size());
         if (foundItemDetails!=null){
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
-                logger.error("Size: " + itemPackingDetails.getSize());
                 itemPackingDetails.setStatus('y');
                 foundItemDetails.getItemPackingDetails().add(itemPackingDetails);
-                itemPackingDetails.setItemDetails(foundItemDetails);
             }
-            packingRepository.saveAll(itemDetails.getItemPackingDetails());
+            productManagementRepository.save(foundItemDetails);
             returnObject.put("message", "success");
         }
         else
