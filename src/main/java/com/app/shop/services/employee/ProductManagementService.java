@@ -218,4 +218,23 @@ public class ProductManagementService {
         returnObject.put("message", "failure");
         return returnObject;
     }
+
+    public HashMap<String, Object> enableProduct(Integer itemId) {
+        returnObject = new HashMap<>();
+        Optional<ItemDetails> optional = productManagementRepository.findById(itemId);
+        ItemDetails foundItemDetails = null;
+        if (optional.isPresent()){
+            foundItemDetails = optional.get();
+        }
+        if (foundItemDetails!=null){
+            foundItemDetails.setStatus('y');
+            for (ItemPackingDetails itemPackingDetails: foundItemDetails.getItemPackingDetails())
+                itemPackingDetails.setStatus('y');
+            productManagementRepository.save(foundItemDetails);
+            returnObject.put("message", "success");
+        }
+        else
+            returnObject.put("message", "failure");
+        return returnObject;
+    }
 }
