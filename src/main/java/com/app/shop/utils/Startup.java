@@ -36,6 +36,8 @@ public class Startup {
         defaultAdmin.setCountry("India");
         defaultAdmin.setState("Haryana");
         defaultAdmin.setPrimaryPhone("7027770150");
+        defaultAdmin.setAddress("Karnal");
+        defaultAdmin.setCity("Karnal");
         employeeRepository.save(defaultAdmin);
         userAuthRepository.save(new UserDetails("parveengoel@gmail.com", new BCryptPasswordEncoder().encode("admin"), 1, "admin"));
         PartyType retail = new PartyType();
