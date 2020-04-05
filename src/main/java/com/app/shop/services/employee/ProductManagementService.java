@@ -99,9 +99,9 @@ public class ProductManagementService {
             List<ItemPackingDetails> found = foundItemDetails.getItemPackingDetails();
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                 itemPackingDetails.setStatus('y');
-//                itemPackingDetails.setItemDetails(foundItemDetails);
+                itemPackingDetails.setItemDetails(foundItemDetails);
                 found.add(itemPackingDetails);
-//                logger.error("Packing Details: " + itemPackingDetails.getSize() + " " + itemPackingDetails.getStatus() + " " + itemPackingDetails.getItemDetails().getItemId());
+                logger.error("Packing Details: " + itemPackingDetails.getSize() + " " + itemPackingDetails.getStatus() + " " + itemPackingDetails.getItemDetails().getItemId());
             }
             foundItemDetails.setItemPackingDetails(found);
             productManagementRepository.save(foundItemDetails);
