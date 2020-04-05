@@ -100,7 +100,7 @@ public class ProductManagementService {
             for (ItemPackingDetails itemPackingDetails : itemDetails.getItemPackingDetails()) {
                 itemPackingDetails.setStatus('y');
                 itemPackingDetails.setItemDetails(foundItemDetails);
-                found.add(itemPackingDetails);
+//                found.add(itemPackingDetails);
                 logger.error("Packing Details: " + itemPackingDetails.getSize() + " " + itemPackingDetails.getStatus() + " " + itemPackingDetails.getItemDetails().getItemId());
             }
             foundItemDetails.setItemPackingDetails(found);
