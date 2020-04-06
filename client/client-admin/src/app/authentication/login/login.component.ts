@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
               if (res.headers.get('Authorization')) {
                 //this.snotifyService.success('Example body content');
                 sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
+                sessionStorage.setItem("email", res.headers.get("Email"));
                 this.isLoading$.next(false);
                 this.router.navigate(['/dashboard', 'overview']);
                 resolve(this.utilityService.resolveAsyncPromise(`Welcome back ${userData.username}!`))
