@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { UtilityService } from 'src/shared/services/utility.service';
+import { WarehouseService } from 'src/shared/services/warehouse.service';
+import { Router } from '@angular/router';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+
 
 @Component({
   selector: 'app-login',
@@ -8,17 +14,56 @@ import { Location } from '@angular/common';
 })
 export class LoginComponent implements OnInit {
 
+  private username: string;
+  private password: string;
+
   constructor(
     private _location: Location,
-  ){
+    private utilityService: UtilityService,
+    private warehouseService: WarehouseService,
+    private router: Router,
+    private ngxService: NgxUiLoaderService
+  ){ }
 
-  }
+  isLoading$ = new BehaviorSubject(false);
 
   backClicked() {
     this._location.back();
   }
 
   ngOnInit(){
+    this.ngxService.start()
+    setInterval(() => {
+      this.ngxService.stop()
+    }, 1000);
+  }
 
+  login(){
+    try {
+      let userData = {
+        username: this.username,
+        password: this.password
+      };
+      if (userData){
+        this.isLoading$.next(true);
+        this.utilityService.asyncNotification('Please wait while we are logging you in!', new Promise((resolve, reject)=>{
+          this.warehouseService.authenticate(userData)
+          .subscribe((res)=>{
+            console.log('logged in');
+            if (res.headers.get('Authorization')) {
+              sessionStorage.setItem("token", res.headers.get('Authorization'));
+              sessionStorage.setItem("Email", res.headers.get("Email"));
+              this.isLoading$.next(false);
+              this.router.navigate(['/dashboard', 'overview']);
+              resolve(this.utilityService.resolveAsyncPromise(`Welcome back!`));
+            }
+          }, (err)=>{
+            reject(this.utilityService.resolveAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
+          })
+        }))
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

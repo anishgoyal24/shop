@@ -135,4 +135,16 @@ public class WarehouseDetailsService {
         returnObject.put("message", "no such warehouse exists");
         return returnObject;
     }
+
+    public HashMap<String, Object> getWarehouseDetails(String email) {
+        returnObject = new HashMap<>();
+        WarehouseDetails warehouseDetails = warehouseRepository.findByWarehouseEmail(email);
+        if (warehouseDetails!=null){
+            returnObject.put("message", "success");
+            returnObject.put("data", warehouseDetails);
+            return returnObject;
+        }
+        returnObject.put("message", "no such warehouse exists");
+        return returnObject;
+    }
 }

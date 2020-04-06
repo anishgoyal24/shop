@@ -55,4 +55,12 @@ public class WarehouseDetailsController {
     public HashMap<String, Object> getName(@RequestParam("warehouseId") Integer warehouseId){
         return warehouseDetailsService.getWarehouseDetails(warehouseId);
     }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager', 'ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    @GetMapping(value = "/details-email")
+    public HashMap<String, Object> getName(@RequestParam("email") String email){
+        return warehouseDetailsService.getWarehouseDetails(email);
+    }
+
+
 }
