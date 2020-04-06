@@ -22,6 +22,10 @@ import { HomeComponent } from './home/home.component';
 // ----- AUTHENTICATION -----
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
+import { NavbarComponent } from './dashboard/navbar/navbar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { StocksComponent } from './dashboard/stocks/stocks.component';
+import { OverviewComponent } from './dashboard/overview/overview.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,15 @@ import { SignupComponent } from './authentication/signup/signup.component';
     LoginComponent,
     SignupComponent,
 
-    HomeComponent
+    HomeComponent,
+
+    NavbarComponent,
+
+    DashboardComponent,
+
+    StocksComponent,
+
+    OverviewComponent
   ],
   imports: [
     BrowserModule,

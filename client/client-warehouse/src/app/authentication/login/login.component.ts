@@ -56,7 +56,8 @@ export class LoginComponent implements OnInit {
               this.isLoading$.next(false);
               this.router.navigate(['/dashboard', 'overview']);
               this.getDetails(userData.username);
-              resolve(this.utilityService.resolveAsyncPromise(`Welcome back!`));
+              let warehouseName = sessionStorage.getItem("warehouseName");
+              resolve(this.utilityService.resolveAsyncPromise(`Welcome back ` + warehouseName + "!"));
             }
           }, (err)=>{
             reject(this.utilityService.resolveAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
@@ -71,10 +72,11 @@ export class LoginComponent implements OnInit {
 
   getDetails(email: string){
     this.warehouseService.getDetails(email).subscribe((res: Response)=>{
-      console.log(res);
-      if (res.body['message'] == "success"){
-        sessionStorage.setItem("warehouseDetails", res.body["data"]);
-        console.log(sessionStorage.getItem("warehouseDetails"));
+      if (res['message'] == "success"){
+        sessionStorage.setItem("warehouseEmail", res["data"]["warehouseEmail"]);
+        sessionStorage.setItem("warehouseId", res["data"]["warehouseId"]);
+        sessionStorage.setItem("primaryPhone", res["data"]["primaryPhone"]);
+        sessionStorage.setItem("warehouseName", res["data"]["warehouseName"]);
       }
     }, (err)=>{
       console.log(err);
