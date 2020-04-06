@@ -51,10 +51,11 @@ export class LoginComponent implements OnInit {
           .subscribe((res)=>{
             console.log('logged in');
             if (res.headers.get('Authorization')) {
-              sessionStorage.setItem("token", res.headers.get('Authorization'));
+              sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
               sessionStorage.setItem("Email", res.headers.get("Email"));
               this.isLoading$.next(false);
               this.router.navigate(['/dashboard', 'overview']);
+              this.getDetails(userData.username);
               resolve(this.utilityService.resolveAsyncPromise(`Welcome back!`));
             }
           }, (err)=>{
@@ -65,5 +66,18 @@ export class LoginComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+
+  getDetails(email: string){
+    this.warehouseService.getDetails(email).subscribe((res: Response)=>{
+      console.log(res);
+      if (res.body['message'] == "success"){
+        sessionStorage.setItem("warehouseDetails", res.body["data"]);
+        console.log(sessionStorage.getItem("warehouseDetails"));
+      }
+    }, (err)=>{
+      console.log(err);
+    })
   }
 }

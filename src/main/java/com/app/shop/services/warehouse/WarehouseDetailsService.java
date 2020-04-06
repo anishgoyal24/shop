@@ -128,6 +128,8 @@ public class WarehouseDetailsService {
         returnObject = new HashMap<>();
         WarehouseDetails warehouseDetails = warehouseRepository.findByWarehouseId(warehouseId);
         if (warehouseDetails!=null){
+            detachObject(warehouseDetails);
+            warehouseDetails.setPassword("");
             returnObject.put("message", "success");
             returnObject.put("data", warehouseDetails);
             return returnObject;
@@ -139,7 +141,12 @@ public class WarehouseDetailsService {
     public HashMap<String, Object> getWarehouseDetails(String email) {
         returnObject = new HashMap<>();
         WarehouseDetails warehouseDetails = warehouseRepository.findByWarehouseEmail(email);
+        if (warehouseDetails == null){
+            warehouseDetails = warehouseRepository.findByPrimaryPhone(email);
+        }
         if (warehouseDetails!=null){
+            detachObject(warehouseDetails);
+            warehouseDetails.setPassword("");
             returnObject.put("message", "success");
             returnObject.put("data", warehouseDetails);
             return returnObject;
