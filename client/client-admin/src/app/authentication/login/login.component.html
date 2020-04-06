@@ -10,7 +10,7 @@
         <h1>Login to Dashboard</h1>
 
         <div class="form">
-            <input type="text" placeholder="Username" [(ngModel)]="userName">
+            <input type="text" placeholder="Email/Phone" [(ngModel)]="userName">
             <input  type="password" placeholder="Password" [(ngModel)]="password" (keyup.enter)="submit.click()">
             <button #submit type="submit" id="login-button" (click) = "login()">Login</button>
         </div>

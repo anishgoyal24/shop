@@ -20,13 +20,14 @@ public class EmployeeDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     @Column(name = "emp_id")
     private int empId;
+    @Column(length = 60)
     private String password;
     @Column(name = "emp_name", nullable = false)
     private String empName;
-    @Column(name = "emp_email", unique = true, nullable = false)
+    @Column(name = "emp_email", unique = true)
     private String empEmail;
     private String address;
-    @Column(name = "primary_phone", nullable = false)
+    @Column(name = "primary_phone", nullable = false, unique = true)
     private String primaryPhone;
     private String city;
     private String state;

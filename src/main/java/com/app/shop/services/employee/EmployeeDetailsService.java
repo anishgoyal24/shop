@@ -7,6 +7,7 @@ import com.app.shop.repository.employee.EmployeeRepository;
 import com.app.shop.utils.ChangePasswordClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -23,7 +24,8 @@ public class EmployeeDetailsService {
     @Autowired
     private UserAuthRepository userAuthRepository;
     private HashMap<String, Object> returnObject;
-    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private PasswordEncoder bCryptPasswordEncoder;
 
     private void detachObject(EmployeeDetails employeeDetails){
         entityManager.detach(employeeDetails);
@@ -42,7 +44,7 @@ public class EmployeeDetailsService {
             employeeDetails.setStatus('y');
             employeeRepository.save(employeeDetails);
             detachObject(employeeDetails);
-            userAuthRepository.save(new UserDetails(employeeDetails.getEmpEmail(), encodedPassword, 1, employeeDetails.getRole()));
+            userAuthRepository.save(new UserDetails(employeeDetails.getEmpEmail(), encodedPassword, 1, employeeDetails.getRole(), employeeDetails.getPrimaryPhone()));
             employeeDetails.setPassword(null);
             returnObject.put("message", "success");
             returnObject.put("data", employeeDetails);
@@ -134,6 +136,9 @@ public class EmployeeDetailsService {
             foundEmployee.setStatus(status.charAt(0));
             employeeRepository.save(foundEmployee);
             UserDetails userDetails = userAuthRepository.findByUsername(email);
+            if (userDetails==null){
+                userDetails = userAuthRepository.findByPrimaryPhone(email);
+            }
             if (status.equals("y"))userDetails.setEnabled(1);
             else if (status.equals("n"))userDetails.setEnabled(0);
             userAuthRepository.save(userDetails);

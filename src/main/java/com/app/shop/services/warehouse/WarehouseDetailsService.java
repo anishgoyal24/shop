@@ -7,6 +7,7 @@ import com.app.shop.repository.warehouse.WarehouseRepository;
 import com.app.shop.utils.ChangePasswordClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -23,7 +24,8 @@ public class WarehouseDetailsService {
     @PersistenceContext
     private EntityManager entityManager;
     private HashMap<String, Object> returnObject;
-    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private PasswordEncoder bCryptPasswordEncoder;
 
     private void detachObject(WarehouseDetails warehouseDetails){
         entityManager.detach(warehouseDetails);
@@ -38,7 +40,7 @@ public class WarehouseDetailsService {
             warehouseDetails.setStatus('y');
             warehouseRepository.save(warehouseDetails);
             detachObject(warehouseDetails);
-            userAuthRepository.save(new UserDetails(warehouseDetails.getWarehouseEmail(), encodedPassword, 1, warehouseDetails.getRole()));
+            userAuthRepository.save(new UserDetails(warehouseDetails.getWarehouseEmail(), encodedPassword, 1, warehouseDetails.getRole(), warehouseDetails.getPrimaryPhone()));
             warehouseDetails.setPassword(null);
             returnObject.put("message", "success");
             returnObject.put("data", warehouseDetails);

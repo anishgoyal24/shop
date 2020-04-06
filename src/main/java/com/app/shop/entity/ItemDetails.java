@@ -26,8 +26,8 @@ public class ItemDetails {
     private String itemName;
     private char status;
     private String description;
-    @OneToMany(mappedBy = "itemDetails")
-    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.PERSIST})
+    @OneToMany(mappedBy = "itemDetails", cascade = CascadeType.PERSIST)
+//    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.PERSIST})
     private List<ItemPackingDetails> itemPackingDetails;
     @Column(name = "customer_allowed")
     private String customerAllowed;

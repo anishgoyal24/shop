@@ -9,4 +9,6 @@ public interface DetailsRepository extends JpaRepository<PartyDetails, Integer> 
 
     PartyDetails findByPartyEmail(String email);
     PartyDetails findByPartyId(Integer partyId);
+
+    PartyDetails findByPrimaryPhone(String primaryPhone);
 }

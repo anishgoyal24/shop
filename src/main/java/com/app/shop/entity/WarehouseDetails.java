@@ -20,15 +20,16 @@ public class WarehouseDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     @Column(name = "warehouse_id", nullable = false)
     private int warehouseId;
+    @Column(length = 60)
     private String password;
     @Column(name = "warehouse_name", nullable = false)
     private String warehouseName;
-    @Column(name = "warehouse_email", unique = true, nullable = false)
+    @Column(name = "warehouse_email", unique = true)
     private String warehouseEmail;
     @Column(name = "person_of_contact", nullable = false)
     private String personOfContact;
     private String address;
-    @Column(name = "primary_phone", nullable = false)
+    @Column(name = "primary_phone", nullable = false, unique = true)
     private String primaryPhone;
     @Column(name = "secondary_phone")
     private String secondaryPhone;

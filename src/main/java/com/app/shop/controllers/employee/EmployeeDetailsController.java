@@ -38,7 +38,7 @@ public class EmployeeDetailsController {
 
 //  Change password of a employee
     @PostMapping(value = "/changepassword")
-    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    @PreAuthorize(value = "hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> changePassword(@RequestBody ChangePasswordClass object){
         return employeeDetailsService.changePassword(object);
     }
