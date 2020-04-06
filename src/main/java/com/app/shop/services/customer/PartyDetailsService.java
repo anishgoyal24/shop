@@ -147,6 +147,18 @@ public class PartyDetailsService {
             userAuthRepository.save(userDetails);
             returnObject.put("message", "success");
         }
+        else if (foundPartyDetails == null){
+            foundPartyDetails = detailsRepository.findByPrimaryPhone(object.getEmail());
+            if (foundPartyDetails!=null && bCryptPasswordEncoder.matches(object.getOldPassword(), foundPartyDetails.getPassword())){
+                String encodedPassword = bCryptPasswordEncoder.encode(object.getNewPassword());
+                foundPartyDetails.setPassword(encodedPassword);
+                detailsRepository.save(foundPartyDetails);
+                UserDetails userDetails = userAuthRepository.findByPrimaryPhone(object.getEmail());
+                userDetails.setPassword(encodedPassword);
+                userAuthRepository.save(userDetails);
+                returnObject.put("message", "success");
+            }
+        }
         else
             returnObject.put("message", "failure");
         return returnObject;

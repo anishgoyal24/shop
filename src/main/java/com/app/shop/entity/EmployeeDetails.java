@@ -27,7 +27,7 @@ public class EmployeeDetails {
     @Column(name = "emp_email", unique = true)
     private String empEmail;
     private String address;
-    @Column(name = "primary_phone", nullable = false)
+    @Column(name = "primary_phone", nullable = false, unique = true)
     private String primaryPhone;
     private String city;
     private String state;

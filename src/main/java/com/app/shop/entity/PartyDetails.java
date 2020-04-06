@@ -27,7 +27,7 @@ public class PartyDetails {
     private String contactPerson;
     @Column(length = 400, nullable = false)
     private String address;
-    @Column(name = "primary_phone", nullable = false)
+    @Column(name = "primary_phone", nullable = false, unique = true)
     private String primaryPhone;
     @Column(name = "secondary_phone")
     private String secondaryPhone;

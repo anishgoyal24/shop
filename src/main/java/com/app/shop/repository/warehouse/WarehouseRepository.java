@@ -15,4 +15,6 @@ public interface WarehouseRepository extends JpaRepository<WarehouseDetails, Int
     public Object[] getNames();
 
     public WarehouseDetails findByWarehouseId(@Param("warehouseId") Integer warehouseId);
+
+    WarehouseDetails findByPrimaryPhone(String primaryPhone);
 }

@@ -99,6 +99,18 @@ public class WarehouseDetailsService {
             userAuthRepository.save(userDetails);
             returnObject.put("message", "success");
         }
+        else if (foundWarehouseDetails == null){
+            foundWarehouseDetails = warehouseRepository.findByPrimaryPhone(object.getEmail());
+            if (foundWarehouseDetails!=null && bCryptPasswordEncoder.matches(object.getOldPassword(), foundWarehouseDetails.getPassword())){
+                String encodedPassword = bCryptPasswordEncoder.encode(object.getNewPassword());
+                foundWarehouseDetails.setPassword(encodedPassword);
+                warehouseRepository.save(foundWarehouseDetails);
+                UserDetails userDetails = userAuthRepository.findByPrimaryPhone(object.getEmail());
+                userDetails.setPassword(encodedPassword);
+                userAuthRepository.save(userDetails);
+                returnObject.put("message", "success");
+            }
+        }
         else
             returnObject.put("message", "failure");
         return returnObject;

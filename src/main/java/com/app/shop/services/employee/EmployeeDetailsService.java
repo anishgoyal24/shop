@@ -94,6 +94,18 @@ public class EmployeeDetailsService {
     public HashMap<String, Object> changePassword(ChangePasswordClass object) {
         returnObject = new HashMap<>();
         EmployeeDetails foundEmployeeDetails = employeeRepository.findByEmpEmail(object.getEmail());
+        if (foundEmployeeDetails == null){
+            foundEmployeeDetails = employeeRepository.findByPrimaryPhone(object.getEmail());
+            if (foundEmployeeDetails!=null && bCryptPasswordEncoder.matches(object.getOldPassword(), foundEmployeeDetails.getPassword())){
+                String encodedPassword = bCryptPasswordEncoder.encode(object.getNewPassword());
+                foundEmployeeDetails.setPassword(encodedPassword);
+                employeeRepository.save(foundEmployeeDetails);
+                UserDetails userDetails = userAuthRepository.findByPrimaryPhone(object.getEmail());
+                userDetails.setPassword(encodedPassword);
+                userAuthRepository.save(userDetails);
+                returnObject.put("message", "success");
+            }
+        }
         if (foundEmployeeDetails!=null && bCryptPasswordEncoder.matches(object.getOldPassword(), foundEmployeeDetails.getPassword())){
             String encodedPassword = bCryptPasswordEncoder.encode(object.getNewPassword());
             foundEmployeeDetails.setPassword(encodedPassword);
@@ -136,6 +148,9 @@ public class EmployeeDetailsService {
             foundEmployee.setStatus(status.charAt(0));
             employeeRepository.save(foundEmployee);
             UserDetails userDetails = userAuthRepository.findByUsername(email);
+            if (userDetails==null){
+                userDetails = userAuthRepository.findByPrimaryPhone(email);
+            }
             if (status.equals("y"))userDetails.setEnabled(1);
             else if (status.equals("n"))userDetails.setEnabled(0);
             userAuthRepository.save(userDetails);
