@@ -24,7 +24,7 @@ public class EmployeeDetails {
     private String password;
     @Column(name = "emp_name", nullable = false)
     private String empName;
-    @Column(name = "emp_email", unique = true, nullable = false)
+    @Column(name = "emp_email", unique = true)
     private String empEmail;
     private String address;
     @Column(name = "primary_phone", nullable = false)

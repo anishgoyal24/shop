@@ -24,7 +24,7 @@ public class WarehouseDetails {
     private String password;
     @Column(name = "warehouse_name", nullable = false)
     private String warehouseName;
-    @Column(name = "warehouse_email", unique = true, nullable = false)
+    @Column(name = "warehouse_email", unique = true)
     private String warehouseEmail;
     @Column(name = "person_of_contact", nullable = false)
     private String personOfContact;

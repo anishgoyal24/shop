@@ -44,7 +44,7 @@ public class EmployeeDetailsService {
             employeeDetails.setStatus('y');
             employeeRepository.save(employeeDetails);
             detachObject(employeeDetails);
-            userAuthRepository.save(new UserDetails(employeeDetails.getEmpEmail(), encodedPassword, 1, employeeDetails.getRole()));
+            userAuthRepository.save(new UserDetails(employeeDetails.getEmpEmail(), encodedPassword, 1, employeeDetails.getRole(), employeeDetails.getPrimaryPhone()));
             employeeDetails.setPassword(null);
             returnObject.put("message", "success");
             returnObject.put("data", employeeDetails);

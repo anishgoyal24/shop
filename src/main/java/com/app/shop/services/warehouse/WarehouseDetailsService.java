@@ -40,7 +40,7 @@ public class WarehouseDetailsService {
             warehouseDetails.setStatus('y');
             warehouseRepository.save(warehouseDetails);
             detachObject(warehouseDetails);
-            userAuthRepository.save(new UserDetails(warehouseDetails.getWarehouseEmail(), encodedPassword, 1, warehouseDetails.getRole()));
+            userAuthRepository.save(new UserDetails(warehouseDetails.getWarehouseEmail(), encodedPassword, 1, warehouseDetails.getRole(), warehouseDetails.getPrimaryPhone()));
             warehouseDetails.setPassword(null);
             returnObject.put("message", "success");
             returnObject.put("data", warehouseDetails);

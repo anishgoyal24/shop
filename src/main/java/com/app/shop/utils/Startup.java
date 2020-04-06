@@ -42,7 +42,7 @@ public class Startup {
             defaultAdmin.setPincode("");
             defaultAdmin.setStatus('y');
             employeeRepository.save(defaultAdmin);
-            userAuthRepository.save(new UserDetails("parveengoel@gmail.com", new BCryptPasswordEncoder().encode("admin"), 1, "owner"));
+            userAuthRepository.save(new UserDetails("parveengoel@gmail.com", new BCryptPasswordEncoder().encode("admin"), 1, "owner", "7027770150"));
             PartyType retail = new PartyType();
             retail.setId(1);
             retail.setType("retail");

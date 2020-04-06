@@ -21,7 +21,7 @@ public class PartyDetails {
     private String password;
     @Column(name = "party_name", nullable = false)
     private String partyName;
-    @Column(name = "party_email", unique = true, nullable = false)
+    @Column(name = "party_email", unique = true)
     private String partyEmail;
     @Column(name = "contact_person", nullable = false)
     private String contactPerson;

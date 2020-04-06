@@ -68,7 +68,7 @@ public class PartyDetailsService {
                 partyDetails.setPassword(encodedPassword);
                 detailsRepository.save(partyDetails);
                 detachParty(partyDetails);
-                userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party"));
+                userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party", partyDetails.getPrimaryPhone()));
                 partyDetails.setPassword(null);
                 returnObject.put("message", "success");
                 returnObject.put("data", partyDetails);
@@ -84,7 +84,7 @@ public class PartyDetailsService {
                 partyDetails.setPassword(encodedPassword);
                 detailsRepository.save(partyDetails);
                 detachParty(partyDetails);
-                userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party"));
+                userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party", partyDetails.getPrimaryPhone()));
                 partyDetails.setPassword(null);
                 returnObject.put("message", "success");
                 returnObject.put("data", partyDetails);
