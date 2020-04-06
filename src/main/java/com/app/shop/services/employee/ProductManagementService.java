@@ -103,11 +103,12 @@ public class ProductManagementService {
                 packing.setStatus('y');
                 packing.setItemDetails(foundItemDetails);
                 packing.setSize(itemPackingDetails.getSize());
+                packing = packingRepository.save(packing);
                 foundItemDetails.getItemPackingDetails().add(packing);
 //                logger.error("Packing Details: " + itemPackingDetails.getSize() + " " + itemPackingDetails.getStatus() + " " + itemPackingDetails.getItemDetails().getItemId());
             }
             logger.error(foundItemDetails.getItemPackingDetails().toString());
-            productManagementRepository.save(foundItemDetails);
+//            productManagementRepository.save(foundItemDetails);
             returnObject.put("message", "success");
         }
         else
