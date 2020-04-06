@@ -104,6 +104,7 @@ public class ProductManagementService {
                 packing.setItemDetails(foundItemDetails);
                 packing.setSize(itemPackingDetails.getSize());
                 foundItemDetails.getItemPackingDetails().add(packing);
+                packingRepository.save(packing);
 //                logger.error("Packing Details: " + itemPackingDetails.getSize() + " " + itemPackingDetails.getStatus() + " " + itemPackingDetails.getItemDetails().getItemId());
             }
             logger.error(foundItemDetails.getItemPackingDetails().toString());
