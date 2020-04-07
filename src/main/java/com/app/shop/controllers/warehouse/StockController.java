@@ -32,7 +32,7 @@ public class StockController {
 
 //  Get packing details list
     @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
-    @GetMapping(value = "/add")
+    @GetMapping(value = "/getItems")
     public HashMap<String, Object> getItemDetails(){
         return stockService.getPackingList();
     }
