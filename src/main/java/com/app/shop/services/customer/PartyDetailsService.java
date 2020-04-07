@@ -181,6 +181,9 @@ public class PartyDetailsService {
         returnObject = new HashMap<>();
         PartyDetails partyDetails = detailsRepository.findByPartyEmail(username);
         if (partyDetails==null){
+            partyDetails = detailsRepository.findByPrimaryPhone(username);
+        }
+        if (partyDetails==null){
             returnObject.put("message", "no such user");
             return returnObject;
         }
