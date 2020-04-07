@@ -45,4 +45,10 @@ public class StockService {
         returnObject.put("data", itemPackingDetailsService.getAll());
         return returnObject;
     }
+
+    public HashMap<String, Object> getStockDetails(int warehouseId){
+        returnObject = new HashMap<>();
+        returnObject.put("data", warehouseStockRepository.findByWarehouseDetailsWarehouseId(warehouseId));
+        return returnObject;
+    }
 }

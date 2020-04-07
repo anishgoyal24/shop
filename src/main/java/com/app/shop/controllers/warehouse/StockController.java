@@ -35,4 +35,11 @@ public class StockController {
     public HashMap<String, Object> getItemDetails(){
         return stockService.getPackingList();
     }
+
+//  Get all stock details
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
+    @GetMapping(value = "/")
+    public HashMap<String, Object> getStock(@RequestParam Integer warehouseId){
+        return stockService.getStockDetails(warehouseId);
+    }
 }
