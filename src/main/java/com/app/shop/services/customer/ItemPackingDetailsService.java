@@ -5,6 +5,9 @@ import com.app.shop.repository.customer.ItemPackingDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ItemPackingDetailsService {
 
@@ -17,6 +20,15 @@ public class ItemPackingDetailsService {
 
 //  Get item packing details
     public ItemPackingDetails getDetails(Integer id){
-        return itemPackingDetailsRepository.findById(id).get();
+        Optional<ItemPackingDetails> itemPackingDetails = itemPackingDetailsRepository.findById(id);
+        if (itemPackingDetails.isPresent())return itemPackingDetails.get();
+        return null;
     }
+
+//  Get All
+    public List<ItemPackingDetails> getAll(){
+        return itemPackingDetailsRepository.findAll();
+    }
+
+
 }

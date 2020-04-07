@@ -28,18 +28,23 @@ public class StockService {
                 itemStock.setItemPackingDetails(itemPackingDetailsService.getDetails(itemStock.getItemPackingDetails().getId()));
                 itemStock.setWarehouseDetails(warehouseDetailsService.getDetails(itemStock.getWarehouseDetails().getWarehouseId()));
                 warehouseStockRepository.save(itemStock);
-                returnObject.put("message", "successfully added stock");
             }
             else {
                 foundStock.setQuantity(foundStock.getQuantity() + itemStock.getQuantity());
                 warehouseStockRepository.save(foundStock);
-                returnObject.put("message", "successfully added stock");
             }
+            returnObject.put("message", "successfully added stock");
         }
         return returnObject;
     }
 
     public double getItemPrice(String state, Integer itemId){
         return warehouseStockRepository.findPrice(state, itemId);
+    }
+
+    public HashMap<String, Object> getPackingList() {
+        returnObject = new HashMap<>();
+        returnObject.put("data", itemPackingDetailsService.getAll());
+        return returnObject;
     }
 }

@@ -22,6 +22,10 @@ export class WarehouseService {
     });
   }
 
+  /**
+   * Get warehouse details
+   * @param email 
+   */
   getDetails(email: string){
     return this.httpClient.get(environment.BASE_URL_API + '/warehouse/details-email', {
       params: {

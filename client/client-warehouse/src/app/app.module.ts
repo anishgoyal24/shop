@@ -26,6 +26,10 @@ import { NavbarComponent } from './dashboard/navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StocksComponent } from './dashboard/stocks/stocks.component';
 import { OverviewComponent } from './dashboard/overview/overview.component';
+import { AddStockComponent } from './dashboard/stocks/add-stock/add-stock.component';
+import { StocksHeaderComponent } from './dashboard/stocks/stocks-header/stocks-header.component';
+import { StocksHomeComponent } from './dashboard/stocks/stocks-home/stocks-home.component';
+import { ManageStockComponent } from './dashboard/stocks/manage-stock/manage-stock.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,15 @@ import { OverviewComponent } from './dashboard/overview/overview.component';
 
     StocksComponent,
 
-    OverviewComponent
+    OverviewComponent,
+
+    AddStockComponent,
+
+    StocksHeaderComponent,
+
+    StocksHomeComponent,
+
+    ManageStockComponent
   ],
   imports: [
     BrowserModule,

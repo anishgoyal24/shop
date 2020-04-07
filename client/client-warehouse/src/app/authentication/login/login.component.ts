@@ -14,8 +14,8 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 })
 export class LoginComponent implements OnInit {
 
-  private username: string;
-  private password: string;
+  username: string;
+  password: string;
 
   constructor(
     private _location: Location,

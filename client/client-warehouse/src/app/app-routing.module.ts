@@ -16,6 +16,9 @@ import { OverviewComponent } from './dashboard/overview/overview.component';
 
 // !!!---Stocks---!!!
 import { StocksComponent } from './dashboard/stocks/stocks.component';
+import { StocksHomeComponent } from './dashboard/stocks/stocks-home/stocks-home.component';
+import { AddStockComponent } from './dashboard/stocks/add-stock/add-stock.component';
+import { ManageStockComponent } from './dashboard/stocks/manage-stock/manage-stock.component';
 
 // // !!!----- GUARDS -----!!!
 // import { AuthGuard } from 'src/shared/guards/auth.guard';
@@ -33,7 +36,13 @@ const routes: Routes = [
       { path: 'overview', component: OverviewComponent },
 
       //Stocks
-      { path: 'stocks', component: StocksComponent }
+      { path: 'stock', component: StocksComponent,
+        children: [
+          { path: 'home', component: StocksHomeComponent },
+          { path: 'add', component: AddStockComponent },
+          { path: 'manage', component: ManageStockComponent }
+        ]
+    }
     ]
 }
 ];
