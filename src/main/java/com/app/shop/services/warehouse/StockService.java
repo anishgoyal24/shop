@@ -20,21 +20,19 @@ public class StockService {
     @Autowired
     private WarehouseDetailsService warehouseDetailsService;
 
-    public HashMap<String, Object> addStock(ArrayList<ItemStock> itemStocks){
+    public HashMap<String, Object> addStock(ItemStock itemStock){
         returnObject = new HashMap<>();
-        for (ItemStock itemStock : itemStocks){
-            ItemStock foundStock = warehouseStockRepository.findStock(itemStock.getItemPackingDetails().getId(), itemStock.getWarehouseDetails().getWarehouseId());
-            if (foundStock==null){
-                itemStock.setItemPackingDetails(itemPackingDetailsService.getDetails(itemStock.getItemPackingDetails().getId()));
-                itemStock.setWarehouseDetails(warehouseDetailsService.getDetails(itemStock.getWarehouseDetails().getWarehouseId()));
-                warehouseStockRepository.save(itemStock);
-            }
-            else {
-                foundStock.setQuantity(foundStock.getQuantity() + itemStock.getQuantity());
-                warehouseStockRepository.save(foundStock);
-            }
-            returnObject.put("message", "successfully added stock");
+        ItemStock foundStock = warehouseStockRepository.findStock(itemStock.getItemPackingDetails().getId(), itemStock.getWarehouseDetails().getWarehouseId());
+        if (foundStock==null){
+            itemStock.setItemPackingDetails(itemPackingDetailsService.getDetails(itemStock.getItemPackingDetails().getId()));
+            itemStock.setWarehouseDetails(warehouseDetailsService.getDetails(itemStock.getWarehouseDetails().getWarehouseId()));
+            warehouseStockRepository.save(itemStock);
         }
+        else {
+            foundStock.setQuantity(foundStock.getQuantity() + itemStock.getQuantity());
+            warehouseStockRepository.save(foundStock);
+        }
+        returnObject.put("message", "successfully added stock");
         return returnObject;
     }
 
