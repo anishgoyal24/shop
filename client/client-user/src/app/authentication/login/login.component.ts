@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
           .then((res: any)=>{
             if (res.headers.get('Authorizatiion')){
               sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
+              this.getDetails();
               resolve(this.utilityService.resolveAsyncPromise('Welcome back!'));
             }
           }).catch((err)=>{
@@ -61,5 +62,23 @@ export class LoginComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+
+  getDetails(){
+    this.userService.getDetails(this.username)
+    .then((res)=>{
+      if (res['message']=='success'){
+        var userDetails = res['data'];
+        sessionStorage.setItem("partyEmail", userDetails['partyEmail']);
+        sessionStorage.setItem("primaryPhone", userDetails['primaryPhone']);
+        sessionStorage.setItem("state", userDetails['state']);
+        sessionStorage.setItem("city", userDetails['city']);
+        sessionStorage.setItem("partyType", userDetails['partyType']);
+        sessionStorage.setItem("partyId", userDetails['partyId']);
+      }
+    }).catch((err)=>{
+      console.log(err);
+    });
   }
 }
