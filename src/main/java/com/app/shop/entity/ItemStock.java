@@ -17,7 +17,7 @@ public class ItemStock {
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private ItemPackingDetails itemPackingDetails;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "warehouse_id", referencedColumnName = "warehouse_id")
     private WarehouseDetails warehouseDetails;
     private int quantity;
