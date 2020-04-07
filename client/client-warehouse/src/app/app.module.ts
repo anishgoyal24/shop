@@ -30,6 +30,7 @@ import { AddStockComponent } from './dashboard/stocks/add-stock/add-stock.compon
 import { StocksHeaderComponent } from './dashboard/stocks/stocks-header/stocks-header.component';
 import { StocksHomeComponent } from './dashboard/stocks/stocks-home/stocks-home.component';
 import { ManageStockComponent } from './dashboard/stocks/manage-stock/manage-stock.component';
+import { StockItemComponent } from './dashboard/stocks/manage-stock/stock-item/stock-item.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,9 @@ import { ManageStockComponent } from './dashboard/stocks/manage-stock/manage-sto
 
     StocksHomeComponent,
 
-    ManageStockComponent
+    ManageStockComponent,
+
+    StockItemComponent
   ],
   imports: [
     BrowserModule,
