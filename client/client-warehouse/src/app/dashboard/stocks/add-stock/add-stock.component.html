@@ -1,0 +1,30 @@
+<div class="card-media">
+    <!-- <img src="../../../../assets/images/new_product.svg"> -->
+    <div class="container">
+        <h1><b>Add Stock</b></h1>
+
+        <div class="form-group">
+            <div class="dropdown">
+              <button class="btn btn-md btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Item
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" *ngFor="let item of itemsList" (click)="itemStock.itemPackingDetails.id = item[0];">{{ item[2] +  '- ' + item[1] + ' kg' }}</a>
+              </div>
+            </div>
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" [(ngModel)]="itemStock.quantity" class="form-control" id="quantity" placeholder="0" name="quantity">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" [(ngModel)]="itemStock.price" class="form-control" id="price" placeholder="0.0" name="quantity">
+        </div>
+
+        <div class="form-group">
+            <button class="btn form-control btn-md btn-primary" (click)="onAddStock(itemStock)">Add Stock</button>
+        </div>
+    </div>
+
+</div>
