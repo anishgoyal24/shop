@@ -26,8 +26,8 @@ public class ItemPackingDetailsService {
     }
 
 //  Get All
-    public List<ItemPackingDetails> getAll(){
-        return itemPackingDetailsRepository.findAll();
+    public List<Object> getAll(){
+        return itemPackingDetailsRepository.findAllSelected();
     }
 
 
