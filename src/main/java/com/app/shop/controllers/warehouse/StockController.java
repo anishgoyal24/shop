@@ -25,9 +25,8 @@ public class StockController {
 //  Add Stock
     @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addStock(@RequestBody ItemStock[] itemStocks){
-        ArrayList<ItemStock> stockArrayList = new ArrayList<ItemStock>(Arrays.asList(itemStocks));
-        return stockService.addStock(stockArrayList);
+    public HashMap<String, Object> addStock(@RequestBody ItemStock itemStock){
+        return stockService.addStock(itemStock);
     }
 
 //  Get packing details list
