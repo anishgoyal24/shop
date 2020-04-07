@@ -10,8 +10,9 @@
                 Select Item
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" *ngFor="let item of itemsList" (click)="itemStock.itemPackingDetails.id = item[0];">{{ item[2] +  '- ' + item[1] + ' kg' }}</a>
+                <a class="dropdown-item" *ngFor="let item of itemsList" (click)="itemStock.itemPackingDetails.id = item[0]; this.selectedProduct=item[2] +  '- ' + item[1] + ' kg'">{{ item[2] +  '- ' + item[1] + ' kg' }}</a>
               </div>
+              <p *ngIf="this.selectedProduct" style="margin-top: 2%;">Selected Product: <strong>{{this.selectedProduct}}</strong></p>
             </div>
         <div class="form-group">
             <label for="quantity">Quantity</label>

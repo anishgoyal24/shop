@@ -9,6 +9,7 @@ import { UtilityService } from 'src/shared/services/utility.service';
 })
 export class AddStockComponent implements OnInit {
 
+  selectedProduct: any;
   itemsList = [];
   itemStock = {
     itemPackingDetails: {
@@ -33,7 +34,6 @@ export class AddStockComponent implements OnInit {
   getItemsList(){
     this.stockService.getItemsList()
     .then((res)=>{
-        console.log(res);
         this.itemsList = res['data'];
     }).catch((err)=>{
       console.log(err);
