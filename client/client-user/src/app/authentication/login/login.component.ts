@@ -5,6 +5,7 @@ import { UtilityService } from 'src/shared/services/utility.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router } from '@angular/router';
 import { UserService } from 'src/shared/services/user.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -48,12 +49,13 @@ export class LoginComponent implements OnInit {
         this.utilityService.asyncNotification('Please wait while we are logging you in!', new Promise((resolve, reject)=>{
           this.userService.authenticate(userData)
           .then((res: any)=>{
-            if (res.headers.get('Authorizatiion')){
+            if (res.headers.get('Authorization')){
               sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
               this.getDetails();
               resolve(this.utilityService.resolveAsyncPromise('Welcome back!'));
             }
           }).catch((err)=>{
+            console.log(err);
             reject(this.utilityService.rejectAsyncPromise('Oops some error occurred while logging you in, please try again later!'))
           })
         }))
