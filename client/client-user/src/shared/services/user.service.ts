@@ -21,4 +21,12 @@ export class UserService {
       params: params
     }).toPromise();
   }
+
+  register(partyDetails: any, otp: any){
+    return this.http.post(environment.BASE_URL_API + '/customer/new/' + otp, partyDetails).toPromise();
+  }
+
+  getOtp(email: string){
+    return this.http.post(environment.BASE_URL_API + '/customer/otp', email).toPromise();
+  }
 }

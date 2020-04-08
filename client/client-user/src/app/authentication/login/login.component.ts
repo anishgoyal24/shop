@@ -5,7 +5,6 @@ import { UtilityService } from 'src/shared/services/utility.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router } from '@angular/router';
 import { UserService } from 'src/shared/services/user.service';
-import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -80,5 +79,10 @@ export class LoginComponent implements OnInit {
     }).catch((err)=>{
       console.log(err);
     });
+  }
+
+
+  register(){
+    this.router.navigate(['signup']);
   }
 }

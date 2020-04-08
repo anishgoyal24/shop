@@ -13,6 +13,8 @@
             <input type="text" placeholder="Username" [(ngModel)]="username">
             <input  type="password" placeholder="Password" [(ngModel)]="password" (keyup.enter)="submit.click()">
             <button #submit type="submit" id="login-button" (click)="login()">Login</button>
+            <br><br>
+            <button type="menu" id="register-button" (click)="register()">Register</button>
         </div>
     </div>
 </div>
