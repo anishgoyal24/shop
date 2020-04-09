@@ -48,8 +48,10 @@ export class LoginComponent implements OnInit {
         this.isLoading$.next(true);
         this.utilityService.asyncNotification('Please wait while we are logging you in!', new Promise((resolve, reject)=>{
           this.warehouseService.authenticate(userData)
-          .subscribe((res)=>{
+          .then((res)=>{
             console.log('logged in');
+            console.log(res)
+
             if (res.headers.get('Authorization')) {
               sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
               sessionStorage.setItem("Email", res.headers.get("Email"));
@@ -57,9 +59,10 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/dashboard', 'overview']);
               this.getDetails(userData.username);
               let warehouseName = sessionStorage.getItem("warehouseName");
-              resolve(this.utilityService.resolveAsyncPromise(`Welcome back ` + warehouseName + "!"));
+              resolve(this.utilityService.resolveAsyncPromise(`Welcome back ` + "!"));
             }
-          }, (err)=>{
+          },)
+          .catch( (err)=>{
             reject(this.utilityService.resolveAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
           })
         }))

@@ -19,7 +19,7 @@ export class WarehouseService {
     return this._http.post(environment.BASE_URL_API + '/user/authenticate', userData, {
       responseType: 'text',
       observe: 'response'
-    });
+    }).toPromise()
   }
 
   /**
