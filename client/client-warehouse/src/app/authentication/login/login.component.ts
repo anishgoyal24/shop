@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
 
             if (res.headers.get('Authorization')) {
               sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
-              sessionStorage.setItem("Email", res.headers.get("Email"));
               this.isLoading$.next(false);
               this.router.navigate(['/dashboard', 'overview']);
               this.getDetails(userData.username);

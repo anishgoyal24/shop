@@ -52,7 +52,10 @@ export class LoginComponent implements OnInit {
             if (res.headers.get('Authorization')){
               sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
               this.getDetails();
+              let partyName = sessionStorage.getItem('partyName');
+              console.log(partyName);
               resolve(this.utilityService.resolveAsyncPromise('Welcome back!'));
+              this.router.navigate(['dashboard', 'products']);
             }
           }).catch((err)=>{
             console.log(err);
@@ -75,8 +78,9 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("primaryPhone", userDetails['primaryPhone']);
         sessionStorage.setItem("state", userDetails['state']);
         sessionStorage.setItem("city", userDetails['city']);
-        sessionStorage.setItem("partyType", userDetails['partyType']);
+        sessionStorage.setItem("partyType", userDetails['partyType']['type']);
         sessionStorage.setItem("partyId", userDetails['partyId']);
+        sessionStorage.setItem("partyName", userDetails['partyName']);
       }
     }).catch((err)=>{
       console.log(err);

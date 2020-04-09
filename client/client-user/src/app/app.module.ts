@@ -24,6 +24,9 @@ import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './dashboard/navbar/navbar.component';
+import { ProductsComponent } from './dashboard/products/products.component';
+import { ProductItemComponent } from './dashboard/products/product-item/product-item.component';
+import { ProductsListComponent } from './dashboard/products/products-list/products-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,13 @@ import { NavbarComponent } from './dashboard/navbar/navbar.component';
 
     DashboardComponent,
 
-    NavbarComponent
+    NavbarComponent,
+
+    ProductsComponent,
+
+    ProductItemComponent,
+
+    ProductsListComponent
   ],
   imports: [
     BrowserModule,

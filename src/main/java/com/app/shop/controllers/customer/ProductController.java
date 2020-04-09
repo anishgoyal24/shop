@@ -38,4 +38,11 @@ public class ProductController {
     public HashMap<String, Object> getDiscount(@RequestParam Integer itemId){
         return productService.getDiscount(itemId);
     }
+
+//  Get Products
+    @GetMapping(value = "/list")
+    @PreAuthorize("hasAnyAuthority('ROLE_party')")
+    public HashMap<String, Object> listProdcuts(@RequestParam String type){
+        return productService.listProducts(type);
+    }
 }

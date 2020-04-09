@@ -67,4 +67,15 @@ public class ProductService {
             returnObject.put("discount", 0);
         return returnObject;
     }
+
+    public HashMap<String, Object> listProducts(String type) {
+        returnObject = new HashMap<>();
+        List<ItemDetails> items = productRepository.findByCustomerAllowed(type);
+        if (items!=null){
+            returnObject.put("message", "success");
+            returnObject.put("data", items);
+        }
+        else returnObject.put("message", "no products");
+        return returnObject;
+    }
 }

@@ -8,11 +8,24 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 
+// !!!---Dashboard---!!!
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+// !!!---Products---!!!
+import { ProductsComponent } from './dashboard/products/products.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent},
+  { path: 'dashboard', component: DashboardComponent,
+    children: [
+
+      // Products
+      { path: 'products', component: ProductsComponent }
+    ]
+  }
 ];
 
 @NgModule({
