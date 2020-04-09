@@ -70,7 +70,7 @@ public class ProductService {
 
     public HashMap<String, Object> listProducts(String type) {
         returnObject = new HashMap<>();
-        List<ItemDetails> items = productRepository.findByCustomerAllowed(type, 'y');
+        List<ItemDetails> items = productRepository.findByCustomerAllowedAndStatus(type, 'y');
         if (items!=null){
             returnObject.put("message", "success");
             returnObject.put("data", items);
