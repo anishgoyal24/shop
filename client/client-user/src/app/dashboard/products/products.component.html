@@ -1,0 +1,12 @@
+<div class="card-media">
+    <div class="container">
+        <div class="form-group has-search">
+            <i class="material-icons form-control-feedback">
+                search
+            </i>
+            <input type="text" class="form-control" placeholder="Search Products" (input)="searchProducts($event)">
+        </div>
+        <app-products-list [productsList]="productsList"></app-products-list>
+    </div>
+</div>
+
