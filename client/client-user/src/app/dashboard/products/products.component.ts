@@ -28,7 +28,6 @@ export class ProductsComponent implements OnInit {
         .then((res: any)=>{
           if (res.body['message']="success"){
             this.productsList = res.body['data'];
-            console.log(this.productsList);
             resolve(this.utilityService.resolveAsyncPromise('Products successfully retrieved!'));
           }
         }).catch((err)=>{

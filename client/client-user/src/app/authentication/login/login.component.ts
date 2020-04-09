@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
               sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
               this.getDetails().then(()=>{
                 let partyName = sessionStorage.getItem('partyName');
-                console.log(partyName);
                 resolve(this.utilityService.resolveAsyncPromise('Welcome back! ' + partyName));
                 this.router.navigate(['dashboard', 'products']);
               });
