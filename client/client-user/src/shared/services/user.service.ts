@@ -12,7 +12,10 @@ export class UserService {
   ) { }
 
   authenticate(userData: any){
-    return this.http.post(environment.BASE_URL_API + '/user/authenticate', userData).toPromise();
+    return this.http.post(environment.BASE_URL_API + '/user/authenticate', userData, {
+      responseType: 'text',
+      observe: 'response'
+    }).toPromise();
   }
 
   getDetails(username: any){
