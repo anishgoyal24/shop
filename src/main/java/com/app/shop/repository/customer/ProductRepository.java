@@ -14,6 +14,6 @@ public interface ProductRepository extends JpaRepository<ItemDetails, Integer> {
     @Query("select item.itemId, item.itemName from ItemDetails item where item.status='y' and item.itemName like %:searchQuery% and item.customerAllowed=:type")
     public List<ItemDetails> findByItemNameContainingIgnoreCase(@Param("searchQuery") String queryString, @Param("type") String type);
 
-    public List<ItemDetails> findByCustomerAllowed(String customerAllowed);
+    public List<ItemDetails> findByCustomerAllowedAndStatus(String customerAllowed, char status);
 
 }

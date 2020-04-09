@@ -42,7 +42,7 @@ public class ProductController {
 //  Get Products
     @GetMapping(value = "/list")
     @PreAuthorize("hasAnyAuthority('ROLE_party')")
-    public HashMap<String, Object> listProdcuts(@RequestParam String type){
+    public HashMap<String, Object> listProducts(@RequestParam String type){
         return productService.listProducts(type);
     }
 }
