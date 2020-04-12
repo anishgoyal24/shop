@@ -1,0 +1,3 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/sasanish/repositories/saifco/admin
