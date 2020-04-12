@@ -29,6 +29,12 @@ export class ManageStockComponent implements OnInit {
    // Warehouse List
    warehouseList = [];
 
+   // Selected Warehouse
+   selectedWarehouse: any;
+   
+   // Warehouse list toggle  
+   warehouseListHidden = false;
+
    // LENGTH OF CATEGORY LISY
    listLength = -1;
 
@@ -76,6 +82,10 @@ export class ManageStockComponent implements OnInit {
       this.stock.quantity = obj[5];
       this.stocks.push(this.stock);
     }
+  }
+
+  toggleList(){
+    this.warehouseListHidden = !this.warehouseListHidden;
   }
 
 }

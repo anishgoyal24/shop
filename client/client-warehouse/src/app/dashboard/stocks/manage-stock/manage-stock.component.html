@@ -15,8 +15,20 @@
           <h3>No Results to display...</h3>
           <img class="empty-state" src="../../../assets/images/search.svg">
         </ng-container>
-      </div>
+      </div>      
 
+      <div class="media card-tile user-list" id="list" *ngFor="let warehouse of warehouseList; let  i = index" [hidden]="warehouseListHidden">
+        <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
+        <div class="media-body">
+            <div class="float-left">
+                <h4>{{ warehouseList['warehouseName'] }}</h4>
+                <p><strong>Email: </strong>{{ warehouse['warehouseEmail'] }}</p>
+            </div>
+            <div class="float-right">
+                <button (click)="this.selectedWarehouse = warehouse['warehouseId']; toggleList();">Select</button>
+            </div>
+        </div>
+      </div>
       
     <div class="container">
         <div *ngFor="let item of stocks">

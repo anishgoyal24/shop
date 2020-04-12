@@ -144,6 +144,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.app.shop.ShopApplication</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
