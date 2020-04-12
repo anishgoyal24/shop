@@ -154,4 +154,10 @@ public class WarehouseDetailsService {
         returnObject.put("message", "no such warehouse exists");
         return returnObject;
     }
+
+    public HashMap<String, Object> search(String query){
+        returnObject = new HashMap<>();
+        returnObject.put("data", warehouseRepository.findByWarehouseEmailContaining(query));
+        return returnObject;
+    }
 }

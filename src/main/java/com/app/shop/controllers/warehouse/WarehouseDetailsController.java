@@ -62,5 +62,11 @@ public class WarehouseDetailsController {
         return warehouseDetailsService.getWarehouseDetails(email);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager', 'ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    @GetMapping(value = "/search")
+    public HashMap<String, Object> search(@RequestParam("email") String email){
+        return warehouseDetailsService.search(email);
+    }
+
 
 }

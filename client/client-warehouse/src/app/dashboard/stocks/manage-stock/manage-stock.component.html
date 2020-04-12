@@ -1,5 +1,24 @@
 <div class="card-media">
     <div class="container">
+        <h1><b>Transfer Stock</b></h1>
+        <div class="form-group has-search">
+          <i class="material-icons form-control-feedback">
+            search
+          </i>
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <ng-container *ngIf="listLength == 0">
+          <h3>No Accounts to display...</h3>
+          <img class="empty-state" src="../../../assets/images/empty.svg">
+        </ng-container>
+        <ng-container *ngIf="isLoadingQuery$ | async">
+          <h3>No Results to display...</h3>
+          <img class="empty-state" src="../../../assets/images/search.svg">
+        </ng-container>
+      </div>
+
+      
+    <div class="container">
         <div *ngFor="let item of stocks">
             <app-stock-item [stockItem]="item"></app-stock-item>
         </div>

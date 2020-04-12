@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { StockService } from 'src/shared/services/stock.service';
 import { UtilityService } from 'src/shared/services/utility.service';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { SearchService } from 'src/shared/services/search.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-manage-stock',
@@ -21,13 +24,29 @@ export class ManageStockComponent implements OnInit {
     quantity: 0
   }
 
+  searchTerm$ = new Subject<string>();
+
+   // Warehouse List
+   warehouseList = [];
+
+   // LENGTH OF CATEGORY LISY
+   listLength = -1;
+
+   // BEHAVIOUR SUBJECT FOR LOADING QUERY
+   isLoadingQuery$ = new BehaviorSubject(false);
+
   constructor(
     private utilityService: UtilityService,
-    private stockService: StockService
+    private stockService: StockService,
+    private searchService: SearchService
   ) { }
 
   ngOnInit() {
     this.getStocks(sessionStorage.getItem("warehouseId"));
+    this.searchService.search(this.searchTerm$).subscribe((res)=>{
+      this.warehouseList = res;
+      this.listLength = this.warehouseList.length;
+    })
   }
 
   getStocks(warehouseId: any){

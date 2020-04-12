@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface WarehouseRepository extends JpaRepository<WarehouseDetails, Integer>{
 
@@ -17,4 +19,7 @@ public interface WarehouseRepository extends JpaRepository<WarehouseDetails, Int
     public WarehouseDetails findByWarehouseId(@Param("warehouseId") Integer warehouseId);
 
     WarehouseDetails findByPrimaryPhone(String primaryPhone);
+
+    @Query("select warehouse.warehouseId, warehouse.warehouseName, warehouse.warehouseEmail from WarehouseDetails warehouse where warehouse.warehouseEmail like %:email%")
+    List<WarehouseDetails> findByWarehouseEmailContaining(@Param("email") String email);
 }
