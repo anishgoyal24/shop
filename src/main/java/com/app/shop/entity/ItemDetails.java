@@ -2,8 +2,6 @@ package com.app.shop.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,7 +13,6 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "item_mst")
-@Cacheable
 public class ItemDetails {
 
     @Id

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -58,7 +59,7 @@ public class CategoryService {
 
     public HashMap<String, Object> updateCategory(Category category){
         returnObject = new HashMap<>();
-        var foundCategory = categoryRepository.findById(category.getId());
+        Optional<Category> foundCategory = categoryRepository.findById(category.getId());
         if (foundCategory.isPresent()){
             Category found = foundCategory.get();
             found.setCategory(category.getCategory());
