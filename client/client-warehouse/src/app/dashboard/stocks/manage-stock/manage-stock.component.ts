@@ -52,6 +52,7 @@ export class ManageStockComponent implements OnInit {
     this.searchService.search(this.searchTerm$).subscribe((res)=>{
       this.warehouseList = res;
       this.listLength = this.warehouseList.length;
+      console.log(this.warehouseList);
     })
   }
 
