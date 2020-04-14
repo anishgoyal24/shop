@@ -157,7 +157,7 @@ public class WarehouseDetailsService {
 
     public HashMap<String, Object> search(String query){
         returnObject = new HashMap<>();
-        returnObject.put("data", warehouseRepository.findByWarehouseEmailContaining(query));
+        returnObject.put("data", warehouseRepository.findByWarehouseNameContaining(query));
         return returnObject;
     }
 }

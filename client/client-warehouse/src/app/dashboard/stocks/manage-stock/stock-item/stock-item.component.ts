@@ -30,7 +30,11 @@ export class StockItemComponent implements OnInit {
     warehouseDetails: {
       warehouseId: 0 
     },
-    quantity: 0
+    itemPackingDetails: {
+      id: 0
+    },
+    quantity: 0,
+    price: 0
  }
 
   quantity:number = 0;
@@ -57,9 +61,12 @@ export class StockItemComponent implements OnInit {
       warehouseDetails: {
         warehouseId: this.selectedWarehouse
       },
-      quantity: this.quantity
+      itemPackingDetails: {
+        id: this.stockItem.itemPackingDetails.id
+      },
+      quantity: this.quantity,
+      price: this.stockItem.price
     };
-    console.log(this.transferStock);
     // Service function to treansfer stock
     this.utilityService.asyncNotification('Transferring stock...', new Promise((resolve, reject)=>{
       this.stockService.transferStock(this.transferredStock)
@@ -73,7 +80,6 @@ export class StockItemComponent implements OnInit {
         reject(this.utilityService.rejectAsyncPromise('There was some error transferring the stock. Please try again later!'));
       })
     }))
-
- }
+}
 
 }

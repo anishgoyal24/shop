@@ -20,6 +20,6 @@ public interface WarehouseRepository extends JpaRepository<WarehouseDetails, Int
 
     WarehouseDetails findByPrimaryPhone(String primaryPhone);
 
-    @Query("select warehouse.warehouseId, warehouse.warehouseName, warehouse.warehouseEmail from WarehouseDetails warehouse where warehouse.warehouseEmail like %:email%")
-    List<Object> findByWarehouseEmailContaining(@Param("email") String email);
+    @Query("select warehouse.warehouseId, warehouse.warehouseName, warehouse.warehouseEmail from WarehouseDetails warehouse where warehouse.warehouseName like %:name%")
+    List<Object> findByWarehouseNameContaining(@Param("name") String name);
 }
