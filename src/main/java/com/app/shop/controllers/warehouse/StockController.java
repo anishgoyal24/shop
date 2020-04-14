@@ -42,4 +42,11 @@ public class StockController {
     public HashMap<String, Object> getStock(@RequestParam Integer warehouseId){
         return stockService.getStockDetails(warehouseId);
     }
+
+//  Transfer Stock
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
+    @PostMapping(value = "/transfer")
+    public HashMap<String, Object> transferStock(@RequestBody ItemStock transferredStock){
+        return stockService.transferStock(transferredStock);
+    }
 }

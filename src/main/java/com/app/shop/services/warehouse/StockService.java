@@ -3,11 +3,15 @@ package com.app.shop.services.warehouse;
 import com.app.shop.entity.ItemStock;
 import com.app.shop.repository.warehouse.WarehouseStockRepository;
 import com.app.shop.services.customer.ItemPackingDetailsService;
+import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 @Service
 public class StockService {
@@ -49,6 +53,21 @@ public class StockService {
     public HashMap<String, Object> getStockDetails(int warehouseId){
         returnObject = new HashMap<>();
         returnObject.put("data", warehouseStockRepository.findByWarehouseDetailsWarehouseId(warehouseId));
+        return returnObject;
+    }
+
+    public HashMap<String, Object> transferStock(ItemStock transferredStock) {
+        returnObject = new HashMap<>();
+        Optional<ItemStock> optionalItemStock = warehouseStockRepository.findById(transferredStock.getId());
+        if (optionalItemStock.isPresent()){
+            ItemStock foundStock = optionalItemStock.get();
+            foundStock.setQuantity(foundStock.getQuantity() - transferredStock.getQuantity());
+            warehouseStockRepository.save(foundStock);
+            transferredStock.setId(0);
+            returnObject.put("message", "success");
+        }
+        else
+            returnObject.put("message", "failure");
         return returnObject;
     }
 }
