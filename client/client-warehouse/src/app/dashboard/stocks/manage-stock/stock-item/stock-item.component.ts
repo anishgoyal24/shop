@@ -10,6 +10,7 @@ import { UtilityService } from 'src/shared/services/utility.service';
 export class StockItemComponent implements OnInit {
 
   @Input() stockItem: any;
+  @Input() selectedWarehouse: number;
   constructor(
     private stockService: StockService,
     private utilityService: UtilityService
@@ -23,7 +24,6 @@ export class StockItemComponent implements OnInit {
       }
     })
   }
-
   // Stock to be trannsferred  
   transferredStock = {
     id: 0,
@@ -32,8 +32,6 @@ export class StockItemComponent implements OnInit {
     },
     quantity: 0
  }
-
-  selectedWarehouse: any;
 
   quantity:number = 0;
 
@@ -50,6 +48,10 @@ export class StockItemComponent implements OnInit {
  }
 
  transferStock(){
+   if (this.quantity == 0){
+     this.utilityService.warningNotification('Please set quantity to transfer...');
+     return;
+   }
     this.transferredStock = {
       id: this.stockItem.id,
       warehouseDetails: {

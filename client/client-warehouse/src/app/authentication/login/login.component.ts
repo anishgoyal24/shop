@@ -79,6 +79,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("warehouseId", res["data"]["warehouseId"]);
         sessionStorage.setItem("primaryPhone", res["data"]["primaryPhone"]);
         sessionStorage.setItem("warehouseName", res["data"]["warehouseName"]);
+        sessionStorage.setItem("type", res["data"]["type"]);
       }
     }, (err)=>{
       console.log(err);

@@ -29,10 +29,10 @@
             </div>
         </div>
       </div>
-      
+
     <div class="container">
         <div *ngFor="let item of stocks">
-            <app-stock-item [stockItem]="item"></app-stock-item>
+            <app-stock-item [stockItem]="item" [selectedWarehouse]="selectedWarehouse"></app-stock-item>
         </div>
     </div>
 </div>

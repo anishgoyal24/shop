@@ -64,6 +64,7 @@ public class StockService {
             foundStock.setQuantity(foundStock.getQuantity() - transferredStock.getQuantity());
             warehouseStockRepository.save(foundStock);
             transferredStock.setId(0);
+            addStock(transferredStock);
             returnObject.put("message", "success");
         }
         else
