@@ -21,5 +21,5 @@ public interface WarehouseRepository extends JpaRepository<WarehouseDetails, Int
     WarehouseDetails findByPrimaryPhone(String primaryPhone);
 
     @Query("select warehouse.warehouseId, warehouse.warehouseName, warehouse.warehouseEmail from WarehouseDetails warehouse where warehouse.warehouseEmail like %:email%")
-    List<WarehouseDetails> findByWarehouseEmailContaining(@Param("email") String email);
+    List<Object> findByWarehouseEmailContaining(@Param("email") String email);
 }
