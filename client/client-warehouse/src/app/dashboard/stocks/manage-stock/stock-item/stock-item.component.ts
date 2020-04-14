@@ -16,6 +16,12 @@ export class StockItemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.stockService.data
+    .subscribe((res)=>{
+      if(res){
+        this.selectedWarehouse = res
+      }
+    })
   }
 
   // Stock to be trannsferred  

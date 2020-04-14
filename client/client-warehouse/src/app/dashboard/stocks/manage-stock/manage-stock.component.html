@@ -5,10 +5,10 @@
           <i class="material-icons form-control-feedback">
             search
           </i>
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" placeholder="Search" (input)="onSearch($event)">
         </div>
         <ng-container *ngIf="listLength == 0">
-          <h3>No Accounts to display...</h3>
+          <h3>No warehouse to display...</h3>
           <img class="empty-state" src="../../../assets/images/empty.svg">
         </ng-container>
         <ng-container *ngIf="isLoadingQuery$ | async">
@@ -21,11 +21,11 @@
         <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
         <div class="media-body">
             <div class="float-left">
-                <h4>{{ warehouseList['warehouseName'] }}</h4>
-                <p><strong>Email: </strong>{{ warehouse['warehouseEmail'] }}</p>
+                <h4>{{ warehouse?.warehouseName }}</h4>
+                <p><strong>Email: </strong>{{ warehouse?.warehouseEmail }}</p>
             </div>
             <div class="float-right">
-                <button (click)="this.selectedWarehouse = warehouse['warehouseId']; toggleList();">Select</button>
+                <button class="btn btn-sm btn-primary" (click)="this.selectedWarehouse = warehouse?.id; toggleList();">Select</button>
             </div>
         </div>
       </div>
