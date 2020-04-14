@@ -6,6 +6,14 @@
                 <p><strong>Price: </strong>{{ stockItem['price'] }}</p>
                 <p><strong>Quantity: </strong>{{ stockItem['quantity'] }}</p>
             </div>
+            <div class="float-right align-self-center">
+                <button class="btn btn-primary" (click)="decrement()">-</button>
+                <input type="number" style="max-width: 40px;" [(ngModel)]="this.quantity" class="text-center" id="quantity">
+                <button class="btn btn-primary" (click)="increment()">+</button>
+                <br>
+                <br>
+                <button class="btn btn-primary" (click)="transferStock()">Transfer</button>
+            </div>
         </div>
     </div>
 </div>

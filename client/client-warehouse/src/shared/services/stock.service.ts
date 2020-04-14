@@ -25,10 +25,23 @@ export class StockService {
     return this.httpClient.post(environment.BASE_URL_API + '/stock/add', itemStock).toPromise();
   }
 
+  /**
+   * Get stock
+   * @param warehouseId 
+   */
   getStock(warehouseId: any){
     let params = new HttpParams().set("warehouseId", warehouseId);
     return this.httpClient.get(environment.BASE_URL_API + '/stock/', {
       params: params
     }).toPromise();
   }
+
+  /**
+   * Transfer stock
+   * @param transferredStock 
+   */
+  transferStock(transferredStock: any){
+    return this.httpClient.post(environment.BASE_URL_API + '/stock/transfer', transferredStock).toPromise();
+  }
+
 }

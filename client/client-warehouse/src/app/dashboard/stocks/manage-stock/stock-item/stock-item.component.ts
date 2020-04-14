@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { StockService } from 'src/shared/services/stock.service';
+import { UtilityService } from 'src/shared/services/utility.service';
 
 @Component({
   selector: 'app-stock-item',
@@ -8,9 +10,61 @@ import { Component, OnInit, Input } from '@angular/core';
 export class StockItemComponent implements OnInit {
 
   @Input() stockItem: any;
-  constructor() { }
+  constructor(
+    private stockService: StockService,
+    private utilityService: UtilityService
+  ) { }
 
   ngOnInit() {
   }
+
+  // Stock to be trannsferred  
+  transferredStock = {
+    id: 0,
+    warehouseDetails: {
+      warehouseId: 0 
+    },
+    quantity: 0
+ }
+
+  selectedWarehouse: any;
+
+  quantity: 0;
+
+ increment(){
+    if (this.transferredStock.quantity != this.stockItem.quantity){
+      this.transferredStock.quantity++;
+    }
+ }
+
+ decrement(){
+    if (this.transferredStock.quantity != 0){
+      this.transferredStock.quantity--;
+    }
+ }
+
+ transferStock(){
+    this.transferredStock = {
+      id: this.stockItem.id,
+      warehouseDetails: {
+        warehouseId: this.selectedWarehouse
+      },
+      quantity: this.quantity
+    };
+    // Service function to treansfer stock
+    this.utilityService.asyncNotification('Transferring stock...', new Promise((resolve, reject)=>{
+      this.stockService.transferStock(this.transferredStock)
+      .then((res)=>{
+        if (res['message']=='success'){
+          this.stockItem.quantity -= this.transferredStock.quantity;
+          this.transferredStock.quantity = 0;
+          resolve(this.utilityService.resolveAsyncPromise('Successfully Transferred Stock!'));
+        }
+      }).catch((err)=>{
+        reject(this.utilityService.rejectAsyncPromise('There was some error transferring the stock. Please try again later!'));
+      })
+    }))
+
+ }
 
 }
