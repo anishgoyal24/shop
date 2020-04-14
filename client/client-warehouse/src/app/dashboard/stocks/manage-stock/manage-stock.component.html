@@ -15,19 +15,21 @@
           <h3>No Results to display...</h3>
           <img class="empty-state" src="../../../assets/images/search.svg">
         </ng-container>
-      </div>      
+      </div>   
 
-      <div class="media card-tile user-list" id="list" *ngFor="let warehouse of warehouseList; let  i = index" [hidden]="warehouseListHidden">
-        <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
-        <div class="media-body">
-            <div class="float-left">
-                <h4>{{ warehouse?.warehouseName }}</h4>
-                <p><strong>Email: </strong>{{ warehouse?.warehouseEmail }}</p>
+      <div>
+        <div class="media card-tile user-list" id="list" *ngFor="let warehouse of warehouseList; let  i = index" [hidden]="warehouseListHidden">
+            <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
+            <div class="media-body">
+                <div class="float-left">
+                    <h4>{{ warehouse?.warehouseName }}</h4>
+                    <p><strong>Email: </strong>{{ warehouse?.warehouseEmail }}</p>
+                </div>
+                <div class="float-right">
+                    <button class="btn btn-sm btn-primary" (click)="this.selectedWarehouse = warehouse?.id; toggleList();">Select</button>
+                </div>
             </div>
-            <div class="float-right">
-                <button class="btn btn-sm btn-primary" (click)="this.selectedWarehouse = warehouse?.id; toggleList();">Select</button>
-            </div>
-        </div>
+          </div>
       </div>
 
     <div class="container">

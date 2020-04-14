@@ -59,6 +59,7 @@ export class StockItemComponent implements OnInit {
       },
       quantity: this.quantity
     };
+    console.log(this.transferStock);
     // Service function to treansfer stock
     this.utilityService.asyncNotification('Transferring stock...', new Promise((resolve, reject)=>{
       this.stockService.transferStock(this.transferredStock)

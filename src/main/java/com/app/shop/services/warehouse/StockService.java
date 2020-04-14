@@ -6,6 +6,7 @@ import com.app.shop.services.customer.ItemPackingDetailsService;
 import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,6 +25,7 @@ public class StockService {
     @Autowired
     private WarehouseDetailsService warehouseDetailsService;
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addStock(ItemStock itemStock){
         returnObject = new HashMap<>();
         ItemStock foundStock = warehouseStockRepository.findStock(itemStock.getItemPackingDetails().getId(), itemStock.getWarehouseDetails().getWarehouseId());
@@ -56,6 +58,7 @@ public class StockService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> transferStock(ItemStock transferredStock) {
         returnObject = new HashMap<>();
         Optional<ItemStock> optionalItemStock = warehouseStockRepository.findById(transferredStock.getId());
