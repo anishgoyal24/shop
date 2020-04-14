@@ -29,17 +29,17 @@ export class StockItemComponent implements OnInit {
 
   selectedWarehouse: any;
 
-  quantity: 0;
+  quantity:number = 0;
 
  increment(){
-    if (this.transferredStock.quantity != this.stockItem.quantity){
-      this.transferredStock.quantity++;
+    if (this.quantity != this.stockItem.quantity){
+      this.quantity++;
     }
  }
 
  decrement(){
-    if (this.transferredStock.quantity != 0){
-      this.transferredStock.quantity--;
+    if (this.quantity != 0){
+      this.quantity--;
     }
  }
 
