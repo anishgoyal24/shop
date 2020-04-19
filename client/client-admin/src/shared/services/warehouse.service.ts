@@ -30,4 +30,11 @@ export class WarehouseService {
     return this._http.post(environment.BASE_URL_API + '/warehouse/updatedetails', warehouseDetails).toPromise();
   }
 
+  getWarehouseListByState(state: any){
+    var params = new HttpParams().set("state", state);
+    return this._http.get(environment.BASE_URL_API + '/warehouse/by-state', {
+      params: params
+    }).toPromise();
+  }
+
 }

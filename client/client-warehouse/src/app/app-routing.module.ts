@@ -20,6 +20,11 @@ import { StocksHomeComponent } from './dashboard/stocks/stocks-home/stocks-home.
 import { AddStockComponent } from './dashboard/stocks/add-stock/add-stock.component';
 import { ManageStockComponent } from './dashboard/stocks/manage-stock/manage-stock.component';
 
+// !!!---Orders---!!!
+import { OrdersComponent } from './dashboard/orders/orders.component';
+import { OrderHomeComponent } from './dashboard/orders/order-home/order-home.component';
+import { ManageOrderComponent } from './dashboard/orders/manage-order/manage-order.component';
+
 // // !!!----- GUARDS -----!!!
 // import { AuthGuard } from 'src/shared/guards/auth.guard';
 // import { NavigationGuard } from 'src/shared/guards/navigation.guard';
@@ -42,7 +47,15 @@ const routes: Routes = [
           { path: 'add', component: AddStockComponent },
           { path: 'manage', component: ManageStockComponent }
         ]
-    }
+    },
+
+    // Orders
+    { path: 'orders', component: OrdersComponent,
+      children: [
+        { path: 'home', component: OrderHomeComponent },
+        { path: 'manage', component: ManageOrderComponent }
+      ]
+  }
     ]
 }
 ];

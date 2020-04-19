@@ -33,6 +33,11 @@ import { StocksHeaderComponent } from './dashboard/stocks/stocks-header/stocks-h
 import { StocksHomeComponent } from './dashboard/stocks/stocks-home/stocks-home.component';
 import { ManageStockComponent } from './dashboard/stocks/manage-stock/manage-stock.component';
 import { StockItemComponent } from './dashboard/stocks/manage-stock/stock-item/stock-item.component';
+import { OrdersComponent } from './dashboard/orders/orders.component';
+import { OrderHeaderComponent } from './dashboard/orders/order-header/order-header.component';
+import { OrderHomeComponent } from './dashboard/orders/order-home/order-home.component';
+import { ManageOrderComponent } from './dashboard/orders/manage-order/manage-order.component';
+import { OrderItemComponent } from './dashboard/orders/manage-order/order-item/order-item.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +65,17 @@ import { StockItemComponent } from './dashboard/stocks/manage-stock/stock-item/s
 
     ManageStockComponent,
 
-    StockItemComponent
+    StockItemComponent,
+
+    OrdersComponent,
+
+    OrderHeaderComponent,
+
+    OrderHomeComponent,
+
+    ManageOrderComponent,
+
+    OrderItemComponent
   ],
   imports: [
     BrowserModule,

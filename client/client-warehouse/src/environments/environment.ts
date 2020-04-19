@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  BASE_URL_API: 'https://saifcoapp.herokuapp.com',
-  ORDERS_API: 'http://saifcoeureka.herokuapp.com/orders-app'
+  BASE_URL_API: 'https://http://34.93.241.26/api/main/',
+  ORDERS_API: 'http://34.93.241.26/api/orders/'
 };
 
 /*

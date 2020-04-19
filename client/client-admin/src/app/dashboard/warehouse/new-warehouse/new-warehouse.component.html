@@ -82,6 +82,33 @@
             <label><input type="radio" [(ngModel)]="accountDetails.role" name="optradio" value="manager" >Manager</label>
           </div>
         </div>
+        
+        <div class="radio">
+          <label for="radio">Select Type</label>
+          <div class="radio">
+            <label><input type="radio" name="optradio" [(ngModel)]="accountDetails.type" value="static"> Static</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" [(ngModel)]="accountDetails.type" name="optradio" value="dynamic" (click)="fetchWarehouseList()">Dynamic</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" [(ngModel)]="accountDetails.type" name="optradio" value="cash counter" >Cash Counter</label>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="accountDetails.type == 'dynamic'">
+          <div class="dropdown">
+            <button class="btn btn-md btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Select Owner Warehouse
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" *ngFor="let warehouse of warehouseList" (click)="accountDetails.ownerWarehouse = warehouse.wareHouseId; this.ownerWarehouse = warehouse.warehouseName">{{warehouse?.warehouseName}}</a>
+            </div>
+          </div>
+  
+          <p *ngIf="this.ownerWarehouse" style="margin-top: 2%;">Selected Owner Warehouse: <strong>{{this.ownerWarehouse}}</strong></p>
+        </div>
 
         <div class="form-group">
           <button class="btn form-control btn-md btn-primary" (click)="createWarehouse(this.accountDetails)">Create Warehouse</button>
