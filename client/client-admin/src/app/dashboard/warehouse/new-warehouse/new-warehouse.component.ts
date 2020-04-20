@@ -18,7 +18,7 @@ export class NewWarehouseComponent implements OnInit {
   /**
    * Defining account details object for which a new account will be created
    */
-  accountDetails: {warehouseName: string, warehouseEmail: string, personOfContact: string,  primaryPhone: Number, secondaryPhone: Number, address: string, city: string, state: string, country: string, pincode: number, password: string, status: string, role: string, type: string, ownerWarehouse: Number} = {
+  accountDetails: {warehouseName: string, warehouseEmail: string, personOfContact: string,  primaryPhone: Number, secondaryPhone: Number, address: string, city: string, state: string, country: string, pincode: number, password: string, status: string, role: string, type: string} = {
     warehouseName: null,
     warehouseEmail: null,
     primaryPhone: null,
@@ -33,7 +33,6 @@ export class NewWarehouseComponent implements OnInit {
     status: null,
     role: null,
     type: null,
-    ownerWarehouse: null
   }
 
   // partyHomeComponent = new PartyHomeComponent(this.partyService);
@@ -41,10 +40,6 @@ export class NewWarehouseComponent implements OnInit {
   parties:any = [];
 
   public isLoading$ = new BehaviorSubject(false);
-
-  warehouseList: any = [];
-
-  ownerWarehouse: any;
 
   ngOnInit() {
   }
@@ -58,21 +53,6 @@ export class NewWarehouseComponent implements OnInit {
       })
       .catch(()=>{
         reject(this.utilityService.rejectAsyncPromise('Some error occured, while creating the warehouse!'))
-      })
-    }))
-  }
-
-
-  fetchWarehouseList(){
-    this.utilityService.asyncNotification('Fetching Owner Warehouses...', 
-    new Promise((resolve, reject)=>{
-      this.warehouseService.getWarehouseListByState(this.accountDetails.state)
-      .then((res)=>{
-        this.warehouseList = res['data'];
-        resolve(this.utilityService.resolveAsyncPromise('Fetched!'))
-      })
-      .catch(()=>{
-        reject(this.utilityService.rejectAsyncPromise('Some error occured, while fetching the owner warehouses!'))
       })
     }))
   }
