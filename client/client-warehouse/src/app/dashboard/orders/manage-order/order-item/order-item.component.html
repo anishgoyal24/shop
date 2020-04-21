@@ -1,1 +1,19 @@
-<p>order-item works!</p>
+<div class="media card-tile user-list">
+    <div class="media-body">
+        <div class="float-left">
+            <h3><strong>OrderId: </strong>{{ orderItem.orderId }}</h3>
+            <p>Status: {{ orderItem.status }}</p>
+        </div>
+        <div class="float-right">
+            <button type="button" class="btn btn-default btn-sm" [hidden]="!showOrderDetails" (click)="toggleShowDetails()">
+          <span class="glyphicon glyphicon-circle-arrow-down"></span> Down
+        </button>
+        <button type="button" class="btn btn-default btn-sm" [hidden]="showOrderDetails" (click)="toggleShowDetails()">
+            <span class="glyphicon glyphicon-circle-arrow-up"></span> Down
+          </button>
+        </div>
+        <div id="order-details" [hidden]="showOrderDetails">
+
+        </div>
+    </div>
+</div>

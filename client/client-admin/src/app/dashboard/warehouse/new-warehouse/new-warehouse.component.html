@@ -79,20 +79,20 @@
             <label><input type="radio" name="optradio" [(ngModel)]="accountDetails.role" value="warehouse"> Warehouse</label>
           </div>
           <div class="radio">
-            <label><input type="radio" [(ngModel)]="accountDetails.role" name="optradio" value="manager" >Manager</label>
+            <label><input type="radio" [(ngModel)]="accountDetails.role" name="optradio" value="manager" > Manager</label>
           </div>
         </div>
         
         <div class="radio">
           <label for="radio">Select Type</label>
           <div class="radio">
-            <label><input type="radio" name="optradio" [(ngModel)]="accountDetails.type" value="static"> Static</label>
+            <label><input type="radio" name="type" [(ngModel)]="accountDetails.type" value="static"> Static</label>
           </div>
           <div class="radio">
-            <label><input type="radio" [(ngModel)]="accountDetails.type" name="optradio" value="dynamic" (click)="fetchWarehouseList()">Dynamic</label>
+            <label><input type="radio" [(ngModel)]="accountDetails.type" name="type" value="dynamic"> Dynamic</label>
           </div>
           <div class="radio">
-            <label><input type="radio" [(ngModel)]="accountDetails.type" name="optradio" value="cash counter" >Cash Counter</label>
+            <label><input type="radio" [(ngModel)]="accountDetails.type" name="type" value="cash counter" > Cash Counter</label>
           </div>
         </div>
 

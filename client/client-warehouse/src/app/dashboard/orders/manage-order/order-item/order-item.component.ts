@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-order-item',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderItemComponent implements OnInit {
 
+  @Input() orderItem: any;
+
+  showOrderDetails: boolean = true;
+
   constructor() { }
 
   ngOnInit() {
+
+  }
+
+  toggleShowDetails(){
+    this.showOrderDetails = !this.showOrderDetails;
   }
 
 }
