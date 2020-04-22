@@ -9,10 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WarehouseDetailsService {
@@ -31,6 +34,7 @@ public class WarehouseDetailsService {
         entityManager.detach(warehouseDetails);
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addNewWarehouse(WarehouseDetails warehouseDetails){
         returnObject = new HashMap<>();
         WarehouseDetails foundEmployee = warehouseRepository.findByWarehouseEmail(warehouseDetails.getWarehouseEmail());
@@ -39,11 +43,8 @@ public class WarehouseDetailsService {
             warehouseDetails.setPassword(encodedPassword);
             warehouseDetails.setStatus('y');
             warehouseRepository.save(warehouseDetails);
-            detachObject(warehouseDetails);
             userAuthRepository.save(new UserDetails(warehouseDetails.getWarehouseEmail(), encodedPassword, 1, warehouseDetails.getRole(), warehouseDetails.getPrimaryPhone()));
-            warehouseDetails.setPassword(null);
             returnObject.put("message", "success");
-            returnObject.put("data", warehouseDetails);
         }
         else {
             returnObject.put("message", "warehouse already exists");
@@ -52,6 +53,7 @@ public class WarehouseDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> updateWarehouseDetails(WarehouseDetails warehouseDetails) {
         returnObject = new HashMap<>();
         WarehouseDetails foundWarehouseDetails = warehouseRepository.findByWarehouseEmail(warehouseDetails.getWarehouseEmail());
@@ -70,6 +72,7 @@ public class WarehouseDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> deleteWarehouse(String email) {
         returnObject = new HashMap<>();
         WarehouseDetails foundWarehouseDetails = warehouseRepository.findByWarehouseEmail(email);
@@ -87,6 +90,7 @@ public class WarehouseDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> changePassword(ChangePasswordClass object) {
         returnObject = new HashMap<>();
         WarehouseDetails foundWarehouseDetails = warehouseRepository.findByWarehouseEmail(object.getEmail());
@@ -158,6 +162,13 @@ public class WarehouseDetailsService {
     public HashMap<String, Object> search(String query){
         returnObject = new HashMap<>();
         returnObject.put("data", warehouseRepository.findByWarehouseNameContaining(query));
+        return returnObject;
+    }
+
+    public HashMap<String, Object> getByState(String state) {
+        returnObject = new HashMap<>();
+        List<Object> warehouseList = warehouseRepository.findByState(state.toLowerCase());
+        returnObject.put("data", warehouseList);
         return returnObject;
     }
 }

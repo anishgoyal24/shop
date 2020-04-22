@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -54,6 +55,7 @@ public class PartyDetailsService {
 
 
 //  Add a new party
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addNewUser(PartyDetails partyDetails, Integer receivedOTP){
         returnObject = new HashMap<>();
         partyDetails.setPartyEmail(partyDetails.getPartyEmail().toLowerCase());
@@ -67,11 +69,8 @@ public class PartyDetailsService {
                 String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
                 partyDetails.setPassword(encodedPassword);
                 detailsRepository.save(partyDetails);
-                detachParty(partyDetails);
                 userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party", partyDetails.getPrimaryPhone()));
-                partyDetails.setPassword(null);
                 returnObject.put("message", "success");
-                returnObject.put("data", partyDetails);
                 return returnObject;
             }
             OTP otp = otpService.getOtp(partyDetails.getPartyEmail());
@@ -83,11 +82,8 @@ public class PartyDetailsService {
                 String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
                 partyDetails.setPassword(encodedPassword);
                 detailsRepository.save(partyDetails);
-                detachParty(partyDetails);
                 userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party", partyDetails.getPrimaryPhone()));
-                partyDetails.setPassword(null);
                 returnObject.put("message", "success");
-                returnObject.put("data", partyDetails);
             }
             else returnObject.put("message", "Wrong OTP. Please request a new OTP");
             if (otp!=null)otpService.deleteOtp(otp.getEmail());
@@ -100,6 +96,7 @@ public class PartyDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> updateUserDetails(PartyDetails partyDetails) {
         returnObject = new HashMap<>();
         PartyDetails foundPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
@@ -118,6 +115,7 @@ public class PartyDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> deleteUser(String email) {
         returnObject = new HashMap<>();
         PartyDetails foundPartyDetails = detailsRepository.findByPartyEmail(email);
@@ -135,6 +133,7 @@ public class PartyDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> changePassword(ChangePasswordClass object){
         returnObject = new HashMap<>();
         PartyDetails foundPartyDetails = detailsRepository.findByPartyEmail(object.getEmail());
@@ -164,6 +163,7 @@ public class PartyDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addDiscount(int partyId, float discount){
         returnObject = new HashMap<>();
         if (detailsRepository.findById(partyId).isPresent()){
@@ -194,6 +194,7 @@ public class PartyDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> sendOTP(String email){
         logger.info(email);
         returnObject = new HashMap<>();
@@ -213,6 +214,7 @@ public class PartyDetailsService {
         }
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> forgotPassword(Map<String, Object> body) {
         returnObject = new HashMap<>();
         OTP found = otpService.getOtp(body.get("email").toString());

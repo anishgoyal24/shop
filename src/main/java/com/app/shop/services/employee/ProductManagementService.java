@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -36,6 +37,7 @@ public class ProductManagementService {
         this.packingRepository = packingRepository;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addProduct(String itemDetail, MultipartFile image) {
         returnObject = new HashMap<>();
         ItemDetails itemDetails = null;
@@ -68,6 +70,7 @@ public class ProductManagementService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> deleteProduct(int itemId){
         returnObject = new HashMap<>();
         Optional<ItemDetails> optional = productManagementRepository.findById(itemId);
@@ -88,6 +91,7 @@ public class ProductManagementService {
 
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addPacking(ItemDetails itemDetails){
         returnObject = new HashMap<>();
         Optional<ItemDetails> optional = productManagementRepository.findById(itemDetails.getItemId());
@@ -116,6 +120,7 @@ public class ProductManagementService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> deletePacking(ItemDetails itemDetails){
         returnObject = new HashMap<>();
         Optional<ItemDetails> optional = productManagementRepository.findById(itemDetails.getItemId());
@@ -157,6 +162,7 @@ public class ProductManagementService {
         }
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> updateProduct(ItemDetails itemDetails){
         returnObject = new HashMap<>();
         Optional<ItemDetails> optional = productManagementRepository.findById(itemDetails.getItemId());
@@ -176,6 +182,7 @@ public class ProductManagementService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> enablePacking(Integer itemId, Integer packingId){
         returnObject = new HashMap<>();
         ItemDetails found = productManagementRepository.findById(itemId).isPresent()?productManagementRepository.findById(itemId).get():null;
@@ -192,6 +199,7 @@ public class ProductManagementService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addCategory(Integer itemId, Integer categoryId) {
         returnObject = new HashMap<>();
         ItemDetails found = productManagementRepository.findById(itemId).isPresent()?productManagementRepository.findById(itemId).get():null;
@@ -208,6 +216,7 @@ public class ProductManagementService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> removeCategory(Integer itemId, Integer categoryId) {
         returnObject = new HashMap<>();
         ItemDetails found = productManagementRepository.findById(itemId).isPresent()?productManagementRepository.findById(itemId).get():null;
@@ -224,6 +233,7 @@ public class ProductManagementService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> enableProduct(Integer itemId) {
         returnObject = new HashMap<>();
         Optional<ItemDetails> optional = productManagementRepository.findById(itemId);

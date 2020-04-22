@@ -5,6 +5,7 @@ import com.app.shop.repository.customer.DetailsRepository;
 import com.app.shop.repository.customer.PointsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +32,7 @@ public class PointsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addTransaction(PartyPoints partyPoints){
         returnObject = new HashMap<>();
         PartyPoints foundPartyPoints = pointsRepository.findByReferenceId(partyPoints.getReferenceId());

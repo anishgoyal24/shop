@@ -22,4 +22,7 @@ public interface WarehouseRepository extends JpaRepository<WarehouseDetails, Int
 
     @Query("select warehouse.warehouseId, warehouse.warehouseName, warehouse.warehouseEmail from WarehouseDetails warehouse where lower(warehouse.warehouseName) like %:name%")
     List<Object> findByWarehouseNameContaining(@Param("name") String name);
+
+    @Query("select warehouse.warehouseName, warehouse.warehouseId from WarehouseDetails warehouse where lower(warehouse.state.stateFullCode) =:state and warehouse.type='dynamic'")
+    List<Object> findByState(@Param("state") String state);
 }

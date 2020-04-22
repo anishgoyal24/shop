@@ -5,8 +5,10 @@ import com.app.shop.entity.OrderDetail;
 import com.app.shop.entity.OrderHeader;
 import com.app.shop.repository.warehouse.WarehouseOrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,7 +25,15 @@ public class WarehouseOrdersService {
 
     public HashMap<String, Object> getOrderHeader(Integer warehouseId){
         returnObject = new HashMap<>();
-        List<OrderHeader> orderHeaders = warehouseOrdersRepository.findByWarehouseDetailsWarehouseId(warehouseId);
+        List<OrderHeader> orderHeaders = warehouseOrdersRepository.findTop10ByWarehouseDetailsWarehouseIdOrderByOrderDateDesc(warehouseId);
+        returnObject.put("message", "success");
+        returnObject.put("data", orderHeaders);
+        return returnObject;
+    }
+
+    public HashMap<String, Object> getNextOrderHeader(Integer warehouseId, Date orderDate){
+        returnObject = new HashMap<>();
+        List<OrderHeader> orderHeaders = warehouseOrdersRepository.findNext10ByWarehouseDetails(warehouseId, orderDate, PageRequest.of(0, 10));
         returnObject.put("message", "success");
         returnObject.put("data", orderHeaders);
         return returnObject;

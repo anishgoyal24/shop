@@ -68,5 +68,11 @@ public class WarehouseDetailsController {
         return warehouseDetailsService.search(email);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager', 'ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    @GetMapping(value = "/by-state")
+    public HashMap<String, Object> getByState(@RequestParam("state") String state){
+        return warehouseDetailsService.getByState(state);
+    }
+
 
 }

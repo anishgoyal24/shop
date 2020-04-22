@@ -4,6 +4,7 @@ import com.app.shop.entity.PartyType;
 import com.app.shop.repository.employee.PartyTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,7 @@ public class PartyTypeService {
     private PartyTypeRepository partyTypeRepository;
     private HashMap<String, Object> returnObject;
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addPartyType(PartyType partyType){
         returnObject = new HashMap<>();
         PartyType foundPartyType = partyTypeRepository.findByType((partyType.getType()));
@@ -29,6 +31,7 @@ public class PartyTypeService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> deletePartyType(int id){
         returnObject = new HashMap<>();
         if (partyTypeRepository.findById(id).isPresent()){
@@ -54,6 +57,7 @@ public class PartyTypeService {
         return partyTypeRepository.findById(id).get();
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> enablePartyType(Integer partyId){
         returnObject = new HashMap<>();
         Optional<PartyType> optional = partyTypeRepository.findById(partyId);

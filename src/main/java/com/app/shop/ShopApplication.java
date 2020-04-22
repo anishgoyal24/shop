@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class })
 @ComponentScan(basePackages = {"com.app.shop"})
-@EnableEurekaClient
+//@EnableEurekaClient
 public class ShopApplication implements WebMvcConfigurer {
 
 	@Override

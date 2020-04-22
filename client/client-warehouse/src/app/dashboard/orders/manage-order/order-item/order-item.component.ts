@@ -14,7 +14,7 @@ export class OrderItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
+    
   }
 
   toggleShowDetails(){

@@ -5,6 +5,7 @@ import com.app.shop.repository.customer.DiscountRepository;
 import com.app.shop.services.customer.ItemPackingDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +27,7 @@ public class DiscountService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addDiscount(Discount discount){
         returnObject = new HashMap<>();
         Discount foundDiscount = discountRepository.findExistingDiscount(discount.getItemPackingDetails().getId());
@@ -39,6 +41,7 @@ public class DiscountService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> updateDiscount(Discount discount){
         returnObject = new HashMap<>();
         Discount foundDiscount = discountRepository.findExistingDiscount(discount.getItemPackingDetails().getId());
@@ -51,6 +54,7 @@ public class DiscountService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> deleteDiscount(Integer id){
         returnObject = new HashMap<>();
         if (discountRepository.findById(id).isPresent()){

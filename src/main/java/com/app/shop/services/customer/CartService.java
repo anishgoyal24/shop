@@ -7,6 +7,7 @@ import com.app.shop.repository.customer.CartRepository;
 import com.app.shop.services.warehouse.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +30,7 @@ public class CartService {
     }
 
 //  Add item to a cart
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addItem(Cart cart){
         returnObject = new HashMap<>();
 //      Check if item is already present in cart
@@ -50,6 +52,7 @@ public class CartService {
     }
 
 //  Delete item from cart
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> deleteItem(Cart cart){
         returnObject = new HashMap<>();
 //      Check if item is present in cart

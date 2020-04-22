@@ -35,6 +35,8 @@ export class ManageOrderComponent implements OnInit {
           else{
             reject(this.utilityService.rejectAsyncPromise("Unable to fetch orders!"));
           }
+        }).catch(()=>{
+          reject(this.utilityService.rejectAsyncPromise("Unable to fetch orders!"));
         })
       }))
     } catch (error) {

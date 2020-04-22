@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.HashMap;
 
 @RestController
@@ -26,6 +27,12 @@ public class WarehouseOrdersController {
     @GetMapping(value = "/getorders")
     public HashMap<String, Object> getOrderHeader(@RequestParam Integer warehouseId){
         return warehouseOrdersService.getOrderHeader(warehouseId);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
+    @GetMapping(value = "/getorders/next")
+    public HashMap<String, Object> getNextOrderHeader(@RequestParam Integer warehouseId, @RequestParam Date orderDate){
+        return warehouseOrdersService.getNextOrderHeader(warehouseId, orderDate);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")

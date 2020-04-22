@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,6 +32,7 @@ public class EmployeeDetailsService {
         entityManager.detach(employeeDetails);
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addNewEmployee(EmployeeDetails employeeDetails){
         returnObject = new HashMap<>();
         if (employeeDetails.getRole().equalsIgnoreCase("owner")){
@@ -43,11 +45,8 @@ public class EmployeeDetailsService {
             employeeDetails.setPassword(encodedPassword);
             employeeDetails.setStatus('y');
             employeeRepository.save(employeeDetails);
-            detachObject(employeeDetails);
             userAuthRepository.save(new UserDetails(employeeDetails.getEmpEmail(), encodedPassword, 1, employeeDetails.getRole(), employeeDetails.getPrimaryPhone()));
-            employeeDetails.setPassword(null);
             returnObject.put("message", "success");
-            returnObject.put("data", employeeDetails);
         }
         else {
             returnObject.put("message", "employee already exists");
@@ -56,6 +55,7 @@ public class EmployeeDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> updateEmployeeDetails(EmployeeDetails employeeDetails) {
         returnObject = new HashMap<>();
         EmployeeDetails foundEmployeeDetails = employeeRepository.findByEmpEmail(employeeDetails.getEmpEmail());
@@ -74,6 +74,7 @@ public class EmployeeDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> deleteEmployee(String email) {
         returnObject = new HashMap<>();
         EmployeeDetails foundEmployeeDetails = employeeRepository.findByEmpEmail(email);
@@ -91,6 +92,7 @@ public class EmployeeDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> changePassword(ChangePasswordClass object) {
         returnObject = new HashMap<>();
         EmployeeDetails foundEmployeeDetails = employeeRepository.findByEmpEmail(object.getEmail());
@@ -114,6 +116,7 @@ public class EmployeeDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> updateRole(String email, String role){
         returnObject = new HashMap<>();
         EmployeeDetails foundEmployee = employeeRepository.findByEmpEmail(email);
@@ -129,6 +132,7 @@ public class EmployeeDetailsService {
         return returnObject;
     }
 
+    @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> changeStatus(String email, String status) {
         returnObject = new HashMap<>();
         EmployeeDetails foundEmployee = employeeRepository.findByEmpEmail(email);
