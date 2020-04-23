@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
     private utilityService: UtilityService
   ) { }
 
-  userName: String;
-  password: String;
+  userName: string;
+  password: string;
 
   isLoading$ = new BehaviorSubject(false);
 
@@ -52,10 +52,15 @@ export class LoginComponent implements OnInit {
               if (res.headers.get('Authorization')) {
                 //this.snotifyService.success('Example body content');
                 sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
-                sessionStorage.setItem("email", res.headers.get("Email"));
-                this.isLoading$.next(false);
-                this.router.navigate(['/dashboard', 'overview']);
-                resolve(this.utilityService.resolveAsyncPromise(`Welcome back ${userData.username}!`))
+                this.getDetails(this.userName).then(()=>{
+                  let empName = sessionStorage.getItem('empName');
+                  this.isLoading$.next(false);
+                  this.router.navigate(['/dashboard', 'overview']);
+                  resolve(this.utilityService.resolveAsyncPromise('Welcome back! ' + empName));
+                });
+                // this.isLoading$.next(false);
+                // this.router.navigate(['/dashboard', 'overview']);
+                // resolve(this.utilityService.resolveAsyncPromise(`Welcome back ${userData.username}!`))
               }
 
             }, (err) => {
@@ -69,6 +74,28 @@ export class LoginComponent implements OnInit {
     } catch (err) {
       console.log('Internal Server Error, please try again later!');
     }
+  }
+
+
+  getDetails(username: string){
+    return new Promise((resolve, reject)=>{
+      this.adminService.getDetails(username)
+      .then((res)=>{
+      if (res['message']=='found'){
+        var userDetails = res['data'];
+        sessionStorage.setItem("empEmail", userDetails['empEmail']);
+        sessionStorage.setItem("primaryPhone", userDetails['primaryPhone']);
+        sessionStorage.setItem("state", userDetails['state']['stateFullCode']);
+        sessionStorage.setItem("city", userDetails['city']);
+        sessionStorage.setItem("empId", userDetails['empId']);
+        sessionStorage.setItem("empName", userDetails['empName']);
+        resolve();
+      }
+    }).catch((err)=>{
+      console.log(err);
+      reject();
+    })
+    })
   }
 
 }

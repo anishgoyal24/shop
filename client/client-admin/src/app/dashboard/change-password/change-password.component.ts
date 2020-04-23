@@ -24,6 +24,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.object.email = sessionStorage.getItem("empEmail");
   }
 
   changePassword(object: Object){

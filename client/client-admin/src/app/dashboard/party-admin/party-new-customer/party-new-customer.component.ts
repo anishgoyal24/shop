@@ -3,6 +3,7 @@ import { PartyService } from 'src/shared/services/party.service';
 import { PartyHomeComponent } from '../../party/party-home/party-home.component';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { UtilityService } from 'src/shared/services/utility.service';
+import { CommonService } from 'src/shared/services/common.service';
 
 @Component({
   selector: 'app-party-new-customer',
@@ -13,12 +14,14 @@ export class PartyNewCustomerComponent implements OnInit {
 
   constructor(
     private partyService: PartyService,
-    private utilityService: UtilityService) { }
+    private utilityService: UtilityService,
+    private commonService: CommonService
+    ) { }
   
   /**
    * Defining account details object for which a new account will be created
    */
-  accountDetails: {partyName: string, partyEmail: string, contactPerson: string,  primaryPhone: Number, secondaryPhone: Number, address: string, city: string, state: string, country: string, pincode: number, password: string, partyType: any} = {
+  accountDetails: {partyName: string, partyEmail: string, contactPerson: string,  primaryPhone: Number, secondaryPhone: Number, address: string, city: string, state: any, country: any, pincode: number, password: string, partyType: any} = {
     partyName: null,
     partyEmail: null,
     primaryPhone: null,
@@ -26,14 +29,26 @@ export class PartyNewCustomerComponent implements OnInit {
     contactPerson: null,
     address: null,
     city: null,
-    state: null,
-    country: null,
+    state: {
+      stateFullCode: null
+    },
+    country: {
+      countryCode3: null
+    },
     pincode: null,
     password: null,
     partyType: {
       id: 0
     }
   }
+
+  countriesList = [];
+
+  statesList = [];
+
+  selectedCountry: string;
+
+  selectedState: string;
 
   partyHomeComponent = new PartyHomeComponent(this.partyService);
 
@@ -49,6 +64,7 @@ export class PartyNewCustomerComponent implements OnInit {
     .finally(()=> this.isLoading$.next(false))
     this.parties = this.parties.filter(party=> party.status === 'y');
     console.log(this.parties)
+    this.getCountriesList();
   }
 
   async sendOTP(email: string){
@@ -78,6 +94,31 @@ export class PartyNewCustomerComponent implements OnInit {
       })
       .catch(()=> reject(this.utilityService.rejectAsyncPromise('Oops, an error occured, please try again!')))
     }))
+  }
+
+  getCountriesList(){
+    new Promise((resolve, reject)=>{
+      this.commonService.getCountries().then((res)=>{
+        this.countriesList = res['data'];
+        resolve();
+      }).catch((err)=>{
+        console.log(err);
+        reject();
+      })
+    })
+  }
+
+
+  getStatesList(country: string){
+    new Promise((resolve, reject)=>{
+      this.commonService.getStates(country).then((res)=>{
+        this.statesList = res['data'];
+        resolve();
+      }).catch((err)=>{
+        console.log(err);
+        reject();
+      })
+    })
   }
 
 }

@@ -45,12 +45,7 @@
                     </div>
 
                     <div class="form-group">
-                        <p><b>Address: </b>{{ this.party?.address }}, {{ this.party?.city }}, {{ this.party?.state }}, {{ this.party?.country }} - {{ this.party?.pincode }}</p>
-                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.address">
-                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.city">
-                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.state">
-                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.country">
-                        <input *ngIf="this.party.edit" class="form-control" [(ngModel)]="this.party.pincode">
+                        <p><b>Address: </b>{{ this.party?.address }}, {{ this.party?.city }}, {{ this.party?.state.stateName }}, {{ this.party?.country.countryName }} - {{ this.party?.pincode }}</p>
                     </div>
 
                     <div class="form-group">

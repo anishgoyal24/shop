@@ -39,13 +39,8 @@
                         <input *ngIf="this.warehouse.edit" class="form-control" [(ngModel)]="this.warehouse.personOfContact">
                     </div>
 
-                    <div class="form-group">
-                        <p><b>Address: </b>{{ this.warehouse?.address }}, {{ this.warehouse?.city }}, {{ this.warehouse?.state }}, {{ this.warehouse?.country }} - {{ this.warehouse?.pincode }}</p>
-                        <input *ngIf="this.warehouse.edit" class="form-control" [(ngModel)]="this.warehouse.address">
-                        <input *ngIf="this.warehouse.edit" class="form-control" [(ngModel)]="this.warehouse.city">
-                        <input *ngIf="this.warehouse.edit" class="form-control" [(ngModel)]="this.warehouse.state">
-                        <input *ngIf="this.warehouse.edit" class="form-control" [(ngModel)]="this.warehouse.country">
-                        <input *ngIf="this.warehouse.edit" class="form-control" [(ngModel)]="this.warehouse.pincode">
+                    <div class="form-group" *ngIf="this.warehouse?.type!='dynamic'">
+                        <p><b>Address: </b>{{ this.warehouse?.address }}, {{ this.warehouse?.city }}, {{ this.warehouse?.state.stateName }}, {{ this.warehouse?.country.countryName }} - {{ this.warehouse?.pincode }}</p>
                     </div>
 
                     <div class="form-group">

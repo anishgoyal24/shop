@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UtilityService } from 'src/shared/services/utility.service';
 import { AdminService } from 'src/shared/services/admin.service';
 import { SubSink } from 'subsink';
+import { CommonService } from 'src/shared/services/common.service';
 
 @Component({
   selector: 'app-new-accounts',
@@ -12,20 +13,25 @@ export class NewAccountsComponent implements OnInit {
 
   constructor(
     private utilityService: UtilityService,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private commonService: CommonService
   ) { }
 
   /**
    * Defining account details object for which a account will be created
    */
-  accountDetails: {empName: string, empEmail: string, primaryPhone: Number, address: string, city: string, state: string, country: string, pincode: number, password: string, role: string} = {
+  accountDetails: {empName: string, empEmail: string, primaryPhone: Number, address: string, city: string, state: any, country: any, pincode: number, password: string, role: string} = {
     empName: null,
     empEmail: null,
     primaryPhone: null,
     address: null,
     city: null,
-    state: null,
-    country: null,
+    state: {
+      stateFullCode: null
+    },
+    country: {
+      countryCode3: null
+    },
     pincode: null,
     password: null,
     role: null
@@ -34,11 +40,24 @@ export class NewAccountsComponent implements OnInit {
   // UNSUBSCRIBE THE DATA
   private subSink = new SubSink();
 
+  // Countries List
+  countriesList = [];
+
+  // States List
+  statesList = [];
+
+  // Selected Country
+  selectedCountry: string;
+
+  // Selected State
+  selectedState: string;
+
   // EMPLOYEES DATA
   employees: any;
 
   async ngOnInit() {
     this.adminService.currentData.subscribe((res)=> this.employees = res);
+    this.getCountriesList();
   }
 
   /**
@@ -65,6 +84,31 @@ export class NewAccountsComponent implements OnInit {
       console.log('There\'s some unexpected error occurred, please try again later!', err);
       this.utilityService.errorNotification('There\'s some unexpected error occurred, please try again later!');
     }
+  }
+
+  getCountriesList(){
+    new Promise((resolve, reject)=>{
+      this.commonService.getCountries().then((res)=>{
+        this.countriesList = res['data'];
+        resolve();
+      }).catch((err)=>{
+        console.log(err);
+        reject();
+      })
+    })
+  }
+
+
+  getStatesList(country: string){
+    new Promise((resolve, reject)=>{
+      this.commonService.getStates(country).then((res)=>{
+        this.statesList = res['data'];
+        resolve();
+      }).catch((err)=>{
+        console.log(err);
+        reject();
+      })
+    })
   }
 
   /**
