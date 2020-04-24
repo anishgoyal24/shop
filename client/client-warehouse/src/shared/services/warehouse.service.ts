@@ -31,6 +31,6 @@ export class WarehouseService {
       params: {
         email: email
       }
-    });
+    }).toPromise();
   }
 }

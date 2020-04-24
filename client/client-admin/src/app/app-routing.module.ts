@@ -62,6 +62,12 @@ import { WarehouseHomeComponent } from './dashboard/warehouse/warehouse-home/war
 import { NewWarehouseComponent } from './dashboard/warehouse/new-warehouse/new-warehouse.component';
 import { ManageWarehouseComponent } from './dashboard/warehouse/manage-warehouse/manage-warehouse.component';
 
+// Pincode Mapping
+import { PincodeMappingComponent } from './dashboard/pincode-mapping/pincode-mapping.component';
+import { PincodeMappingHomeComponent } from './dashboard/pincode-mapping/pincode-mapping-home/pincode-mapping-home.component';
+import { NewPincodeMappingComponent } from './dashboard/pincode-mapping/new-pincode-mapping/new-pincode-mapping.component';
+import { ManagePincodeMappingComponent } from './dashboard/pincode-mapping/manage-pincode-mapping/manage-pincode-mapping.component';
+
 import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
 
 // !!!----- GUARDS -----!!!
@@ -134,6 +140,15 @@ const routes: Routes = [
           { path: 'new', component: NewAccountsComponent },
           { path: 'manage', component: ManageAccountsComponent } ,
           { path: 'roles', component: RolesComponent },
+        ]
+      },
+
+      // Pincode Mapping
+      { path: 'pincode-mapping', component: PincodeMappingComponent,
+        children: [
+          { path: 'home', component: PincodeMappingHomeComponent },
+          { path: 'new', component: NewPincodeMappingComponent },
+          { path: 'manage', component: ManagePincodeMappingComponent }
         ]
       },
 

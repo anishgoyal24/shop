@@ -146,6 +146,11 @@ import { NewWarehouseComponent } from './dashboard/warehouse/new-warehouse/new-w
 import { ManageSectionComponent } from './common/manage-section/manage-section.component';
 import { ForgotPasswordComponent } from './dashboard/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
+import { PincodeMappingComponent } from './dashboard/pincode-mapping/pincode-mapping.component';
+import { PincodeMappingHomeComponent } from './dashboard/pincode-mapping/pincode-mapping-home/pincode-mapping-home.component';
+import { NewPincodeMappingComponent } from './dashboard/pincode-mapping/new-pincode-mapping/new-pincode-mapping.component';
+import { PincodeMappingHeaderComponent } from './dashboard/pincode-mapping/pincode-mapping-header/pincode-mapping-header.component';
+import { ManagePincodeMappingComponent } from './dashboard/pincode-mapping/manage-pincode-mapping/manage-pincode-mapping.component';
 
 
 
@@ -217,7 +222,12 @@ import { ChangePasswordComponent } from './dashboard/change-password/change-pass
     NewWarehouseComponent,
     ManageSectionComponent,
     ForgotPasswordComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    PincodeMappingComponent,
+    PincodeMappingHomeComponent,
+    NewPincodeMappingComponent,
+    PincodeMappingHeaderComponent,
+    ManagePincodeMappingComponent
   ],
   imports: [
     BrowserModule,

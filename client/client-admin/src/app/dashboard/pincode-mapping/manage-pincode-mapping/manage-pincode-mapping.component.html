@@ -1,0 +1,28 @@
+<div class="card-media">
+    <div class="container">
+        <h1><b>Manage Mappings</b></h1>
+        <div class="form-group has-search">
+            <i class="material-icons form-control-feedback">
+                search
+            </i>
+            <input type="text" class="form-control" placeholder="Search Mappings By Pincode" [(ngModel)]="searchQuery" (keyup)="search(searchQuery)">
+        </div>
+
+        <div class="media card-tile user-list" *ngFor="let mapping of mappingList">
+            <div class="media-body">
+                <div class="float-left">
+                    <h6>Pincode: {{ mapping.pincode }}</h6>
+                    <h6>Warehouse: {{ mapping.warehouseDetails.warehouseName }}</h6>
+                </div>
+                <div class="float-right">
+                    <button *ngIf="mapping.enabled==1" class="btn btn-danger" (click)="toggle(mapping)">Disable</button>
+                    <button *ngIf="mapping.enabled==0" class="btn btn-primary" (click)="toggle(mapping)">Enable</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; text-decoration: underline;" *ngIf="mappingList.length==10">
+            <a (click)="getNext10(mappingList[9].id)">Next</a>
+        </div>
+    </div>
+</div>

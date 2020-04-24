@@ -1,0 +1,38 @@
+<div class="card-media">
+    <div class="container">
+      <h1><b>Generate New Mapping</b></h1>
+      <ng-container>
+        <div class="form-group">
+          <label for="pincode">Pincode</label>
+          <input type="number" class="form-control" id="fullName" placeholder="Enter Pincode" name="pincode" [(ngModel)]="pincodeWarehouseMapping.pincode">
+        </div>
+        
+        <div class="form-group has-search">
+            <i class="material-icons form-control-feedback">
+                search
+            </i>
+            <input type="text" class="form-control" placeholder="Search Warehouse" [(ngModel)]="warehouseQuery" (keyup)="searchWarehouse(warehouseQuery)">
+        </div>
+
+        <div class="media card-tile user-list" *ngFor="let warehouse of warehouseList">
+            <div class="media-body">
+                <div class="float-left">
+                    <h6>{{ warehouse[1] }}</h6>
+                    <p>Email: {{ warehouse[2] }}</p>
+                </div>
+                <div class="float-right">
+                    <button class="btn btn-primary" (click)="pincodeWarehouseMapping.warehouseDetails.warehouseId = warehouse[0]; warehouseList = []; this.selectedWarehouseName = warehouse[1]">Select</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" *ngIf="pincodeWarehouseMapping.warehouseDetails.warehouseId">
+            <p><strong>Selected Warehouse:</strong> {{ this.selectedWarehouseName }}</p>
+        </div>
+        
+        <button type="submit" class="btn btn-primary form-control" (click)="createMapping()">Submit</button>
+    </ng-container>
+  
+  
+  </div>
+  </div>

@@ -37,4 +37,11 @@ export class WarehouseService {
     }).toPromise();
   }
 
+  search(query: string){
+    var params = new HttpParams().set("email", query);
+    return this._http.get(environment.BASE_URL_API + '/warehouse/search', {
+      params: params
+    }).toPromise();
+  }
+
 }

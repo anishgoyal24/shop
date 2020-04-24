@@ -54,11 +54,12 @@ export class LoginComponent implements OnInit {
 
             if (res.headers.get('Authorization')) {
               sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
-              this.isLoading$.next(false);
-              this.router.navigate(['/dashboard', 'overview']);
-              this.getDetails(userData.username);
-              let warehouseName = sessionStorage.getItem("warehouseName");
-              resolve(this.utilityService.resolveAsyncPromise(`Welcome back ` + "!"));
+              this.getDetails(this.username).then(()=>{
+                this.isLoading$.next(false);
+                this.router.navigate(['/dashboard', 'overview']);
+                const warehouseName = sessionStorage.getItem("warehouseName");
+                resolve(this.utilityService.resolveAsyncPromise(`Welcome back ${warehouseName}` + "!"));
+              });
             }
           },)
           .catch( (err)=>{
@@ -73,16 +74,20 @@ export class LoginComponent implements OnInit {
 
 
   getDetails(email: string){
-    this.warehouseService.getDetails(email).subscribe((res: Response)=>{
-      if (res['message'] == "success"){
-        sessionStorage.setItem("warehouseEmail", res["data"]["warehouseEmail"]);
-        sessionStorage.setItem("warehouseId", res["data"]["warehouseId"]);
-        sessionStorage.setItem("primaryPhone", res["data"]["primaryPhone"]);
-        sessionStorage.setItem("warehouseName", res["data"]["warehouseName"]);
-        sessionStorage.setItem("type", res["data"]["type"]);
-      }
-    }, (err)=>{
-      console.log(err);
-    })
+    return new Promise((resolve, reject)=>{
+      this.warehouseService.getDetails(email).then((res: Response)=>{
+        if (res['message'] == "success"){
+          sessionStorage.setItem("warehouseEmail", res["data"]["warehouseEmail"]);
+          sessionStorage.setItem("warehouseId", res["data"]["warehouseId"]);
+          sessionStorage.setItem("primaryPhone", res["data"]["primaryPhone"]);
+          sessionStorage.setItem("warehouseName", res["data"]["warehouseName"]);
+          sessionStorage.setItem("type", res["data"]["type"]);
+          resolve();
+        }
+      }).catch((err)=>{
+        console.log(err);
+        reject();
+      })
+    });
   }
 }
