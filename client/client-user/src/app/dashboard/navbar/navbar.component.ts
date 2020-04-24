@@ -20,4 +20,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
+  openCart(){
+    this.router.navigate(['cart']);
+  }
+
 }

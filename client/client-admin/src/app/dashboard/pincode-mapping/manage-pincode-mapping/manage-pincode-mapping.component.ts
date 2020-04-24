@@ -68,7 +68,7 @@ export class ManagePincodeMappingComponent implements OnInit {
           reject(this.utilityService.rejectAsyncPromise(`There was some error ${toggle} mappings! Please try again later.`));
         })
       }))
-    } catch (error) {
+    } catch (error) {;
       console.log(error);
     }
   }
