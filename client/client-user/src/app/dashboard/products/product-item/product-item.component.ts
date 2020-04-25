@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ProductService } from 'src/shared/services/product.service';
 
 @Component({
   selector: 'app-product-item',
@@ -9,7 +10,9 @@ export class ProductItemComponent implements OnInit {
 
   @Input() product: any;
 
-  constructor() { }
+  constructor(
+    private productService: ProductService
+  ) { }
 
   cartItem = {
     partyDetails: {
@@ -21,6 +24,8 @@ export class ProductItemComponent implements OnInit {
     quantity: 0,
     price: 0
   }
+
+  productAvailable:  boolean;
 
   expanded: boolean = false;
 
@@ -44,6 +49,26 @@ export class ProductItemComponent implements OnInit {
 
   print(){
     console.log(this.cartItem);
+  }
+
+  getPriceAndStock(id: any){
+    try {
+      const pincode = sessionStorage.getItem("pincode");
+      this.productService.getPriceAndStock(id, pincode).then((res: any)=>{
+        if (res['message']=='success'){
+          console.log(res);
+          this.cartItem.price = res.price;
+          this.productAvailable = true;
+        }
+        else{
+          this.productAvailable = false;
+        }
+      }).catch((err)=>{
+        console.log(err);
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 }

@@ -12,13 +12,17 @@
         </div>
         <div class="row" [hidden]="!expanded">
             <div class="float-left" id="details">
-                <button class="btn btn-secondary" *ngFor="let itemPacking of product.itemPackingDetails" (click)="selectedPacking=itemPacking.size; cartItem.itemPackingDetails.id=itemPacking.id; print();">{{ itemPacking.size + 'kg'}}</button>
+                <button class="btn btn-secondary" *ngFor="let itemPacking of product.itemPackingDetails" (click)="selectedPacking=itemPacking.size; cartItem.itemPackingDetails.id=itemPacking.id; getPriceAndStock(itemPacking.id);">{{ itemPacking.size + 'kg'}}</button>
                 <p *ngIf="selectedPacking"><strong>Selected Packing: </strong>{{ selectedPacking + 'kg'}}</p>
             </div>
-            <div class="float-right">
+            <div class="float-right" [hidden]="!productAvailable">
+                <p><strong>Price: </strong>Rs.{{ cartItem.price }}</p>
                 <label for="quantity">Quantity: </label>
                 <input type="number" name="quantity" id="" style="width: 80px;" placeholder="0" min="0">
                 <button class="btn btn-primary">Add to Cart</button>
+            </div>
+            <div>
+                <p style="color: red;" style="display: none;" [hidden]="!productAvailable">This item is not available in your area!</p>
             </div>
         </div>
     </div>

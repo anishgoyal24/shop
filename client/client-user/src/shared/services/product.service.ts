@@ -19,4 +19,12 @@ export class ProductService {
       responseType: 'json'
     }).toPromise();
   }
+
+  getPriceAndStock(itemId: any, pincode: any){
+    let params = new HttpParams().set("itemId", itemId).set("pincode", pincode);
+    return this.http.get(environment.ORDERS_API + '/product/get-price-stock', {
+      params: params
+    }).toPromise();
+  }
+
 }
