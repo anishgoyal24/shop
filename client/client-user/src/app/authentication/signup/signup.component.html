@@ -1,6 +1,6 @@
-<div class="card-media">
+
     <div class="container">
-      <h1><b>Generate New Account</b></h1>
+      <h1><b>Create New Account</b></h1>
       <ng-container *ngIf="!(isLoading$ | async)">
         <div class="form-group">
           <label for="fullName">Full Name</label>
@@ -82,6 +82,4 @@
         </div>
         <button type="submit" class="btn btn-primary form-control" (click)="createAccount(accountDetails)" [disabled]="!otpRequested">Submit</button>
     </ng-container>
-  
-  
   </div>
