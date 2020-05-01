@@ -1,6 +1,7 @@
 package com.app.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,6 +42,7 @@ public class OrderHeader {
     @Column(name = "delivery_date")
     private Date deliveryDate;
     @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany
     @JoinColumn(name = "order_id", referencedColumnName = "order_id")
     private List<OrderDetail> orderDetails;

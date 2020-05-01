@@ -5,10 +5,13 @@ import com.app.shop.entity.ItemPackingDetails;
 import com.app.shop.entity.PartyDetails;
 import com.app.shop.repository.customer.CartRepository;
 import com.app.shop.services.warehouse.StockService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +23,8 @@ public class CartService {
     private StockService stockService;
     private PartyDetailsService partyDetailsService;
     private ItemPackingDetailsService itemPackingDetailsService;
+
+    Logger logger = LoggerFactory.getLogger(CartService.class);
 
     @Autowired
     public CartService(CartRepository cartRepository, StockService stockService, PartyDetailsService partyDetailsService, ItemPackingDetailsService itemPackingDetailsService) {
@@ -34,10 +39,10 @@ public class CartService {
     public HashMap<String, Object> addItem(Cart cart){
         returnObject = new HashMap<>();
 //      Check if item is already present in cart
-        Cart foundItem = cartRepository.findByPartyDetailsPartyIdAndItemPackingDetailsId(cart.getPartyDetails().getPartyId(), cart.getItemPackingDetails().getId());
+         Cart foundItem = cartRepository.findByPartyDetailsPartyIdAndItemPackingDetailsId(cart.getPartyDetails().getPartyId(), cart.getItemPackingDetails().getId());
         if (foundItem==null){
 //          Not present then add
-            cart.setPartyDetails((PartyDetails)partyDetailsService.getDetails(cart.getPartyDetails().getPartyEmail()).get("data"));
+            cart.setPartyDetails(partyDetailsService.findById(cart.getPartyDetails().getPartyId()));
             cart.setItemPackingDetails(itemPackingDetailsService.getDetails(cart.getItemPackingDetails().getId()));
             cartRepository.save(cart);
         }
@@ -77,14 +82,22 @@ public class CartService {
     }
 
 //  Retrieve cart details
-    public HashMap<String, Object> getCart(String username, String state){
+    @Transactional(rollbackFor = Exception.class)
+    public HashMap<String, Object> getCart(Integer partyId, String state){
         returnObject = new HashMap<>();
-        List<Cart> cart = cartRepository.findByPartyDetailsPartyEmail(username);
+        List<Cart> cart = cartRepository.findByPartyDetailsPartyId(partyId);
+        List<Object> carts = new ArrayList<>();
         for (Cart item : cart){
-            item.setPrice(stockService.getItemPrice(state, item.getId()));
+            HashMap<String, Object> cartItem = new HashMap<>();
+            item.setPrice(stockService.getItemPrice(state, item.getItemPackingDetails().getId()));
+            cartItem.put("item", item);
+            cartItem.put("product", item.getItemPackingDetails().getItemDetails().getItemName());
+            cartItem.put("image", item.getItemPackingDetails().getItemDetails().getImage());
+            carts.add(cartItem);
         }
+        cartRepository.saveAll(cart);
         returnObject.put("message", "success");
-        returnObject.put("data", cart);
+        returnObject.put("data", carts);
         return returnObject;
     }
 }

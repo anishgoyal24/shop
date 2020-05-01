@@ -235,4 +235,8 @@ public class PartyDetailsService {
         }
         return returnObject;
     }
+
+    public PartyDetails findById(Integer id){
+        return detailsRepository.findByPartyId(id);
+    }
 }
