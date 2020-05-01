@@ -57,6 +57,8 @@ export class LoginComponent implements OnInit {
                   this.isLoading$.next(false);
                   this.router.navigate(['/dashboard', 'overview']);
                   resolve(this.utilityService.resolveAsyncPromise('Welcome back! ' + empName));
+                }).catch((err)=>{
+                  reject(this.utilityService.rejectAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
                 });
                 // this.isLoading$.next(false);
                 // this.router.navigate(['/dashboard', 'overview']);
@@ -91,6 +93,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("empName", userDetails['empName']);
         resolve();
       }
+      else reject();
     }).catch((err)=>{
       console.log(err);
       reject();

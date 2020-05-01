@@ -86,8 +86,8 @@ export class AdminService {
     return this.httpClient.post(environment.BASE_URL_API + '/employee/changepassword', object).toPromise();
   }
 
-  getDetails(email: string){
-    var params = new HttpParams().set("email", email);
+  getDetails(username: string){
+    var params = new HttpParams().set("username", username);
     return this.httpClient.get(environment.BASE_URL_API + '/employee/get', {
       params: params
     }).toPromise();

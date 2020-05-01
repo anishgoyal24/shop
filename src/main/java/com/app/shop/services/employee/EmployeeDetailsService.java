@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.HashMap;
+import java.util.Optional;
 
 @Service
 public class EmployeeDetailsService {
@@ -152,9 +153,15 @@ public class EmployeeDetailsService {
         return returnObject;
     }
 
-    public HashMap<String, Object> getDetails(String email) {
+    public HashMap<String, Object> getDetails(String username) {
+        EmployeeDetails employeeDetails = employeeRepository.findByEmpEmail(username);
+        if (employeeDetails==null) employeeDetails = employeeRepository.findByPrimaryPhone(username);
         returnObject = new HashMap<>();
-        returnObject.put("data", employeeRepository.findByEmpEmail(email));
+        if (employeeDetails!=null){
+            returnObject.put("message", "found");
+            returnObject.put("data", employeeDetails);
+        }
+        else returnObject.put("message", "not found");
         return returnObject;
     }
 

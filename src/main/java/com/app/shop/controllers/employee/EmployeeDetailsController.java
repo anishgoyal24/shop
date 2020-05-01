@@ -66,7 +66,7 @@ public class EmployeeDetailsController {
 
     @GetMapping(value = "/get")
     @PreAuthorize(value = "hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
-    public HashMap<String, Object> changePassword(@RequestParam String email){
-        return employeeDetailsService.getDetails(email);
+    public HashMap<String, Object> getDetails(@RequestParam String username){
+        return employeeDetailsService.getDetails(username);
     }
 }
