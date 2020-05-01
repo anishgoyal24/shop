@@ -18,8 +18,8 @@
             <div class="float-right" [hidden]="!productAvailable">
                 <p><strong>Price: </strong>Rs.{{ cartItem.price }}</p>
                 <label for="quantity">Quantity: </label>
-                <input type="number" name="quantity" id="" style="width: 80px;" placeholder="0" min="0">
-                <button class="btn btn-primary">Add to Cart</button>
+                <input type="number" name="quantity" id="" style="width: 80px;" placeholder="0" min="0" [(ngModel)]="cartItem.quantity">
+                <button class="btn btn-primary" (click)="addToCart()">Add to Cart</button>
             </div>
             <div>
                 <p style="color: red;" style="display: none;" [hidden]="!productAvailable">This item is not available in your area!</p>

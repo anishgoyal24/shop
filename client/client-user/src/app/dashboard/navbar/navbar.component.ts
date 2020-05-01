@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   }
 
   openCart(){
-    this.router.navigate(['cart']);
+    this.router.navigate(['dashboard', 'cart']);
   }
 
 }

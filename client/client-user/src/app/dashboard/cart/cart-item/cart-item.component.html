@@ -1,0 +1,15 @@
+<div class="media tile-card">
+    <div class="media-body">
+        <div class="float-left">
+            <h6><strong>{{ cartItem.product }}</strong></h6>
+            <p><strong>Size: </strong>{{ cartItem.item.itemPackingDetails.size + 'kg'}}</p>
+            <p><strong>Quantity: </strong>{{ cartItem.item.quantity }}</p>
+            <p><strong>Price (per piece): </strong>{{ cartItem.item.price }}</p>
+        </div>
+        <div class="float-right">
+            <button class="btn btn-danger">-</button>
+            <input type="number" name="quantity" id="" [(ngModel)]="cartItem.quantity" min="0" style="width: 40px;">
+            <button class="btn btn-primary">+</button>
+        </div>
+    </div>
+</div>

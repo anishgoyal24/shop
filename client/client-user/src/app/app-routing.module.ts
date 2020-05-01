@@ -14,6 +14,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 // !!!---Products---!!!
 import { ProductsComponent } from './dashboard/products/products.component';
 
+// !!!---Cart---!!!
+import { CartComponent } from './dashboard/cart/cart.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -23,7 +26,10 @@ const routes: Routes = [
     children: [
 
       // Products
-      { path: 'products', component: ProductsComponent }
+      { path: 'products', component: ProductsComponent },
+
+      //  Cart
+      { path: 'cart', component: CartComponent }
     ]
   }
 ];

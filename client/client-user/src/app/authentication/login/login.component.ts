@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
         var userDetails = res['data'];
         sessionStorage.setItem("partyEmail", userDetails['partyEmail']);
         sessionStorage.setItem("primaryPhone", userDetails['primaryPhone']);
-        sessionStorage.setItem("state", userDetails['state']);
+        sessionStorage.setItem("state", userDetails['state']['stateFullCode']);
         sessionStorage.setItem("city", userDetails['city']);
         sessionStorage.setItem("partyType", userDetails['partyType']['type']);
         sessionStorage.setItem("partyId", userDetails['partyId']);

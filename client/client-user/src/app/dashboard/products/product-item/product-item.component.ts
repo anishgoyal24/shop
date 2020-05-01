@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductService } from 'src/shared/services/product.service';
+import { CartService } from 'src/shared/services/cart.service';
+import { UtilityService } from 'src/shared/services/utility.service';
 
 @Component({
   selector: 'app-product-item',
@@ -11,7 +13,9 @@ export class ProductItemComponent implements OnInit {
   @Input() product: any;
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService,
+    private utilityService: UtilityService
   ) { }
 
   cartItem = {
@@ -35,7 +39,7 @@ export class ProductItemComponent implements OnInit {
 
   ngOnInit() {
     var partyId = sessionStorage.getItem("partyId");
-    this.cartItem.partyDetails.partyId = partyId;
+    this.cartItem.partyDetails.partyId = Number(partyId);
     console.log(this.product);
   }
 
@@ -68,6 +72,24 @@ export class ProductItemComponent implements OnInit {
       })
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  addToCart(){
+    console.log(this.cartItem);
+    try {
+      this.utilityService.asyncNotification("Adding to cart...", new Promise((resolve, reject)=>{
+        this.cartService.addToCart(this.cartItem).then((res)=>{
+          if (res['message']=='success'){
+            resolve(this.utilityService.resolveAsyncPromise("Successfully added item to cart!"));
+          }
+          else reject(this.utilityService.rejectAsyncPromise("Error adding item to cart!"));
+        }).catch((err)=>{
+          reject(this.utilityService.rejectAsyncPromise("Error adding item to cart!"));
+        })
+      }))
+    } catch (error) {
+      this.utilityService.errorNotification("Some error occurred!");
     }
   }
 
