@@ -21,4 +21,6 @@ public class PincodeWarehouseMapping {
     @OneToOne
     @JoinColumn(name = "warehouse", referencedColumnName = "warehouse_id")
     private WarehouseDetails warehouseDetails;
+
+    private int enabled;
 }
