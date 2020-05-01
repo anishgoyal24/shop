@@ -1,0 +1,569 @@
+"2020-05-01 01:58:49 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h1s562ms).
+""2020-05-01 01:58:50 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 03:14:21 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h15m31s870ms).
+""2020-05-01 03:14:21 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 03:14:31 - Start expire sessions StandardManager at 1588283071431 sessioncount 0
+""2020-05-01 03:14:31 - End expire sessions StandardManager processingTime 12 expired sessions: 0
+""2020-05-01 05:14:51 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h29s639ms).
+""2020-05-01 05:14:51 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 05:24:26 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9m35s288ms).
+""2020-05-01 05:24:26 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 07:24:41 - Start expire sessions StandardManager at 1588298081662 sessioncount 0
+""2020-05-01 07:24:41 - End expire sessions StandardManager processingTime 19 expired sessions: 0
+""2020-05-01 09:24:58 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4h32s469ms).
+""2020-05-01 09:24:58 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 09:59:25 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=34m26s193ms).
+""2020-05-01 09:59:25 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 09:59:41 - Start expire sessions StandardManager at 1588307381141 sessioncount 0
+""2020-05-01 09:59:41 - End expire sessions StandardManager processingTime 14 expired sessions: 0
+""2020-05-01 11:58:08 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h58m43s812ms).
+""2020-05-01 11:58:08 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 11:58:38 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 11:58:54 - Start expire sessions StandardManager at 1588314534960 sessioncount 0
+""2020-05-01 11:58:54 - End expire sessions StandardManager processingTime 0 expired sessions: 0
+""2020-05-01 11:59:08 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 11:59:26 - Counting up[http-nio-8082-Acceptor-0] latch=1
+""2020-05-01 11:59:26 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@291007f2:org.apache.tomcat.util.net.NioChannel@114c650e:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53822]], Read from buffer: [0]
+""2020-05-01 11:59:26 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@291007f2:org.apache.tomcat.util.net.NioChannel@114c650e:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53822]], Read direct from socket: [462]
+""2020-05-01 11:59:26 - Received [OPTIONS /api/main/user/authenticate HTTP/1.1
+Host: localhost:8082
+Origin: http://localhost:4202
+Access-Control-Request-Method: POST
+Content-Length: 0
+Access-Control-Request-Headers: content-type
+Connection: keep-alive
+Accept: */*
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Safari/605.1.15
+Referer: http://localhost:4202/
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+
+]
+""2020-05-01 11:59:26 - Security checking request OPTIONS /api/main/user/authenticate
+""2020-05-01 11:59:26 -   No applicable constraints defined
+""2020-05-01 11:59:26 -  Not subject to any constraint
+""2020-05-01 11:59:26 - /user/authenticate at position 1 of 13 in additional filter chain; firing Filter: 'WebAsyncManagerIntegrationFilter'
+""2020-05-01 11:59:26 - /user/authenticate at position 2 of 13 in additional filter chain; firing Filter: 'SecurityContextPersistenceFilter'
+""2020-05-01 11:59:26 - /user/authenticate at position 3 of 13 in additional filter chain; firing Filter: 'HeaderWriterFilter'
+""2020-05-01 11:59:26 - /user/authenticate at position 4 of 13 in additional filter chain; firing Filter: 'CorsFilter'
+""2020-05-01 11:59:26 - Not injecting HSTS header since it did not match the requestMatcher org.springframework.security.web.header.writers.HstsHeaderWriter$SecureRequestMatcher@15abf48e
+""2020-05-01 11:59:26 - SecurityContextHolder now cleared, as request processing completed
+""2020-05-01 11:59:26 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@291007f2:org.apache.tomcat.util.net.NioChannel@114c650e:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53822]], Read from buffer: [0]
+""2020-05-01 11:59:26 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@291007f2:org.apache.tomcat.util.net.NioChannel@114c650e:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53822]], Read direct from socket: [0]
+""2020-05-01 11:59:26 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@291007f2:org.apache.tomcat.util.net.NioChannel@114c650e:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53822]], Status in: [OPEN_READ], State out: [OPEN]
+""2020-05-01 11:59:26 - Counting up[http-nio-8082-Acceptor-0] latch=2
+""2020-05-01 11:59:26 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@5004501f:org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53823]], Read from buffer: [0]
+""2020-05-01 11:59:26 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@5004501f:org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53823]], Read direct from socket: [494]
+""2020-05-01 11:59:26 - Received [POST /api/main/user/authenticate HTTP/1.1
+Host: localhost:8082
+Content-Type: application/json
+Origin: http://localhost:4202
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Accept: application/json, text/plain, */*
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Safari/605.1.15
+Referer: http://localhost:4202/
+Content-Length: 55
+Accept-Language: en-us
+
+{"username":"parveengoel@gmail.com","password":"admin"}]
+""2020-05-01 11:59:26 - Security checking request POST /api/main/user/authenticate
+""2020-05-01 11:59:26 -   No applicable constraints defined
+""2020-05-01 11:59:26 -  Not subject to any constraint
+""2020-05-01 11:59:26 - Set encoding to UTF-8
+""2020-05-01 11:59:26 - /user/authenticate at position 1 of 13 in additional filter chain; firing Filter: 'WebAsyncManagerIntegrationFilter'
+""2020-05-01 11:59:26 - /user/authenticate at position 2 of 13 in additional filter chain; firing Filter: 'SecurityContextPersistenceFilter'
+""2020-05-01 11:59:26 - /user/authenticate at position 3 of 13 in additional filter chain; firing Filter: 'HeaderWriterFilter'
+""2020-05-01 11:59:26 - /user/authenticate at position 4 of 13 in additional filter chain; firing Filter: 'CorsFilter'
+""2020-05-01 11:59:26 - /user/authenticate at position 5 of 13 in additional filter chain; firing Filter: 'LogoutFilter'
+""2020-05-01 11:59:26 - Trying to match using Ant [pattern='/logout', GET]
+""2020-05-01 11:59:26 - Request 'POST /user/authenticate' doesn't match 'GET /logout'
+""2020-05-01 11:59:26 - Trying to match using Ant [pattern='/logout', POST]
+""2020-05-01 11:59:26 - Checking match of request : '/user/authenticate'; against '/logout'
+""2020-05-01 11:59:26 - Trying to match using Ant [pattern='/logout', PUT]
+""2020-05-01 11:59:26 - Request 'POST /user/authenticate' doesn't match 'PUT /logout'
+""2020-05-01 11:59:26 - Trying to match using Ant [pattern='/logout', DELETE]
+""2020-05-01 11:59:26 - Request 'POST /user/authenticate' doesn't match 'DELETE /logout'
+""2020-05-01 11:59:26 - No matches found
+""2020-05-01 11:59:26 - /user/authenticate at position 6 of 13 in additional filter chain; firing Filter: 'JwtAuthenticationFilter'
+""2020-05-01 11:59:26 - Checking match of request : '/user/authenticate'; against '/user/authenticate'
+""2020-05-01 11:59:26 - Request is to process authentication
+""2020-05-01 11:59:26 - Not injecting HSTS header since it did not match the requestMatcher org.springframework.security.web.header.writers.HstsHeaderWriter$SecureRequestMatcher@15abf48e
+""2020-05-01 11:59:26 - SecurityContextHolder now cleared, as request processing completed
+""2020-05-01 11:59:26 - Servlet.service() for servlet [dispatcherServlet] in context with path [/api/main] threw exception [Filter execution threw an exception] with root cause
+"java.lang.ClassNotFoundException: com.app.shop.utils.UsernamePasswordClass
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:583)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at com.app.shop.security.JwtAuthenticationFilter.attemptAuthentication(JwtAuthenticationFilter.java:47)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:117)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:106)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+"2020-05-01 11:59:26 - Processing ErrorPage[errorCode=0, location=/error]
+""2020-05-01 11:59:26 - /error at position 1 of 13 in additional filter chain; firing Filter: 'WebAsyncManagerIntegrationFilter'
+""2020-05-01 11:59:26 - /error at position 2 of 13 in additional filter chain; firing Filter: 'SecurityContextPersistenceFilter'
+""2020-05-01 11:59:26 - /error at position 3 of 13 in additional filter chain; firing Filter: 'HeaderWriterFilter'
+""2020-05-01 11:59:26 - /error at position 4 of 13 in additional filter chain; firing Filter: 'CorsFilter'
+""2020-05-01 11:59:26 - /error at position 5 of 13 in additional filter chain; firing Filter: 'LogoutFilter'
+""2020-05-01 11:59:26 - Trying to match using Ant [pattern='/logout', GET]
+""2020-05-01 11:59:26 - Request 'POST /error' doesn't match 'GET /logout'
+""2020-05-01 11:59:26 - Trying to match using Ant [pattern='/logout', POST]
+""2020-05-01 11:59:26 - Checking match of request : '/error'; against '/logout'
+""2020-05-01 11:59:26 - Trying to match using Ant [pattern='/logout', PUT]
+""2020-05-01 11:59:26 - Request 'POST /error' doesn't match 'PUT /logout'
+""2020-05-01 11:59:26 - Trying to match using Ant [pattern='/logout', DELETE]
+""2020-05-01 11:59:26 - Request 'POST /error' doesn't match 'DELETE /logout'
+""2020-05-01 11:59:26 - No matches found
+""2020-05-01 11:59:26 - /error at position 6 of 13 in additional filter chain; firing Filter: 'JwtAuthenticationFilter'
+""2020-05-01 11:59:26 - Checking match of request : '/error'; against '/user/authenticate'
+""2020-05-01 11:59:26 - /error at position 7 of 13 in additional filter chain; firing Filter: 'JwtAuthorizationFilter'
+""2020-05-01 11:59:26 - /error at position 8 of 13 in additional filter chain; firing Filter: 'RequestCacheAwareFilter'
+""2020-05-01 11:59:26 - /error at position 9 of 13 in additional filter chain; firing Filter: 'SecurityContextHolderAwareRequestFilter'
+""2020-05-01 11:59:26 - /error at position 10 of 13 in additional filter chain; firing Filter: 'AnonymousAuthenticationFilter'
+""2020-05-01 11:59:26 - Populated SecurityContextHolder with anonymous token: 'org.springframework.security.authentication.AnonymousAuthenticationToken@374ee8a7: Principal: anonymousUser; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@b364: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: null; Granted Authorities: ROLE_ANONYMOUS'
+""2020-05-01 11:59:26 - /error at position 11 of 13 in additional filter chain; firing Filter: 'SessionManagementFilter'
+""2020-05-01 11:59:26 - /error at position 12 of 13 in additional filter chain; firing Filter: 'ExceptionTranslationFilter'
+""2020-05-01 11:59:26 - /error at position 13 of 13 in additional filter chain; firing Filter: 'FilterSecurityInterceptor'
+""2020-05-01 11:59:26 - Checking match of request : '/error'; against '**/user/authenticate'
+""2020-05-01 11:59:26 - Checking match of request : '/error'; against '**/customer/new/**'
+""2020-05-01 11:59:26 - Checking match of request : '/error'; against '**/verify/**'
+""2020-05-01 11:59:26 - Checking match of request : '/error'; against '**/static/**'
+""2020-05-01 11:59:26 - Checking match of request : '/error'; against '**/images/**'
+""2020-05-01 11:59:26 - Checking match of request : '/error'; against '**/customer/otp'
+""2020-05-01 11:59:26 - Checking match of request : '/error'; against '**/customer/forgotpassword'
+""2020-05-01 11:59:26 - Secure object: FilterInvocation: URL: /error; Attributes: [authenticated]
+""2020-05-01 11:59:26 - Previously Authenticated: org.springframework.security.authentication.AnonymousAuthenticationToken@374ee8a7: Principal: anonymousUser; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@b364: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: null; Granted Authorities: ROLE_ANONYMOUS
+""2020-05-01 11:59:26 - Voter: org.springframework.security.web.access.expression.WebExpressionVoter@3be04124, returned: -1
+""2020-05-01 11:59:26 - AuditEvent [timestamp=2020-05-01T06:29:26.583343Z, principal=anonymousUser, type=AUTHORIZATION_FAILURE, data={details=org.springframework.security.web.authentication.WebAuthenticationDetails@b364: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: null, type=org.springframework.security.access.AccessDeniedException, message=Access is denied}]
+""2020-05-01 11:59:26 - Access is denied (user is anonymous); redirecting to authentication entry point
+"org.springframework.security.access.AccessDeniedException: Access is denied
+	at org.springframework.security.access.vote.AffirmativeBased.decide(AffirmativeBased.java:84)
+	at org.springframework.security.access.intercept.AbstractSecurityInterceptor.beforeInvocation(AbstractSecurityInterceptor.java:233)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:124)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:170)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:712)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:348)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:173)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+"2020-05-01 11:59:26 - Calling Authentication entry point.
+""2020-05-01 11:59:26 - Pre-authenticated entry point called. Rejecting access
+""2020-05-01 11:59:26 - SecurityContextHolder now cleared, as request processing completed
+""2020-05-01 11:59:26 -  Disabling the response for further output
+""2020-05-01 11:59:26 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@5004501f:org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53823]], Read from buffer: [0]
+""2020-05-01 11:59:26 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@5004501f:org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53823]], Read direct from socket: [0]
+""2020-05-01 11:59:26 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@5004501f:org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53823]], Status in: [OPEN_READ], State out: [OPEN]
+""2020-05-01 11:59:38 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 11:59:54 - Start expire sessions StandardManager at 1588314594985 sessioncount 0
+""2020-05-01 11:59:54 - End expire sessions StandardManager processingTime 0 expired sessions: 0
+""2020-05-01 11:59:56 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@291007f2:org.apache.tomcat.util.net.NioChannel@114c650e:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53822]], Read from buffer: [0]
+""2020-05-01 11:59:56 - Error parsing HTTP request header
+"java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1248)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1183)
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:731)
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:352)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:294)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+"2020-05-01 11:59:56 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@291007f2:org.apache.tomcat.util.net.NioChannel@114c650e:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53822]], Status in: [OPEN_READ], State out: [CLOSED]
+""2020-05-01 11:59:56 - Counting down[http-nio-8082-exec-2] latch=2
+""2020-05-01 11:59:56 - Socket: [org.apache.tomcat.util.net.NioChannel@114c650e:java.nio.channels.SocketChannel[closed]] closed
+""2020-05-01 12:00:08 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 12:00:13 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@5004501f:org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53823]], Read from buffer: [0]
+""2020-05-01 12:00:13 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@5004501f:org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53823]], Read direct from socket: [494]
+""2020-05-01 12:00:13 - Received [POST /api/main/user/authenticate HTTP/1.1
+Host: localhost:8082
+Content-Type: application/json
+Origin: http://localhost:4202
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Accept: application/json, text/plain, */*
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Safari/605.1.15
+Referer: http://localhost:4202/
+Content-Length: 55
+Accept-Language: en-us
+
+{"username":"parveengoel@gmail.com","password":"admin"}]
+""2020-05-01 12:00:13 - Security checking request POST /api/main/user/authenticate
+""2020-05-01 12:00:13 -   No applicable constraints defined
+""2020-05-01 12:00:13 -  Not subject to any constraint
+""2020-05-01 12:00:13 - Set encoding to UTF-8
+""2020-05-01 12:00:13 - /user/authenticate at position 1 of 13 in additional filter chain; firing Filter: 'WebAsyncManagerIntegrationFilter'
+""2020-05-01 12:00:13 - /user/authenticate at position 2 of 13 in additional filter chain; firing Filter: 'SecurityContextPersistenceFilter'
+""2020-05-01 12:00:13 - /user/authenticate at position 3 of 13 in additional filter chain; firing Filter: 'HeaderWriterFilter'
+""2020-05-01 12:00:13 - /user/authenticate at position 4 of 13 in additional filter chain; firing Filter: 'CorsFilter'
+""2020-05-01 12:00:13 - /user/authenticate at position 5 of 13 in additional filter chain; firing Filter: 'LogoutFilter'
+""2020-05-01 12:00:13 - Trying to match using Ant [pattern='/logout', GET]
+""2020-05-01 12:00:13 - Request 'POST /user/authenticate' doesn't match 'GET /logout'
+""2020-05-01 12:00:13 - Trying to match using Ant [pattern='/logout', POST]
+""2020-05-01 12:00:13 - Checking match of request : '/user/authenticate'; against '/logout'
+""2020-05-01 12:00:13 - Trying to match using Ant [pattern='/logout', PUT]
+""2020-05-01 12:00:13 - Request 'POST /user/authenticate' doesn't match 'PUT /logout'
+""2020-05-01 12:00:13 - Trying to match using Ant [pattern='/logout', DELETE]
+""2020-05-01 12:00:13 - Request 'POST /user/authenticate' doesn't match 'DELETE /logout'
+""2020-05-01 12:00:13 - No matches found
+""2020-05-01 12:00:13 - /user/authenticate at position 6 of 13 in additional filter chain; firing Filter: 'JwtAuthenticationFilter'
+""2020-05-01 12:00:13 - Checking match of request : '/user/authenticate'; against '/user/authenticate'
+""2020-05-01 12:00:13 - Request is to process authentication
+""2020-05-01 12:00:13 - Not injecting HSTS header since it did not match the requestMatcher org.springframework.security.web.header.writers.HstsHeaderWriter$SecureRequestMatcher@15abf48e
+""2020-05-01 12:00:13 - SecurityContextHolder now cleared, as request processing completed
+""2020-05-01 12:00:13 - Servlet.service() for servlet [dispatcherServlet] in context with path [/api/main] threw exception [Filter execution threw an exception] with root cause
+"java.lang.NoClassDefFoundError: com/app/shop/utils/UsernamePasswordClass
+	at com.app.shop.security.JwtAuthenticationFilter.attemptAuthentication(JwtAuthenticationFilter.java:47)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:117)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:106)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+"2020-05-01 12:00:13 - Processing ErrorPage[errorCode=0, location=/error]
+""2020-05-01 12:00:13 - /error at position 1 of 13 in additional filter chain; firing Filter: 'WebAsyncManagerIntegrationFilter'
+""2020-05-01 12:00:13 - /error at position 2 of 13 in additional filter chain; firing Filter: 'SecurityContextPersistenceFilter'
+""2020-05-01 12:00:13 - /error at position 3 of 13 in additional filter chain; firing Filter: 'HeaderWriterFilter'
+""2020-05-01 12:00:13 - /error at position 4 of 13 in additional filter chain; firing Filter: 'CorsFilter'
+""2020-05-01 12:00:13 - /error at position 5 of 13 in additional filter chain; firing Filter: 'LogoutFilter'
+""2020-05-01 12:00:13 - Trying to match using Ant [pattern='/logout', GET]
+""2020-05-01 12:00:13 - Request 'POST /error' doesn't match 'GET /logout'
+""2020-05-01 12:00:13 - Trying to match using Ant [pattern='/logout', POST]
+""2020-05-01 12:00:13 - Checking match of request : '/error'; against '/logout'
+""2020-05-01 12:00:13 - Trying to match using Ant [pattern='/logout', PUT]
+""2020-05-01 12:00:13 - Request 'POST /error' doesn't match 'PUT /logout'
+""2020-05-01 12:00:13 - Trying to match using Ant [pattern='/logout', DELETE]
+""2020-05-01 12:00:13 - Request 'POST /error' doesn't match 'DELETE /logout'
+""2020-05-01 12:00:13 - No matches found
+""2020-05-01 12:00:13 - /error at position 6 of 13 in additional filter chain; firing Filter: 'JwtAuthenticationFilter'
+""2020-05-01 12:00:13 - Checking match of request : '/error'; against '/user/authenticate'
+""2020-05-01 12:00:13 - /error at position 7 of 13 in additional filter chain; firing Filter: 'JwtAuthorizationFilter'
+""2020-05-01 12:00:13 - /error at position 8 of 13 in additional filter chain; firing Filter: 'RequestCacheAwareFilter'
+""2020-05-01 12:00:13 - /error at position 9 of 13 in additional filter chain; firing Filter: 'SecurityContextHolderAwareRequestFilter'
+""2020-05-01 12:00:13 - /error at position 10 of 13 in additional filter chain; firing Filter: 'AnonymousAuthenticationFilter'
+""2020-05-01 12:00:13 - Populated SecurityContextHolder with anonymous token: 'org.springframework.security.authentication.AnonymousAuthenticationToken@374ee8a7: Principal: anonymousUser; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@b364: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: null; Granted Authorities: ROLE_ANONYMOUS'
+""2020-05-01 12:00:13 - /error at position 11 of 13 in additional filter chain; firing Filter: 'SessionManagementFilter'
+""2020-05-01 12:00:13 - /error at position 12 of 13 in additional filter chain; firing Filter: 'ExceptionTranslationFilter'
+""2020-05-01 12:00:13 - /error at position 13 of 13 in additional filter chain; firing Filter: 'FilterSecurityInterceptor'
+""2020-05-01 12:00:13 - Checking match of request : '/error'; against '**/user/authenticate'
+""2020-05-01 12:00:13 - Checking match of request : '/error'; against '**/customer/new/**'
+""2020-05-01 12:00:13 - Checking match of request : '/error'; against '**/verify/**'
+""2020-05-01 12:00:13 - Checking match of request : '/error'; against '**/static/**'
+""2020-05-01 12:00:13 - Checking match of request : '/error'; against '**/images/**'
+""2020-05-01 12:00:13 - Checking match of request : '/error'; against '**/customer/otp'
+""2020-05-01 12:00:13 - Checking match of request : '/error'; against '**/customer/forgotpassword'
+""2020-05-01 12:00:13 - Secure object: FilterInvocation: URL: /error; Attributes: [authenticated]
+""2020-05-01 12:00:13 - Previously Authenticated: org.springframework.security.authentication.AnonymousAuthenticationToken@374ee8a7: Principal: anonymousUser; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@b364: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: null; Granted Authorities: ROLE_ANONYMOUS
+""2020-05-01 12:00:13 - Voter: org.springframework.security.web.access.expression.WebExpressionVoter@3be04124, returned: -1
+""2020-05-01 12:00:13 - AuditEvent [timestamp=2020-05-01T06:30:13.855455Z, principal=anonymousUser, type=AUTHORIZATION_FAILURE, data={details=org.springframework.security.web.authentication.WebAuthenticationDetails@b364: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: null, type=org.springframework.security.access.AccessDeniedException, message=Access is denied}]
+""2020-05-01 12:00:13 - Access is denied (user is anonymous); redirecting to authentication entry point
+"org.springframework.security.access.AccessDeniedException: Access is denied
+	at org.springframework.security.access.vote.AffirmativeBased.decide(AffirmativeBased.java:84)
+	at org.springframework.security.access.intercept.AbstractSecurityInterceptor.beforeInvocation(AbstractSecurityInterceptor.java:233)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:124)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:170)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:712)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:348)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:173)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+"2020-05-01 12:00:13 - Calling Authentication entry point.
+""2020-05-01 12:00:13 - Pre-authenticated entry point called. Rejecting access
+""2020-05-01 12:00:13 - SecurityContextHolder now cleared, as request processing completed
+""2020-05-01 12:00:13 -  Disabling the response for further output
+""2020-05-01 12:00:13 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@5004501f:org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53823]], Read from buffer: [0]
+""2020-05-01 12:00:13 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@5004501f:org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53823]], Read direct from socket: [0]
+""2020-05-01 12:00:13 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@5004501f:org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53823]], Status in: [OPEN_READ], State out: [OPEN]
+""2020-05-01 12:00:38 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 12:00:55 - Start expire sessions StandardManager at 1588314655004 sessioncount 0
+""2020-05-01 12:00:55 - End expire sessions StandardManager processingTime 0 expired sessions: 0
+""2020-05-01 12:00:56 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@5004501f:org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53823]], Read from buffer: [0]
+""2020-05-01 12:00:56 - Error parsing HTTP request header
+"java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1248)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1183)
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:731)
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:352)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:294)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+"2020-05-01 12:00:56 - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@5004501f:org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[connected local=/0:0:0:0:0:0:0:1:8082 remote=/0:0:0:0:0:0:0:1:53823]], Status in: [OPEN_READ], State out: [CLOSED]
+""2020-05-01 12:00:56 - Counting down[http-nio-8082-exec-5] latch=1
+""2020-05-01 12:00:56 - Socket: [org.apache.tomcat.util.net.NioChannel@61bbe644:java.nio.channels.SocketChannel[closed]] closed
+""2020-05-01 12:01:08 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 12:01:38 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 12:01:55 - Start expire sessions StandardManager at 1588314715026 sessioncount 0
+""2020-05-01 12:01:55 - End expire sessions StandardManager processingTime 0 expired sessions: 0
+""2020-05-01 12:02:08 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 12:02:38 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 12:02:40 - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 12, active threads = 1, queued tasks = 0, completed tasks = 28]
+""2020-05-01 12:02:55 - Start expire sessions StandardManager at 1588314775049 sessioncount 0
+""2020-05-01 12:02:55 - End expire sessions StandardManager processingTime 1 expired sessions: 0
+""2020-05-01 12:03:08 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 12:03:38 - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 12:03:55 - Start expire sessions StandardManager at 1588314835068 sessioncount 0
+""2020-05-01 12:03:55 - End expire sessions StandardManager processingTime 0 expired sessions: 0
+""2020-05-01 12:04:00 - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@18e36d14, started on Tue Apr 28 16:11:53 IST 2020
+""2020-05-01 12:04:00 - Stopping beans in phase 2147483647
+""2020-05-01 12:04:00 - Bean 'stompWebSocketHandlerMapping' completed its stop procedure
+""2020-05-01 12:04:00 - clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+""2020-05-01 12:04:00 - Bean 'subProtocolWebSocketHandler' completed its stop procedure
+""2020-05-01 12:04:00 - clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/app/]]
+""2020-05-01 12:04:00 - Bean 'simpAnnotationMethodMessageHandler' completed its stop procedure
+""2020-05-01 12:04:00 - Stopping...
+""2020-05-01 12:04:00 - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+""2020-05-01 12:04:00 - clientInboundChannel removed SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]
+""2020-05-01 12:04:00 - brokerChannel removed SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]
+""2020-05-01 12:04:00 - Stopped.
+""2020-05-01 12:04:00 - Bean 'simpleBrokerMessageHandler' completed its stop procedure
+""2020-05-01 12:04:00 - clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+""2020-05-01 12:04:00 - brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+""2020-05-01 12:04:00 - Bean 'userDestinationMessageHandler' completed its stop procedure
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Auditevents' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Beans' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Caches' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Health' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Conditions' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Configprops' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Env' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Info' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Loggers' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Threaddump' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Metrics' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Scheduledtasks' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Httptrace' from the JMX domain
+""2020-05-01 12:04:00 - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Mappings' from the JMX domain
+""2020-05-01 12:04:00 - Unregistering JMX-exposed beans on shutdown
+""2020-05-01 12:04:00 - Unregistering JMX-exposed beans
+""2020-05-01 12:04:00 - Shutting down ExecutorService 'brokerChannelExecutor'
+""2020-05-01 12:04:00 - Shutting down ExecutorService 'messageBrokerTaskScheduler'
+""2020-05-01 12:04:00 - Shutting down ExecutorService 'clientOutboundChannelExecutor'
+""2020-05-01 12:04:00 - Shutting down ExecutorService 'clientInboundChannelExecutor'
+""2020-05-01 12:04:00 - Closing JPA EntityManagerFactory for persistence unit 'default'
+""2020-05-01 12:04:00 - HHH000031: Closing
+""2020-05-01 12:04:00 - Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@33bdc71e] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@564d3940]
+""2020-05-01 12:04:00 - Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
+""2020-05-01 12:04:00 - Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries
+""2020-05-01 12:04:00 - HikariPool-1 - Shutdown initiated...
+""2020-05-01 12:04:00 - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+""2020-05-01 12:04:00 - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@68485fb1: (connection evicted)
+""2020-05-01 12:04:00 - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@22a9acea: (connection evicted)
+""2020-05-01 12:04:00 - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@71a9519c: (connection evicted)
+""2020-05-01 12:04:00 - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@7f6ea1d9: (connection evicted)
+""2020-05-01 12:04:00 - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@6efb9a3a: (connection evicted)
+""2020-05-01 12:04:00 - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@603c7995: (connection evicted)
+""2020-05-01 12:04:00 - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@76a11b62: (connection evicted)
+""2020-05-01 12:04:00 - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@68fea47f: (connection evicted)
+""2020-05-01 12:04:00 - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@74711f30: (connection evicted)
+""2020-05-01 12:04:00 - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@4d8a5a95: (connection evicted)
+""2020-05-01 12:04:00 - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+""2020-05-01 12:04:00 - HikariPool-1 - Shutdown completed.
+"

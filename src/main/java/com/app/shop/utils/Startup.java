@@ -3,6 +3,8 @@ package com.app.shop.utils;
 import com.app.shop.entity.EmployeeDetails;
 import com.app.shop.entity.PartyType;
 import com.app.shop.entity.UserDetails;
+import com.app.shop.repository.common.CountryRepository;
+import com.app.shop.repository.common.StateRepository;
 import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.employee.EmployeeOrderRepository;
 import com.app.shop.repository.employee.EmployeeRepository;
@@ -18,12 +20,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class Startup {
 
-    @Autowired
     private EmployeeRepository employeeRepository;
-    @Autowired
     private UserAuthRepository userAuthRepository;
-    @Autowired
     private PartyTypeService partyTypeService;
+    private CountryRepository countryRepository;
+    private StateRepository stateRepository;
+
+    @Autowired
+    public Startup(EmployeeRepository employeeRepository, UserAuthRepository userAuthRepository, PartyTypeService partyTypeService, CountryRepository countryRepository, StateRepository stateRepository) {
+        this.employeeRepository = employeeRepository;
+        this.userAuthRepository = userAuthRepository;
+        this.partyTypeService = partyTypeService;
+        this.countryRepository = countryRepository;
+        this.stateRepository = stateRepository;
+    }
 
     @EventListener(ApplicationReadyEvent.class)
     public void addAdminStartup(ApplicationReadyEvent applicationReadyEvent){
@@ -34,8 +44,8 @@ public class Startup {
             defaultAdmin.setEmpEmail("parveengoel@gmail.com");
             defaultAdmin.setEmpName("Parveen Goel");
             defaultAdmin.setPassword(new BCryptPasswordEncoder().encode("admin"));
-            defaultAdmin.setCountry("India");
-            defaultAdmin.setState("Haryana");
+            defaultAdmin.setCountry(countryRepository.findById("IND").get());
+            defaultAdmin.setState(stateRepository.findById("IN-HR").get());
             defaultAdmin.setPrimaryPhone("7027770150");
             defaultAdmin.setAddress("Karnal");
             defaultAdmin.setCity("Karnal");

@@ -63,4 +63,10 @@ public class EmployeeDetailsController {
     public HashMap<String, Object> statusEmployee(@RequestBody Map<String, String> request){
         return employeeDetailsService.changeStatus(request.get("email"), request.get("status"));
     }
+
+    @GetMapping(value = "/get")
+    @PreAuthorize(value = "hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    public HashMap<String, Object> changePassword(@RequestParam String email){
+        return employeeDetailsService.getDetails(email);
+    }
 }

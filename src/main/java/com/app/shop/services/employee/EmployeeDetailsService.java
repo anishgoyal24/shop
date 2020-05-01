@@ -152,6 +152,12 @@ public class EmployeeDetailsService {
         return returnObject;
     }
 
+    public HashMap<String, Object> getDetails(String email) {
+        returnObject = new HashMap<>();
+        returnObject.put("data", employeeRepository.findByEmpEmail(email));
+        return returnObject;
+    }
+
 //    public String verify(String email) {
 //        EmployeeDetails foundEmployeeDetails = employeeRepository.findByEmpEmail(email);
 //        if (foundEmployeeDetails!=null){
