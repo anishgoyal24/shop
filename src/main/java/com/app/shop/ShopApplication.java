@@ -5,8 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.CacheControl;
 import org.springframework.web.client.RestTemplate;
@@ -17,7 +15,6 @@ import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class })
 @ComponentScan(basePackages = {"com.app.shop"})
-//@EnableEurekaClient
 public class ShopApplication implements WebMvcConfigurer {
 
 	@Override

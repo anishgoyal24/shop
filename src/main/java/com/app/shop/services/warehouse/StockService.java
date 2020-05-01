@@ -3,7 +3,6 @@ package com.app.shop.services.warehouse;
 import com.app.shop.entity.ItemStock;
 import com.app.shop.repository.warehouse.WarehouseStockRepository;
 import com.app.shop.services.customer.ItemPackingDetailsService;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

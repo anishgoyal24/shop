@@ -21,5 +21,5 @@ public interface WarehouseOrdersRepository extends PagingAndSortingRepository<Or
     public OrderHeader findByOrderId(String orderId);
 
     @Query("select orderHeader from OrderHeader orderHeader where orderHeader.warehouseDetails.warehouseId=:warehouseId and orderHeader.orderDate<:orderDate order by orderHeader.orderDate desc")
-    public List<OrderHeader> findNext10ByWarehouseDetails(@Param("warehouseId") int warehouseId, @Param("lastOrderId") Date orderDate, Pageable pageable);
+    public List<OrderHeader> findNext10ByWarehouseDetails(@Param("warehouseId") int warehouseId, @Param("orderDate") Date orderDate, Pageable pageable);
 }

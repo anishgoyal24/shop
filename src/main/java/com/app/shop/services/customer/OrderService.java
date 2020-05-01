@@ -70,7 +70,7 @@ public class OrderService {
         ArrayList<Float> discount = new ArrayList<>();
         for (OrderDetail orderDetails: orderHeader.getOrderDetails()){
 //          Check stock of item
-            Object[][] objects = partyStockRepository.findStockAndPrice(orderHeader.getPartyDetails().getState(), orderDetails.getItemDetails().getId());
+            Object[][] objects = partyStockRepository.findStockAndPrice(orderHeader.getPartyDetails().getState().getStateFullCode(), orderDetails.getItemDetails().getId());
             if ((int)objects[0][0] < orderDetails.getQuantity()){
                 outOfStock.put(orderDetails.getItemDetails().getId(), (int)objects[0][0]);
             }
