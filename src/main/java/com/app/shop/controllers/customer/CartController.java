@@ -28,10 +28,10 @@ public class CartController {
     }
 
 //  Delete item from a cart
-    @PostMapping(value = "/delete")
+    @PostMapping(value = "/update")
     @PreAuthorize("hasAnyAuthority('ROLE_party')")
-    public HashMap<String, Object> deleteItem(@RequestBody Cart cart){
-        return cartService.deleteItem(cart);
+    public HashMap<String, Object> updateCart(@RequestBody Cart cart){
+        return cartService.updateCart(cart);
     }
 
 //  Get items in the cart

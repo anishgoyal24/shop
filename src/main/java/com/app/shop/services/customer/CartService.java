@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CartService {
@@ -58,20 +59,22 @@ public class CartService {
 
 //  Delete item from cart
     @Transactional(rollbackFor=Exception.class)
-    public HashMap<String, Object> deleteItem(Cart cart){
+    public HashMap<String, Object> updateCart(Cart cart){
         returnObject = new HashMap<>();
 //      Check if item is present in cart
-        Cart found = cartRepository.findByPartyDetailsPartyIdAndItemPackingDetailsId(cart.getPartyDetails().getPartyId(), cart.getItemPackingDetails().getId());
-        if (found!=null){ //Item preset in cart
-//          Reduce quantity
-            if (found.getQuantity() > cart.getQuantity()){
-                found.setQuantity(found.getQuantity() - cart.getQuantity());
+        Optional<Cart> optionalCart = cartRepository.findById(cart.getId());
+        if (optionalCart.isPresent()){ //Item preset in cart
+            Cart found = optionalCart.get();
+//          Change quantity
+            if (found.getQuantity() != cart.getQuantity()){
+                found.setQuantity(cart.getQuantity());
                 cartRepository.save(found);
+                returnObject.put("message", "success");
                 returnObject.put("data", found);
             }
             else
 //              Delete item from cart
-                cartRepository.delete(cart);
+                cartRepository.delete(found);
             returnObject.put("message", "success");
         }
 //      Item not present in cart
