@@ -23,4 +23,8 @@ export class CartService {
     }).toPromise();
   }
 
+  updateCartItem(cart: any){
+    return this.http.post(environment.BASE_URL_API + '/cart/update', cart).toPromise();
+  }
+
 }

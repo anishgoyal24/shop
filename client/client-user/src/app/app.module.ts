@@ -22,6 +22,8 @@ import { HomeComponent } from './home/home.component';
 // ----- AUTHENTICATION -----
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
+
+// ----- DASHBOARD -----
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './dashboard/navbar/navbar.component';
 import { ProductsComponent } from './dashboard/products/products.component';
@@ -29,6 +31,7 @@ import { ProductItemComponent } from './dashboard/products/product-item/product-
 import { ProductsListComponent } from './dashboard/products/products-list/products-list.component';
 import { CartComponent } from './dashboard/cart/cart.component';
 import { CartItemComponent } from './dashboard/cart/cart-item/cart-item.component';
+import { CheckoutComponent } from './dashboard/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,9 @@ import { CartItemComponent } from './dashboard/cart/cart-item/cart-item.componen
 
     CartComponent,
 
-    CartItemComponent
+    CartItemComponent,
+
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

@@ -3,13 +3,15 @@
         <div class="float-left">
             <h6><strong>{{ cartItem.product }}</strong></h6>
             <p><strong>Size: </strong>{{ cartItem.item.itemPackingDetails.size + 'kg'}}</p>
-            <p><strong>Quantity: </strong>{{ cartItem.item.quantity }}</p>
             <p><strong>Price (per piece): </strong>{{ cartItem.item.price }}</p>
         </div>
         <div class="float-right">
-            <button class="btn btn-danger">-</button>
-            <input type="number" name="quantity" id="" [(ngModel)]="cartItem.quantity" min="0" style="width: 40px;">
-            <button class="btn btn-primary">+</button>
+            <button class="btn" (click)="decrement()">-</button>
+            <input type="number" name="quantity" id="" [(ngModel)]="cartItem.item.quantity" min="0" style="width: 60px;" class="text-center">
+            <button class="btn" (click)="increment()">+</button>
+            <button class="btn" (click)="delete()"><i class="fa fa-trash"></i></button>
+            <button class="btn btn-success" (click)="updateCart()">Update</button>
+            <label id="total-price" for="">{{ 'Rs. ' + totalPrice }}</label>
         </div>
     </div>
 </div>

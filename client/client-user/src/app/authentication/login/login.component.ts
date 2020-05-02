@@ -83,6 +83,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("partyId", userDetails['partyId']);
         sessionStorage.setItem("partyName", userDetails['partyName']);
         sessionStorage.setItem("pincode", userDetails['pincode']);
+        sessionStorage.setItem("country", userDetails['country']['countryCode3']);
         resolve();
       }
     }).catch((err)=>{

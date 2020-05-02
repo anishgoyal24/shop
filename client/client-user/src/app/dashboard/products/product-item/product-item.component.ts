@@ -40,7 +40,6 @@ export class ProductItemComponent implements OnInit {
   ngOnInit() {
     var partyId = sessionStorage.getItem("partyId");
     this.cartItem.partyDetails.partyId = Number(partyId);
-    console.log(this.product);
   }
 
   toggleExpanded(){

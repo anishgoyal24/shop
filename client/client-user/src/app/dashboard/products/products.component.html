@@ -1,13 +1,18 @@
 <div class="container">
     <div class="card-media">
         <div class="container">
-            <div class="form-group has-search">
-                <i class="material-icons form-control-feedback">
-                    search
-                </i>
-                <input type="text" class="form-control" placeholder="Search Products" (input)="searchProducts($event)">
+            <div style="text-align: center;" *ngIf="warehousePresent==false">
+                <h3>Delivery is currently unavailable in your area!</h3>
             </div>
-            <app-products-list [productsList]="productsList"></app-products-list>
+            <div *ngIf="warehousePresent==true">
+                <div class="form-group has-search">
+                    <i class="material-icons form-control-feedback">
+                        search
+                    </i>
+                    <input type="text" class="form-control" placeholder="Search Products" (input)="searchProducts($event)">
+                </div>
+                <app-products-list [productsList]="productsList"></app-products-list>
+            </div>
         </div>
     </div>
 </div>
