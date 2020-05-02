@@ -21,6 +21,8 @@
         </div>
         <div style="text-align: center;">
             <label for="totalValue"><strong>Total Order Value: </strong>{{ 'Rs.' + totalValue }}</label>
+            <label for="discount" style="display: block;"><strong>Discount:</strong> {{ customerDiscount }}%</label>
+            <label style="display: block;"><strong>Discounted Price: </strong>{{ 'Rs.' + discountedPrice }}</label>
         </div>
         <div class="address">
             <h6><strong>Delivery Address:</strong></h6>
@@ -32,7 +34,7 @@
             <p>{{ country + '-' + pincode }}</p>
         </div>
         <div style="text-align: center;">
-            <button class="btn btn-primary">Place Order</button>
+            <button class="btn btn-primary" (click)="placeOrder()">Place Order</button>
         </div>
     </div>
 </div>

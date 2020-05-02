@@ -19,4 +19,9 @@ export class OrdersService {
     }).toPromise();
   }
 
+
+  placeOrder(orderHeader: any){
+    return this.http.post(environment.ORDERS_API + '/order/place', orderHeader).toPromise();
+  }
+
 }
