@@ -25,8 +25,8 @@ public class WarehouseOrdersController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
     @GetMapping(value = "/getorders")
-    public HashMap<String, Object> getOrderHeader(@RequestParam Integer warehouseId){
-        return warehouseOrdersService.getOrderHeader(warehouseId);
+    public HashMap<String, Object> getOrderHeader(@RequestParam Integer warehouseId, @RequestParam Integer page){
+        return warehouseOrdersService.getOrderHeader(warehouseId, page);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
@@ -39,5 +39,11 @@ public class WarehouseOrdersController {
     @GetMapping(value = "/orderdetails")
     public HashMap<String, Object> getOrderDetails(@RequestParam String orderId){
         return warehouseOrdersService.getOrderDetails(orderId);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager')")
+    @GetMapping(value = "/open")
+    public HashMap<String, Object> getOpenOrders(@RequestParam Integer warehouseId){
+        return warehouseOrdersService.getOpenOrders(warehouseId);
     }
 }

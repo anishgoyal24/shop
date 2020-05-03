@@ -1,5 +1,7 @@
 package com.app.shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,6 +23,8 @@ public class WarehouseDetails {
     @Column(name = "warehouse_id", nullable = false)
     private int warehouseId;
     @Column(length = 60)
+    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     @Column(name = "warehouse_name", nullable = false)
     private String warehouseName;

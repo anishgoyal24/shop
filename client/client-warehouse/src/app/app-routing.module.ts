@@ -24,6 +24,7 @@ import { ManageStockComponent } from './dashboard/stocks/manage-stock/manage-sto
 import { OrdersComponent } from './dashboard/orders/orders.component';
 import { OrderHomeComponent } from './dashboard/orders/order-home/order-home.component';
 import { ManageOrderComponent } from './dashboard/orders/manage-order/manage-order.component';
+import { OpenOrdersComponent } from './dashboard/orders/open-orders/open-orders.component';
 
 // // !!!----- GUARDS -----!!!
 // import { AuthGuard } from 'src/shared/guards/auth.guard';
@@ -53,7 +54,8 @@ const routes: Routes = [
     { path: 'orders', component: OrdersComponent,
       children: [
         { path: 'home', component: OrderHomeComponent },
-        { path: 'manage', component: ManageOrderComponent }
+        { path: 'manage', component: ManageOrderComponent },
+        { path: 'open', component: OpenOrdersComponent }
       ]
   }
     ]

@@ -1,40 +1,43 @@
-<div class="card-media">
-    <div class="container">
-        <h1><b>Checkout</b></h1>
-        <div>
-            <table border="1px solid;">
-                <tr>
-                    <th>Item Name</th>
-                    <th>Packing Size (kg)</th>
-                    <th>Quantity</th>
-                    <th>Price Per Piece (Rs.)</th>
-                    <th>Total Price (Rs.)</th>
-                </tr>
-                <tr *ngFor="let cartItem of cartItems">
-                    <td>{{ cartItem.product }}</td>
-                    <td>{{ cartItem.item.itemPackingDetails.size }}</td>
-                    <td>{{ cartItem.item.quantity }}</td>
-                    <td>{{ cartItem.item.price }}</td>
-                    <td>{{ cartItem.item.price * cartItem.item.quantity }}</td>
-                </tr>
-            </table>
-        </div>
-        <div style="text-align: center;">
-            <label for="totalValue"><strong>Total Order Value: </strong>{{ 'Rs.' + totalValue }}</label>
-            <label for="discount" style="display: block;"><strong>Discount:</strong> {{ customerDiscount }}%</label>
-            <label style="display: block;"><strong>Discounted Price: </strong>{{ 'Rs.' + discountedPrice }}</label>
-        </div>
-        <div class="address">
-            <h6><strong>Delivery Address:</strong></h6>
-            <p>{{ partyName }}</p>
-            <p>Contact: {{ primaryPhone }}</p>
-            <p>{{ address }}</p>
-            <p>{{ city }}</p>
-            <p>{{ state }}</p>
-            <p>{{ country + '-' + pincode }}</p>
-        </div>
-        <div style="text-align: center;">
-            <button class="btn btn-primary" (click)="placeOrder()">Place Order</button>
+<div class="container">
+    <div class="card-media">
+        <div class="container">
+            <h1><b>Checkout</b></h1>
+            <div>
+                <table border="1px solid;">
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Packing Size (kg)</th>
+                        <th>Quantity</th>
+                        <th>Price Per Piece (Rs.)</th>
+                        <th>Total Price (Rs.)</th>
+                    </tr>
+                    <tr *ngFor="let cartItem of cartItems">
+                        <td>{{ cartItem.product }}</td>
+                        <td>{{ cartItem.item.itemPackingDetails.size }}</td>
+                        <td>{{ cartItem.item.quantity }}</td>
+                        <td>{{ cartItem.item.price }}</td>
+                        <td>{{ cartItem.item.price * cartItem.item.quantity }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align: center;">
+                <label for="totalValue"><strong>Total Order Value: </strong>{{ 'Rs.' + totalValue }}</label>
+                <label for="discount" style="display: block;"><strong>Discount:</strong> {{ customerDiscount }}%</label>
+                <label style="display: block;"><strong>Discounted Price: </strong>{{ 'Rs.' + discountedPrice }}</label>
+            </div>
+            <div class="address">
+                <h6><strong>Delivery Address:</strong></h6>
+                <p>{{ partyName }}</p>
+                <p>Contact: {{ primaryPhone }}</p>
+                <p>{{ address }}</p>
+                <p>{{ city }}</p>
+                <p>{{ state }}</p>
+                <p>{{ country + '-' + pincode }}</p>
+            </div>
+            <div style="text-align: center;">
+                <button class="btn btn-primary" (click)="placeOrder()">Place Order</button>
+            </div>
         </div>
     </div>
+    
 </div>

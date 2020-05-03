@@ -82,6 +82,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("primaryPhone", res["data"]["primaryPhone"]);
           sessionStorage.setItem("warehouseName", res["data"]["warehouseName"]);
           sessionStorage.setItem("type", res["data"]["type"]);
+          sessionStorage.setItem("pincode", res['data']["pincode"]);
           resolve();
         }
       }).catch((err)=>{

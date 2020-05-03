@@ -10,6 +10,9 @@
               <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/dashboard', 'orders', 'manage']" routerLinkActive="router-link-active" >View & Manage Orders</a>
               </li>
+              <li class="nav-item" *ngIf="type!='Cash Counter'">
+                <a class="nav-link" [routerLink]="['/dashboard', 'orders', 'open']" routerLinkActive="router-link-active" >Open Orders</a>
+              </li>
               <li class="nav-item" *ngIf="type=='Cash Counter'">
                 <a class="nav-link" [routerLink]="['/dashboard', 'orders', 'add']" routerLinkActive="router-link-active" >Add Order</a>
               </li>

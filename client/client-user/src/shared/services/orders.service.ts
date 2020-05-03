@@ -24,4 +24,11 @@ export class OrdersService {
     return this.http.post(environment.ORDERS_API + '/order/place', orderHeader).toPromise();
   }
 
+  getOrders(partyId: any, page: any){
+    let params = new HttpParams().set("partyId", partyId).set("page", page);
+    return this.http.get(environment.ORDERS_API + '/order/list', {
+      params: params
+    }).toPromise();
+  }
+
 }

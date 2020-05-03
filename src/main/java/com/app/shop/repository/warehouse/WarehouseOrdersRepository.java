@@ -16,10 +16,12 @@ import java.util.List;
 @Repository
 public interface WarehouseOrdersRepository extends PagingAndSortingRepository<OrderHeader, Integer> {
 
-    public List<OrderHeader> findTop10ByWarehouseDetailsWarehouseIdOrderByOrderDateDesc(Integer warehouseId);
+    public List<OrderHeader> findByWarehouseDetailsWarehouseIdOrderByOrderDateDesc(Integer warehouseId, Pageable pageable);
 
     public OrderHeader findByOrderId(String orderId);
 
     @Query("select orderHeader from OrderHeader orderHeader where orderHeader.warehouseDetails.warehouseId=:warehouseId and orderHeader.orderDate<:orderDate order by orderHeader.orderDate desc")
     public List<OrderHeader> findNext10ByWarehouseDetails(@Param("warehouseId") int warehouseId, @Param("orderDate") Date orderDate, Pageable pageable);
+
+    public List<OrderHeader> findByPartyDetailsPincodeAndStatus(List<String> pincodes, String status);
 }

@@ -20,6 +20,9 @@ import { CartComponent } from './dashboard/cart/cart.component';
 // !!!---Checkout---!!!
 import { CheckoutComponent } from './dashboard/checkout/checkout.component';
 
+// !!!---Orders---!!!
+import { OrdersComponent } from './dashboard/orders/orders.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -35,7 +38,10 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
 
       // Checkout
-      { path: 'checkout', component: CheckoutComponent }
+      { path: 'checkout', component: CheckoutComponent },
+
+      // Orders
+      { path: 'orders', component: OrdersComponent }
     ]
   }
 ];

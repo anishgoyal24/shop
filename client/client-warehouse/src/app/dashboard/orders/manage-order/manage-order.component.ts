@@ -18,6 +18,8 @@ export class ManageOrderComponent implements OnInit {
 
   warehouseId: string;
 
+  page: number = 0;
+
   ngOnInit() {
     this.warehouseId = sessionStorage.getItem("warehouseId");
     this.loadOrders()
@@ -26,10 +28,11 @@ export class ManageOrderComponent implements OnInit {
   loadOrders(){
     try {
       this.utilityService.asyncNotification("Fetching orders...", new Promise((resolve, reject)=>{
-        this.orderService.getOrders(this.warehouseId)
+        this.orderService.getOrders(this.warehouseId, this.page)
         .then((res)=>{
           if (res['message']=='success'){
             this.orderItems = res['data'];
+            console.log(this.orderItems);
             resolve(this.utilityService.resolveAsyncPromise("Fetched Orders!"));
           }
           else{
@@ -42,6 +45,12 @@ export class ManageOrderComponent implements OnInit {
     } catch (error) {
       this.utilityService.errorNotification("Oops some error occured!");
     }
+  }
+
+
+  nextPage(){
+    this.page++;
+    this.loadOrders();
   }
 
 }

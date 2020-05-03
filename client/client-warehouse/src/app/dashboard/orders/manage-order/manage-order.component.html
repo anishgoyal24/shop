@@ -3,4 +3,7 @@
         <h1><b>Your Orders</b></h1>
         <app-order-item *ngFor="let orderItem of orderItems" [orderItem]="orderItem"></app-order-item>
     </div>
+    <div *ngIf="orderItems.length==10">
+        <button (click)="nextPage()">Next</button>
+    </div>
 </div>

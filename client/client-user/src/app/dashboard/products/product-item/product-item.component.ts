@@ -57,7 +57,8 @@ export class ProductItemComponent implements OnInit {
   getPriceAndStock(id: any){
     try {
       const pincode = sessionStorage.getItem("pincode");
-      this.productService.getPriceAndStock(id, pincode).then((res: any)=>{
+      const state = sessionStorage.getItem("state");
+      this.productService.getPriceAndStock(id, pincode, state).then((res: any)=>{
         if (res['message']=='success'){
           console.log(res);
           this.cartItem.price = res.price;

@@ -46,4 +46,11 @@ export class CartComponent implements OnInit {
     this.router.navigate(['dashboard', 'checkout']);
   }
 
+  deleteCartItem(cartItem: any){
+    const index = this.cartItems.indexOf(cartItem, 0);
+    if (index > -1) {
+      this.cartItems.splice(index, 1);
+    }
+  }
+
 }

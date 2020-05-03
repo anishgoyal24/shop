@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "packing_details")
-public class ItemPackingDetails {
+public class ItemPackingDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")

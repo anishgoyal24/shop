@@ -32,6 +32,8 @@ import { ProductsListComponent } from './dashboard/products/products-list/produc
 import { CartComponent } from './dashboard/cart/cart.component';
 import { CartItemComponent } from './dashboard/cart/cart-item/cart-item.component';
 import { CheckoutComponent } from './dashboard/checkout/checkout.component';
+import { OrdersComponent } from './dashboard/orders/orders.component';
+import { OrderItemComponent } from './dashboard/orders/order-item/order-item.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,11 @@ import { CheckoutComponent } from './dashboard/checkout/checkout.component';
 
     CartItemComponent,
 
-    CheckoutComponent
+    CheckoutComponent,
+
+    OrdersComponent,
+
+    OrderItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,19 +1,43 @@
 <div class="media card-tile user-list">
     <div class="media-body">
         <div class="float-left">
-            <h3><strong>OrderId: </strong>{{ orderItem.orderId }}</h3>
+            <h6><strong>OrderId: </strong>{{ orderItem.orderId }}</h6>
             <p>Status: {{ orderItem.status }}</p>
         </div>
         <div class="float-right">
-            <button type="button" class="btn btn-default btn-sm" [hidden]="!showOrderDetails" (click)="toggleShowDetails()">
-          <span class="glyphicon glyphicon-circle-arrow-down"></span> Down
-        </button>
-        <button type="button" class="btn btn-default btn-sm" [hidden]="showOrderDetails" (click)="toggleShowDetails()">
-            <span class="glyphicon glyphicon-circle-arrow-up"></span> Down
-          </button>
+          <button id="expand" class="btn"><span class="material-icons" (click)="toggleExpanded()">
+              {{arrow}}
+          </span></button>
+      </div>
+      <div *ngIf="expanded==true" style="clear: both;">
+        <table border="1px;">
+            <tr>
+                <th>Product Name</th>
+                <th>Packing (Kg)</th>
+                <th>Price Per Piece (Rs)</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+            </tr>
+            <tr *ngFor="let item of orderDetails">
+                <td>{{ item.itemName }}</td>
+                <td>{{ item.orderDetail.itemDetails.size }}</td>
+                <td>{{ item.orderDetail.discountedCost }}</td>
+                <td>{{ item.orderDetail.quantity }}</td>
+                <td>{{ item.orderDetail.discountedCost * item.orderDetail.quantity }}</td>
+            </tr>
+        </table>
+        <p><strong>Total Order Value: </strong>Rs. {{ totalOrderValue }}</p>
+        <div class="address">
+            <p><strong>Party Name: </strong>{{ partyDetails.partyName }}</p>
+            <p><strong>Primary Phone: </strong>{{ partyDetails.primaryPhone }}</p>
+            <p><strong>Address: </strong>{{ partyDetails.address + ', ' + partyDetails.city + ', ' + partyDetails.state.stateName + ', ' + partyDetails.country.countryName + '-' + partyDetails.pincode }}</p>
         </div>
-        <div id="order-details" [hidden]="showOrderDetails">
-            
+
+        <div style="text-align: center;">
+          <button *ngIf="orderItem.status=='Confirmed'" (click)="changeStatus('In-Transit')" class="btn btn-primary">In Transit</button>
+          <button *ngIf="orderItem.status=='In-Transit'" (click)="changeStatus('Out for Delivery')" class="btn btn-primary">Out For Delivery</button>
         </div>
+
+    </div>
     </div>
 </div>

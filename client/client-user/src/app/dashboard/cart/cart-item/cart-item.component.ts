@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UtilityService } from 'src/shared/services/utility.service';
 import { CartService } from 'src/shared/services/cart.service';
 
@@ -16,6 +16,8 @@ export class CartItemComponent implements OnInit {
 
   @Input() cartItem: any;
 
+  @Output() deleteCart = new EventEmitter<any>();
+
   totalPrice: Number = 0;
 
   ngOnInit() {
@@ -29,6 +31,7 @@ export class CartItemComponent implements OnInit {
         this.cartService.updateCartItem(this.cartItem.item).then((res)=>{
           if (res['message']=='success'){
             resolve(this.utilityService.resolveAsyncPromise("Successfully Deleted Item from cart!"));
+            this.deleteCart.emit(this.cartItem);
           }
           else{
             reject(this.utilityService.rejectAsyncPromise("There was some error in deleting item from your cart!"));

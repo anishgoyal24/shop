@@ -20,8 +20,8 @@ export class ProductService {
     }).toPromise();
   }
 
-  getPriceAndStock(itemId: any, pincode: any){
-    let params = new HttpParams().set("itemId", itemId).set("pincode", pincode);
+  getPriceAndStock(itemId: any, pincode: any, state: any){
+    let params = new HttpParams().set("itemId", itemId).set("pincode", pincode).set("state", state);
     return this.http.get(environment.ORDERS_API + '/product/get-price-stock', {
       params: params
     }).toPromise();

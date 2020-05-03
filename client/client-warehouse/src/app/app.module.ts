@@ -38,6 +38,8 @@ import { OrderHeaderComponent } from './dashboard/orders/order-header/order-head
 import { OrderHomeComponent } from './dashboard/orders/order-home/order-home.component';
 import { ManageOrderComponent } from './dashboard/orders/manage-order/manage-order.component';
 import { OrderItemComponent } from './dashboard/orders/manage-order/order-item/order-item.component';
+import { OpenOrdersComponent } from './dashboard/orders/open-orders/open-orders.component';
+import { OpenOrderItemComponent } from './dashboard/orders/open-orders/open-order-item/open-order-item.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,11 @@ import { OrderItemComponent } from './dashboard/orders/manage-order/order-item/o
 
     ManageOrderComponent,
 
-    OrderItemComponent
+    OrderItemComponent,
+
+    OpenOrdersComponent,
+
+    OpenOrderItemComponent
   ],
   imports: [
     BrowserModule,

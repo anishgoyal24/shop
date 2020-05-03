@@ -1,5 +1,7 @@
 package com.app.shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,6 +20,8 @@ public class PartyDetails {
     @Column(name = "party_id")
     private int partyId;
     @Column(length = 60)
+    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     @Column(name = "party_name", nullable = false)
     private String partyName;

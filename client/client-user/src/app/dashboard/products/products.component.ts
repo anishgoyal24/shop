@@ -12,7 +12,7 @@ export class ProductsComponent implements OnInit {
 
   productsList: any;
 
-  warehousePresent: Boolean = false;
+  warehousePresent: boolean = false;
 
   constructor(
     private productService: ProductService,
