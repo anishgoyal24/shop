@@ -17,7 +17,7 @@
         </ng-container>
       </div>   
 
-      <div>
+      <div class="container">
         <div class="media card-tile user-list" id="list" *ngFor="let warehouse of warehouseList; let  i = index" [hidden]="warehouseListHidden">
             <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
             <div class="media-body">
@@ -26,9 +26,12 @@
                     <p><strong>Email: </strong>{{ warehouse?.warehouseEmail }}</p>
                 </div>
                 <div class="float-right">
-                    <button class="btn btn-sm btn-primary" (click)="this.selectedWarehouse = warehouse?.id; toggleList();">Select</button>
+                    <button class="btn btn-sm btn-primary" (click)="this.selectedWarehouse = warehouse?.id; toggleList(); this.selectedWarehouseName = warehouse.warehouseName">Select</button>
                 </div>
             </div>
+          </div>
+          <div  *ngIf="selectedWarehouse">
+            <p><strong>Selected Warehouse: </strong>{{ selectedWarehouseName }}</p>
           </div>
       </div>
 

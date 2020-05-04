@@ -26,6 +26,9 @@ export class ManageStockComponent implements OnInit {
 
   searchTerm$ = new Subject<string>();
 
+  // Name
+  selectedWarehouseName: string;
+
   // Warehouse List
   warehouseList = [];
 
