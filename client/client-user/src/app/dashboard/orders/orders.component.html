@@ -6,7 +6,7 @@
                 <i class="material-icons form-control-feedback">
                     search
                 </i>
-                <input type="text" class="form-control" placeholder="Search Orders by ID" (keyup)="search()">
+                <input type="text" class="form-control" placeholder="Search Orders by ID">
             </div>
             <app-order-item *ngFor="let orderItem of orderItems" [orderItem]="orderItem"></app-order-item>
         </div>

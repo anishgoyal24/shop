@@ -34,6 +34,7 @@ import { CartItemComponent } from './dashboard/cart/cart-item/cart-item.componen
 import { CheckoutComponent } from './dashboard/checkout/checkout.component';
 import { OrdersComponent } from './dashboard/orders/orders.component';
 import { OrderItemComponent } from './dashboard/orders/order-item/order-item.component';
+import { ResetPasswordComponent } from './dashboard/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,8 @@ import { OrderItemComponent } from './dashboard/orders/order-item/order-item.com
     OrdersComponent,
 
     OrderItemComponent,
+
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

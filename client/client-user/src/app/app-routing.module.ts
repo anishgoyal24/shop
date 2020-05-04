@@ -23,6 +23,9 @@ import { CheckoutComponent } from './dashboard/checkout/checkout.component';
 // !!!---Orders---!!!
 import { OrdersComponent } from './dashboard/orders/orders.component';
 
+
+import { ResetPasswordComponent } from './dashboard/reset-password/reset-password.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -41,7 +44,10 @@ const routes: Routes = [
       { path: 'checkout', component: CheckoutComponent },
 
       // Orders
-      { path: 'orders', component: OrdersComponent }
+      { path: 'orders', component: OrdersComponent },
+
+      // Change Password
+      { path: 'change-password', component: ResetPasswordComponent }
     ]
   }
 ];
