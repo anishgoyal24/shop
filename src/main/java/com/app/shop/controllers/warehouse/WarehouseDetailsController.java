@@ -74,5 +74,11 @@ public class WarehouseDetailsController {
         return warehouseDetailsService.getByState(state);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_warehouse', 'ROLE_manager', 'ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    @GetMapping(value = "/dynamic")
+    public HashMap<String, Object> getDynamic(@RequestParam("warehouseId") Integer warehouseId){
+        return warehouseDetailsService.getDynamic(warehouseId);
+    }
+
 
 }

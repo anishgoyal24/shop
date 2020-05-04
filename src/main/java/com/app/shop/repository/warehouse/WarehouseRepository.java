@@ -25,4 +25,7 @@ public interface WarehouseRepository extends JpaRepository<WarehouseDetails, Int
 
     @Query("select warehouse.warehouseName, warehouse.warehouseId from WarehouseDetails warehouse where lower(warehouse.state.stateFullCode) =:state and warehouse.type='dynamic'")
     List<Object> findByState(@Param("state") String state);
+
+    @Query("select warehouse.warehouseId, warehouse.warehouseName from WarehouseDetails warehouse where warehouse.ownerWarehouse=:warehouseId and warehouse.type='dynamic'")
+    List<Object[]> findDynamic(@Param("warehouseId") Integer warehouseId);
 }

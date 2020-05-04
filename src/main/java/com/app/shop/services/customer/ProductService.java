@@ -1,6 +1,7 @@
 package com.app.shop.services.customer;
 
 import com.app.shop.entity.ItemDetails;
+import com.app.shop.entity.ItemPackingDetails;
 import com.app.shop.repository.customer.DiscountRepository;
 import com.app.shop.repository.customer.ProductRepository;
 import com.app.shop.repository.customer.PartyStockRepository;
@@ -72,6 +73,9 @@ public class ProductService {
         returnObject = new HashMap<>();
         List<ItemDetails> items = productRepository.findByCustomerAllowedAndStatus(type, 'y');
         if (items!=null){
+            for (ItemDetails itemDetails : items){
+                itemDetails.getItemPackingDetails().removeIf(itemPackingDetails -> itemPackingDetails.getStatus() == 'n');
+            }
             returnObject.put("message", "success");
             returnObject.put("data", items);
         }

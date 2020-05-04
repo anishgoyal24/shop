@@ -37,8 +37,8 @@ public class WarehouseDetailsService {
     @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> addNewWarehouse(WarehouseDetails warehouseDetails){
         returnObject = new HashMap<>();
-        WarehouseDetails foundEmployee = warehouseRepository.findByWarehouseEmail(warehouseDetails.getWarehouseEmail());
-        if (foundEmployee==null){
+        WarehouseDetails foundWarehouse = warehouseRepository.findByWarehouseEmail(warehouseDetails.getWarehouseEmail());
+        if (foundWarehouse==null){
             String encodedPassword = bCryptPasswordEncoder.encode(warehouseDetails.getPassword());
             warehouseDetails.setPassword(encodedPassword);
             warehouseDetails.setStatus('y');
@@ -169,6 +169,14 @@ public class WarehouseDetailsService {
         returnObject = new HashMap<>();
         List<Object> warehouseList = warehouseRepository.findByState(state.toLowerCase());
         returnObject.put("data", warehouseList);
+        return returnObject;
+    }
+
+    public HashMap<String, Object> getDynamic(Integer warehouseId) {
+        returnObject = new HashMap<>();
+        List<Object[]> dynamic = warehouseRepository.findDynamic(warehouseId);
+        returnObject.put("message", "success");
+        returnObject.put("data", dynamic);
         return returnObject;
     }
 }
