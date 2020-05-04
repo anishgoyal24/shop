@@ -25,6 +25,8 @@ import { OrdersComponent } from './dashboard/orders/orders.component';
 import { OrderHomeComponent } from './dashboard/orders/order-home/order-home.component';
 import { ManageOrderComponent } from './dashboard/orders/manage-order/manage-order.component';
 import { OpenOrdersComponent } from './dashboard/orders/open-orders/open-orders.component';
+import { TransferOrderComponent } from './dashboard/orders/transfer-order/transfer-order.component';
+import { AddOrderComponent } from './dashboard/orders/add-order/add-order.component';
 
 // // !!!----- GUARDS -----!!!
 // import { AuthGuard } from 'src/shared/guards/auth.guard';
@@ -55,7 +57,9 @@ const routes: Routes = [
       children: [
         { path: 'home', component: OrderHomeComponent },
         { path: 'manage', component: ManageOrderComponent },
-        { path: 'open', component: OpenOrdersComponent }
+        { path: 'open', component: OpenOrdersComponent },
+        { path: 'transfer', component: TransferOrderComponent },
+        { path: 'add', component: AddOrderComponent }
       ]
   }
     ]

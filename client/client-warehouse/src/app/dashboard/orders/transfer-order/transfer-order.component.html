@@ -1,0 +1,35 @@
+<div class="card-media">
+    <div class="container">
+        <h1><b>Transfer Order</b></h1>
+
+        <div class="form-group">
+            <div class="dropdown">
+              <button class="btn btn-md btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Dynamic Warehouse
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="overflow: scroll; max-height: 200px;">
+                <a class="dropdown-item" *ngFor="let warehouse of dynamicWarehouse" (click)="this.selectedWarehouse = warehouse.warehouseId; this.transferObject.dynamicWarehouseId = warehouse.warehouseId">{{warehouse?.warehouseName}}</a>
+              </div>
+            </div>
+            <p *ngIf="this.selectedWarehouse" style="margin-top: 2%;">Selected Dynamic Warehouse: <strong>{{this.selectedWarehouse}}</strong></p>
+          </div>
+
+          <div class="form-group">
+            <div class="dropdown">
+              <button class="btn btn-md btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Order ID
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="overflow: scroll; max-height: 200px;">
+                <a class="dropdown-item" *ngFor="let orderId of orderIds" (click)="this.selectedOrderId = orderId; this.transferObject.orderId = orderId">{{orderId}}</a>
+              </div>
+            </div>
+            <p *ngIf="this.selectedOrderId" style="margin-top: 2%;">Selected Order ID: <strong>{{this.selectedOrderId}}</strong></p>
+          </div>
+
+          <div style="text-align: center;">
+            <button class="btn btn-primary" (click)="transfer()" *ngIf="this.selectedOrderId && this.selectedWarehouse">Transfer</button>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpBackend } from '@angular/common/http';
+import { HttpClient, HttpBackend, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 
@@ -31,6 +31,18 @@ export class WarehouseService {
       params: {
         email: email
       }
+    }).toPromise();
+  }
+
+  
+  /**
+   * Fetch dynamic warehouses linked to static warehouse
+   * @param warehouseId 
+   */
+  getDynamicWarehouse(warehouseId: any){
+    let params = new HttpParams().set("warehouseId", warehouseId);
+    return this.httpClient.get(environment.BASE_URL_API + '/warehouse/dynamic', {
+      params: params
     }).toPromise();
   }
 }

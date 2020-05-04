@@ -1,0 +1,30 @@
+
+	
+.container{
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 40px 0;
+	h1{
+        font-size: 35px;
+        font-weight: bold;
+        color: #007bff;
+		text-align: center;
+	}
+
+	button{
+		align-items: center;
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+    }
+
+.empty-state{
+    max-width: 400px;
+    max-height: 400px;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 1%;
+}
+}

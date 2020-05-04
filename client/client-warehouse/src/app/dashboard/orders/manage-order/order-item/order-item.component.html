@@ -32,6 +32,9 @@
             <p><strong>Primary Phone: </strong>{{ partyDetails.primaryPhone }}</p>
             <p><strong>Address: </strong>{{ partyDetails.address + ', ' + partyDetails.city + ', ' + partyDetails.state.stateName + ', ' + partyDetails.country.countryName + '-' + partyDetails.pincode }}</p>
         </div>
+        <div>
+            <p><strong>Expected Delivery Date: </strong>{{ orderItem.expectedDeliveryDate }}</p>
+        </div>
 
         <div style="text-align: center;">
           <button *ngIf="orderItem.status=='Confirmed'" (click)="changeStatus('In-Transit')" class="btn btn-primary">In Transit</button>

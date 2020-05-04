@@ -29,7 +29,6 @@ export class OrderItemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
   }
 
   async toggleExpanded(){

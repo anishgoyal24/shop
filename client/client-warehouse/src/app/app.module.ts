@@ -40,6 +40,8 @@ import { ManageOrderComponent } from './dashboard/orders/manage-order/manage-ord
 import { OrderItemComponent } from './dashboard/orders/manage-order/order-item/order-item.component';
 import { OpenOrdersComponent } from './dashboard/orders/open-orders/open-orders.component';
 import { OpenOrderItemComponent } from './dashboard/orders/open-orders/open-order-item/open-order-item.component';
+import { TransferOrderComponent } from './dashboard/orders/transfer-order/transfer-order.component';
+import { AddOrderComponent } from './dashboard/orders/add-order/add-order.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,11 @@ import { OpenOrderItemComponent } from './dashboard/orders/open-orders/open-orde
 
     OpenOrdersComponent,
 
-    OpenOrderItemComponent
+    OpenOrderItemComponent,
+
+    TransferOrderComponent,
+
+    AddOrderComponent
   ],
   imports: [
     BrowserModule,

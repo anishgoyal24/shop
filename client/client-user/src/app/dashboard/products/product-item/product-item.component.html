@@ -1,22 +1,24 @@
 <div class="media card-tile user-list">
     <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
     <div class="media-body">
-        <div class="float-left">
-            <h4>{{ product.itemName }}</h4>
-            <p><strong>Description: </strong>{{ product.description }}</p>
+        <div>
+            <div class="float-left">
+                <h4>{{ product.itemName }}</h4>
+                <p><strong>Description: </strong>{{ product.description }}</p>
+            </div>
+            <div class="float-right">
+                <button id="expand" class="btn"><span class="material-icons" (click)="toggleExpanded()">
+                    {{arrow}}
+                </span></button>
+            </div>
         </div>
-        <div class="float-right">
-            <button id="expand" class="btn"><span class="material-icons" (click)="toggleExpanded()">
-                {{arrow}}
-            </span></button>
-        </div>
-        <div class="row" [hidden]="!expanded">
+        <div [hidden]="!expanded" style="clear: both;">
             <div class="float-left" id="details">
                 <button class="btn btn-secondary" *ngFor="let itemPacking of product.itemPackingDetails" (click)="selectedPacking=itemPacking.size; cartItem.itemPackingDetails.id=itemPacking.id; getPriceAndStock(itemPacking.id);">{{ itemPacking.size + 'kg'}}</button>
                 <p *ngIf="selectedPacking"><strong>Selected Packing: </strong>{{ selectedPacking + 'kg'}}</p>
             </div>
             <div class="float-right" [hidden]="!productAvailable">
-                <p><strong>Price: </strong>Rs.{{ cartItem.price }}</p>
+                <p><strong>Price (per piece): </strong>Rs.{{ cartItem.price }}</p>
                 <label for="quantity">Quantity: </label>
                 <input type="number" name="quantity" id="" style="width: 80px;" placeholder="0" min="0" [(ngModel)]="cartItem.quantity">
                 <button class="btn btn-primary" (click)="addToCart()">Add to Cart</button>

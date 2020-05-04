@@ -69,8 +69,29 @@ export class OrderService {
   }
 
 
+  /**
+   * Change status of order
+   * @param body 
+   */
   changeStatus(body: any){
     return this.http.post(environment.ORDERS_API + '/order/status', body).toPromise();
+  }
+
+
+  /**
+   * Fetch order IDs of a warehouse
+   * @param warehouseId 
+   */
+  getOrderIds(warehouseId: any){
+    let params = new HttpParams().set("warehouseId", warehouseId);
+    return this.http.get(environment.ORDERS_API + '/order/list/ids', {
+      params: params
+    }).toPromise();
+  }
+
+
+  transfer(transferObject: any){
+    return this.http.post(environment.ORDERS_API + '/order/transfer', transferObject).toPromise();
   }
 
 
