@@ -20,7 +20,7 @@ export class OpenOrderItemComponent implements OnInit {
 
   orderDetails = [];
 
-  partyDetails = [];
+  partyDetails: any;
   
   totalOrderValue: number = 0;
 

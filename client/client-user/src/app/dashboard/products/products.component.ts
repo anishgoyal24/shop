@@ -44,8 +44,7 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  searchProducts(){
-
+  searchProducts(event: any){
   }
 
   findWarehouseByPincode(){
