@@ -15,7 +15,7 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     private long id;
     @OneToOne
-    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
+    @JoinColumn(name = "item_id", referencedColumnName = "id")
     private ItemPackingDetails itemDetails;
     private int quantity;
     @Column(name = "actual_cost")
