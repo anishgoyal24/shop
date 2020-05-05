@@ -13,16 +13,6 @@ import { Subject } from 'rxjs';
 export class ManageStockComponent implements OnInit {
 
   stocks = []
-  stock = {
-    id: 0,
-    itemPackingDetails: {
-      id: 0,
-      size: 0,
-    },
-    itemName: "",
-    price: 0,
-    quantity: 0
-  }
 
   searchTerm$ = new Subject<string>();
 
@@ -84,14 +74,26 @@ export class ManageStockComponent implements OnInit {
 
 
   createArray(data: any) {
+    class Stock{
+      id: number;
+      itemPackingDetails: any;
+      itemName: string;
+      price: number;
+      quantity: number;
+  
+      constructor(){
+        this.itemPackingDetails = new Object();
+      }
+    };
     for (var obj of data) {
-      this.stock.id = obj[0];
-      this.stock.itemPackingDetails.id = obj[1];
-      this.stock.itemPackingDetails.size = obj[2];
-      this.stock.itemName = obj[3];
-      this.stock.price = obj[4];
-      this.stock.quantity = obj[5];
-      this.stocks.push(this.stock);
+      var stock = new Stock();
+      stock.id = obj[0];
+      stock.itemPackingDetails.id = obj[1];
+      stock.itemPackingDetails.size = obj[2];
+      stock.itemName = obj[3];
+      stock.price = obj[4];
+      stock.quantity = obj[5];
+      this.stocks.push(stock);
     }
   }
 
