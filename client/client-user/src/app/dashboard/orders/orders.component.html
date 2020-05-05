@@ -2,12 +2,12 @@
     <div class="card-media">
         <div class="container">
             <h1><b>My Orders</b></h1>
-            <div class="form-group has-search">
+            <!-- <div class="form-group has-search">
                 <i class="material-icons form-control-feedback">
                     search
                 </i>
                 <input type="text" class="form-control" placeholder="Search Orders by ID">
-            </div>
+            </div> -->
             <app-order-item *ngFor="let orderItem of orderItems" [orderItem]="orderItem"></app-order-item>
         </div>
     </div>

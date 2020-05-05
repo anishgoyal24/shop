@@ -16,11 +16,13 @@ export class OrdersComponent implements OnInit {
 
   orderItems = [];
 
+  partyId: any;
+
   page: number = 0;
 
   ngOnInit() {
-    let partyId = sessionStorage.getItem("partyId");
-    this.getOrders(partyId, this.page);
+    this.partyId = sessionStorage.getItem("partyId");
+    this.getOrders(this.partyId, this.page);
   }
 
   getOrders(partyId: any, page: number){
@@ -29,6 +31,7 @@ export class OrdersComponent implements OnInit {
         this.ordersService.getOrders(partyId, page).then((res)=>{
           if (res['message']=='success'){
             this.orderItems = res['data'];
+            console.log(this.orderItems)
             resolve(this.utilityService.resolveAsyncPromise("Successfully Retrieved Orders!"));
           }
           else reject(this.utilityService.rejectAsyncPromise("There was some error while fetching the orders!"));
@@ -41,6 +44,11 @@ export class OrdersComponent implements OnInit {
       this.utilityService.errorNotification("There was some error while fetching the orders!");
       console.log(error);
     }
+  }
+
+  next(){
+    this.page++;
+    this.getOrders(this.partyId, this.page);
   }
 
 }

@@ -138,7 +138,7 @@ export class CheckoutComponent implements OnInit {
         this.ordersService.placeOrder(this.orderHeader).then((res)=>{
           if (res['message']=="success"){
             resolve(this.utilityService.resolveAsyncPromise("Successfully Placed Order!"));
-            this.router.navigate(['dashboards', 'orders']);
+            this.router.navigate(['dashboard', 'orders']);
           }
         }).catch((err)=>{
           reject(this.utilityService.rejectAsyncPromise("Some error occurred while placing the order. Please try again later!"));

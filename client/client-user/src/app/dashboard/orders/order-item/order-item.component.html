@@ -1,1 +1,40 @@
-<p>order-item works!</p>
+<div class="media card-tile user-list">
+    <div class="media-body">
+        <div class="float-left">
+            <h6><strong>OrderId: </strong>{{ orderItem.orderId }}</h6>
+            <p>Status: {{ orderItem.status }}</p>
+        </div>
+        <div class="float-right">
+          <button id="expand" class="btn"><span class="material-icons" (click)="toggleExpanded()">
+              {{arrow}}
+          </span></button>
+      </div>
+      <div *ngIf="expanded==true" style="clear: both;">
+        <table border="1px;">
+            <tr>
+                <th>Product Name</th>
+                <th>Packing (Kg)</th>
+                <th>Price Per Piece (Rs)</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+            </tr>
+            <tr *ngFor="let item of orderDetails">
+                <td>{{ item.itemName }}</td>
+                <td>{{ item.orderDetail.itemDetails.size }}</td>
+                <td>{{ item.orderDetail.discountedCost }}</td>
+                <td>{{ item.orderDetail.quantity }}</td>
+                <td>{{ item.orderDetail.discountedCost * item.orderDetail.quantity }}</td>
+            </tr>
+        </table>
+        <p><strong>Total Order Value: </strong>Rs. {{ totalOrderValue }}</p>
+        <div>
+            <p><strong>Expected Delivery Date: </strong>{{ orderItem.expectedDeliveryDate }}</p>
+        </div>
+
+        <div style="text-align: center;">
+          <button *ngIf="orderItem.status!='Closed' && orderItem.status!='Cancelled'" (click)="cancelOrder()" class="btn btn-danger">Cancel Order</button>
+        </div>
+
+    </div>
+    </div>
+</div>
