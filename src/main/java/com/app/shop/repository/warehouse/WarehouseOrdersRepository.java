@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface WarehouseOrdersRepository extends PagingAndSortingRepository<OrderHeader, Integer> {
+public interface WarehouseOrdersRepository extends PagingAndSortingRepository<OrderHeader, String> {
 
     public List<OrderHeader> findByWarehouseDetailsWarehouseIdOrderByOrderDateDesc(Integer warehouseId, Pageable pageable);
 
