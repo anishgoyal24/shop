@@ -59,11 +59,13 @@ public class ProductManagementService {
                     cat.getItemDetails().add(itemDetails);
                 }
             }
+            String imageName = itemDetails.getItemName().toLowerCase().replaceAll("\\s", "") + ".jpg";
             itemDetails.setCategories(categoryList);
-            itemDetails.setImage(itemDetails.getItemName().toLowerCase().replaceAll("\\s", ""));
+            itemDetails.setImage(imageName);
             productManagementRepository.save(itemDetails);
-            uploadImage(image, itemDetails.getItemName().toLowerCase().replaceAll("\\s", ""));
+
             returnObject.put("message", "success");
+            returnObject.put("imageName", imageName);
         }
         else
             returnObject.put("message", "failure");

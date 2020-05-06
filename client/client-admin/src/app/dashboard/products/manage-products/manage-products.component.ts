@@ -39,6 +39,7 @@ export class ManageProductsComponent implements OnInit {
 
   packing: any
 
+
   async ngOnInit() {
     this.ngxService.startBackground()
     this.products = await this.getAllProducts()
@@ -205,6 +206,13 @@ export class ManageProductsComponent implements OnInit {
     return new Promise((resolve)=>{
       this.partyHomeComponent.getAllParties()
       .then((res)=> resolve(res['data']))
+    })
+  }
+
+
+  getImage(imageName: string){
+    this.productService.getImage(imageName).then((res)=>{
+      return res;
     })
   }
 

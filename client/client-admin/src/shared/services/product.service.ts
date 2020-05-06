@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 const HttpUploadOptions = {
@@ -103,6 +103,26 @@ export class ProductService {
  */
   enableProduct(itemId: number) {
     return this._http.post(environment.BASE_URL_API + `/product/management/enable/${itemId}`, '').toPromise()
+  }
+
+
+  /**
+   * Upload Image
+   * @param formdata 
+   */
+  uploadImage(formdata: any, filename: string){
+    return this._http.post(environment.UPLOADS_API+ '/upload?filename=' + filename, formdata).toPromise();
+  }
+
+
+  /**
+   * Get Image
+   * @param filename 
+   */
+  getImage(filename: string){
+    return this._http.get(environment.UPLOADS_API + '/image', {
+      params: new HttpParams().set("filename", filename)
+    }).toPromise();
   }
 
 

@@ -85,7 +85,6 @@ export class NewProductsComponent implements OnInit {
     // formData.append('category', productDetails.category)
     // formData.append('itemPackingDetails', productDetails.itemPackingDetails)
     formData.append('image', this.image, this.image.name)
-
     this.createNewProduct(formData);
   }
 
@@ -102,9 +101,12 @@ export class NewProductsComponent implements OnInit {
     this.utilityService.asyncNotification('Creating New Product', 
     new Promise((resolve, reject)=>{
       this.productService.createNewProduct(productDetails)
-      .then(()=>{
-        this.clearForm(this.productDetails)
-        resolve(this.utilityService.resolveAsyncPromise('Product Created!'))
+      .then((res)=>{
+        if (res['message']=='success'){
+          this.uploadImage(productDetails, res['imageName']);
+          this.clearForm(this.productDetails)
+          resolve(this.utilityService.resolveAsyncPromise('Product Created!'))
+        }
       })
       .catch(()=>{
         this.clearForm(this.productDetails)
@@ -125,6 +127,15 @@ export class NewProductsComponent implements OnInit {
       this.partyHomeComponent.getAllParties()
       .then((res)=> resolve(res))
     })
+  }
+
+
+  uploadImage(formData: FormData, imageName: string){
+        this.productService.uploadImage(formData, imageName).then((res)=>{
+          console.log(res);
+        }).catch((err)=>{
+          console.log(err);
+        })
   }
 
 }
