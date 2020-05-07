@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ProductService } from 'src/shared/services/product.service';
 import { CartService } from 'src/shared/services/cart.service';
 import { UtilityService } from 'src/shared/services/utility.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-item',
@@ -37,7 +38,10 @@ export class ProductItemComponent implements OnInit {
 
   selectedPacking: any;
 
+  uploadsServer: string;
+
   ngOnInit() {
+    this.uploadsServer = environment.UPLOADS_API;
     var partyId = sessionStorage.getItem("partyId");
     this.cartItem.partyDetails.partyId = Number(partyId);
   }

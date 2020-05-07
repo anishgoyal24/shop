@@ -17,19 +17,35 @@ export class WarehouseService {
     return this._http.post(environment.BASE_URL_API + '/warehouse/new', warehouseDetails).toPromise();
   }
 
+  /**
+   * Get names of warehouse
+   */
   getWarehouseList(){
     return this._http.get(environment.BASE_URL_API + '/warehouse/get-name').toPromise();
   }
 
+
+  /**
+   * Get details of a warehouse
+   * @param warehouseId 
+   */
   getWarehouseDetails(warehouseId: any){
     let params = new HttpParams().set("warehouseId", warehouseId);
     return this._http.get(environment.BASE_URL_API + '/warehouse/details', {params: params}).toPromise();
   }
 
+  /**
+   * Edit warehouse details
+   * @param warehouseDetails 
+   */
   editWarehouse(warehouseDetails: any){
     return this._http.post(environment.BASE_URL_API + '/warehouse/updatedetails', warehouseDetails).toPromise();
   }
 
+  /**
+   * Get list of static warehouse by state
+   * @param state 
+   */
   getWarehouseListByState(state: any){
     var params = new HttpParams().set("state", state);
     return this._http.get(environment.BASE_URL_API + '/warehouse/by-state', {
@@ -37,6 +53,10 @@ export class WarehouseService {
     }).toPromise();
   }
 
+  /**
+   * Search a warehouse
+   * @param query 
+   */
   search(query: string){
     var params = new HttpParams().set("email", query);
     return this._http.get(environment.BASE_URL_API + '/warehouse/search', {

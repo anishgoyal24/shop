@@ -9,7 +9,7 @@
                 Select Dynamic Warehouse
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="overflow: scroll; max-height: 200px;">
-                <a class="dropdown-item" *ngFor="let warehouse of dynamicWarehouse" (click)="this.selectedWarehouse = warehouse.warehouseId; this.transferObject.dynamicWarehouseId = warehouse.warehouseId">{{warehouse?.warehouseName}}</a>
+                <a class="dropdown-item" *ngFor="let warehouse of dynamicWarehouse" (click)="this.selectedWarehouse = warehouse[1]; this.transferObject.dynamicWarehouseId = warehouse[0]">{{warehouse[1]}}</a>
               </div>
             </div>
             <p *ngIf="this.selectedWarehouse" style="margin-top: 2%;">Selected Dynamic Warehouse: <strong>{{this.selectedWarehouse}}</strong></p>

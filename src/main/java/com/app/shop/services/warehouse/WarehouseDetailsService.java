@@ -2,6 +2,8 @@ package com.app.shop.services.warehouse;
 
 import com.app.shop.entity.UserDetails;
 import com.app.shop.entity.WarehouseDetails;
+import com.app.shop.repository.common.CountryRepository;
+import com.app.shop.repository.common.StateRepository;
 import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.warehouse.WarehouseRepository;
 import com.app.shop.utils.ChangePasswordClass;
@@ -20,15 +22,23 @@ import java.util.Optional;
 @Service
 public class WarehouseDetailsService {
 
-    @Autowired
+
     private WarehouseRepository warehouseRepository;
-    @Autowired
     private UserAuthRepository userAuthRepository;
     @PersistenceContext
     private EntityManager entityManager;
     private HashMap<String, Object> returnObject;
-    @Autowired
     private PasswordEncoder bCryptPasswordEncoder;
+    private CountryRepository countryRepository;
+    private StateRepository stateRepository;
+
+    public WarehouseDetailsService(WarehouseRepository warehouseRepository, UserAuthRepository userAuthRepository, PasswordEncoder bCryptPasswordEncoder, CountryRepository countryRepository, StateRepository stateRepository) {
+        this.warehouseRepository = warehouseRepository;
+        this.userAuthRepository = userAuthRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.countryRepository = countryRepository;
+        this.stateRepository = stateRepository;
+    }
 
     private void detachObject(WarehouseDetails warehouseDetails){
         entityManager.detach(warehouseDetails);
@@ -42,6 +52,8 @@ public class WarehouseDetailsService {
             String encodedPassword = bCryptPasswordEncoder.encode(warehouseDetails.getPassword());
             warehouseDetails.setPassword(encodedPassword);
             warehouseDetails.setStatus('y');
+            warehouseDetails.setState(stateRepository.findById(warehouseDetails.getState().getStateFullCode()).get());
+            warehouseDetails.setCountry(countryRepository.findById(warehouseDetails.getCountry().getCountryCode3()).get());
             warehouseRepository.save(warehouseDetails);
             userAuthRepository.save(new UserDetails(warehouseDetails.getWarehouseEmail(), encodedPassword, 1, warehouseDetails.getRole(), warehouseDetails.getPrimaryPhone()));
             returnObject.put("message", "success");

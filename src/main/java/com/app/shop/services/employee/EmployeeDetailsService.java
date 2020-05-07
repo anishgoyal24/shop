@@ -2,6 +2,8 @@ package com.app.shop.services.employee;
 
 import com.app.shop.entity.EmployeeDetails;
 import com.app.shop.entity.UserDetails;
+import com.app.shop.repository.common.CountryRepository;
+import com.app.shop.repository.common.StateRepository;
 import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.employee.EmployeeRepository;
 import com.app.shop.utils.ChangePasswordClass;
@@ -21,13 +23,21 @@ public class EmployeeDetailsService {
 
     @PersistenceContext
     private EntityManager entityManager;
-    @Autowired
     private EmployeeRepository employeeRepository;
-    @Autowired
     private UserAuthRepository userAuthRepository;
     private HashMap<String, Object> returnObject;
-    @Autowired
     private PasswordEncoder bCryptPasswordEncoder;
+    private StateRepository stateRepository;
+    private CountryRepository countryRepository;
+
+    @Autowired
+    public EmployeeDetailsService(EmployeeRepository employeeRepository, UserAuthRepository userAuthRepository, PasswordEncoder bCryptPasswordEncoder, StateRepository stateRepository, CountryRepository countryRepository) {
+        this.employeeRepository = employeeRepository;
+        this.userAuthRepository = userAuthRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.stateRepository = stateRepository;
+        this.countryRepository = countryRepository;
+    }
 
     private void detachObject(EmployeeDetails employeeDetails){
         entityManager.detach(employeeDetails);
@@ -45,6 +55,8 @@ public class EmployeeDetailsService {
             String encodedPassword = bCryptPasswordEncoder.encode(employeeDetails.getPassword());
             employeeDetails.setPassword(encodedPassword);
             employeeDetails.setStatus('y');
+            employeeDetails.setState(stateRepository.findById(employeeDetails.getState().getStateFullCode()).get());
+            employeeDetails.setCountry(countryRepository.findById(employeeDetails.getCountry().getCountryCode3()).get());
             employeeRepository.save(employeeDetails);
             userAuthRepository.save(new UserDetails(employeeDetails.getEmpEmail(), encodedPassword, 1, employeeDetails.getRole(), employeeDetails.getPrimaryPhone()));
             returnObject.put("message", "success");

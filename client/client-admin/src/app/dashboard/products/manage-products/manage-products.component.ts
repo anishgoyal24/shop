@@ -6,6 +6,7 @@ import { PartyHomeComponent } from '../../party/party-home/party-home.component'
 import { CategoryService } from 'src/shared/services/category.service';
 import { PartyService } from 'src/shared/services/party.service';
 import { UtilityService } from 'src/shared/services/utility.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-manage-products',
@@ -39,8 +40,11 @@ export class ManageProductsComponent implements OnInit {
 
   packing: any
 
+  uploadsServer: string;
+
 
   async ngOnInit() {
+    this.uploadsServer = environment.UPLOADS_API;
     this.ngxService.startBackground()
     this.products = await this.getAllProducts()
     this.categories = await this.getCategories()
@@ -209,11 +213,5 @@ export class ManageProductsComponent implements OnInit {
     })
   }
 
-
-  getImage(imageName: string){
-    this.productService.getImage(imageName).then((res)=>{
-      return res;
-    })
-  }
 
 }

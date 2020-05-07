@@ -4,6 +4,8 @@ import com.app.shop.entity.OTP;
 import com.app.shop.entity.PartyDetails;
 import com.app.shop.entity.PartyType;
 import com.app.shop.entity.UserDetails;
+import com.app.shop.repository.common.CountryRepository;
+import com.app.shop.repository.common.StateRepository;
 import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.customer.DetailsRepository;
 import com.app.shop.services.employee.PartyTypeService;
@@ -37,15 +39,19 @@ public class PartyDetailsService {
     private OtpService otpService;
     private PartyTypeService partyTypeService;
     private PasswordEncoder bCryptPasswordEncoder;
+    private StateRepository stateRepository;
+    private CountryRepository countryRepository;
 
     @Autowired
-    public PartyDetailsService(DetailsRepository detailsRepository, EmailServiceImpl emailService, UserAuthRepository userAuthRepository, OtpService otpService, PartyTypeService partyTypeService, PasswordEncoder passwordEncoder) {
+    public PartyDetailsService(DetailsRepository detailsRepository, EmailServiceImpl emailService, UserAuthRepository userAuthRepository, OtpService otpService, PartyTypeService partyTypeService, PasswordEncoder passwordEncoder, StateRepository stateRepository, CountryRepository countryRepository) {
         this.detailsRepository = detailsRepository;
         this.emailService = emailService;
         this.userAuthRepository = userAuthRepository;
         this.otpService = otpService;
         this.partyTypeService = partyTypeService;
         this.bCryptPasswordEncoder = passwordEncoder;
+        this.countryRepository = countryRepository;
+        this.stateRepository = stateRepository;
     }
 
 //  Detach persisted object
@@ -68,6 +74,8 @@ public class PartyDetailsService {
                 partyDetails.setStatus('y');
                 String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
                 partyDetails.setPassword(encodedPassword);
+                partyDetails.setState(stateRepository.findById(partyDetails.getState().getStateFullCode()).get());
+                partyDetails.setCountry(countryRepository.findById(partyDetails.getCountry().getCountryCode3()).get());
                 detailsRepository.save(partyDetails);
                 userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party", partyDetails.getPrimaryPhone()));
                 returnObject.put("message", "success");
@@ -81,6 +89,8 @@ public class PartyDetailsService {
                 partyDetails.setStatus('y');
                 String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
                 partyDetails.setPassword(encodedPassword);
+                partyDetails.setState(stateRepository.findById(partyDetails.getState().getStateFullCode()).get());
+                partyDetails.setCountry(countryRepository.findById(partyDetails.getCountry().getCountryCode3()).get());
                 detailsRepository.save(partyDetails);
                 userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party", partyDetails.getPrimaryPhone()));
                 returnObject.put("message", "success");

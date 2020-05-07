@@ -10,7 +10,7 @@
         </div>
         <div class="media card-tile user-list" *ngFor="let product of products; let index = index;">
 
-                <img
+                <img src="{{ uploadsServer }}/static/images/{{ product.image }}"
                         onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
                 <div class="media-body">
                         <div class="float-left">

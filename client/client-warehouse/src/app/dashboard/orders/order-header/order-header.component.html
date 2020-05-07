@@ -16,7 +16,7 @@
               <li class="nav-item" *ngIf="type=='Cash Counter'">
                 <a class="nav-link" [routerLink]="['/dashboard', 'orders', 'add']" routerLinkActive="router-link-active" >Add Order</a>
               </li>
-              <li class="nav-item" *ngIf="type!='Cash Counter'">
+              <li class="nav-item" *ngIf="type!='Cash Counter' && type!='dynamic'">
                 <a class="nav-link" [routerLink]="['/dashboard', 'orders', 'transfer']" routerLinkActive="router-link-active" >Transfer Order</a>
               </li>
             </ul>

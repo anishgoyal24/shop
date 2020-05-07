@@ -22,8 +22,8 @@
             </div>
             <div style="text-align: center;">
                 <label for="totalValue"><strong>Total Order Value: </strong>{{ 'Rs.' + totalValue }}</label>
-                <label for="discount" style="display: block;"><strong>Discount:</strong> {{ customerDiscount }}%</label>
-                <label style="display: block;"><strong>Discounted Price: </strong>{{ 'Rs.' + discountedPrice }}</label>
+                <label for="discount" style="display: block;" *ngIf="customerDiscount>0"><strong>Discount:</strong> {{ customerDiscount }}%</label>
+                <label style="display: block;" *ngIf="customerDiscount>0"><strong>Discounted Price: </strong>{{ 'Rs.' + discountedPrice }}</label>
             </div>
             <div class="address">
                 <h6><strong>Delivery Address:</strong></h6>

@@ -120,6 +120,7 @@ export class NewWarehouseComponent implements OnInit {
     new Promise((resolve, reject)=>{
       this.warehouseService.getWarehouseListByState(state).then((res)=>{
         this.warehouseList = res['data'];
+        console.log(res);
         resolve();
       }).catch((err)=>{
         console.log(err);
