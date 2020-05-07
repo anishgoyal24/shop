@@ -26,14 +26,10 @@ public class ProductService {
 
     public HashMap<String, Object> searchItem(String searchQuery, String type){
         returnObject = new HashMap<>();
-        List<ItemDetails> itemDetailsList = productRepository.findByItemNameContainingIgnoreCase(searchQuery, type);
+        List<ItemDetails> itemDetailsList = productRepository.findByItemNameContainingIgnoreCase(searchQuery.toLowerCase(), type);
         if (itemDetailsList!=null){
-            List<ProductDTO> productDTOS = new ArrayList<>();
             returnObject.put("message", "success");
-            for (ItemDetails itemDetails: itemDetailsList){
-                productDTOS.add(new ProductDTO(itemDetails, itemDetails.getItemPackingDetails()));
-            }
-            returnObject.put("data", productDTOS);
+            returnObject.put("data", itemDetailsList);
         }
         else
             returnObject.put("message", "no such item");

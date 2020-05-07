@@ -18,16 +18,18 @@ export class CartComponent implements OnInit {
 
   cartItems = [];
 
+  partyId: string;
+
   ngOnInit() {
     this.getCart();
   }
 
   getCart(){
     try {
-      const partyId = sessionStorage.getItem("partyId");
+      this.partyId = sessionStorage.getItem("partyId");
       const state = sessionStorage.getItem("state");
       this.utilityService.asyncNotification("Retrieving cart...", new Promise((resolve, reject)=>{
-        this.cartService.getCart(partyId, state).then((res)=>{
+        this.cartService.getCart(this.partyId, state).then((res)=>{
           if (res['message']=='success'){
             this.cartItems = res['data'];
             resolve(this.utilityService.resolveAsyncPromise("Successfully retrieved cart!"));
@@ -50,6 +52,15 @@ export class CartComponent implements OnInit {
     const index = this.cartItems.indexOf(cartItem, 0);
     if (index > -1) {
       this.cartItems.splice(index, 1);
+    }
+    try {
+      this.cartService.getCartCount(this.partyId).then((res)=>{
+        this.cartService.updateCartNumber(res['data']);
+      }).catch((err)=>{
+        console.log(err);
+      })
+    } catch (error) {
+      console.log(error);
     }
   }
 

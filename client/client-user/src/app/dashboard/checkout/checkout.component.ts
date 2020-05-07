@@ -137,6 +137,9 @@ export class CheckoutComponent implements OnInit {
       this.utilityService.asyncNotification("Placing Order...", new Promise((resolve, reject)=>{
         this.ordersService.placeOrder(this.orderHeader).then((res)=>{
           if (res['message']=="success"){
+            this.cartService.getCartCount(this.partyId).then((res)=>{
+              this.cartService.updateCartNumber(res['data']);
+            })
             resolve(this.utilityService.resolveAsyncPromise("Successfully Placed Order!"));
             this.router.navigate(['dashboard', 'orders']);
           }

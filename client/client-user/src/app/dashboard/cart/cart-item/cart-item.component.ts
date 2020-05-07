@@ -18,7 +18,7 @@ export class CartItemComponent implements OnInit {
 
   @Output() deleteCart = new EventEmitter<any>();
 
-  totalPrice: Number = 0;
+  totalPrice: any = 0;
 
   ngOnInit() {
     console.log(this.cartItem);

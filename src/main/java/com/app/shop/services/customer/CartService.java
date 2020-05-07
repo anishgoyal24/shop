@@ -103,4 +103,10 @@ public class CartService {
         returnObject.put("data", carts);
         return returnObject;
     }
+
+    public HashMap<String, Object> getCount(Integer partyId) {
+        returnObject = new HashMap<>();
+        returnObject.put("data", cartRepository.findCount(partyId));
+        return returnObject;
+    }
 }

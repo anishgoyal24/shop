@@ -40,4 +40,11 @@ public class CartController {
     public HashMap<String, Object> getCart(@RequestParam Integer id, @RequestParam String state){
         return cartService.getCart(id, state);
     }
+
+//  Count
+    @GetMapping(value = "/count")
+    @PreAuthorize("hasAnyAuthority('ROLE_party')")
+    public HashMap<String, Object> getCount(@RequestParam Integer partyId){
+        return cartService.getCount(partyId);
+    }
 }

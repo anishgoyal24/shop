@@ -14,6 +14,10 @@ export class ProductsComponent implements OnInit {
 
   warehousePresent: boolean = false;
 
+  searchQuery: string = "";
+
+  type: string;
+
   constructor(
     private productService: ProductService,
     private utilityService: UtilityService,
@@ -26,9 +30,9 @@ export class ProductsComponent implements OnInit {
 
   getProducts(){
     try {
-      let type = sessionStorage.getItem("partyType");
+      this.type = sessionStorage.getItem("partyType");
       this.utilityService.asyncNotification('Retrieving Products...', new Promise((resolve, reject)=>{
-        this.productService.getProducts(type)
+        this.productService.getProducts(this.type)
         .then((res: any)=>{
           if (res.body['message']="success"){
             this.productsList = res.body['data'];
@@ -44,7 +48,18 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  searchProducts(event: any){
+  searchProducts(){
+    new Promise((resolve, reject)=>{
+      this.productService.search(this.searchQuery, this.type).then((res)=>{
+        if (res['message']=='success'){
+          this.productsList = res['data'];
+          resolve();
+        }
+        else reject();
+      }).catch((err)=>{
+        console.log(err);
+      })
+    })
   }
 
   findWarehouseByPincode(){

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/shared/services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,9 +9,14 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  cartNumber: number = 0;
+
   constructor(
-    private router: Router
-  ) { }
+    private router: Router,
+    private cartService: CartService
+  ) { 
+    this.cartService.getCartNumber().subscribe(cartNumber => this.cartNumber = cartNumber);
+  }
 
   ngOnInit() {
   }

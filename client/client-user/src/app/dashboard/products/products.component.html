@@ -9,7 +9,7 @@
                     <i class="material-icons form-control-feedback">
                         search
                     </i>
-                    <input type="text" class="form-control" placeholder="Search Products" (input)="searchProducts($event)">
+                    <input type="text" class="form-control" placeholder="Search Products" (keyup)="searchProducts()" [(ngModel)]="searchQuery">
                 </div>
                 <app-products-list [productsList]="productsList"></app-products-list>
             </div>

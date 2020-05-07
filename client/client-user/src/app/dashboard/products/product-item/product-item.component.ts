@@ -40,10 +40,12 @@ export class ProductItemComponent implements OnInit {
 
   uploadsServer: string;
 
+  partyId: string;
+
   ngOnInit() {
     this.uploadsServer = environment.UPLOADS_API;
-    var partyId = sessionStorage.getItem("partyId");
-    this.cartItem.partyDetails.partyId = Number(partyId);
+    this.partyId = sessionStorage.getItem("partyId");
+    this.cartItem.partyDetails.partyId = Number(this.partyId);
   }
 
   toggleExpanded(){
@@ -85,6 +87,9 @@ export class ProductItemComponent implements OnInit {
       this.utilityService.asyncNotification("Adding to cart...", new Promise((resolve, reject)=>{
         this.cartService.addToCart(this.cartItem).then((res)=>{
           if (res['message']=='success'){
+            this.cartService.getCartCount(this.partyId).then((res)=>{
+              this.cartService.updateCartNumber(res['data']);
+            })
             resolve(this.utilityService.resolveAsyncPromise("Successfully added item to cart!"));
           }
           else reject(this.utilityService.rejectAsyncPromise("Error adding item to cart!"));

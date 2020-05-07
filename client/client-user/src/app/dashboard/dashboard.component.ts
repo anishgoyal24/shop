@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/shared/services/cart.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private cartService: CartService
+  ) { }
 
   ngOnInit() {
+    const partyId = sessionStorage.getItem("partyId");
+    this.cartService.getCartCount(partyId).then((res)=>{
+      this.cartService.updateCartNumber(res['data']);
+    }).catch((err)=>{
+      console.log(err);
+    })
   }
 
 }
