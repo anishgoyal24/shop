@@ -36,7 +36,7 @@ export class NewWarehouseComponent implements OnInit {
     },
     pincode: null,
     password: null,
-    status: null,
+    status: 'y',
     role: null,
     type: null,
     ownerWarehouse: null
@@ -132,6 +132,11 @@ export class NewWarehouseComponent implements OnInit {
 
   toggleAddressFields(){
     this.addressFields = !this.addressFields;
+  }
+  
+  objectIsEmpty(object: any){
+    // Object.values(object).every(x => (x === null || x === ''));
+    console.log(object);
   }
 
 }

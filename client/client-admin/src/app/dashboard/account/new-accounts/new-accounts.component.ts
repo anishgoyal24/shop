@@ -110,7 +110,7 @@ export class NewAccountsComponent implements OnInit {
       })
     })
   }
-
+  
   /**
    * This Function unsubscribes from all the active subscriptions
    */

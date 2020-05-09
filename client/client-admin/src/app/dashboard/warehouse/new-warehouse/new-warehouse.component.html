@@ -42,7 +42,7 @@
               Select State
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="overflow: scroll; height: 200px;">
-              <a class="dropdown-item" *ngFor="let state of statesList" (click)="this.ownerState = state.stateName; this.accountDetails.state.stateFullCode = state.stateFullCode; getOwnerWarehouseList(state.stateFullCode)">{{state?.stateName}}</a>
+              <a class="dropdown-item" *ngFor="let state of statesList" (click)="this.ownerState = state.stateName; getOwnerWarehouseList(state.stateFullCode)">{{state?.stateName}}</a>
             </div>
           </div>
           <p *ngIf="this.ownerState" style="margin-top: 2%;">Selected Owner State: <strong>{{this.ownerState}}</strong></p>
@@ -55,7 +55,7 @@
               Select Owner Warehouse
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="overflow: scroll; max-height: 200px;">
-              <a class="dropdown-item" *ngFor="let warehouse of warehouseList" (click)="this.selectedOwnerWarehouse = warehouse[0]; this.accountDetails.ownerWarehouse = warehouse[1]">{{warehouse[0]}}</a>
+              <a class="dropdown-item" *ngFor="let warehouse of warehouseList" (click)="this.selectedOwnerWarehouse = warehouse.warehouseId; this.accountDetails.ownerWarehouse = warehouse.warehouseId">{{warehouse?.warehouseName}}</a>
             </div>
           </div>
           <p *ngIf="this.selectedOwnerWarehouse" style="margin-top: 2%;">Selected Owner Warehouse: <strong>{{this.selectedOwnerWarehouse}}</strong></p>

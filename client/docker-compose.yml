@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+  
+  admin:
+    
+    depends_on:
+      - api
+  
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - 3000:80
+    depends_on:
+      - api
+      - client
+
+volumes:
+
+  data_db:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/data/db
+      o: bind
+
+  data_uploads:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/data/uploads
+      o: bind
