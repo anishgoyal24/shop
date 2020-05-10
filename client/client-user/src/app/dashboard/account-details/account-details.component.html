@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="card-media">
+        <div class="container">
+            <h1>Account Details</h1>
+            <div class="media-body" *ngIf="partyDetails">
+                <h5><strong>Party Name: </strong>{{ partyDetails.partyName }}</h5>
+                <h5><strong>Party Email: </strong>{{ partyDetails.partyEmail }}</h5>
+                <h5><strong>Contact Person: </strong>{{ partyDetails.contactPerson }}</h5>
+                <h5><strong>Address: </strong>{{ partyDetails.address }}</h5>
+                <h5><strong>City: </strong>{{ partyDetails.city }}</h5>
+                <h5><strong>State: </strong>{{ partyDetails.state.stateName }}</h5>
+                <h5><strong>Pincode: </strong>{{ partyDetails.pincode }}</h5>
+                <h5><strong>Country: </strong>{{ partyDetails.country.countryName }}</h5>
+                <h5><strong>Party Type: </strong>{{ partyDetails.partyType.type }}</h5>
+                <h5><strong>Primary Phone: </strong>{{ partyDetails.primaryPhone }}</h5>
+                <h5><strong>Secondary Phone: </strong>{{ partyDetails.secondaryPhone }}</h5>
+                <h5 *ngIf="partyDetails.discount>0"><strong>Discount: </strong>{{ partyDetails.discount }}</h5>
+                <h5><strong>Created Date: </strong>{{ partyDetails.createDate }}</h5>
+            </div>
+        </div>
+    </div>
+</div>

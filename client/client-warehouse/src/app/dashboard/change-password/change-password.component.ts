@@ -1,22 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilityService } from 'src/shared/services/utility.service';
-import { UserService } from 'src/shared/services/user.service';
+import { WarehouseService } from 'src/shared/services/warehouse.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.scss']
+  selector: 'app-change-password',
+  templateUrl: './change-password.component.html',
+  styleUrls: ['./change-password.component.scss']
 })
-export class ResetPasswordComponent implements OnInit {
-
- 
-
-  constructor(
-    private utilityService: UtilityService,
-    private userService: UserService,
-    private router: Router
-  ) { }
+export class ChangePasswordComponent implements OnInit {
 
   object : {email: string, oldPassword: string, newPassword: string} = {
     email: null,
@@ -24,13 +16,19 @@ export class ResetPasswordComponent implements OnInit {
     newPassword: null
   }
 
+  constructor(
+    private warehouseService: WarehouseService,
+    private utilityService: UtilityService,
+    private router: Router
+  ) { }
+
   ngOnInit() {
-    this.object.email = sessionStorage.getItem("partyEmail");
+    this.object.email = sessionStorage.getItem("warehouseEmail");
   }
 
   changePassword(object: Object){
     this.utilityService.asyncNotification("Changing password please wait...", new Promise((resolve, reject)=>{
-      this.userService.changePassword(object).then((res)=>{
+      this.warehouseService.changePassword(object).then((res)=>{
         if (res['message']=='success'){
           resolve(this.utilityService.resolveAsyncPromise("Successfully changed password!"));
           sessionStorage.clear();

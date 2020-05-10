@@ -35,6 +35,7 @@ import { CheckoutComponent } from './dashboard/checkout/checkout.component';
 import { OrdersComponent } from './dashboard/orders/orders.component';
 import { OrderItemComponent } from './dashboard/orders/order-item/order-item.component';
 import { ResetPasswordComponent } from './dashboard/reset-password/reset-password.component';
+import { AccountDetailsComponent } from './dashboard/account-details/account-details.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,8 @@ import { ResetPasswordComponent } from './dashboard/reset-password/reset-passwor
     OrderItemComponent,
 
     ResetPasswordComponent,
+
+    AccountDetailsComponent,
   ],
   imports: [
     BrowserModule,

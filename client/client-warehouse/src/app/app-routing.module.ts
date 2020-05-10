@@ -28,6 +28,10 @@ import { OpenOrdersComponent } from './dashboard/orders/open-orders/open-orders.
 import { TransferOrderComponent } from './dashboard/orders/transfer-order/transfer-order.component';
 import { AddOrderComponent } from './dashboard/orders/add-order/add-order.component';
 
+
+// !!!---Change Password---!!!
+import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
+
 // // !!!----- GUARDS -----!!!
 // import { AuthGuard } from 'src/shared/guards/auth.guard';
 // import { NavigationGuard } from 'src/shared/guards/navigation.guard';
@@ -61,7 +65,10 @@ const routes: Routes = [
         { path: 'transfer', component: TransferOrderComponent },
         { path: 'add', component: AddOrderComponent }
       ]
-  }
+  },
+
+  // Change password
+    { path: 'change-password', component: ChangePasswordComponent }
     ]
 }
 ];

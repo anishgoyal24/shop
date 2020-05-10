@@ -32,4 +32,8 @@ export class UserService {
   getOtp(email: string){
     return this.http.post(environment.BASE_URL_API + '/customer/otp', email).toPromise();
   }
+
+  changePassword(object: Object){
+    return this.http.post(environment.BASE_URL_API + '/customer/changepassword', object).toPromise();
+  }
 }

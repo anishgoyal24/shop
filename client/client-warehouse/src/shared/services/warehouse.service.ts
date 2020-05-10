@@ -45,4 +45,13 @@ export class WarehouseService {
       params: params
     }).toPromise();
   }
+
+
+  /**
+   * Change password of a warehouse
+   * @param object 
+   */
+  changePassword(object: Object){
+    return this.httpClient.post(environment.BASE_URL_API + '/warehouse/changepassword', object).toPromise();
+  }
 }
