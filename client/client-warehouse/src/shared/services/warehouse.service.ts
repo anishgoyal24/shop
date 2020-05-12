@@ -8,7 +8,14 @@ import { environment } from 'src/environments/environment';
 })
 export class WarehouseService {
 
-  constructor(private _http: HttpClient, private httpClient: HttpClient) { }
+  _http: HttpClient;
+
+  constructor(handler: HttpBackend, private httpClient: HttpClient) {
+    /**
+     * HTTP Backend to skip auth interception with Authorization Header
+     */
+    this._http = new HttpClient(handler);
+   }
 
   /**
    * Authenticate user and retrieve a token to store on client side.
@@ -53,5 +60,14 @@ export class WarehouseService {
    */
   changePassword(object: Object){
     return this.httpClient.post(environment.BASE_URL_API + '/warehouse/changepassword', object).toPromise();
+  }
+
+
+  /**
+   * Reset password
+   * @param email 
+   */
+  forgotPassword(email: string){
+    return this._http.post(environment.BASE_URL_API + '/warehouse/forgotpassword', email).toPromise();
   }
 }

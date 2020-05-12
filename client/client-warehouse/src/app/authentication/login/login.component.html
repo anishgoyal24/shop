@@ -9,10 +9,11 @@
     <div class="container">
         <h1>Login to Dashboard</h1>
 
-        <div class="form">
+        <div class="form" style="text-align: center;">
             <input type="text" placeholder="Username" [(ngModel)]="username">
             <input  type="password" placeholder="Password" [(ngModel)]="password" (keyup.enter)="submit.click()">
             <button #submit type="submit" id="login-button" (click)="login()">Login</button>
+            <button #forgot id="login-button" (click)="forgotPassword()" style="display: block;">Forgot Password</button>
         </div>
     </div>
 </div>

@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 // !!!---Authentication---!!!
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
+import { ForgotPasswordComponent } from './authentication/forgot-password/forgot-password.component';
 /**
  * Signup Component is being used in the dashboard section only
  */
@@ -82,6 +83,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [NavigationGuard] },
   { path: 'login', component: LoginComponent, canActivate: [NavigationGuard] },
   { path: 'signup', component: NewAccountsComponent},
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate : [AuthGuard],
     children: [
       

@@ -54,6 +54,7 @@ import { HomeComponent } from './home/home.component';
 // ----- AUTHENTICATION -----
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
+import { ForgotPasswordComponent } from './authentication/forgot-password/forgot-password.component';
 
 // ----- DASHBOARD -----
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -144,7 +145,6 @@ import { WarehouseHeaderComponent } from './dashboard/warehouse/warehouse-header
 import { ManageWarehouseComponent } from './dashboard/warehouse/manage-warehouse/manage-warehouse.component';
 import { NewWarehouseComponent } from './dashboard/warehouse/new-warehouse/new-warehouse.component';
 import { ManageSectionComponent } from './common/manage-section/manage-section.component';
-import { ForgotPasswordComponent } from './dashboard/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
 import { PincodeMappingComponent } from './dashboard/pincode-mapping/pincode-mapping.component';
 import { PincodeMappingHomeComponent } from './dashboard/pincode-mapping/pincode-mapping-home/pincode-mapping-home.component';
@@ -165,6 +165,7 @@ import { ManagePincodeMappingComponent } from './dashboard/pincode-mapping/manag
     // AUTHENTICATION COMPONENTS
     LoginComponent,
     SignupComponent,
+    ForgotPasswordComponent,
 
     // HOME COMPONENT
     HomeComponent,
@@ -221,7 +222,6 @@ import { ManagePincodeMappingComponent } from './dashboard/pincode-mapping/manag
     ManageWarehouseComponent,
     NewWarehouseComponent,
     ManageSectionComponent,
-    ForgotPasswordComponent,
     ChangePasswordComponent,
     PincodeMappingComponent,
     PincodeMappingHomeComponent,

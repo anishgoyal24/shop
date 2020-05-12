@@ -92,4 +92,12 @@ export class AdminService {
       params: params
     }).toPromise();
   }
+
+  /**
+   * Reset password
+   * @param email 
+   */
+  forgotPassword(email: string){
+    return this._http.post(environment.BASE_URL_API + '/employee/forgotpassword', email).toPromise();
+  }
 }

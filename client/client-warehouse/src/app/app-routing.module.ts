@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 // !!!---Authentication---!!!
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
+import { ForgotPasswordComponent } from './authentication/forgot-password/forgot-password.component';
 
 // !!!---Dashboard---!!
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent},
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'dashboard', component: DashboardComponent, 
     children: [
 

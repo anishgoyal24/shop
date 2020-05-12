@@ -43,6 +43,7 @@ import { OpenOrderItemComponent } from './dashboard/orders/open-orders/open-orde
 import { TransferOrderComponent } from './dashboard/orders/transfer-order/transfer-order.component';
 import { AddOrderComponent } from './dashboard/orders/add-order/add-order.component';
 import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
+import { ForgotPasswordComponent } from './authentication/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,9 @@ import { ChangePasswordComponent } from './dashboard/change-password/change-pass
 
     AddOrderComponent,
 
-    ChangePasswordComponent
+    ChangePasswordComponent,
+
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
