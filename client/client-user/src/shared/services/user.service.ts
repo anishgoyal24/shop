@@ -36,4 +36,13 @@ export class UserService {
   changePassword(object: Object){
     return this.http.post(environment.BASE_URL_API + '/customer/changepassword', object).toPromise();
   }
+
+  /**
+   * Reset password
+   * @param email 
+   */
+  forgotPassword(email: string){
+    return this.http.post(environment.BASE_URL_API + '/customer/forgotpassword', email).toPromise();
+  }
+
 }
