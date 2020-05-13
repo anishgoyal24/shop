@@ -27,6 +27,9 @@ import { OrdersComponent } from './dashboard/orders/orders.component';
 // !!!---Account Details---!!!
 import { AccountDetailsComponent } from './dashboard/account-details/account-details.component';
 
+// !!!---Change Password---!!!
+import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -49,7 +52,10 @@ const routes: Routes = [
       { path: 'orders', component: OrdersComponent },
 
       // Account Details
-      { path: 'details', component: AccountDetailsComponent }
+      { path: 'details', component: AccountDetailsComponent },
+
+      // Change Password
+      { path: 'change-password', component: ChangePasswordComponent }
     ]
   }
 ];

@@ -90,8 +90,21 @@ export class OrderService {
   }
 
 
+  /**
+   * Close Order
+   * @param transferObject 
+   */
   transfer(transferObject: any){
     return this.http.post(environment.ORDERS_API + '/order/transfer', transferObject).toPromise();
+  }
+
+
+  /**
+   * Close Order
+   * @param transferObject 
+   */
+  closeOrder(transferObject: any){
+    return this.http.post(environment.ORDERS_API + '/order/close', transferObject).toPromise();
   }
 
 

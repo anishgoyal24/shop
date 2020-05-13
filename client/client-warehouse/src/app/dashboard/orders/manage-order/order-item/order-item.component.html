@@ -32,13 +32,28 @@
             <p><strong>Primary Phone: </strong>{{ partyDetails.primaryPhone }}</p>
             <p><strong>Address: </strong>{{ partyDetails.address + ', ' + partyDetails.city + ', ' + partyDetails.state.stateName + ', ' + partyDetails.country.countryName + '-' + partyDetails.pincode }}</p>
         </div>
-        <div>
+        <div *ngIf="orderItem.status!='Closed'">
             <p><strong>Expected Delivery Date: </strong>{{ orderItem.expectedDeliveryDate }}</p>
+        </div>
+        <div *ngIf="orderItem.status=='Closed'">
+            <p><strong>Closed By: </strong>{{ orderItem.closedBy }}</p>
+            <p><strong>Received By: </strong>{{ orderItem.receivedBy }}</p>
+            <p><strong>Delivery Date: </strong>{{ orderItem.deliveryDate }}</p>
         </div>
 
         <div style="text-align: center;">
           <button *ngIf="orderItem.status=='Confirmed'" (click)="changeStatus('In-Transit')" class="btn btn-primary">In Transit</button>
-          <button *ngIf="orderItem.status=='In-Transit'" (click)="changeStatus('Out for Delivery')" class="btn btn-primary">Out For Delivery</button>
+          <button *ngIf="orderItem.status=='In-Transit'" (click)="transferOrder()" class="btn btn-primary">Transfer to Van</button>
+        </div>
+
+        <div style="text-align: center;" *ngIf="orderItem.status=='Out for Delivery'">
+            <label for="receivedBy">Received By: </label>
+            <input type="text" name="receivedBy" id="" placeholder="Received By" [(ngModel)]="receivedBy">
+            <br>
+            <label for="closedBy">Closed By: </label>
+            <input type="text" name="closedBy" id="" placeholder="Closed By" [(ngModel)]="closedBy">
+            <br>
+            <button class="btn btn-primary" (click)="closeOrder()">Close Order</button>
         </div>
 
     </div>
