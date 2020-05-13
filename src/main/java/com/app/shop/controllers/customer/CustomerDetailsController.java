@@ -73,8 +73,9 @@ public class CustomerDetailsController {
 
 //  Reset password for a user
     @PostMapping(value = "/forgotpassword")
-    public HashMap<String, Object> forgotPassword(@RequestBody Map<String, Object> body){
-        return partyDetailsService.forgotPassword(body);
+    @PreAuthorize("hasAnyAuthority('ROLE_ANONYMOUS')")
+    public HashMap<String, Object> forgotPassword(@RequestBody String email){
+        return partyDetailsService.forgotPassword(email);
     }
 
 }

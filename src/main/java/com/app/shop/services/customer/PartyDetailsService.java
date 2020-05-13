@@ -11,6 +11,7 @@ import com.app.shop.repository.customer.DetailsRepository;
 import com.app.shop.services.employee.PartyTypeService;
 import com.app.shop.utils.ChangePasswordClass;
 import com.app.shop.utils.EmailServiceImpl;
+import com.app.shop.utils.GeneratePassword;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -217,7 +218,7 @@ public class PartyDetailsService {
         }
         catch (Exception e){
             returnObject.put("exception", e);
-            returnObject.put("message", "some exception occured");
+            returnObject.put("message", "some exception occurred");
         }
         finally {
             return returnObject;
@@ -225,24 +226,22 @@ public class PartyDetailsService {
     }
 
     @Transactional(rollbackFor=Exception.class)
-    public HashMap<String, Object> forgotPassword(Map<String, Object> body) {
+    public HashMap<String, Object> forgotPassword(String email) {
         returnObject = new HashMap<>();
-        OTP found = otpService.getOtp(body.get("email").toString());
-        if (found != null){
-            PartyDetails foundParty = detailsRepository.findByPartyEmail(body.get("email").toString());
-            if (foundParty!=null){
-                if (found.getOtp() == Integer.parseInt(body.get("otp").toString())){
-                    foundParty.setPassword((new BCryptPasswordEncoder()).encode(body.get("password").toString()));
-                    detailsRepository.save(foundParty);
-                    returnObject.put("message", "success");
-                }
-                else returnObject.put("message", "Wrong OTP");
-                otpService.deleteOtp(found.getEmail());
-            }
+        PartyDetails found = detailsRepository.findByPartyEmail(email);
+        if (found!=null){
+            String generatedPassword = new GeneratePassword().generatePassword();
+            String encodedPassword = bCryptPasswordEncoder.encode(generatedPassword);
+            found.setPassword(encodedPassword);
+            detailsRepository.save(found);
+            UserDetails userDetails = userAuthRepository.findByUsername(email);
+            userDetails.setPassword(encodedPassword);
+            userAuthRepository.save(userDetails);
+            // TODO Send mail with this new password
+            returnObject.put("message", "success");
         }
-        else {
-            returnObject.put("message", "no such customer");
-        }
+        else
+            returnObject.put("message", "failure");
         return returnObject;
     }
 

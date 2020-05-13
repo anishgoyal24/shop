@@ -1,5 +1,6 @@
 package com.app.shop.services.warehouse;
 
+import com.app.shop.entity.PartyDetails;
 import com.app.shop.entity.UserDetails;
 import com.app.shop.entity.WarehouseDetails;
 import com.app.shop.repository.common.CountryRepository;
@@ -7,6 +8,7 @@ import com.app.shop.repository.common.StateRepository;
 import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.warehouse.WarehouseRepository;
 import com.app.shop.utils.ChangePasswordClass;
+import com.app.shop.utils.GeneratePassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -189,6 +191,26 @@ public class WarehouseDetailsService {
         List<Object[]> dynamic = warehouseRepository.findDynamic(warehouseId);
         returnObject.put("message", "success");
         returnObject.put("data", dynamic);
+        return returnObject;
+    }
+
+    @Transactional(rollbackFor=Exception.class)
+    public HashMap<String, Object> forgotPassword(String email) {
+        returnObject = new HashMap<>();
+        WarehouseDetails found = warehouseRepository.findByWarehouseEmail(email);
+        if (found!=null){
+            String generatedPassword = new GeneratePassword().generatePassword();
+            String encodedPassword = bCryptPasswordEncoder.encode(generatedPassword);
+            found.setPassword(encodedPassword);
+            warehouseRepository.save(found);
+            UserDetails userDetails = userAuthRepository.findByUsername(email);
+            userDetails.setPassword(encodedPassword);
+            userAuthRepository.save(userDetails);
+            // TODO Send mail with this new password
+            returnObject.put("message", "success");
+        }
+        else
+            returnObject.put("message", "failure");
         return returnObject;
     }
 }

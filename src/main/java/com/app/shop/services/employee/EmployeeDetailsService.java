@@ -1,12 +1,14 @@
 package com.app.shop.services.employee;
 
 import com.app.shop.entity.EmployeeDetails;
+import com.app.shop.entity.PartyDetails;
 import com.app.shop.entity.UserDetails;
 import com.app.shop.repository.common.CountryRepository;
 import com.app.shop.repository.common.StateRepository;
 import com.app.shop.repository.common.UserAuthRepository;
 import com.app.shop.repository.employee.EmployeeRepository;
 import com.app.shop.utils.ChangePasswordClass;
+import com.app.shop.utils.GeneratePassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -177,13 +179,23 @@ public class EmployeeDetailsService {
         return returnObject;
     }
 
-//    public String verify(String email) {
-//        EmployeeDetails foundEmployeeDetails = employeeRepository.findByEmpEmail(email);
-//        if (foundEmployeeDetails!=null){
-//            foundEmployeeDetails.setStatus('y');
-//            employeeRepository.save(foundEmployeeDetails);
-//            return "Successfully Verified";
-//        }
-//        return "Invalid Request";
-//    }
+    @Transactional(rollbackFor=Exception.class)
+    public HashMap<String, Object> forgotPassword(String email) {
+        returnObject = new HashMap<>();
+        EmployeeDetails found = employeeRepository.findByEmpEmail(email);
+        if (found!=null){
+            String generatedPassword = new GeneratePassword().generatePassword();
+            String encodedPassword = bCryptPasswordEncoder.encode(generatedPassword);
+            found.setPassword(encodedPassword);
+            employeeRepository.save(found);
+            UserDetails userDetails = userAuthRepository.findByUsername(email);
+            userDetails.setPassword(encodedPassword);
+            userAuthRepository.save(userDetails);
+            // TODO Send mail with this new password
+            returnObject.put("message", "success");
+        }
+        else
+            returnObject.put("message", "failure");
+        return returnObject;
+    }
 }

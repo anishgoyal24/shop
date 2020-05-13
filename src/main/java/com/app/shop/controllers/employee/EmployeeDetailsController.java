@@ -69,4 +69,11 @@ public class EmployeeDetailsController {
     public HashMap<String, Object> getDetails(@RequestParam String username){
         return employeeDetailsService.getDetails(username);
     }
+
+    //  Reset password for an employee
+    @PostMapping(value = "/forgotpassword")
+    @PreAuthorize("hasAnyAuthority('ROLE_ANONYMOUS')")
+    public HashMap<String, Object> forgotPassword(@RequestBody String email){
+        return employeeDetailsService.forgotPassword(email);
+    }
 }
