@@ -41,3 +41,5 @@ package-lock.*
 *.log
 *.gz
 *.tmp
+
+.DS_Store
