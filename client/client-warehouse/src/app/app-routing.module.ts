@@ -33,17 +33,17 @@ import { AddOrderComponent } from './dashboard/orders/add-order/add-order.compon
 // !!!---Change Password---!!!
 import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
 
-// // !!!----- GUARDS -----!!!
-// import { AuthGuard } from 'src/shared/guards/auth.guard';
-// import { NavigationGuard } from 'src/shared/guards/navigation.guard';
+// !!!----- GUARDS -----!!!
+import { AuthGuard } from 'src/shared/guards/auth.guard';
+import { NavigationGuard } from 'src/shared/guards/navigation.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent, canActivate: [NavigationGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [NavigationGuard] },
   { path: 'signup', component: SignupComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'dashboard', component: DashboardComponent, 
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], 
     children: [
 
       //Overview
