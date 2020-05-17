@@ -17,9 +17,14 @@ export MAIN_APP_IMAGE_NAME=insperonbusiness/saifco:main-app
 # Orders App Image Name
 export ORDERS_APP_IMAGE_NAME=insperonbusiness/saifco:orders-app
 
+# Orders App Image Name
+export UPLOADS_APP_IMAGE_NAME=insperonbusiness/saifco:uploads
+
 ssh -p 22 root@35.185.176.55
 
 docker volume create mysql-data
+
+docker volume create uploads
 
 docker network rm saifco
 
@@ -56,3 +61,11 @@ docker run --name admin-app --network saifco -dp 9000:80 $CLIENT_ADMIN_NAME
 docker run --name user-app --network saifco -dp 9001:80 $CLIENT_USER_NAME
 
 docker run --name warehouse-app --network saifco -dp 9002:80 $CLIENT_WAREHOUSE_NAME
+
+docker run  --name uploads-server -d=true --network saifco -v uploads -p 4000:4000 insperonbusiness/saifco:
+
+docker run -d \
+  --name watchtower \
+  -v /home/root/.docker/config.json:/config.json \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  v2tec/watchtower container_to_watch --debug

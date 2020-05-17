@@ -70,4 +70,11 @@ export class WarehouseService {
   forgotPassword(email: string){
     return this._http.post(environment.BASE_URL_API + '/warehouse/forgotpassword', email).toPromise();
   }
+
+
+  checkPincodesServicable(warehouseId: string, pincode: string){
+    return this.httpClient.get(environment.ORDERS_API + '/pincode-mapping/check', {
+      params: new HttpParams().set("warehouseId", warehouseId).set("pincode", pincode)
+    }).toPromise();
+  }
 }

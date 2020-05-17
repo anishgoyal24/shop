@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SocketService } from 'src/shared/services/socket.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'client-user';
+
+  constructor(
+    private socketService: SocketService
+  ){ 
+    this.socketService.onConnect().subscribe(data => console.log(data['message']));
+  }
+
+
 }

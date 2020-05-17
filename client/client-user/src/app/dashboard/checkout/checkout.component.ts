@@ -4,6 +4,7 @@ import { CartService } from 'src/shared/services/cart.service';
 import { OrdersService } from 'src/shared/services/orders.service'
 import { UserService } from 'src/shared/services/user.service';
 import { Router } from '@angular/router';
+import { SocketService } from 'src/shared/services/socket.service';
 
 @Component({
   selector: 'app-checkout',
@@ -17,7 +18,8 @@ export class CheckoutComponent implements OnInit {
     private ordersService: OrdersService,
     private cartService: CartService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private socketService: SocketService
   ) { }
 
 
@@ -140,6 +142,7 @@ export class CheckoutComponent implements OnInit {
             this.cartService.getCartCount(this.partyId).then((res)=>{
               this.cartService.updateCartNumber(res['data']);
             })
+            this.socketService.onOrderPlace(this.pincode);
             resolve(this.utilityService.resolveAsyncPromise("Successfully Placed Order!"));
             this.router.navigate(['dashboard', 'orders']);
           }

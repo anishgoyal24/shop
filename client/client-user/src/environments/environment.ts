@@ -7,6 +7,7 @@ export const environment = {
   BASE_URL_API: 'http://localhost:8082/api/main',
   ORDERS_API: 'http://localhost:8081/api/orders',
   UPLOADS_API: 'http://localhost:4000',
+  NOTIFICATIONS_API: 'http://localhost:5000'
 };
 
 /*

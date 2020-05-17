@@ -9,7 +9,15 @@ export class AddOrderComponent implements OnInit {
 
   constructor() { }
 
+  warehouseId: string;
+
   ngOnInit() {
+    this.warehouseId = sessionStorage.getItem("warehouseId");
+    this.getProductsList();
+  }
+
+  getProductsList(){
+    
   }
 
 }
