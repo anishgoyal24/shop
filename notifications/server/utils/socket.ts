@@ -29,12 +29,18 @@ function init(server: any){
         // Console the present sockets connections
         console.log('New User Connected: %s sockets are connected', globalConnections.length);
 
-        // -| USER NOTIFICATION CENTER |-
+        socket.emit('connected', {
+            message: 'Successfully Connected to socket!'
+        });
 
-        // Join user on private user room
-        socket.on('joinUser', (userId: string) => {
-            // join room
-            socket.join(userId);
+        // -| WAREHOUSE NOTIFICATION CENTER |-
+
+        // Order Placed
+        socket.on('orderPlace', ({pincode}) => {
+            // Send Notification
+            io.sockets.emit('openOrder', {
+                pincode
+            })
         });
 
         // User Role Socket 

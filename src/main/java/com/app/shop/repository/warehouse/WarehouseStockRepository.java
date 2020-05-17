@@ -16,7 +16,7 @@ public interface WarehouseStockRepository extends JpaRepository<ItemStock, Integ
     @Query("select itemStock from ItemStock itemStock where itemStock.itemPackingDetails.id=:itemId and itemStock.warehouseDetails.warehouseId=:warehouseId")
     public ItemStock findStock(@Param("itemId") Integer itemId, @Param("warehouseId") Integer warehouseId);
 
-    @Query("select itemStock.price from ItemStock itemStock where itemStock.warehouseDetails.state.stateFullCode=:state and itemStock.itemPackingDetails.id=:itemId")
+    @Query("select max(itemStock.price) from ItemStock itemStock where itemStock.warehouseDetails.state.stateFullCode=:state and itemStock.itemPackingDetails.id=:itemId")
     public Double findPrice(@Param("state") String state, @Param("itemId") Integer id);
 
     @Query("select itemStock.id, itemStock.itemPackingDetails.id, itemStock.itemPackingDetails.size, itemStock.itemPackingDetails.itemDetails.itemName, " +

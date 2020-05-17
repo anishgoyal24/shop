@@ -9,7 +9,7 @@ function devConfigInit() {
   process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
   // Application Port
-  process.env.PORT = process.env.PORT || '9000'
+  process.env.PORT = process.env.PORT || '5000'
 
   // Application Host
   process.env.HOST = process.env.HOST || '0.0.0.0'
