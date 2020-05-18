@@ -43,6 +43,14 @@ function init(server: any){
             })
         });
 
+        socket.on('orderConfirmed', ({partyId})=>{
+            // Send notification
+
+            io.sockets.emit('orderConfirmed', {
+                partyId
+            })
+        })
+
         // User Role Socket 
         socket.on('userData', (userId: string, userData: Object) => {
             
