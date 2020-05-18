@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrderService } from 'src/shared/services/order.service';
 import { UtilityService } from 'src/shared/services/utility.service';
+import { SocketService } from 'src/shared/services/socket.service';
 
 @Component({
   selector: 'app-open-order-item',
@@ -15,7 +16,8 @@ export class OpenOrderItemComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private utilityService: UtilityService
+    private utilityService: UtilityService,
+    private socketService: SocketService
   ) { }
 
   orderDetails = [];
@@ -73,6 +75,7 @@ export class OpenOrderItemComponent implements OnInit {
         this.orderService.acceptOrder(body).then((res)=>{
           if (res['message']=='success'){
             this.accepted.emit(this.openOrderItem);
+            this.socketService.onConfirmOrder(this.partyDetails.partyId);
             resolve(this.utilityService.resolveAsyncPromise("Successfully Accepted Order!"));
           }
           else if (res['message']=='already assigned'){

@@ -25,5 +25,11 @@ export class SocketService {
     this.socket.emit('orderPlace', {pincode});
   }
 
+  onOrderConfirm(){
+    return this.observable = new Observable((observer) => 
+      this.socket.on('orderConfirmed', (data)=>observer.next(data))
+    );
+  }
+
 
 }

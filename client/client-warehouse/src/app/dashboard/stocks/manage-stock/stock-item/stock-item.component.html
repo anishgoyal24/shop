@@ -8,7 +8,7 @@
             </div>
             <div class="float-right align-self-center">
                 <button class="btn" (click)="decrement()">-</button>
-                <input type="number" style="max-width: 40px;" [(ngModel)]="quantity" class="text-center" id="quantity">
+                <input type="number" style="max-width: 40px;" [(ngModel)]="quantity" class="text-center" id="quantity" min="0" max="{{ stockItem['quantity'] }}">
                 <button class="btn" (click)="increment()">+</button>
                 <br>
                 <br>

@@ -41,5 +41,11 @@ export class SocketService {
     );
   }
 
+  onConfirmOrder(partyId: string){
+    this.socket.emit('orderConfirmed', {
+      partyId
+    });
+  }
+
 
 }
