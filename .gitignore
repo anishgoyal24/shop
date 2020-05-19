@@ -36,7 +36,7 @@ package-lock.*
 
 /client/client-admin/package-lock.json
 
-/shop-0.0.1-SNAPSHOT.jar
+shop-0.0.1-SNAPSHOT.jar
 
 *.log
 *.gz
