@@ -1,4 +1,3 @@
-import { Notification } from "../models";
 import { Response, Request, NextFunction } from "express";
 import { sendError } from "../../utils";
 import { NotificationsService } from "../service";

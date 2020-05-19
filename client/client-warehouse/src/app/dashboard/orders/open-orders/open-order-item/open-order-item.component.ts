@@ -75,7 +75,7 @@ export class OpenOrderItemComponent implements OnInit {
         this.orderService.acceptOrder(body).then((res)=>{
           if (res['message']=='success'){
             this.accepted.emit(this.openOrderItem);
-            this.socketService.onConfirmOrder(this.partyDetails.partyId);
+            this.socketService.orderStatus(this.partyDetails.partyId, 'Confirmed', this.openOrderItem.orderId);
             resolve(this.utilityService.resolveAsyncPromise("Successfully Accepted Order!"));
           }
           else if (res['message']=='already assigned'){

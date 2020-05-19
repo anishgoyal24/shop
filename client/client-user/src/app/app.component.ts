@@ -13,7 +13,7 @@ export class AppComponent {
     private socketService: SocketService
   ){ 
     this.socketService.onConnect().subscribe(data => console.log(data['message']));
-    this.socketService.onOrderConfirm().subscribe(data => console.log(data['partyId']));
+    this.socketService.orderStatus().subscribe(data => console.log(data));
   }
 
 

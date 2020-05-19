@@ -20,8 +20,11 @@ export class SocketService {
   onConnect(){
     this.socket = io(environment.NOTIFICATIONS_API)
     return this.observable = new Observable((observer) => 
-      this.socket.on('connected', (data) => observer.next(data))
-    );
+      this.socket.on('connected', (data) => {
+        this.socket.emit('joinPartyRoom');
+        observer.next(data)
+      })
+    )
   }
 
   onNewOrder(){
@@ -41,9 +44,11 @@ export class SocketService {
     );
   }
 
-  onConfirmOrder(partyId: string){
-    this.socket.emit('orderConfirmed', {
-      partyId
+  orderStatus(partyId: string, status: string, orderId: string){
+    this.socket.emit('orderStatus', {
+      partyId,
+      status,
+      orderId
     });
   }
 

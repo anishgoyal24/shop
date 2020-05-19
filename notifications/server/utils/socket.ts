@@ -26,6 +26,12 @@ function init(server: any){
         // Push the socket into the array
         globalConnections.push(socket);
 
+        // Party Room
+        const partyRoom: string = 'party';
+
+        // Warehouse Room
+        const warehouseRoom: string = 'warehouse';
+
         // Console the present sockets connections
         console.log('New User Connected: %s sockets are connected', globalConnections.length);
 
@@ -33,30 +39,51 @@ function init(server: any){
             message: 'Successfully Connected to socket!'
         });
 
+        socket.on('joinPartyRoom', ()=>{
+            socket.join(partyRoom, ()=>{
+                console.log(`Party joined room`);
+            })
+        })
+
+        socket.on('joinWarehouseRoom', ()=>{
+            socket.join(warehouseRoom, ()=>{
+                console.log("Warehouse joined room");
+            })
+        })
+
         // -| WAREHOUSE NOTIFICATION CENTER |-
 
         // Order Placed
         socket.on('orderPlace', ({pincode}) => {
+            // Save Notification
+            try {
+                notifications.saveNotification({
+                    room: warehouseRoom,
+                    content: 'There is a new open order in your area!'
+                });
+            } catch (error) {
+                console.log(error);
+            }
+
             // Send Notification
-            io.sockets.emit('openOrder', {
+            socket.broadcast.to(warehouseRoom).emit('openOrder', {
                 pincode
             })
         });
 
-        socket.on('orderConfirmed', ({partyId})=>{
-            // Send notification
+        socket.on('orderStatus', ({partyId, status, orderId})=>{
+            // Send order status notifications to user
+            try {
+                notifications.orderStatus(partyId, status, orderId, partyRoom);
+            } catch (error) {
+                console.log(error);
+            }
 
-            io.sockets.emit('orderConfirmed', {
-                partyId
+            // Send notification
+            socket.broadcast.to(partyRoom).emit('orderStatus', {
+                partyId,
             })
         })
-
-        // User Role Socket 
-        socket.on('userData', (userId: string, userData: Object) => {
-            
-            // Emit socket with 
-            io.sockets.in(userId).emit('userDataUpdate', userData);
-        });
 
         // Get notifications based on the userId
         socket.on('getNotifications', async (userId: string) => {

@@ -17,17 +17,21 @@ export class SocketService {
   onConnect(){
     this.socket = io(environment.NOTIFICATIONS_API)
     return this.observable = new Observable((observer) => 
-      this.socket.on('connected', (data) => observer.next(data))
+      this.socket.on('connected', (data) => {
+        this.socket.emit('joinPartyRoom');
+        return observer.next(data);
+      })
     );
   }
+  
 
   onOrderPlace(pincode: string){
     this.socket.emit('orderPlace', {pincode});
   }
 
-  onOrderConfirm(){
+  orderStatus(){
     return this.observable = new Observable((observer) => 
-      this.socket.on('orderConfirmed', (data)=>observer.next(data))
+      this.socket.on('orderStatus', (data)=>observer.next(data))
     );
   }
 
