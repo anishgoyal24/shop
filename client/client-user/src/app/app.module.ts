@@ -37,6 +37,7 @@ import { OrderItemComponent } from './dashboard/orders/order-item/order-item.com
 import { AccountDetailsComponent } from './dashboard/account-details/account-details.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
+import { NotificationComponent } from './dashboard/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,8 @@ import { ChangePasswordComponent } from './dashboard/change-password/change-pass
     ForgotPasswordComponent,
 
     ChangePasswordComponent,
+
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,

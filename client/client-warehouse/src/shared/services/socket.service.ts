@@ -52,5 +52,13 @@ export class SocketService {
     });
   }
 
+  openOrderNotificationFeed(){
+    return this.observable = new Observable((observer)=>{
+      this.socket.on('getOpenOrderNotifications', (data)=>{
+        return data;
+      })
+    });
+  }
+
 
 }
