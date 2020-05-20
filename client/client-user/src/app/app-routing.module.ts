@@ -30,6 +30,8 @@ import { AccountDetailsComponent } from './dashboard/account-details/account-det
 // !!!---Change Password---!!!
 import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
 
+import { NotificationComponent } from './dashboard/notification/notification.component';
+
 // !!!----- GUARDS -----!!!
 import { AuthGuard } from 'src/shared/guards/auth.guard';
 import { NavigationGuard } from 'src/shared/guards/navigation.guard';
@@ -59,7 +61,10 @@ const routes: Routes = [
       { path: 'details', component: AccountDetailsComponent },
 
       // Change Password
-      { path: 'change-password', component: ChangePasswordComponent }
+      { path: 'change-password', component: ChangePasswordComponent },
+
+      // Notification
+      { path: 'notifications', component: NotificationComponent }
     ]
   }
 ];
