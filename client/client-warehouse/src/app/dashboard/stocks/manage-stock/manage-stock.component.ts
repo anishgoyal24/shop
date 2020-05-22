@@ -52,7 +52,6 @@ export class ManageStockComponent implements OnInit {
       })
       this.warehouseList = res;
       this.listLength = this.warehouseList.length;
-      console.log(this.warehouseList);
     })
   }
 
@@ -62,7 +61,6 @@ export class ManageStockComponent implements OnInit {
         this.stockService.getStock(warehouseId)
           .then((res) => {
             this.createArray(res['data']);
-            console.log(this.stocks);
             resolve(this.utilityService.resolveAsyncPromise('Successfully Fetched Stock Data!'));
           }).catch((err) => {
             console.log(err);
@@ -99,14 +97,16 @@ export class ManageStockComponent implements OnInit {
 
   toggleList() {
     this.warehouseListHidden = !this.warehouseListHidden;
-    console.log(this.selectedWarehouse)
 
     this.stockService.updateData(this.selectedWarehouse)
   }
 
   onSearch($event) {
-    this.warehouseListHidden = false
-    this.searchTerm$.next($event.target.value)
+    if ($event.target.value.length>0){
+      this.warehouseListHidden = false
+      this.searchTerm$.next($event.target.value)
+    }
+    else this.warehouseListHidden = true;
   }
 
 }

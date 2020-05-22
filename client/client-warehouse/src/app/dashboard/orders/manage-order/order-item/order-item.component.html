@@ -43,7 +43,7 @@
 
         <div style="text-align: center;">
           <button *ngIf="orderItem.status=='Confirmed'" (click)="changeStatus('In-Transit')" class="btn btn-primary">In Transit</button>
-          <button *ngIf="orderItem.status=='In-Transit'" (click)="transferOrder()" class="btn btn-primary">Transfer to Van</button>
+          <button *ngIf="orderItem.status=='In-Transit'" class="btn btn-primary" [routerLink]="['/dashboard', 'orders', 'transfer', orderItem.orderId]">Transfer to Van</button>
         </div>
 
         <div style="text-align: center;" *ngIf="orderItem.status=='Out for Delivery'">

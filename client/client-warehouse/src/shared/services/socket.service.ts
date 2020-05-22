@@ -21,7 +21,7 @@ export class SocketService {
     this.socket = io(environment.NOTIFICATIONS_API)
     return this.observable = new Observable((observer) => 
       this.socket.on('connected', (data) => {
-        this.socket.emit('joinPartyRoom');
+        this.socket.emit('joinWarehouseRoom');
         observer.next(data)
       })
     )

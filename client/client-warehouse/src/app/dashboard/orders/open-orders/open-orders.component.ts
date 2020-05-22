@@ -25,7 +25,6 @@ export class OpenOrdersComponent implements OnInit {
     try {
       this.utilityService.asyncNotification("Fetching Open Orders...", new Promise((resolve, reject)=>{
         this.orderService.fetchOpenOrders(warehouseId).then((res)=>{
-          console.log(res);
           this.openOrders = res['data'];
           resolve(this.utilityService.resolveAsyncPromise("Successfully fetched open orders!"));
         }).catch((err)=>{

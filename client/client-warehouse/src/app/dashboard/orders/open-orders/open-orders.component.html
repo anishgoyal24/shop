@@ -2,5 +2,8 @@
     <div class="container">
         <h1><b>Open Orders</b></h1>
         <app-open-order-item *ngFor="let openOrderItem of openOrders" [openOrderItem]="openOrderItem" (accepted)="deleteFromList($event)"></app-open-order-item>
+        <div *ngIf="openOrders.length==0" style="text-align: center; color: red;">
+            <h3>There are no open orders in your area!</h3>
+        </div>
     </div>
 </div>

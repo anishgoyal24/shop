@@ -89,11 +89,6 @@ export class OrderItemComponent implements OnInit {
     }
   }
 
-
-  transferOrder(){
-    this.router.navigate(['/dashboard', 'orders', 'trasnfer']);
-  }
-
   closeOrder(){
     try {
       var body = {

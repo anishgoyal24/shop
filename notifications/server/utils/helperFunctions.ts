@@ -61,6 +61,11 @@ function validateId(id: any){
     return true;
 }
 
+async function getOpenOrderNotifications(socket: any, warehouseRoom: string){
+    const openOrderNotifications: any = await notifications.getOpenOrder(warehouseRoom);
+    socket.broadcast.to(warehouseRoom).emit("openOrderNotifications", {openOrderNotifications});
+}
+
 
 /*  =======================
  *  --  HELPER FUNCTIONS --
@@ -78,5 +83,8 @@ export {
     sendNotificationsFeed,
 
     // Validate ObjectId
-    validateId
+    validateId,
+
+    // Open Order Notifications
+    getOpenOrderNotifications
 }

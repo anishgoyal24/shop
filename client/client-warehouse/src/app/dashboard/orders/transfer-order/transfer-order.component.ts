@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UtilityService } from 'src/shared/services/utility.service';
 import { WarehouseService } from 'src/shared/services/warehouse.service';
 import { OrderService } from 'src/shared/services/order.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-transfer-order',
@@ -13,7 +14,8 @@ export class TransferOrderComponent implements OnInit {
   constructor(
     private utilityService: UtilityService,
     private warehouseService: WarehouseService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private _route: ActivatedRoute
   ) { }
 
   transferObject = {
@@ -32,7 +34,13 @@ export class TransferOrderComponent implements OnInit {
   ngOnInit() {
     var warehouseId = sessionStorage.getItem("warehouseId");
     this.getDynamicWarehouse(warehouseId);
-    this.getOrderIds(warehouseId);
+    this._route.params.subscribe(params => {
+      this.selectedOrderId = params['orderId'];
+      this.transferObject.orderId = this.selectedOrderId;
+    });
+    if (!this.selectedOrderId){
+      this.getOrderIds(warehouseId);
+    }
   }
 
 
@@ -84,6 +92,7 @@ export class TransferOrderComponent implements OnInit {
             resolve(this.utilityService.resolveAsyncPromise("Successfully Transferred Order!"));
           }
         }).catch((err)=>{
+          console.log(err);
           reject(this.utilityService.rejectAsyncPromise("There was some error transferring the order. Please try again!"));
         })
       }))

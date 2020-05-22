@@ -41,6 +41,10 @@ export class AddStockComponent implements OnInit {
   }
 
   onAddStock(itemStock: any){
+    if (!this.selectedProduct || itemStock.quantity == 0 || itemStock.price == 0){
+      this.utilityService.errorNotification("Please enter all details!");
+      return;
+    }
     try {
       this.utilityService.asyncNotification("Please wait while we are adding item to your stock..",
       new Promise((resolve, reject)=>{

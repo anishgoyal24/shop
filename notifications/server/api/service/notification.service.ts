@@ -20,15 +20,17 @@ export class NotificationsService {
     async orderStatus(partyId, status, orderId, partyRoom){
         try {
             var notification = await Notification.find({
-                userId: partyId
+                'userId': partyId
             });
 
+
             if (!notification){
-                await Notification.create({
+                let notification = await Notification.create({
                     userId: partyId,
                     content: `Your Order ${orderId} is ${status}`,
                     room: partyRoom
                 });
+                console.log(notification);
             }
             else{
                 await Notification.findOneAndUpdate({
@@ -71,6 +73,19 @@ export class NotificationsService {
             });
         } catch (error) {
             throw(error);
+        }
+    }
+
+
+    async getOpenOrder(warehouseRoom: string){
+        try {
+            const notifications = await Notification.find({
+                room: warehouseRoom,
+                content: 'There is a new open order in your area!'
+            });
+            return notifications;
+        } catch (error) {
+            console.log(error);
         }
     }
 

@@ -20,6 +20,8 @@ export class ManageOrderComponent implements OnInit {
 
   page: number = 0;
 
+  moreToLoad: boolean = true;
+
   ngOnInit() {
     this.warehouseId = sessionStorage.getItem("warehouseId");
     this.loadOrders()
@@ -31,9 +33,15 @@ export class ManageOrderComponent implements OnInit {
         this.orderService.getOrders(this.warehouseId, this.page)
         .then((res)=>{
           if (res['message']=='success'){
-            this.orderItems = res['data'];
-            console.log(this.orderItems);
-            resolve(this.utilityService.resolveAsyncPromise("Fetched Orders!"));
+            if (res['data'].length>0){
+              this.moreToLoad = true;
+              this.orderItems = this.orderItems.concat(res['data']);
+              resolve(this.utilityService.resolveAsyncPromise("Fetched Orders!"));
+            }
+            else{
+              this.moreToLoad = false;
+              resolve(this.utilityService.rejectAsyncPromise("No more orders to display!"));
+            }
           }
           else{
             reject(this.utilityService.rejectAsyncPromise("Unable to fetch orders!"));

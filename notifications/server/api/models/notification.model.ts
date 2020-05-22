@@ -21,6 +21,11 @@ const NotificationSchema = new Schema({
     read: {
         type: Boolean,
         default: false
+    },
+
+    pincode: {
+        type: String,
+        required: false
     }
 });
 

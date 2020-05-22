@@ -14,11 +14,13 @@ export class OrdersComponent implements OnInit {
     private ordersService: OrdersService
   ) { }
 
-  orderItems = [];
+  orderItems:any = [];
 
   partyId: any;
 
   page: number = 0;
+
+  moreToLoad: boolean = true;
 
   ngOnInit() {
     this.partyId = sessionStorage.getItem("partyId");
@@ -30,9 +32,15 @@ export class OrdersComponent implements OnInit {
       this.utilityService.asyncNotification("Fetching your orders...", new Promise((resolve, reject)=>{
         this.ordersService.getOrders(partyId, page).then((res)=>{
           if (res['message']=='success'){
-            this.orderItems = res['data'];
-            console.log(this.orderItems)
-            resolve(this.utilityService.resolveAsyncPromise("Successfully Retrieved Orders!"));
+            if (res['data'].length>0){
+              this.moreToLoad = true;
+              this.orderItems = this.orderItems.concat(res['data']);
+              resolve(this.utilityService.resolveAsyncPromise("Successfully Retrieved Orders!"));
+            }
+            else{
+              this.moreToLoad = false;
+              resolve(this.utilityService.rejectAsyncPromise("No more orders to display!"));
+            }
           }
           else reject(this.utilityService.rejectAsyncPromise("There was some error while fetching the orders!"));
         }).catch((err)=>{

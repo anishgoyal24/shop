@@ -9,6 +9,9 @@
                 <input type="text" class="form-control" placeholder="Search Orders by ID">
             </div> -->
             <app-order-item *ngFor="let orderItem of orderItems" [orderItem]="orderItem"></app-order-item>
+            <div *ngIf="moreToLoad" style="text-align: center; padding: 10px">
+                <button class="btn btn-secondary" (click)="next()">Load More</button>
+            </div>
         </div>
     </div>
 </div>

@@ -55,15 +55,16 @@ function init(server: any){
 
         // Order Placed
         socket.on('orderPlace', ({pincode}) => {
-            // Save Notification
-            try {
-                notifications.saveNotification({
-                    room: warehouseRoom,
-                    content: 'There is a new open order in your area!'
-                });
-            } catch (error) {
-                console.log(error);
-            }
+            // // Save Notification
+            // try {
+            //     notifications.saveNotification({
+            //         room: warehouseRoom,
+            //         content: 'There is a new open order in your area!',
+            //         pincode: pincode
+            //     });
+            // } catch (error) {
+            //     console.log(error);
+            // }
 
             // Send Notification
             socket.broadcast.to(warehouseRoom).emit('openOrder', {
@@ -86,11 +87,15 @@ function init(server: any){
         })
 
         // Get notifications based on the userId
-        socket.on('getNotifications', async (userId: string) => {
+        socket.on('getNotificationsById', async (userId: string) => {
             
             // Send notification to the user
             await helperFunctions.sendNotificationsFeed(socket, userId, io);
         });
+
+        socket.on('getOpenOrderNotifications', async ()=>{
+            await helperFunctions.getOpenOrderNotifications(socket, warehouseRoom);
+        })
         
         socket.on('disconnect', () => {
             

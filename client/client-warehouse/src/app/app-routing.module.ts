@@ -64,6 +64,7 @@ const routes: Routes = [
         { path: 'home', component: OrderHomeComponent },
         { path: 'manage', component: ManageOrderComponent },
         { path: 'open', component: OpenOrdersComponent },
+        { path: 'transfer/:orderId', component: TransferOrderComponent },
         { path: 'transfer', component: TransferOrderComponent },
         { path: 'add', component: AddOrderComponent }
       ]
