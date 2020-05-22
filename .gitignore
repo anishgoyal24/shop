@@ -1,6 +1,10 @@
 HELP.md
 /target/
-!.mvn/wrapper/maven-wrapper.jar
+# !.mvn/wrapper/maven-wrapper.jar
+
+/.mvn/*
+
+/classes/
 
 ### STS ###
 .apt_generated
@@ -41,5 +45,8 @@ shop-0.0.1-SNAPSHOT.jar
 *.log
 *.gz
 *.tmp
+
+*.jar
+*.classpath
 
 .DS_Store
