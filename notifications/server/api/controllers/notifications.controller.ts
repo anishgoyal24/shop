@@ -1,5 +1,4 @@
 import { Response, Request, NextFunction } from "express";
-import { sendError } from "../../utils";
 import { NotificationsService } from "../service";
 import { sendErr } from "../../utils/sendError";
 import { validateId } from "../../utils/helperFunctions";
@@ -67,26 +66,5 @@ export class NotificationsController {
             // Error Handling
             return sendErr(res, new Error(err), 'Internal Server Error!', 500);
         }
-    };
-
-    /**
-     * This function is responsible for fetching the marking the notifications to read
-     * @param topListId 
-     */
-    async markRead(req: Request, res: Response, next: NextFunction) {
-
-        const { topListId } = req.body;
-        try{
-        // Call service function for markRead
-        await notificationService.markRead(topListId).then(updated => {
-            return res.status(200).json({
-                message: updated
-            });
-        }).catch(err => {
-            return sendErr(res, new Error(err), 'Internal Server Error!', 500);
-        })
-        } catch (err) {
-            return sendErr(res, new Error(err), 'Internal Server Error!', 500);
-        }
-    };
+    }
 }

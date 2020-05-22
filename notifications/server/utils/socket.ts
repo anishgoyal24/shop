@@ -55,17 +55,6 @@ function init(server: any){
 
         // Order Placed
         socket.on('orderPlace', ({pincode}) => {
-            // // Save Notification
-            // try {
-            //     notifications.saveNotification({
-            //         room: warehouseRoom,
-            //         content: 'There is a new open order in your area!',
-            //         pincode: pincode
-            //     });
-            // } catch (error) {
-            //     console.log(error);
-            // }
-
             // Send Notification
             socket.broadcast.to(warehouseRoom).emit('openOrder', {
                 pincode

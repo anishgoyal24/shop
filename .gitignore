@@ -2,9 +2,9 @@ HELP.md
 /target/
 # !.mvn/wrapper/maven-wrapper.jar
 
-/.mvn/*
+.mvn
 
-/classes/
+classes
 
 ### STS ###
 .apt_generated
@@ -20,6 +20,8 @@ HELP.md
 *.iws
 *.iml
 *.ipr
+
+uploads
 
 ### NetBeans ###
 /nbproject/private/

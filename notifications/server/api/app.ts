@@ -4,7 +4,6 @@ import cors from 'cors';
 import morgan from 'morgan';
 import compression from 'compression';
 import { developmentConfig, productionConfig } from '../configs';
-// import { billingRoutes, workspaceRoutes } from './routes';
 import { notificationRoutes } from './routes/notifications.routes';
 
 // Defining new Express application
@@ -57,9 +56,6 @@ const encodeResToGzip = (contentType: any) => {
 app.get("*.js", encodeResToGzip('text/javascript'));
 app.get("*.css", encodeResToGzip('text/css'));
 
-// static assets folder
-// app.use(express.static(path.join(__dirname, '../../client/dist')));
-
 // Routes which should handle request
 app.all('/', (req: Request, res: Response, next: NextFunction) => {
     res.sendFile(path.join(__dirname, './views/index.html'));
@@ -67,10 +63,6 @@ app.all('/', (req: Request, res: Response, next: NextFunction) => {
 
 // Routes to handle notifications
 app.use('/api', notificationRoutes);
-
-// // Correct REST naming
-// app.use('/api/billings', billingRoutes);
-// app.use('/api/workspaces', workspaceRoutes);
 
 // Invalid routes handling middleware
 app.use((req: Request, res: Response, next: NextFunction) => {
