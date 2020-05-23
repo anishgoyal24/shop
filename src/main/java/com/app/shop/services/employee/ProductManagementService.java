@@ -251,4 +251,10 @@ public class ProductManagementService {
             returnObject.put("message", "failure");
         return returnObject;
     }
+
+    public HashMap<String, Object> search(String query) {
+        returnObject = new HashMap<>();
+        returnObject.put("data", productManagementRepository.search(query));
+        return returnObject;
+    }
 }

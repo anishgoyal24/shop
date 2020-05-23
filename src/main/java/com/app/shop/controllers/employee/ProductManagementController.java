@@ -92,4 +92,11 @@ public class ProductManagementController {
     public HashMap<String, Object> removeCategory(@RequestParam Integer itemId, @RequestParam Integer categoryId){
         return productManagementService.removeCategory(itemId, categoryId);
     }
+
+    //
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    @GetMapping(value = "/search")
+    public HashMap<String, Object> search(@RequestParam String query){
+        return productManagementService.search(query);
+    }
 }
