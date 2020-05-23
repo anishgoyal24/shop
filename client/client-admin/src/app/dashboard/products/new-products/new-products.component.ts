@@ -84,7 +84,6 @@ export class NewProductsComponent implements OnInit {
     // formData.append('customerAllowed', productDetails.customerAllowed)
     // formData.append('category', productDetails.category)
     // formData.append('itemPackingDetails', productDetails.itemPackingDetails)
-    formData.append('image', this.image, this.image.name)
     this.createNewProduct(formData);
   }
 
