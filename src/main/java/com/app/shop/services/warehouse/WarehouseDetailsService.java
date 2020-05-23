@@ -54,8 +54,10 @@ public class WarehouseDetailsService {
             String encodedPassword = bCryptPasswordEncoder.encode(warehouseDetails.getPassword());
             warehouseDetails.setPassword(encodedPassword);
             warehouseDetails.setStatus('y');
-            warehouseDetails.setState(stateRepository.findById(warehouseDetails.getState().getStateFullCode()).get());
-            warehouseDetails.setCountry(countryRepository.findById(warehouseDetails.getCountry().getCountryCode3()).get());
+            if (!warehouseDetails.getType().equals("dynamic")){
+                warehouseDetails.setState(stateRepository.findById(warehouseDetails.getState().getStateFullCode()).get());
+                warehouseDetails.setCountry(countryRepository.findById(warehouseDetails.getCountry().getCountryCode3()).get());
+            }
             warehouseRepository.save(warehouseDetails);
             userAuthRepository.save(new UserDetails(warehouseDetails.getWarehouseEmail(), encodedPassword, 1, warehouseDetails.getRole(), warehouseDetails.getPrimaryPhone()));
             returnObject.put("message", "success");
