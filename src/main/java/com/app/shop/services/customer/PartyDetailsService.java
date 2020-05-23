@@ -248,4 +248,10 @@ public class PartyDetailsService {
     public PartyDetails findById(Integer id){
         return detailsRepository.findByPartyId(id);
     }
+
+    public HashMap<String, Object> search(String query) {
+        returnObject = new HashMap<>();
+        returnObject.put("data", detailsRepository.search(query));
+        return returnObject;
+    }
 }

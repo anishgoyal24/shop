@@ -78,4 +78,11 @@ public class CustomerDetailsController {
         return partyDetailsService.forgotPassword(email);
     }
 
+    //  Search for a party
+    @GetMapping(value = "/search")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_owner', 'ROLE_admin')")
+    public HashMap<String, Object> search(@RequestParam String query){
+        return partyDetailsService.search(query);
+    }
+
 }

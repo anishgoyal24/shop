@@ -25,8 +25,8 @@ public class ProductManagementController {
 //  Add a product
     @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addProduct(@RequestParam("itemDetails") String itemDetails, @RequestParam("image")MultipartFile image){
-        return productManagementService.addProduct(itemDetails, image);
+    public HashMap<String, Object> addProduct(@RequestParam("itemDetails") String itemDetails){
+        return productManagementService.addProduct(itemDetails);
     }
 
 //  Delete a product

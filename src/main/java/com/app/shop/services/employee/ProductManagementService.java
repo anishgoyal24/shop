@@ -38,7 +38,7 @@ public class ProductManagementService {
     }
 
     @Transactional(rollbackFor=Exception.class)
-    public HashMap<String, Object> addProduct(String itemDetail, MultipartFile image) {
+    public HashMap<String, Object> addProduct(String itemDetail) {
         returnObject = new HashMap<>();
         ItemDetails itemDetails = null;
         Gson gson = new Gson();
