@@ -100,4 +100,12 @@ export class AdminService {
   forgotPassword(email: string){
     return this._http.post(environment.BASE_URL_API + '/employee/forgotpassword', email).toPromise();
   }
+
+  search(query: string){
+    var params = new HttpParams().set("query", query);
+    return this.httpClient.get(environment.BASE_URL_API + '/employee/search', {
+      params: params
+    }).toPromise();
+  }
+
 }

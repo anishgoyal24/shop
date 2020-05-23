@@ -76,4 +76,17 @@ export class ManagePartyComponent implements OnInit {
       ]
     })
   }
+
+  search(query: any){
+    return new Promise((resolve, reject)=>{
+      this.partyService.search(query.target.value)
+      .then((data)=>{
+        data = data['data']
+        resolve(this.parties = data)
+      })
+      .catch(()=>{
+        reject([])
+      })
+      })
+  }
 }

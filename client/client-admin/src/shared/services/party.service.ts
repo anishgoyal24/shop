@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -83,6 +83,13 @@ export class PartyService {
   updateCustomer(partyDetails: Object){
     return this._http.post(environment.BASE_URL_API + `/customer/updatedetails`, partyDetails)
     .toPromise();
+  }
+
+  search(query: string){
+    var params = new HttpParams().set("query", query);
+    return this._http.get(environment.BASE_URL_API + '/party/search', {
+      params: params
+    }).toPromise();
   }
 
 

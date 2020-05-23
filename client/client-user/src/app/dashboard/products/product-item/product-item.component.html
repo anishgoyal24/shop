@@ -15,13 +15,13 @@
         <div [hidden]="!expanded" style="clear: both;">
             <div class="float-left" id="details">
                 <button class="btn btn-secondary" style="margin-right: 10px;" *ngFor="let itemPacking of product.itemPackingDetails" (click)="selectedPacking=itemPacking.size; cartItem.itemPackingDetails.id=itemPacking.id; getPriceAndStock(itemPacking.id);">{{ itemPacking.size + 'kg'}}</button>
-                <p *ngIf="selectedPacking"><strong>Selected Packing: </strong>{{ selectedPacking + 'kg'}}</p>
+                <p *ngIf="selectedPacking" class="mt-1"><strong>Selected Packing: </strong>{{ selectedPacking + 'kg'}}</p>
             </div>
             <div class="float-right" *ngIf="productAvailable==true" style="text-align: center;">
                 <p><strong>Price (per piece): </strong>Rs.{{ cartItem.price }}</p>
                 <label for="quantity">Quantity: </label>
-                <input type="number" name="quantity" id="" style="width: 80px; margin-right: 10px;" placeholder="0" min="0" [(ngModel)]="cartItem.quantity">
-                <button class="btn btn-primary" [disabled]="!(cartItem.quantity>0)" (click)="addToCart()">Add to Cart</button>
+                <input type="number" name="quantity" style="width: 80px; margin-right: 10px; margin-left: 2px;" placeholder="0" min="0" [(ngModel)]="cartItem.quantity">
+                <button class="btn btn-primary btn-sm" [disabled]="!(cartItem.quantity>0)" (click)="addToCart()">Add to Cart</button>
             </div>
             <div class="float-right">
                 <p style="color: red;" *ngIf="productAvailable==false">This item is not available in your area!</p>
