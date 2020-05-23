@@ -19,7 +19,7 @@ docker build -t $CLIENT_USER_NAME --compress ./client-user
 docker build -t $CLIENT_WAREHOUSE_NAME --compress ./client-warehouse
 
 # Prune Dangling Images
-docker image prune
+docker image prune -f
 
 # Logout from Current Docker Account
 docker logout
