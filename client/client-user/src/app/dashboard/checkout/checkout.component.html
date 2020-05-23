@@ -1,43 +1,61 @@
 <div class="container">
-    <div class="card-media">
-        <div class="container">
-            <h1><b>Checkout</b></h1>
-            <div>
-                <table border="1px solid;">
-                    <tr>
-                        <th>Item Name</th>
-                        <th>Packing Size (kg)</th>
-                        <th>Quantity</th>
-                        <th>Price Per Piece (Rs.)</th>
-                        <th>Total Price (Rs.)</th>
-                    </tr>
-                    <tr *ngFor="let cartItem of cartItems">
-                        <td>{{ cartItem.product }}</td>
-                        <td>{{ cartItem.item.itemPackingDetails.size }}</td>
-                        <td>{{ cartItem.item.quantity }}</td>
-                        <td>{{ cartItem.item.price }}</td>
-                        <td>{{ cartItem.item.price * cartItem.item.quantity }}</td>
-                    </tr>
-                </table>
-            </div>
-            <div style="text-align: center;">
-                <label for="totalValue"><strong>Total Order Value: </strong>{{ 'Rs.' + totalValue }}</label>
-                <label for="discount" style="display: block;" *ngIf="customerDiscount>0"><strong>Discount:</strong> {{ customerDiscount }}%</label>
-                <label style="display: block;" *ngIf="customerDiscount>0"><strong>Discounted Price: </strong>{{ 'Rs.' + discountedPrice }}</label>
-            </div>
-            <div class="address">
-                <h6><strong>Delivery Address:</strong></h6>
-                <p>{{ partyName }}</p>
-                <p>Contact: {{ primaryPhone }}</p>
-                <p>{{ address }}</p>
-                <p>{{ city }}</p>
-                <p>{{ state }}</p>
-                <p>{{ country + '-' + pincode }}</p>
-            </div>
-            <div style="text-align: center;">
-                <button class="btn btn-primary" (click)="placeOrder()">Place Order</button>
-            </div>
-        </div>
+    <h1><b>Checkout</b></h1>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Item Name</th>
+                <th>Packing Size (kg)</th>
+                <th>Quantity</th>
+                <th>Price Per Piece (Rs.)</th>
+                <th>Total Price (Rs.)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cartItem of cartItems">
+                <td>{{ cartItem.product }}</td>
+                <td>{{ cartItem.item.itemPackingDetails.size }}</td>
+                <td>{{ cartItem.item.quantity }}</td>
+                <td>{{ cartItem.item.price }}</td>
+                <td>{{ cartItem.item.price * cartItem.item.quantity }}</td>
+            </tr>
+        </tbody>
+
+
+    </table>
+    <div class="float-left mt-4 mb-5 form-control">
+        <label for="totalValue"><strong>Total Order Value: </strong>{{ 'Rs. ' + totalValue }}</label>
+        <label for="discount" style="display: block;" *ngIf="customerDiscount>0"><strong>Discount:</strong>
+            {{ customerDiscount }}%</label>
+        <label style="display: block;" *ngIf="customerDiscount>0"><strong>Discounted Price:
+            </strong>{{ 'Rs.' + discountedPrice }}</label>
     </div>
+    <div class="address">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Party Name</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Pincode</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ partyName }}</td>
+                    <td>{{ primaryPhone }}</td>
+                    <td>{{ address }}</td>
+                    <td>{{ city }}</td>
+                    <td>{{ state }}</td>
+                    <td>{{ country + '-' + pincode }}</td>
+                </tr>                
+            </tbody>
     
+    
+        </table>
+    </div>
+    <div class="float-right mb-10">
+        <button class="btn btn-primary" (click)="placeOrder()">Place Order</button>
+    </div>
 </div>

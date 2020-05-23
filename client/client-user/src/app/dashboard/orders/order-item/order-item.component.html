@@ -10,7 +10,7 @@
           </span></button>
       </div>
       <div *ngIf="expanded==true" style="clear: both;">
-        <table border="1px;">
+        <table class="table">
             <tr>
                 <th>Product Name</th>
                 <th>Packing (Kg)</th>
@@ -26,13 +26,13 @@
                 <td>{{ item.orderDetail.discountedCost * item.orderDetail.quantity }}</td>
             </tr>
         </table>
-        <p><strong>Total Order Value: </strong>Rs. {{ totalOrderValue }}</p>
-        <div>
+        <p class="form-control"><strong>Total Order Value: </strong>Rs. {{ totalOrderValue }}</p>
+        <div class="form-control">
             <p><strong>Expected Delivery Date: </strong>{{ orderItem.expectedDeliveryDate }}</p>
         </div>
 
-        <div style="text-align: center;">
-          <button *ngIf="orderItem.status!='Closed' && orderItem.status!='Cancelled'" (click)="cancelOrder()" class="btn btn-danger">Cancel Order</button>
+        <div class="float-right mt-2">
+          <button *ngIf="orderItem.status!='Closed' && orderItem.status!='Cancelled'" (click)="cancelOrder()" class="btn btn-sm btn-danger">Cancel Order</button>
         </div>
 
     </div>

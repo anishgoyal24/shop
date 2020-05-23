@@ -9,17 +9,17 @@
         </div>
         <ng-container *ngIf="listLength == 0">
           <h3>No warehouse to display...</h3>
-          <img class="empty-state" src="../../../assets/images/empty.svg">
+          <img class="empty-state" src="http://35.185.176.55/admin/assets/images/empty.svg">
         </ng-container>
         <ng-container *ngIf="isLoadingQuery$ | async">
           <h3>No Results to display...</h3>
-          <img class="empty-state" src="../../../assets/images/search.svg">
+          <img class="empty-state" src="http://35.185.176.55/admin/assets/images/search.svg">
         </ng-container>
       </div>   
 
       <div class="container list-warehouse">
         <div class="media card-tile user-list" id="list" *ngFor="let warehouse of warehouseList; let  i = index" [hidden]="warehouseListHidden">
-            <img src="" onerror="this.src='/assets/images/home-rice-1.jpg'" class="feed-avatar">
+            <img src="http://35.185.176.55/admin/assets/images/home-rice-1.jpg'" class="feed-avatar">
             <div class="media-body">
                 <div class="float-left">
                     <h4>{{ warehouse?.warehouseName }}</h4>

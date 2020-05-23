@@ -7,7 +7,7 @@
         </div>
         <div class="float-right">
             <button class="btn" (click)="decrement()">-</button>
-            <input type="number" name="quantity" id="" [(ngModel)]="cartItem.item.quantity" min="0" style="width: 60px;" class="text-center">
+            <input type="number" name="quantity" [(ngModel)]="cartItem.item.quantity" min="0" style="width: 60px;" class="text-center">
             <button class="btn" (click)="increment()">+</button>
             <button class="btn" (click)="delete()"><i class="fa fa-trash"></i></button>
             <button class="btn btn-success" (click)="updateCart()">Update</button>

@@ -5,7 +5,7 @@
                         <i class="material-icons form-control-feedback">
                                 search
                         </i>
-                        <input type="text" class="form-control" placeholder="Search Products">
+                        <input type="text" class="form-control" placeholder="Search Products" (keyup)="search($event)">
                 </div>
         </div>
         <div class="media card-tile user-list" *ngFor="let product of products; let index = index;">

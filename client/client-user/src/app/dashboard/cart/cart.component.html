@@ -1,12 +1,9 @@
-<div class="container">
-    <div class="card-media">
+
         <div class="container">
             <h1><b>My Cart</b></h1>
             <app-cart-item *ngFor="let cartItem of cartItems" [cartItem]="cartItem" (deleteCart)="deleteCartItem($event)"></app-cart-item>
-            <div style="text-align: center;">
-                <button class="btn btn-primary" (click)="checkout()" *ngIf="cartItems.length>0">Checkout</button>
-                <h4 *ngIf="cartItems.length==0">Your cart is empty. Please continue shopping!</h4>
+            <div class="float-right mt-2">
+                <button class="btn btn-primary btn-md" (click)="checkout()" *ngIf="cartItems.length>0">Checkout</button>
             </div>
+            <h4 class="text-center mt-2" *ngIf="cartItems.length==0">Your cart is empty. Please continue shopping!</h4>
         </div>
-    </div>
-</div>

@@ -4,10 +4,11 @@
 
 export const environment = {
   production: false,
-  BASE_URL_API: 'http://localhost:8082/api/main',
-  ORDERS_API: 'http://localhost:8081/api/orders',
-  UPLOADS_API: 'http://localhost:4000',
+  BASE_URL_API: 'http://35.185.176.55/api/main',
+  ORDERS_API: 'http://35.185.176.55/api/orders',
+  UPLOADS_API: 'http://35.185.176.55/uploads',
   NOTIFICATIONS_API: 'http://localhost:5000'
+,
 };
 
 /*

@@ -125,5 +125,12 @@ export class ProductService {
     }).toPromise();
   }
 
+  search(query: string){
+    var params = new HttpParams().set("query", query);
+    return this._http.get(environment.BASE_URL_API + '/product/management/search', {
+      params: params
+    }).toPromise();
+  }
+
 
 }
