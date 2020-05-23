@@ -30,7 +30,21 @@ export class UserService {
   }
 
   getOtp(email: string){
-    return this.http.post(environment.BASE_URL_API + '/customer/otp', email).toPromise();
+    return this.http.post(environment.NOTIFICATIONS_API + '/send-otp', {
+      user: {
+        email: email
+      }
+    }).toPromise();
+  }
+
+  verifyOtp(email, otp, hash){
+    return this.http.post(environment.NOTIFICATIONS_API + '/verify-otp', {
+      user: {
+        email: email,
+        hash: hash,
+        otp: otp
+      }
+    }).toPromise();
   }
 
   changePassword(object: Object){
