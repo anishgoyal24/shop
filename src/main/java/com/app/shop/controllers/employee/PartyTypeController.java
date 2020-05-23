@@ -45,4 +45,10 @@ public class PartyTypeController {
     @PostMapping(value = "/enable/{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
     public HashMap<String, Object> enablePartyType(@PathVariable Integer id){ return partyTypeService.enablePartyType(id); }
+
+    @GetMapping(value = "/search")
+    @PreAuthorize("hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    public HashMap<String, Object> search(@RequestParam String query){
+        return partyTypeService.search(query);
+    }
 }

@@ -76,4 +76,11 @@ public class EmployeeDetailsController {
     public HashMap<String, Object> forgotPassword(@RequestBody String email){
         return employeeDetailsService.forgotPassword(email);
     }
+
+    @GetMapping(value = "/search")
+    @PreAuthorize(value = "hasAnyAuthority('ROLE_employee', 'ROLE_admin', 'ROLE_owner')")
+    public HashMap<String, Object> search(@RequestParam String query){
+        return employeeDetailsService.search(query);
+    }
+
 }

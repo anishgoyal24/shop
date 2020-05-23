@@ -70,4 +70,10 @@ public class PartyTypeService {
         else returnObject.put("message", "no such party id");
         return returnObject;
     }
+
+    public HashMap<String, Object> search(String query) {
+        returnObject = new HashMap<>();
+        returnObject.put("data", partyTypeRepository.search(query));
+        return returnObject;
+    }
 }
