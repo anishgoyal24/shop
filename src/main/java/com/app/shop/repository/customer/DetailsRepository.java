@@ -16,6 +16,6 @@ public interface DetailsRepository extends JpaRepository<PartyDetails, Integer> 
 
     PartyDetails findByPrimaryPhone(String primaryPhone);
 
-    @Query("select party.partyName, party.partyEmail from PartyDetails party where party.partyEmail like %:query% or party.primaryPhone like %:query% or party.partyName like %:query%")
+    @Query("select party.partyName, party.partyEmail from PartyDetails party where lower(party.partyEmail) like %:query% or party.primaryPhone like %:query% or lower(party.partyName) like %:query%")
     List<Object[]> search(@Param("query") String query);
 }

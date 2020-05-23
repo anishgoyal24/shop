@@ -13,6 +13,6 @@ public interface PartyTypeRepository extends JpaRepository<PartyType, Integer> {
 
     public PartyType findByType(String type);
 
-    @Query("select partyType from PartyType partyType where partyType.type like %:query%")
+    @Query("select partyType from PartyType partyType where lower(partyType.type) like %:query%")
     List<PartyType> search(@Param("query") String query);
 }

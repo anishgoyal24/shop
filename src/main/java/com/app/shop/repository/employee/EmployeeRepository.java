@@ -13,6 +13,6 @@ public interface EmployeeRepository extends JpaRepository<EmployeeDetails, Integ
     public EmployeeDetails findByEmpEmail(String email);
     public EmployeeDetails findByPrimaryPhone(String phone);
 
-    @Query("select emp.empName, emp.empEmail from EmployeeDetails emp where emp.empName like %:query% or emp.empEmail like %:query% or emp.primaryPhone like %:query%")
+    @Query("select emp.empName, emp.empEmail, emp.empId, emp.status, emp.role from EmployeeDetails emp where lower(emp.empName) like %:query% or lower(emp.empEmail) like %:query% or emp.primaryPhone like %:query%")
     List<Object[]> search(@Param("query") String query);
 }

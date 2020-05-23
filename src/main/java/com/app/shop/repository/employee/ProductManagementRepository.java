@@ -12,6 +12,6 @@ public interface ProductManagementRepository extends JpaRepository<ItemDetails, 
 
     public ItemDetails findByItemNameIgnoreCase(String itemName);
 
-    @Query("select item from ItemDetails  item where item.itemName like %:query%")
+    @Query("select item from ItemDetails  item where lower(item.itemName) like %:query%")
     List<ItemDetails> search(String query);
 }
