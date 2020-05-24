@@ -58,6 +58,11 @@ public class WarehouseDetailsService {
                 warehouseDetails.setState(stateRepository.findById(warehouseDetails.getState().getStateFullCode()).get());
                 warehouseDetails.setCountry(countryRepository.findById(warehouseDetails.getCountry().getCountryCode3()).get());
             }
+            else if (warehouseDetails.getType().equals("dynamic")){
+                WarehouseDetails owner = warehouseRepository.findById(warehouseDetails.getOwnerWarehouse()).get();
+                warehouseDetails.setState(owner.getState());
+                warehouseDetails.setCountry(owner.getCountry());
+            }
             warehouseRepository.save(warehouseDetails);
             userAuthRepository.save(new UserDetails(warehouseDetails.getWarehouseEmail(), encodedPassword, 1, warehouseDetails.getRole(), warehouseDetails.getPrimaryPhone()));
             returnObject.put("message", "success");
