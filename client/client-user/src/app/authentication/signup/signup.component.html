@@ -77,9 +77,12 @@
             [(ngModel)]="accountDetails.password">
         </div>
         <div class="form-group">
-            <button class="btn btn-dark form-control" (click)="getOtp(accountDetails.partyEmail)">Get OTP on Email</button>
+            <button class="btn btn-dark form-control" (click)="getOtp(accountDetails.partyEmail); formCheck = true">Get OTP on Email</button>
             <input type="number" name="otp" placeholder="Enter OTP" class="form-control" [(ngModel)]="otp">
         </div>
-        <button type="submit" class="btn btn-primary form-control" (click)="createAccount(accountDetails)" [disabled]="!otpRequested">Submit</button>
+        <div class="form-group" *ngIf="formCheck">
+            <button class="btn btn-md btn-primary" (click)="verifyOtp()">Validate</button>
+        </div>
+        <button type="submit" class="btn btn-primary form-control" (click)="createAccount(accountDetails)">Submit</button>
     </ng-container>
   </div>

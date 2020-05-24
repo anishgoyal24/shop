@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router } from 'express';
 import { NotificationsController } from '../controllers'
 import { newOrder, cancelOrder, orderInTransit, outForDelivery } from '../../utils/sendmail';
 
@@ -22,6 +22,12 @@ routes.post('/in-transit', orderInTransit)
 
 // POST - Send mail
 routes.post('/out-for-delivery', outForDelivery)
+
+// POST - Send OTP
+routes.post('/send-otp', notificationFunctions.sendOTP)
+
+// POST - Verify OTP
+routes.post('/verify-otp', notificationFunctions.verifyOTP)
 
 
 export { routes as notificationRoutes };

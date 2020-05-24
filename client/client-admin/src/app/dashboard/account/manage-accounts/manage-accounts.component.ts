@@ -102,14 +102,17 @@ export class ManageAccountsComponent implements OnInit {
     return new Promise((resolve, reject)=>{
     this.adminService.search($event.target.value)
     .then((data)=>{
-      // data['data'] = data['data'].map((object)=>{
-      //   return {
-      //     id: object[0],
-      //     name: object[1]
-      //   }
-      // })
-      console.log(data)
-      resolve()
+      data = data['data'].map((object)=>{
+        return {
+          empName: object[0],
+          empEmail: object[1],
+          status: object[3],
+          id: object[2],
+          role: object[4]
+
+        }
+      })
+      resolve(this.employees = data)
     })
     .catch(()=>{
       reject([])

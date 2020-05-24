@@ -11,6 +11,8 @@ export CLIENT_USER_NAME=insperonbusiness/saifco:user
 # Client Warehouse Image Name
 export CLIENT_WAREHOUSE_NAME=insperonbusiness/saifco:warehouse
 
+export NOTIFICATIONS_NAME=insperonbusiness/saifco:notifications
+
 
 docker pull $CLIENT_ADMIN_NAME
 
@@ -23,3 +25,5 @@ docker run --name admin-app -dp 9000:80 $CLIENT_ADMIN_NAME
 docker run --name user-app -dp 9001:80 $CLIENT_USER_NAME
 
 docker run --name warehouse-app -dp 9002:80 $CLIENT_WAREHOUSE_NAME
+
+docker run --name notifications-app -dp 5000:5000 $NOTIFICATIONS_NAME

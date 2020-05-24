@@ -136,6 +136,30 @@ const outForDelivery = async (req: Request, res: Response, next: NextFunction) =
     }
 }
 
+const sendOTP = async (user) => {
+    try {
+
+        // Generate email data
+        const emailData = {
+            subject: 'OTP | New Account',
+            otp: user.otp,
+            toEmail: user.email
+        };
+
+        const subject = 'newOTP'
+
+        // Generate email body from template
+        const emailBody = await generateEmailBody(emailData, subject);
+
+        // Send email
+        await sendMail(emailBody, emailData, 'OTP | New Account');
+
+
+    } catch (err) {
+        return err;
+    }
+}
+
 const sendMail = async (emailBody: any, emailData: any, subject, scheduled: any = {}) => {
     try {
         // Sendgrid API settings
@@ -195,6 +219,7 @@ export {
     newOrder,
     cancelOrder,
     orderInTransit,
-    outForDelivery
+    outForDelivery,
+    sendOTP
 
 }

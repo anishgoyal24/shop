@@ -19,6 +19,8 @@ export class SignupComponent implements OnInit {
 
   otp: any;
 
+  otpHash: any;
+
   accountDetails = {
     partyName: "",
     partyEmail: "",
@@ -91,18 +93,30 @@ export class SignupComponent implements OnInit {
       new Promise((resolve, reject)=>{
         this.userService.getOtp(partyEmail)
         .then((res)=>{
-          if (res['message']=='success'){
             this.otpRequested = true;
+            this.otpHash = res['hash']
             resolve(this.utilityService.resolveAsyncPromise('OTP Successfully Sent!'))
-          }
-          else{
-            reject(this.utilityService.rejectAsyncPromise('Oops some error occurred! Please try again later.'));
-          }
+
         }).catch((err)=>{
           reject(this.utilityService.rejectAsyncPromise('Oops some error occurred! Please try again later.'));
         })
       })
     )
+  }
+
+  verifyOtp(){
+    this.utilityService.asyncNotification('Validating OTP...', 
+    new Promise((resolve, reject)=>{
+      this.userService.verifyOtp(this.accountDetails.partyEmail, this.otp, this.otpHash)
+      .then((res)=>{
+          
+          resolve(this.utilityService.resolveAsyncPromise('OTP Verified!'))
+
+      }).catch((err)=>{
+        reject(this.utilityService.rejectAsyncPromise('Wrong OTP, please check your email!'));
+      })
+    })
+  )
   }
 
 
