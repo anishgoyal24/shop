@@ -21,6 +21,8 @@ export class SignupComponent implements OnInit {
 
   otpHash: any;
 
+  formCheck: any;
+
   accountDetails = {
     partyName: "",
     partyEmail: "",

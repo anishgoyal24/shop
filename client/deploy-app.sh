@@ -3,22 +3,22 @@
 # Saifco Server Deployment
 
 # Client Admin Image Name
-export CLIENT_ADMIN_NAME=amasia:admin
+export CLIENT_ADMIN_NAME=amasia/shop:admin
 
 # Client User Image Name
-export CLIENT_USER_NAME=amasia:user
+export CLIENT_USER_NAME=amasia/shop:user
 
 # Client Warehouse Image Name
-export CLIENT_WAREHOUSE_NAME=amasia:warehouse
+export CLIENT_WAREHOUSE_NAME=amasia/shop:warehouse
 
 # Main App Image Name
-export MAIN_APP_IMAGE_NAME=amasia:main-app
+export MAIN_APP_IMAGE_NAME=amasia/shop:main-app
 
 # Orders App Image Name
-export ORDERS_APP_IMAGE_NAME=amasia:orders-app
+export ORDERS_APP_IMAGE_NAME=amasia/shop:orders-app
 
 # Orders App Image Name
-export UPLOADS_APP_IMAGE_NAME=amasia:uploads
+export UPLOADS_APP_IMAGE_NAME=amasia/shop:uploads
 
 ssh -p 22 root@35.247.171.117
 

@@ -3,15 +3,15 @@
 # Amasia Deployment Server
 
 # Client Admin Image Name
-export CLIENT_ADMIN_NAME=amasia:admin
+export CLIENT_ADMIN_NAME=amasia/shop:admin
 
 # Client User Image Name
-export CLIENT_USER_NAME=amasia:user
+export CLIENT_USER_NAME=amasia/shop:user
 
 # Client Warehouse Image Name
-export CLIENT_WAREHOUSE_NAME=amasia:warehouse
+export CLIENT_WAREHOUSE_NAME=amasia/shop:warehouse
 
-export NOTIFICATIONS_NAME=amasia:notifications
+export NOTIFICATIONS_NAME=amasia/shop:notifications
 
 
 docker pull $CLIENT_ADMIN_NAME
