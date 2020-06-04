@@ -11,6 +11,7 @@ export CLIENT_USER_NAME=amasia:user
 # Client Warehouse Image Name
 export CLIENT_WAREHOUSE_NAME=amasia:warehouse
 
+# Emailing server Image name
 export NOTIFICATIONS_NAME=amasia:notifications
 
 # Build Images

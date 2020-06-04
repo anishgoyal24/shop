@@ -3,22 +3,22 @@
 # Saifco Server Deployment
 
 # Client Admin Image Name
-export CLIENT_ADMIN_NAME=insperonbusiness/saifco:admin
+export CLIENT_ADMIN_NAME=amasia:admin
 
 # Client User Image Name
-export CLIENT_USER_NAME=insperonbusiness/saifco:user
+export CLIENT_USER_NAME=amasia:user
 
 # Client Warehouse Image Name
-export CLIENT_WAREHOUSE_NAME=insperonbusiness/saifco:warehouse
+export CLIENT_WAREHOUSE_NAME=amasia:warehouse
 
 # Main App Image Name
-export MAIN_APP_IMAGE_NAME=insperonbusiness/saifco:main-app
+export MAIN_APP_IMAGE_NAME=amasia:main-app
 
 # Orders App Image Name
-export ORDERS_APP_IMAGE_NAME=insperonbusiness/saifco:orders-app
+export ORDERS_APP_IMAGE_NAME=amasia:orders-app
 
 # Orders App Image Name
-export UPLOADS_APP_IMAGE_NAME=insperonbusiness/saifco:uploads
+export UPLOADS_APP_IMAGE_NAME=amasia:uploads
 
 ssh -p 22 root@35.185.176.55
 
