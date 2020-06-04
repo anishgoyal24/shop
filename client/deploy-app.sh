@@ -20,7 +20,7 @@ export ORDERS_APP_IMAGE_NAME=amasia:orders-app
 # Orders App Image Name
 export UPLOADS_APP_IMAGE_NAME=amasia:uploads
 
-ssh -p 22 root@35.185.176.55
+ssh -p 22 root@35.247.171.117
 
 docker volume create mysql-data
 
