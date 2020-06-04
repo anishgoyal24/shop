@@ -21,7 +21,7 @@ import { sockets } from './utils';
   server.listen(port, host, () => {
     console.log(`
     
-  ⚙️  Saifco Sockets server running at: \n\t http://${host}:${port}
+  ⚙️  Amasia Sockets server running at: \n\t http://${host}:${port}
   
   🌏 Environment: \n\t ${env}
   `);

@@ -1,17 +1,17 @@
 #!/bin/bash
 
-# Saifco Image Building
+# amasia Image Building
 
 # Client Admin Image Name
-export CLIENT_ADMIN_NAME=insperonbusiness/saifco:admin
+export CLIENT_ADMIN_NAME=amasia:admin
 
 # Client User Image Name
-export CLIENT_USER_NAME=insperonbusiness/saifco:user
+export CLIENT_USER_NAME=amasia:user
 
 # Client Warehouse Image Name
-export CLIENT_WAREHOUSE_NAME=insperonbusiness/saifco:warehouse
+export CLIENT_WAREHOUSE_NAME=amasia:warehouse
 
-export NOTIFICATIONS_NAME=insperonbusiness/saifco:notifications
+export NOTIFICATIONS_NAME=amasia:notifications
 
 # Build Images
 docker build -t $CLIENT_ADMIN_NAME --compress ./client-admin

@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 mongoose.Promise = global.Promise;
 
 // Set up mongoose connection
-var dbURL = process.env.dbURL || 'mongodb://127.0.0.1:27017/saifco';
+var dbURL = process.env.dbURL || 'mongodb://127.0.0.1:27017/amasia';
 
 const options = {
   useNewUrlParser: true,
@@ -17,7 +17,7 @@ const options = {
 mongoose.connect(dbURL, options)
 .catch(()=>{
   // Catch the Error on Production 
-  dbURL = 'mongodb://127.0.0.1:27017/saifco';
+  dbURL = 'mongodb://127.0.0.1:27017/amasia';
   mongoose.connect(dbURL, options);
 })
 

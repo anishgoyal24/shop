@@ -188,12 +188,12 @@ const sendMail = async (emailBody: any, emailData: any, subject, scheduled: any 
                 ],
                 from:
                 {
-                    email: 'support@saifco.com',
-                    name: 'Team Saifco'
+                    email: 'support@amasia.com',
+                    name: 'Team Amasia'
                 },
                 reply_to: {
-                    email: emailData.replyToEmail || 'support@saifco.com',
-                    name: emailData.replyToName || 'Team Saifco'
+                    email: emailData.replyToEmail || 'support@amasia.com',
+                    name: emailData.replyToName || 'Team Amasia'
                 },
                 content: [
                     {

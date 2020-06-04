@@ -16,7 +16,7 @@ function prodConfigInit() {
   process.env.JWT_KEY = process.env.JWT_KEY
 
   // Database Url String
-  process.env.dbURL = process.env.dbURL || 'mongodb://mongodb:27017/saifco' || 'mongodb://127.0.0.1:27017/saifco'
+  process.env.dbURL = process.env.dbURL || 'mongodb://mongodb:27017/amasia' || 'mongodb://127.0.0.1:27017/amasia'
 
   // Files Uploads Folder
   process.env.FILE_UPLOAD_FOLDER = process.env.FILE_UPLOAD_FOLDER ||`${__dirname}/uploads/`

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Saifco Deployment Server
+# Amasia Deployment Server
 
     # Assign Current workdir
     mainDir=$PWD

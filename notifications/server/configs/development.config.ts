@@ -15,7 +15,7 @@ function devConfigInit() {
   process.env.HOST = process.env.HOST || '0.0.0.0'
 
   // Database Url String
-  process.env.dbURL = process.env.dbURL || 'mongodb://127.0.0.1:27017/saifco'
+  process.env.dbURL = process.env.dbURL || 'mongodb://127.0.0.1:27017/amasia'
 
   // Files Uploads Folder
   process.env.FILE_UPLOAD_FOLDER = process.env.FILE_UPLOAD_FOLDER || path.join(__dirname, '../uploads/');

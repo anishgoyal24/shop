@@ -1,7 +1,7 @@
 {
-  "name": "saifco",
+  "name": "amasia",
   "version": "1.0.0",
-  "description": "Node server app for saifco",
+  "description": "Node server app for amasia",
   "main": "app.js",
   "scripts": {
     "test": "jest",
