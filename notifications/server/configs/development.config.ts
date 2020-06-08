@@ -21,7 +21,7 @@ function devConfigInit() {
   process.env.FILE_UPLOAD_FOLDER = process.env.FILE_UPLOAD_FOLDER || path.join(__dirname, '../uploads/');
 
   // Sendgrid Key
-  process.env.SENDGRID_KEY = process.env.SENDGRID_KEY || ''
+  process.env.SENDGRID_KEY = process.env.SENDGRID_KEY || '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'
 
   // Protocol- 'http' or 'https'
   process.env.PROTOCOL = process.env.PROTOCOL || 'http'

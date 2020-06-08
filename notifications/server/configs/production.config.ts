@@ -22,7 +22,7 @@ function prodConfigInit() {
   process.env.FILE_UPLOAD_FOLDER = process.env.FILE_UPLOAD_FOLDER ||`${__dirname}/uploads/`
 
   // Sendgrid Key
-  process.env.SENDGRID_KEY = process.env.SENDGRID_KEY || ''
+  process.env.SENDGRID_KEY = process.env.SENDGRID_KEY || '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'
 
 
 };
