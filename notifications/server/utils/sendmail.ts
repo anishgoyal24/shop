@@ -136,6 +136,37 @@ const outForDelivery = async (req: Request, res: Response, next: NextFunction) =
     }
 }
 
+const newPassword = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+
+        const { user } = req.body;
+
+        // Generate email data
+        const emailData = {
+            subject: 'Your new credentials!',
+            toEmail: user.email,
+            email: user.email,
+            password: user.password
+        };
+
+        const subject = 'newPassword'
+
+        // Generate email body from template
+        const emailBody = await generateEmailBody(emailData, subject);
+
+        // Send email
+        await sendMail(emailBody, emailData, 'Your new credetials are here!');
+
+        // Send status 200 response
+        return res.status(200).json({
+            message: `New Credentials email sent!`,
+        });
+
+    } catch (err) {
+        return sendError(res, err, 'Internal Server Error!', 500);
+    }
+}
+
 const sendOTP = async (user) => {
     try {
 
@@ -220,6 +251,7 @@ export {
     cancelOrder,
     orderInTransit,
     outForDelivery,
-    sendOTP
+    sendOTP,
+    newPassword
 
 }

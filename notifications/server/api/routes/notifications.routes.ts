@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import { NotificationsController } from '../controllers'
-import { newOrder, cancelOrder, orderInTransit, outForDelivery } from '../../utils/sendmail';
+import { newOrder, cancelOrder, orderInTransit, outForDelivery, newPassword } from '../../utils/sendmail';
 
 const routes = express.Router();
 const notificationFunctions = new NotificationsController();
@@ -28,6 +28,9 @@ routes.post('/send-otp', notificationFunctions.sendOTP)
 
 // POST - Verify OTP
 routes.post('/verify-otp', notificationFunctions.verifyOTP)
+
+// POST - New Password
+routes.post('/new-password', newPassword)
 
 
 export { routes as notificationRoutes };
