@@ -10,10 +10,13 @@ import com.app.shop.repository.employee.EmployeeRepository;
 import com.app.shop.utils.ChangePasswordClass;
 import com.app.shop.utils.GeneratePassword;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,14 +34,19 @@ public class EmployeeDetailsService {
     private PasswordEncoder bCryptPasswordEncoder;
     private StateRepository stateRepository;
     private CountryRepository countryRepository;
+    private RestTemplate restTemplate;
+
+    @Value("${server-url}")
+    private String serverURL;
 
     @Autowired
-    public EmployeeDetailsService(EmployeeRepository employeeRepository, UserAuthRepository userAuthRepository, PasswordEncoder bCryptPasswordEncoder, StateRepository stateRepository, CountryRepository countryRepository) {
+    public EmployeeDetailsService(EmployeeRepository employeeRepository, UserAuthRepository userAuthRepository, PasswordEncoder bCryptPasswordEncoder, StateRepository stateRepository, CountryRepository countryRepository, RestTemplate restTemplate) {
         this.employeeRepository = employeeRepository;
         this.userAuthRepository = userAuthRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.stateRepository = stateRepository;
         this.countryRepository = countryRepository;
+        this.restTemplate = restTemplate;
     }
 
     private void detachObject(EmployeeDetails employeeDetails){
@@ -191,7 +199,15 @@ public class EmployeeDetailsService {
             UserDetails userDetails = userAuthRepository.findByUsername(email);
             userDetails.setPassword(encodedPassword);
             userAuthRepository.save(userDetails);
-            // TODO Send mail with this new password
+            // Send Email
+            HashMap<String, String> json = new HashMap<>();
+            json.put("email", found.getEmpEmail());
+            json.put("password", generatedPassword);
+            try {
+                restTemplate.postForLocation(serverURL + "/notifications/api/new-password", json);
+            } catch (RestClientException e) {
+                throw(e);
+            }
             returnObject.put("message", "success");
         }
         else
