@@ -1,11 +1,11 @@
-<div class="card-media">
+<!-- <div class="card-media"> -->
     <div class="container">
         <h1><b>Transfer Stock</b></h1>
         <div class="form-group has-search">
           <i class="material-icons form-control-feedback">
             search
           </i>
-          <input type="text" class="form-control" placeholder="Search Warehouse" (input)="onSearch($event)">
+          <input type="text" class="form-control" placeholder="Please search and select a warehouse from the list below to transfer the stocks..." (input)="onSearch($event)">
         </div>
         <ng-container *ngIf="listLength == 0">
           <h3>No warehouse to display...</h3>
@@ -17,7 +17,13 @@
         </ng-container>
       </div>   
 
-      <div class="container list-warehouse">
+      <div class="container" *ngIf="selectedWarehouse">
+        <div *ngFor="let item of stocks">
+            <app-stock-item [stockItem]="item" [selectedWarehouse]="selectedWarehouse"></app-stock-item>
+        </div>
+    </div>
+
+      <div class="container list-warehouse" *ngIf="warehouseList.length > 0">
         <div class="media card-tile user-list" id="list" *ngFor="let warehouse of warehouseList; let  i = index" [hidden]="warehouseListHidden">
             <img src="http://35.247.171.117/admin/assets/images/home-rice-1.jpg" class="feed-avatar">
             <div class="media-body">
@@ -30,14 +36,5 @@
                 </div>
             </div>
           </div>
-          <div  *ngIf="selectedWarehouse">
-            <p><strong>Selected Warehouse: </strong>{{ selectedWarehouseName }}</p>
-          </div>
       </div>
-
-    <div class="container">
-        <div *ngFor="let item of stocks">
-            <app-stock-item [stockItem]="item" [selectedWarehouse]="selectedWarehouse"></app-stock-item>
-        </div>
-    </div>
-</div>
+<!-- </div> -->
