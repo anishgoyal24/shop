@@ -17,8 +17,11 @@ export MAIN_APP_IMAGE_NAME=amasia/shop:main-app
 # Orders App Image Name
 export ORDERS_APP_IMAGE_NAME=amasia/shop:orders-app
 
-# Orders App Image Name
+# Uploads App Image Name
 export UPLOADS_APP_IMAGE_NAME=amasia/shop:uploads
+
+# Notifications app Image Name
+export NOTIFICATIONS_APP_IMAGE_NAME=amasia/shop:notifications
 
 ssh -p 22 root@35.247.171.117
 
@@ -42,6 +45,10 @@ CREATE USER 'admin'@'%' IDENTIFIED BY 'admin'
 
 GRANT ALL PRIVILEGES ON . TO 'admin'@'%'
 
+docker pull $UPLOADS_APP_IMAGE_NAME
+
+docker pull $NOTIFICATIONS_APP_IMAGE_NAME
+
 docker pull $MAIN_APP_IMAGE_NAME
 
 docker pull $ORDERS_APP_IMAGE_NAME
@@ -52,6 +59,10 @@ docker pull $CLIENT_USER_NAME
 
 docker pull $CLIENT_WAREHOUSE_NAME
 
+docker run  --name uploads-server -d=true --network saifco -v uploads -p 4000:4000 $UPLOADS_APP_IMAGE_NAME
+
+docker run --name notifications-app --network saifco -dp 5000:5000 $NOTIFICATIONS_APP_IMAGE_NAME
+
 docker run  --name main-app -d=true --network saifco -p 8082:8082 $MAIN_APP_IMAGE_NAME
 
 docker run  --name orders-app -d=true --network saifco -p 8081:8081 $ORDERS_APP_IMAGE_NAME
@@ -61,8 +72,6 @@ docker run --name admin-app --network saifco -dp 9000:80 $CLIENT_ADMIN_NAME
 docker run --name user-app --network saifco -dp 9001:80 $CLIENT_USER_NAME
 
 docker run --name warehouse-app --network saifco -dp 9002:80 $CLIENT_WAREHOUSE_NAME
-
-docker run  --name uploads-server -d=true --network saifco -v uploads -p 4000:4000 insperonbusiness/saifco:
 
 docker run -d \
   --name watchtower \
