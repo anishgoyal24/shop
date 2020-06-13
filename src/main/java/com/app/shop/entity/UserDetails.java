@@ -14,7 +14,9 @@ public class UserDetails {
     @Id
     @GeneratedValue(generator = "native", strategy = GenerationType.SEQUENCE)
     private int id;
+    @Column(name = "username", unique = true)
     private String username;
+    @Column(name = "primary_phone", unique = true)
     private String primaryPhone;
     @Column(length = 60)
     private String password;
