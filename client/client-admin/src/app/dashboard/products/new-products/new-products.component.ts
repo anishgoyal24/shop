@@ -102,7 +102,9 @@ export class NewProductsComponent implements OnInit {
       this.productService.createNewProduct(productDetails)
       .then((res)=>{
         if (res['message']=='success'){
-          this.uploadImage(productDetails, res['imageName']);
+          var imageForm = new FormData();
+          imageForm.append('image', this.image);
+          this.uploadImage(imageForm, res['imageName']);
           this.clearForm(this.productDetails)
           resolve(this.utilityService.resolveAsyncPromise('Product Created!'))
         }
