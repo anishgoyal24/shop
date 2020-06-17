@@ -6,14 +6,19 @@
       <input type="text" class="form-control" id="fullName" placeholder="Enter full name" name="fullName" [(ngModel)]="accountDetails.empName">
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [hidden]=true>
       <label for="email">Email</label>
       <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" [(ngModel)]="accountDetails.empEmail">
     </div>
 
     <div class="form-group">
       <label for="contactNumber">Contact Number</label>
-      <input type="number" class="form-control" id="contactNumber" placeholder="Enter Contact Number" name="contactNumber" [(ngModel)]="accountDetails.primaryPhone">
+      <input type="number" class="form-control" id="contactNumber" placeholder="Enter Contact Number" name="contactNumber" [(ngModel)]="accountDetails.primaryPhone" (change)="accountDetails.empEmail=accountDetails.primaryPhone.toString()+'@na.com'">
+    </div>
+
+    <div class="form-group">
+      <label for="pwd">Password</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" [(ngModel)]="accountDetails.password">
     </div>
 
     <div class="form-group">
@@ -30,6 +35,19 @@
       <div class="dropdown">
         <button class="btn btn-md btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select Country
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="overflow: scroll; height: 200px;">
+          <a class="dropdown-item" *ngFor="let country of countriesList" (click)="this.selectedCountry = country.countryName; this.accountDetails.country.countryCode3 = country.countryCode3; getStatesList(country.countryCode3)">{{country?.countryName}}</a>
+        </div>
+      </div>
+      <p *ngIf="this.selectedCountry" style="margin-top: 2%;">Selected Country: <strong>{{this.selectedCountry}}</strong></p>
+    </div>
+
+    <div class="form-group" *ngIf="this.selectedCountry">
+      <div class="dropdown">
+        <button class="btn btn-md btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Select State
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="overflow: scroll; height: 200px;">
@@ -40,27 +58,10 @@
     </div>
 
     <div class="form-group">
-      <div class="dropdown">
-        <button class="btn btn-md btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Select Country
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="overflow: scroll; height: 200px;">
-          <a class="dropdown-item" *ngFor="let country of countriesList" (click)="this.selectedCountry = country.countryName; this.accountDetails.country.countryCode3 = country.countryCode3; getStatesList(country.countryCode3)">{{country?.countryName}}</a>
-        </div>
-      </div>
-      <p *ngIf="this.selectedCountry" style="margin-top: 2%;">Selected Country: <strong>{{this.selectedCountry}}</strong></p>
-    </div>
-
-    <div class="form-group">
       <label for="pin">Pin Code</label>
       <input type="number" class="form-control" id="pin" placeholder="Enter pin code" name="pin" [(ngModel)]="accountDetails.pincode">
     </div>
 
-    <div class="form-group">
-      <label for="pwd">Password</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" [(ngModel)]="accountDetails.password">
-    </div>
     <div class="radio">
       <label for="radio">Select Role</label>
       <div class="radio">
