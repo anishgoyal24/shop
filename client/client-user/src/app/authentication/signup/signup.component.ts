@@ -5,6 +5,7 @@ import { UtilityService } from 'src/shared/services/utility.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router } from '@angular/router';
 import { UserService } from 'src/shared/services/user.service';
+import { CommonService } from 'src/shared/services/common.service';
 
 @Component({
   selector: 'app-signup',
@@ -40,21 +41,15 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  states = ['Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh', 
-    'Assam', 'Bihar', 'Chandigarh', 'Chhattisgarh', 'Dadra and Nagar Haveli', 'Daman and Diu', 
-    'Delhi', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jammu and Kashmir', 
-    'Jharkhand', 'Karnataka', 'Kerala', 'Ladakh', 'Lakshadweep', 'Madhya Pradesh', 'Maharashtra',
-    'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Puducherry', 'Punjab',
-    'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand',
-    'West Bengal'
-];
+  states = [];
 
   constructor(
     private _location: Location,
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private utilityService: UtilityService,
-    private userService: UserService
+    private userService: UserService,
+    private commonService: CommonService
   ) { }
 
   backClicked() {
@@ -68,6 +63,15 @@ export class SignupComponent implements OnInit {
     setInterval(() => {
       this.ngxService.stop()
     }, 1000);
+    new Promise((resolve, reject)=>{
+      this.commonService.getStates('IND').then((res)=>{
+        this.states = res['data'];
+        resolve();
+      }).catch((err)=>{
+        console.log(err);
+        reject();
+      })
+    })
   }
 
   createAccount(accountDetails: any){

@@ -5,25 +5,31 @@
         <div class="form-group">
           <label for="fullName">Full Name</label>
           <input type="text" class="form-control" id="fullName" placeholder="Enter full name" name="fullName"
-            [(ngModel)]="accountDetails.partyName">
+            [(ngModel)]="accountDetails.partyName" (change)="accountDetails.contactPerson=accountDetails.partyName">
         </div>
   
-        <div class="form-group">
+        <div class="form-group" [hidden]="true">
           <label for="email">Email</label>
           <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"
             [(ngModel)]="accountDetails.partyEmail">
         </div>
-  
-        <div class="form-group">
-          <label for="contactNumber">Contact Person</label>
-          <input type="text" class="form-control" id="contactPerson" placeholder="Enter Contact Person"
-            name="contactPerson" [(ngModel)]="accountDetails.contactPerson">
-        </div>
-  
+
         <div class="form-group">
           <label for="contactNumber">Primary Phone Number</label>
           <input type="number" class="form-control" id="contactNumber" placeholder="Enter Contact Number"
             name="contactNumber" [(ngModel)]="accountDetails.primaryPhone">
+        </div>
+
+        <div class="form-group">
+          <label for="pwd">Password</label>
+          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd"
+            [(ngModel)]="accountDetails.password">
+        </div>
+  
+        <div class="form-group" [hidden]="true">
+          <label for="contactNumber">Contact Person</label>
+          <input type="text" class="form-control" id="contactPerson" placeholder="Enter Contact Person"
+            name="contactPerson" [(ngModel)]="accountDetails.contactPerson">
         </div>
   
         <div class="form-group">
@@ -70,19 +76,14 @@
           <input type="number" class="form-control" id="pin" placeholder="Enter pin code" name="pin"
             [(ngModel)]="accountDetails.pincode">
         </div>
-  
-        <div class="form-group">
-          <label for="pwd">Password</label>
-          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd"
-            [(ngModel)]="accountDetails.password">
-        </div>
-        <div class="form-group">
+
+        <!-- <div class="form-group">
             <button class="btn btn-dark form-control" (click)="getOtp(accountDetails.partyEmail); formCheck = true">Get OTP on Email</button>
             <input type="number" name="otp" placeholder="Enter OTP" class="form-control" [(ngModel)]="otp">
         </div>
         <div class="form-group" *ngIf="formCheck">
             <button class="btn btn-md btn-primary" (click)="verifyOtp()">Validate</button>
-        </div>
+        </div> -->
         <button type="submit" class="btn btn-primary form-control" (click)="createAccount(accountDetails)">Submit</button>
     </ng-container>
   </div>
