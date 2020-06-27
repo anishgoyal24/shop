@@ -45,6 +45,7 @@ import { AddOrderComponent } from './dashboard/orders/add-order/add-order.compon
 import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password/forgot-password.component';
 import { NotificationComponent } from './dashboard/notification/notification.component';
+import { OrderItemCashComponent } from './dashboard/orders/add-order/order-item-cash/order-item-cash.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,9 @@ import { NotificationComponent } from './dashboard/notification/notification.com
 
     ForgotPasswordComponent,
 
-    NotificationComponent
+    NotificationComponent,
+
+    OrderItemCashComponent
   ],
   imports: [
     BrowserModule,

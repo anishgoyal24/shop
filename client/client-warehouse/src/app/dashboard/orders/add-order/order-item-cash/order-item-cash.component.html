@@ -1,0 +1,45 @@
+<div style="margin: 10px;">
+    <div class="form-group">
+        <div class="dropdown">
+          <button class="btn btn-md btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Item
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" *ngFor="let stock of stocks" (click)="setItem(stock)">{{ stock.itemName + ' - ' + stock.itemPackingDetails.size + ' kg' }}</a>
+          </div>
+    </div>
+
+    <table class="table" *ngIf="selectedProduct!=null" style="margin: 10px;">
+        <thead class="thead-dark">
+            <tr>
+                <th>Item Name</th>
+                <th>Packing Size</th>
+                <th>Actual Price</th>
+                <th>Discounted Price</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ selectedProduct['itemName']}}</td>
+                <td>{{ selectedProduct['itemPackingDetails']['size'] + ' kg' }}</td>
+                <td>{{ selectedProduct['price'] }}</td>
+                <td><input type="text" placeholder="0" [(ngModel)]="selectedProduct.discountedPrice" (change)="setTotalPrice()"></td>
+                <td>
+                    <input type="number" style="max-width: 40px;" [(ngModel)]="quantity" class="text-center"
+                        id="quantity" min="0" max="{{ selectedProduct['quantity'] }}" (change)="setTotalPrice()">
+                </td>
+                <td>{{ totalPrice }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <button class="btn btn-secondary" (click)="setOrderDetail()" *ngIf="selectedProduct!=null && quantity>0 && saveHidden==false">Save</button>
+        <button class="btn btn-danger" (click)="deleteDetail()">Delete</button>
+    </div>
+</div>
+
+

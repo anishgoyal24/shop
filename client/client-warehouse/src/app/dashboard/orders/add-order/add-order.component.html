@@ -1,5 +1,10 @@
 <div class="card-media">
     <div class="container">
         <h1><b>Add Order</b></h1>
+        <button class="btn btn-primary" (click)="addOrderItem()">Add Order Item</button>
+        <app-order-item-cash *ngFor="let orderDetail of orderDetails; let idx = index;" [stock]="stocks" [orderDetail]="orderDetail" (delete)="delete(idx)"></app-order-item-cash>
+        <div class="text-center" *ngIf="orderDetails.length>0">
+            <button class="btn btn-primary" (click)="addOrder()" style="margin: 10px;">Add Order</button>
+        </div>
     </div>
 </div>

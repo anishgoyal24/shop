@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(
     private socketService: SocketService
   ){ 
-    this.socketService.onConnect().subscribe(data => console.log(data['message']));
-    this.socketService.onNewOrder().subscribe();
+    // this.socketService.onConnect().subscribe(data => console.log(data['message']));
+    // this.socketService.onNewOrder().subscribe();
   }
 }

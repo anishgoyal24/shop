@@ -1,11 +1,13 @@
 package com.app.shop.utils;
 
 import com.app.shop.entity.EmployeeDetails;
+import com.app.shop.entity.PartyDetails;
 import com.app.shop.entity.PartyType;
 import com.app.shop.entity.UserDetails;
 import com.app.shop.repository.common.CountryRepository;
 import com.app.shop.repository.common.StateRepository;
 import com.app.shop.repository.common.UserAuthRepository;
+import com.app.shop.repository.customer.DetailsRepository;
 import com.app.shop.repository.employee.EmployeeOrderRepository;
 import com.app.shop.repository.employee.EmployeeRepository;
 import com.app.shop.services.employee.EmployeeDetailsService;
@@ -25,14 +27,16 @@ public class Startup {
     private PartyTypeService partyTypeService;
     private CountryRepository countryRepository;
     private StateRepository stateRepository;
+    private DetailsRepository detailsRepository
 
     @Autowired
-    public Startup(EmployeeRepository employeeRepository, UserAuthRepository userAuthRepository, PartyTypeService partyTypeService, CountryRepository countryRepository, StateRepository stateRepository) {
+    public Startup(EmployeeRepository employeeRepository, UserAuthRepository userAuthRepository, PartyTypeService partyTypeService, CountryRepository countryRepository, StateRepository stateRepository, DetailsRepository detailsRepository) {
         this.employeeRepository = employeeRepository;
         this.userAuthRepository = userAuthRepository;
         this.partyTypeService = partyTypeService;
         this.countryRepository = countryRepository;
         this.stateRepository = stateRepository;
+        this.detailsRepository = detailsRepository;
     }
 
     @EventListener(ApplicationReadyEvent.class)
@@ -66,5 +70,23 @@ public class Startup {
             distributor.setType("distributor");
             partyTypeService.addPartyType(distributor);
         }
+    }
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void addCashParty(ApplicationReadyEvent applicationReadyEvent){
+        PartyDetails partyDetails = new PartyDetails();
+        partyDetails.setAddress("Cash Counter");
+        partyDetails.setContactPerson("Cash Counter");
+        partyDetails.setCity("Cash Counter");
+        partyDetails.setDiscount(0);
+        partyDetails.setPartyType(partyTypeService.getType(1));
+        partyDetails.setCountry(countryRepository.findById("IND").get());
+        partyDetails.setState(stateRepository.findById("IN-HR").get());
+        partyDetails.setPrimaryPhone("1234567890");
+        partyDetails.setPincode("");
+        partyDetails.setStatus('y');
+        partyDetails.setPartyEmail("cashcounter@na.com");
+        partyDetails.setPassword(new BCryptPasswordEncoder().encode("cashcounter"));
+        detailsRepository.save(partyDetails);
     }
 }
