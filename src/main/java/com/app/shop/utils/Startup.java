@@ -27,7 +27,7 @@ public class Startup {
     private PartyTypeService partyTypeService;
     private CountryRepository countryRepository;
     private StateRepository stateRepository;
-    private DetailsRepository detailsRepository
+    private DetailsRepository detailsRepository;
 
     @Autowired
     public Startup(EmployeeRepository employeeRepository, UserAuthRepository userAuthRepository, PartyTypeService partyTypeService, CountryRepository countryRepository, StateRepository stateRepository, DetailsRepository detailsRepository) {
