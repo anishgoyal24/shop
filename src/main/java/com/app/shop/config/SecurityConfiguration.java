@@ -28,12 +28,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and()
-            .csrf().disable()
+            .csrf().disable().anonymous().and()
             .authorizeRequests()
-            .antMatchers("**/user/authenticate").permitAll()
-                .antMatchers("**/customer/new/**", "**/verify/**", "**/static/**", "**/images/**").permitAll()
+            .antMatchers("**/user/authenticate", "/common/states", "/common/country").permitAll()
+                .antMatchers("/customer/new", "**/verify/**", "**/static/**", "**/images/**").permitAll()
                 .antMatchers("**/customer/otp").permitAll()
-                .antMatchers("**/warehouse/forgotpassword", "**/employee/forgotpassword", "**/customer/forgotpassword").permitAll()
+                .antMatchers("/warehouse/forgotpassword", "/employee/forgotpassword", "/customer/forgotpassword").permitAll()
             .anyRequest().authenticated()
             .and()
             .addFilter(new JwtAuthenticationFilter(authenticationManager()))

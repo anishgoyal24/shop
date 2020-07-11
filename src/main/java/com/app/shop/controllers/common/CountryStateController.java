@@ -22,13 +22,11 @@ public class CountryStateController {
     }
 
     @GetMapping(value = "/states")
-    @PreAuthorize("hasAnyAuthority('ROLE_ANONYMOUS', 'ROLE_party', 'ROLE_employee', 'ROLE_owner', 'ROLE_admin', 'ROLE_warehouse', 'ROLE_manager')")
     public HashMap<String, Object> getStates(@RequestParam("country") String country){
         return countryStateService.getStates(country);
     }
 
     @GetMapping(value = "/country")
-    @PreAuthorize("hasAnyAuthority('ROLE_ANONYMOUS', 'ROLE_party', 'ROLE_employee', 'ROLE_owner', 'ROLE_admin', 'ROLE_warehouse', 'ROLE_manager')")
     public HashMap<String, Object> getCountries(){
         return countryStateService.getCountries();
     }

@@ -32,11 +32,11 @@ docker build -t $UPLOADS_NAME --compress ../../uploads-service/
 # Prune Dangling Images
 docker image prune -f
 
-# Logout from Current Docker Account
-docker logout
+# # Logout from Current Docker Account
+# docker logout
 
-# Login to Docker Account
-docker login
+# # Login to Docker Account
+# docker login
 
 # Push client images
 docker push $CLIENT_ADMIN_NAME

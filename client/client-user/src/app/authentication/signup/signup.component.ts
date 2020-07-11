@@ -32,8 +32,12 @@ export class SignupComponent implements OnInit {
     secondaryPhone: "",
     address: "",
     city: "",
-    state: "",
-    country: "India",
+    state: {
+      stateFullCode: 0
+    },
+    country: {
+      countryCode3: 'IND'
+    },
     pincode: "",
     password: "",
     partyType: {
