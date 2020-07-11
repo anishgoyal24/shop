@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg">
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/dashboard', 'products']" routerLinkActive="router-link-active" >
+              <i class="material-icons">
+                event_note
+                </i><b>Products</b></a>
+          </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/dashboard', 'orders']" routerLinkActive="router-link-active" >
+          <i class="material-icons">
+            storefront
+            </i><b>Orders</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/dashboard', 'details']" routerLinkActive="router-link-active" >
+          <i class="material-icons">
+            add_box
+            </i><b>Account Details</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/dashboard', 'change-password']" routerLinkActive="router-link-active" >
+          <i class="material-icons">
+          supervisor_account
+          </i><b>Change Password</b></a>
+      </li>
+    </ul>
+
+    <div class="navbar-collapse collapse w-25 order-2 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" (click)="openCart()"><span class="material-icons">
+            shopping_cart
+            </span>{{ cartNumber }}</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="router-link-active" [routerLink]="['/dashboard', 'notifications']">
+          <i class="material-icons">
+            notifications
+            </i></a>
+       </li>
+       
+          <li class="nav-item">
+              <a class="nav-link" (click)="signout()"><b>Signout</b></a>
+          </li>
+      </ul>
+  </div>
+  
+  </nav>

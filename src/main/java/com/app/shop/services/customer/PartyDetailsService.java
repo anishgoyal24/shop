@@ -40,7 +40,6 @@ public class PartyDetailsService {
     private HashMap<String, Object> returnObject;
     private EmailServiceImpl emailService;
     private UserAuthRepository userAuthRepository;
-    private OtpService otpService;
     private PartyTypeService partyTypeService;
     private PasswordEncoder bCryptPasswordEncoder;
     private StateRepository stateRepository;
@@ -51,11 +50,10 @@ public class PartyDetailsService {
     private String serverURL;
 
     @Autowired
-    public PartyDetailsService(DetailsRepository detailsRepository, EmailServiceImpl emailService, UserAuthRepository userAuthRepository, OtpService otpService, PartyTypeService partyTypeService, PasswordEncoder passwordEncoder, StateRepository stateRepository, CountryRepository countryRepository, RestTemplate restTemplate) {
+    public PartyDetailsService(DetailsRepository detailsRepository, EmailServiceImpl emailService, UserAuthRepository userAuthRepository, PartyTypeService partyTypeService, PasswordEncoder passwordEncoder, StateRepository stateRepository, CountryRepository countryRepository, RestTemplate restTemplate) {
         this.detailsRepository = detailsRepository;
         this.emailService = emailService;
         this.userAuthRepository = userAuthRepository;
-        this.otpService = otpService;
         this.partyTypeService = partyTypeService;
         this.bCryptPasswordEncoder = passwordEncoder;
         this.countryRepository = countryRepository;
@@ -71,42 +69,22 @@ public class PartyDetailsService {
 
 //  Add a new party
     @Transactional(rollbackFor=Exception.class)
-    public HashMap<String, Object> addNewUser(PartyDetails partyDetails, Integer receivedOTP){
+    public HashMap<String, Object> addNewUser(PartyDetails partyDetails){
         returnObject = new HashMap<>();
         partyDetails.setPartyEmail(partyDetails.getPartyEmail().toLowerCase());
         PartyDetails oldPartyDetails = detailsRepository.findByPartyEmail(partyDetails.getPartyEmail());
 //      Check if party already exists
-        if (oldPartyDetails==null){
+        if (oldPartyDetails==null) {
             partyDetails.setPartyType(partyTypeService.getType(partyDetails.getPartyType().getId()));
-//          Party created by admins. OTP not required
-            if (!partyDetails.getPartyType().getType().equals("retail")){
-                partyDetails.setStatus('y');
-                String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
-                partyDetails.setPassword(encodedPassword);
-                partyDetails.setState(stateRepository.findById(partyDetails.getState().getStateFullCode()).get());
-                partyDetails.setCountry(countryRepository.findById(partyDetails.getCountry().getCountryCode3()).get());
-                detailsRepository.save(partyDetails);
-                userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party", partyDetails.getPrimaryPhone()));
-                returnObject.put("message", "success");
-                return returnObject;
-            }
-            OTP otp = otpService.getOtp(partyDetails.getPartyEmail());
-            logger.info("otp received " + receivedOTP);
-            logger.info("otp found " + otp.getOtp());
-//          Check if otp is valid or not
-            if (otp != null && otp.getOtp()==receivedOTP && partyDetails.getPartyType().getType().equals("retail")){
-                partyDetails.setStatus('y');
-                String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
-                partyDetails.setPassword(encodedPassword);
-                partyDetails.setState(stateRepository.findById(partyDetails.getState().getStateFullCode()).get());
-                partyDetails.setCountry(countryRepository.findById(partyDetails.getCountry().getCountryCode3()).get());
-                detailsRepository.save(partyDetails);
-                userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party", partyDetails.getPrimaryPhone()));
-                returnObject.put("message", "success");
-            }
-            else returnObject.put("message", "Wrong OTP. Please request a new OTP");
-            if (otp!=null)otpService.deleteOtp(otp.getEmail());
-
+            partyDetails.setStatus('y');
+            String encodedPassword = bCryptPasswordEncoder.encode(partyDetails.getPassword());
+            partyDetails.setPassword(encodedPassword);
+            partyDetails.setState(stateRepository.findById(partyDetails.getState().getStateFullCode()).get());
+            partyDetails.setCountry(countryRepository.findById(partyDetails.getCountry().getCountryCode3()).get());
+            detailsRepository.save(partyDetails);
+            userAuthRepository.save(new UserDetails(partyDetails.getPartyEmail(), encodedPassword, 1, "party", partyDetails.getPrimaryPhone()));
+            returnObject.put("message", "success");
+            return returnObject;
         }
         else {
             returnObject.put("message", "user already exists");
@@ -213,25 +191,25 @@ public class PartyDetailsService {
         return returnObject;
     }
 
-    @Transactional(rollbackFor=Exception.class)
-    public HashMap<String, Object> sendOTP(String email){
-        logger.info(email);
-        returnObject = new HashMap<>();
-        Random r = new Random();
-        int otp = (int)(r.nextFloat()*899900) + 100000;
-        try {
-            emailService.sendMail(email, "Your OTP for account verification is " + otp, "Please verify your account");
-            otpService.saveOtp(new OTP(otp, email));
-            returnObject.put("message", "success");
-        }
-        catch (Exception e){
-            returnObject.put("exception", e);
-            returnObject.put("message", "some exception occurred");
-        }
-        finally {
-            return returnObject;
-        }
-    }
+//    @Transactional(rollbackFor=Exception.class)
+//    public HashMap<String, Object> sendOTP(String email){
+//        logger.info(email);
+//        returnObject = new HashMap<>();
+//        Random r = new Random();
+//        int otp = (int)(r.nextFloat()*899900) + 100000;
+//        try {
+//            emailService.sendMail(email, "Your OTP for account verification is " + otp, "Please verify your account");
+//            otpService.saveOtp(new OTP(otp, email));
+//            returnObject.put("message", "success");
+//        }
+//        catch (Exception e){
+//            returnObject.put("exception", e);
+//            returnObject.put("message", "some exception occurred");
+//        }
+//        finally {
+//            return returnObject;
+//        }
+//    }
 
     @Transactional(rollbackFor=Exception.class)
     public HashMap<String, Object> forgotPassword(String email) {

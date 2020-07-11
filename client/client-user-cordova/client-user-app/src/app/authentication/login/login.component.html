@@ -1,0 +1,22 @@
+<div class="body-container">
+    <div class="row">
+        <div class="back" (click) = "backClicked()">
+            <i class="material-icons">
+                    arrow_back_ios
+            </i>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Login to Dashboard</h1>
+
+        <div class="form">
+            <input type="text" placeholder="Username" [(ngModel)]="username">
+            <input  type="password" placeholder="Password" [(ngModel)]="password" (keyup.enter)="submit.click()">
+            <button #submit type="submit" id="login-button" (click)="login()">Login</button>
+            <br><br>
+            <button type="menu" id="register-button" (click)="register()">Register</button>
+            <br><br>
+            <button type="menu" id="forgot-button" (click)="forgotPassword()">Forgot Password</button>
+        </div>
+    </div>
+</div>

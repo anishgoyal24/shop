@@ -25,9 +25,9 @@ public class CustomerDetailsController {
     }
 
 //  Add new party
-    @PostMapping(value = "/new/{otp}")
-    public HashMap<String, Object> addUser(@RequestBody PartyDetails partyDetails, @PathVariable String otp){
-        return partyDetailsService.addNewUser(partyDetails, Integer.parseInt(otp));
+    @PostMapping(value = "/new")
+    public HashMap<String, Object> addUser(@RequestBody PartyDetails partyDetails){
+        return partyDetailsService.addNewUser(partyDetails);
     }
 
 //  Update details of a user
@@ -63,12 +63,6 @@ public class CustomerDetailsController {
     @PreAuthorize("hasAnyAuthority('ROLE_party', 'ROLE_employee', 'ROLE_owner', 'ROLE_admin')")
     public HashMap<String, Object> getDetails(@RequestParam String username){
         return partyDetailsService.getDetails(username);
-    }
-
-//  Send OTP for a user
-    @PostMapping(value = "/otp")
-    public HashMap<String, Object> sendOTP(@RequestBody String email){
-        return partyDetailsService.sendOTP(email);
     }
 
 //  Reset password for a user

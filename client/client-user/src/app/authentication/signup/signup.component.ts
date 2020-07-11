@@ -75,13 +75,13 @@ export class SignupComponent implements OnInit {
   }
 
   createAccount(accountDetails: any){
-    this.utilityService.asyncNotification('Sending OTP...', 
+    this.utilityService.asyncNotification('Registering customer...', 
       new Promise((resolve, reject)=>{
-        this.userService.register(accountDetails, this.otp)
+        this.userService.register(accountDetails)
         .then((res)=>{
           if (res['message']=='success'){
             this.saveToSession(res['data']);
-            resolve(this.utilityService.resolveAsyncPromise('OTP Successfully Sent!'))
+            resolve(this.utilityService.resolveAsyncPromise('Successfully Registered User!'))
           }
           else{
             reject(this.utilityService.rejectAsyncPromise('Oops some error occurred! Please try again later.'));

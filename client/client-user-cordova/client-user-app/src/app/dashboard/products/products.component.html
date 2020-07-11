@@ -1,0 +1,19 @@
+<!-- <div class="container"> -->
+    <div class="flex-div">
+        <div class="container">
+            <div *ngIf="warehousePresent==false">
+                <h3>Delivery is currently unavailable in your area!</h3>
+            </div>
+            <div *ngIf="warehousePresent==true">
+                <div class="form-group has-search">
+                    <i class="material-icons form-control-feedback">
+                        search
+                    </i>
+                    <input type="text" class="form-control" placeholder="Search Products" (keyup)="searchProducts()" [(ngModel)]="searchQuery">
+                </div>
+                <app-products-list [productsList]="productsList"></app-products-list>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
+

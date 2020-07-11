@@ -1,0 +1,68 @@
+<div class="container">
+    <h1>User Details</h1>
+
+    <div class="form-group">
+      <label class="font-weight-bold">Party Name</label>
+      <h5 class="form-control">{{ partyDetails?.partyName }}</h5>
+    </div>
+
+    <div class="form-group" [hidden]="true">
+      <label class="font-weight-bold">Party Email</label>
+      <h5 class="form-control">{{ partyDetails?.partyEmail }}</h5>
+    </div>
+
+    <div class="form-group">
+      <label  class="font-weight-bold">Contact Person</label>
+      <h5 class="form-control">{{partyDetails?.contactPerson }}</h5>
+    </div>
+
+    <div class="form-group">
+        <label  class="font-weight-bold">Address</label>
+        <h5 class="form-control">{{partyDetails?.address }}</h5>
+      </div>
+
+      <div class="form-group">
+        <label  class="font-weight-bold">City</label>
+        <h5 class="form-control">{{partyDetails?.city }}</h5>
+      </div>
+
+      <div class="form-group">
+        <label  class="font-weight-bold">State</label>
+        <h5 class="form-control">{{partyDetails?.state?.stateName }}</h5>
+      </div>
+
+      <div class="form-group">
+        <label  class="font-weight-bold">Pincode</label>
+        <h5 class="form-control">{{partyDetails?.pincode }}</h5>
+      </div>
+
+      <div class="form-group">
+        <label  class="font-weight-bold">Country</label>
+        <h5 class="form-control">{{partyDetails?.country?.countryName }}</h5>
+      </div>
+
+      <div class="form-group">
+        <label  class="font-weight-bold">Party Type</label>
+        <h5 class="form-control">{{partyDetails?.partyType?.type }}</h5>
+      </div>
+
+      <div class="form-group">
+        <label  class="font-weight-bold">Primary Phone</label>
+        <h5 class="form-control">{{partyDetails?.primaryPhone }}</h5>
+      </div>
+
+      <div class="form-group">
+        <label  class="font-weight-bold">Secondary Phone</label>
+        <h5 class="form-control">{{partyDetails?.secondaryPhone }}</h5>
+      </div>
+
+      <div class="form-group" *ngIf="partyDetails?.discount>0">
+        <label  class="font-weight-bold">Discount</label>
+        <h5 class="form-control">{{partyDetails?.discount }}</h5>
+      </div>
+
+      <div class="form-group">
+        <label  class="font-weight-bold">Created Date</label>
+        <h5 class="form-control">{{partyDetails?.createDate | date: 'mediumDate' }}</h5>
+      </div>
+  </div>
