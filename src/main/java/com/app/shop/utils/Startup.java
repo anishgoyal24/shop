@@ -69,11 +69,11 @@ public class Startup {
             distributor.setId(3);
             distributor.setType("distributor");
             partyTypeService.addPartyType(distributor);
+            addCashParty();
         }
     }
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void addCashParty(ApplicationReadyEvent applicationReadyEvent){
+    public void addCashParty(){
         PartyDetails partyDetails = new PartyDetails();
         partyDetails.setAddress("Cash Counter");
         partyDetails.setContactPerson("Cash Counter");

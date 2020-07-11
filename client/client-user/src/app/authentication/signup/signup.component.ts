@@ -80,7 +80,7 @@ export class SignupComponent implements OnInit {
         this.userService.register(accountDetails)
         .then((res)=>{
           if (res['message']=='success'){
-            this.saveToSession(res['data']);
+            console.log(res);
             resolve(this.utilityService.resolveAsyncPromise('Successfully Registered User!'))
           }
           else{
