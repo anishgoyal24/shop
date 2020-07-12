@@ -49,9 +49,6 @@ export class LoginComponent implements OnInit {
         this.utilityService.asyncNotification('Please wait while we are logging you in!', new Promise((resolve, reject)=>{
           this.warehouseService.authenticate(userData)
           .then((res)=>{
-            console.log('logged in');
-            console.log(res)
-
             if (res.headers.get('Authorization')) {
               sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
               this.getDetails(this.username).then(()=>{

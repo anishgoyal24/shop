@@ -108,4 +108,13 @@ export class OrderService {
   }
 
 
+  /**
+   * Add order for cash counters
+   * @param orderHeader 
+   */
+  addOrder(orderHeader: any){
+    return this.http.post(environment.ORDERS_API + '/order/add', orderHeader).toPromise();
+  }
+
+
 }
