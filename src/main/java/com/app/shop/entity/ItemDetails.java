@@ -22,6 +22,7 @@ public class ItemDetails {
     @Column(name = "item_name", nullable = false)
     private String itemName;
     private char status;
+    @Column(length = 10000)
     private String description;
     @OneToMany(mappedBy = "itemDetails", cascade = CascadeType.PERSIST)
     private List<ItemPackingDetails> itemPackingDetails;
