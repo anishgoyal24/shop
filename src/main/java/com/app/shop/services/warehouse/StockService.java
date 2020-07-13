@@ -35,6 +35,7 @@ public class StockService {
         }
         else {
             foundStock.setQuantity(foundStock.getQuantity() + itemStock.getQuantity());
+            foundStock.setPrice(itemStock.getPrice());
             warehouseStockRepository.save(foundStock);
         }
         returnObject.put("message", "successfully added stock");

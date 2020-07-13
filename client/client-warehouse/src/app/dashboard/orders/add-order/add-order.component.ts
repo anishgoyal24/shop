@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StockService } from 'src/shared/services/stock.service';
 import { UtilityService } from 'src/shared/services/utility.service';
+import { OrderService } from 'src/shared/services/order.service';
 
 @Component({
   selector: 'app-add-order',
@@ -11,7 +12,8 @@ export class AddOrderComponent implements OnInit {
 
   constructor(
     private stockService: StockService,
-    private utilityService: UtilityService
+    private utilityService: UtilityService,
+    private orderService: OrderService
   ) { }
 
   stocks = [];
@@ -72,7 +74,14 @@ export class AddOrderComponent implements OnInit {
     orderHeader.orderDetails = this.orderDetails;
     orderHeader.paymentMode = 'COD';
     orderHeader.status = 'Closed';
-    console.log(orderHeader);
+    this.utilityService.asyncNotification('Please wait while we add your order...', new Promise((resolve, reject)=>{
+      this.orderService.addOrder(orderHeader).then((res)=>{
+        console.log(res);
+        resolve(this.utilityService.resolveAsyncPromise("Successfully Added Order!"));
+      }).catch((err)=>{
+        reject(this.utilityService.rejectAsyncPromise("Some error occured while adding the order again. Please try again later!"));
+      })
+    }))
   }
 
   delete(idx: number){
