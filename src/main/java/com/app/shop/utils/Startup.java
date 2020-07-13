@@ -78,8 +78,9 @@ public class Startup {
         partyDetails.setAddress("Cash Counter");
         partyDetails.setContactPerson("Cash Counter");
         partyDetails.setCity("Cash Counter");
+        partyDetails.setPartyName("Cash Counter");
         partyDetails.setDiscount(0);
-        partyDetails.setPartyType(partyTypeService.getType(1));
+        partyDetails.setPartyType(partyTypeService.getType(102));
         partyDetails.setCountry(countryRepository.findById("IND").get());
         partyDetails.setState(stateRepository.findById("IN-HR").get());
         partyDetails.setPrimaryPhone("1234567890");
