@@ -31,7 +31,7 @@
             </tbody>
         </table>
         <p><strong>Total Order Value: </strong>Rs. {{ totalOrderValue }}</p>
-        <div class="address">
+        <div class="address" *ngIf="partyDetails.partyName!='Cash Counter'">
             <p><strong>Party Name: </strong>{{ partyDetails.partyName }}</p>
             <p><strong>Primary Phone: </strong>{{ partyDetails.primaryPhone }}</p>
             <p><strong>Address: </strong>{{ partyDetails.address + ', ' + partyDetails.city + ', ' + partyDetails.state.stateName + ', ' + partyDetails.country.countryName + '-' + partyDetails.pincode }}</p>
@@ -41,7 +41,7 @@
         </div>
         <div *ngIf="orderItem.status=='Closed'">
             <p><strong>Closed By: </strong>{{ orderItem.closedBy }}</p>
-            <p><strong>Received By: </strong>{{ orderItem.receivedBy }}</p>
+            <p *ngIf="partyDetails.partyName!='Cash Counter'"><strong>Received By: </strong>{{ orderItem.receivedBy }}</p>
             <p><strong>Delivery Date: </strong>{{ orderItem.deliveryDate }}</p>
         </div>
 
