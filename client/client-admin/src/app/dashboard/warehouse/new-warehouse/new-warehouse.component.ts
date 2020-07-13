@@ -81,6 +81,7 @@ export class NewWarehouseComponent implements OnInit {
     new Promise((resolve, reject)=>{
       this.warehouseService.createNewWarehouse(accountDetails)
       .then(()=>{
+        this.clearForm();
         resolve(this.utilityService.resolveAsyncPromise('Warehouse Created!'))
       })
       .catch(()=>{
@@ -136,6 +137,28 @@ export class NewWarehouseComponent implements OnInit {
   objectIsEmpty(object: any){
     // Object.values(object).every(x => (x === null || x === ''));
     console.log(object);
+  }
+
+  clearForm(){
+    this.accountDetails.warehouseName = null;
+    this.accountDetails.warehouseEmail = null;
+    this.accountDetails.primaryPhone = null;
+    this.accountDetails.secondaryPhone = null;
+    this.accountDetails.personOfContact = null;
+    this.accountDetails.address = null;
+    this.accountDetails.city = null;
+    this.accountDetails.state.stateFullCode = null;
+    this.accountDetails.country.countryCode3 = null;
+    this.accountDetails.pincode = null;
+    this.accountDetails.password = null;
+    this.accountDetails.ownerWarehouse = null;
+    this.accountDetails.role = null;
+    this.accountDetails.type = null;
+    this.selectedCountry = null;
+    this.selectedState = null;
+    this.selectedOwnerWarehouse = null;
+    this.addressFields = true;
+    this.ownerState = null;
   }
 
 }

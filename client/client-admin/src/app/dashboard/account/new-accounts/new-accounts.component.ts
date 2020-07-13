@@ -74,6 +74,7 @@ export class NewAccountsComponent implements OnInit {
           this.employees.push(accountDetails);
           this.adminService.changeData(this.employees);
           console.log('New account has been created', res);
+          this.clearForm();
           resolve(this.utilityService.resolveAsyncPromise('New Account has been created!'));
         }, (err)=>{
           console.log('Some error has occured while creating a new account', err);
@@ -116,6 +117,21 @@ export class NewAccountsComponent implements OnInit {
    */
   ngOnDestroy(): void{
     this.subSink.unsubscribe();
+  }
+
+  clearForm(){
+    this.accountDetails.empName = null;
+    this.accountDetails.empEmail = null;
+    this.accountDetails.primaryPhone = null;
+    this.accountDetails.address = null;
+    this.accountDetails.city = null;
+    this.accountDetails.state.stateFullCode = null;
+    this.accountDetails.country.countryCode3 = null;
+    this.accountDetails.pincode = null;
+    this.accountDetails.password = null;
+    this.accountDetails.role = null;
+    this.selectedCountry = null;
+    this.selectedState = null;
   }
 
 }

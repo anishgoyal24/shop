@@ -90,6 +90,7 @@ export class PartyNewCustomerComponent implements OnInit {
       this.partyService.newCustomer(accountDetails)
       .then((res)=> {
         console.log(res);
+        this.clearForm();
         resolve(this.utilityService.resolveAsyncPromise('New Customer account Created!'));
       })
       .catch(()=> reject(this.utilityService.rejectAsyncPromise('Oops, an error occured, please try again!')))
@@ -119,6 +120,24 @@ export class PartyNewCustomerComponent implements OnInit {
         reject();
       })
     })
+  }
+
+  clearForm(){
+    this.accountDetails.partyName = null;
+    this.accountDetails.partyEmail = null;
+    this.accountDetails.primaryPhone = null;
+    this.accountDetails.secondaryPhone = null;
+    this.accountDetails.contactPerson = null;
+    this.accountDetails.address = null;
+    this.accountDetails.city = null;
+    this.accountDetails.state.stateFullCode = null;
+    this.accountDetails.country.countryCode3 = null;
+    this.accountDetails.pincode = null;
+    this.accountDetails.password = null;
+    this.accountDetails.partyType.id = 0;
+    this.selectedCountry = null;
+    this.selectedState = null;
+    this.selectedParty = null;
   }
 
 }
