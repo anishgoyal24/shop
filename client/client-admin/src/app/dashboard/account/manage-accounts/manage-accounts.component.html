@@ -29,7 +29,7 @@
           <ng-container *ngIf="employee?.status == 'n'">Disabled</ng-container>
         </p>
       </div>
-      <div class="btn-group mr-3 float-right">
+      <div class="btn-group mr-3 float-right" *ngIf="employee?.role!='owner'">
         <div class="dropdown">
           <button class="btn btn-md btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
