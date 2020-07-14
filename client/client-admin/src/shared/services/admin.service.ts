@@ -40,7 +40,6 @@ export class AdminService {
    * @param userData 
    */
   authenticate(userData: any){
-    console.log(userData);
     return this._http.post(environment.BASE_URL_API + '/user/authenticate', userData, {
       responseType: 'text',
       observe: 'response'

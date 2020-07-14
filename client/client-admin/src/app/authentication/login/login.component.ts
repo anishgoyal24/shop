@@ -48,9 +48,7 @@ export class LoginComponent implements OnInit {
         this.utilityService.asyncNotification('Please wait we are logging you in!', new Promise((resolve, reject) => {
           this.adminService.authenticate(userData)
             .subscribe((res) => {
-              console.log('Successfully Logged In', res.headers.keys());
               if (res.headers.get('Authorization')) {
-                //this.snotifyService.success('Example body content');
                 sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
                 this.getDetails(this.userName).then(()=>{
                   let empName = sessionStorage.getItem('empName');
@@ -58,15 +56,18 @@ export class LoginComponent implements OnInit {
                   this.router.navigate(['/dashboard', 'overview']);
                   resolve(this.utilityService.resolveAsyncPromise('Welcome back! ' + empName));
                 }).catch((err)=>{
+                  sessionStorage.clear();
                   reject(this.utilityService.rejectAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
                 });
-                // this.isLoading$.next(false);
-                // this.router.navigate(['/dashboard', 'overview']);
-                // resolve(this.utilityService.resolveAsyncPromise(`Welcome back ${userData.username}!`))
+              }
+              else {
+                sessionStorage.clear();
+                reject(this.utilityService.rejectAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
               }
 
             }, (err) => {
               console.log('HTTP Response Error', err);
+              sessionStorage.clear();
               reject(this.utilityService.rejectAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`))
             })
         }))
@@ -91,9 +92,13 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("city", userDetails['city']);
         sessionStorage.setItem("empId", userDetails['empId']);
         sessionStorage.setItem("empName", userDetails['empName']);
+        sessionStorage.setItem("role", userDetails['role']);
         resolve();
       }
-      else reject();
+      else {
+        sessionStorage.clear();
+        reject();
+      }
     }).catch((err)=>{
       console.log(err);
       reject();

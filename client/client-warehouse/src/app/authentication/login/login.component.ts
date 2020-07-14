@@ -56,7 +56,14 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['/dashboard', 'overview']);
                 const warehouseName = sessionStorage.getItem("warehouseName");
                 resolve(this.utilityService.resolveAsyncPromise(`Welcome back ${warehouseName}` + "!"));
+              }).catch((err)=>{
+                sessionStorage.clear();
+                reject(this.utilityService.resolveAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
               });
+            }
+            else{
+              sessionStorage.clear();
+              reject(this.utilityService.resolveAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
             }
           },)
           .catch( (err)=>{
@@ -80,9 +87,15 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("warehouseName", res["data"]["warehouseName"]);
           sessionStorage.setItem("type", res["data"]["type"]);
           sessionStorage.setItem("pincode", res['data']["pincode"]);
+          sessionStorage.setItem("role", res['data']["role"]);
           resolve();
         }
+        else{
+          sessionStorage.clear();
+          reject();
+        }
       }).catch((err)=>{
+        sessionStorage.clear();
         console.log(err);
         reject();
       })

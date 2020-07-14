@@ -10,7 +10,10 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) { }
 
+  role: string;
+
   ngOnInit() {
+    this.role = sessionStorage.getItem("role");
   }
 
   signout(){

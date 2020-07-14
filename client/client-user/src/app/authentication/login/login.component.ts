@@ -53,17 +53,27 @@ export class LoginComponent implements OnInit {
               sessionStorage.setItem("token", res.headers.get('Authorization').split(" ")[1]);
               this.getDetails().then(()=>{
                 let partyName = sessionStorage.getItem('partyName');
+                this.isLoading$.next(false);
                 resolve(this.utilityService.resolveAsyncPromise('Welcome back! ' + partyName));
                 this.router.navigate(['dashboard', 'products']);
+              }).catch((err)=>{
+                sessionStorage.clear();
+                reject(this.utilityService.rejectAsyncPromise('Oops some error occurred while logging you in, please try again later!'));
               });
             }
+            else{
+              sessionStorage.clear();
+              reject(this.utilityService.rejectAsyncPromise('Oops some error occurred while logging you in, please try again later!'));
+            }
           }).catch((err)=>{
+            sessionStorage.clear();
             console.log(err);
-            reject(this.utilityService.rejectAsyncPromise('Oops some error occurred while logging you in, please try again later!'))
+            reject(this.utilityService.rejectAsyncPromise('Oops some error occurred while logging you in, please try again later!'));
           })
         }))
       }
     } catch (error) {
+      sessionStorage.clear();
       console.log(error);
     }
   }
@@ -85,6 +95,10 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("pincode", userDetails['pincode']);
         sessionStorage.setItem("country", userDetails['country']['countryCode3']);
         resolve();
+      }
+      else {
+        sessionStorage.clear();
+        reject();
       }
     }).catch((err)=>{
       console.log(err);

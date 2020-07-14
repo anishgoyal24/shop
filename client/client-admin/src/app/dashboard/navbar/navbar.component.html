@@ -7,7 +7,7 @@
                     event_note
                     </i><b>Overview</b></a>
               </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="role!='employee'">
             <a class="nav-link" [routerLink]="['/dashboard', 'warehouse', 'home']" routerLinkActive="router-link-active" >
               <i class="material-icons">
                 storefront
@@ -37,7 +37,7 @@
                 category
                 </i><b>Product Categories</b></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="role!='employee'">
             <a class="nav-link" [routerLink]="['/dashboard', 'accounts', 'home']" routerLinkActive="router-link-active" >
               <i class="material-icons">
               supervisor_account
