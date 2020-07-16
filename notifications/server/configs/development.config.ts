@@ -29,6 +29,11 @@ function devConfigInit() {
   // Domain
   process.env.DOMAIN = process.env.DOMAIN || 'localhost'
 
+  // Twilio
+  process.env.TWILIO_SID = 'AC7f40830a92a2c5bba038905c66e861aa'
+  process.env.TWILIO_AUTH = 'd0c13c3a1a88d13d25bbd24f69929f1f'
+  process.env.TWILIO_FROM = '+12058786637'
+
 };
 
 export { devConfigInit as developmentConfig }

@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import compression from 'compression';
 import { developmentConfig, productionConfig } from '../configs';
 import { notificationRoutes } from './routes/notifications.routes';
+import { smsRoutes } from './routes/sms.routes';
 
 // Defining new Express application
 const app = express();
@@ -60,6 +61,9 @@ app.get("*.css", encodeResToGzip('text/css'));
 app.all('/', (req: Request, res: Response, next: NextFunction) => {
     res.sendFile(path.join(__dirname, './views/index.html'));
 });
+
+// Routes for SMS
+app.use('/api/sms', smsRoutes);
 
 // Routes to handle notifications
 app.use('/api', notificationRoutes);
