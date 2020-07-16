@@ -201,10 +201,10 @@ public class EmployeeDetailsService {
             userAuthRepository.save(userDetails);
             // Send Email
             HashMap<String, String> json = new HashMap<>();
-            json.put("email", found.getEmpEmail());
+            json.put("phone", found.getPrimaryPhone());
             json.put("password", generatedPassword);
             try {
-                restTemplate.postForLocation(serverURL + "/notifications/api/new-password", json);
+                restTemplate.postForLocation(serverURL + "/notifications/api/sms/forgot-password", json);
             } catch (RestClientException e) {
                 throw(e);
             }
