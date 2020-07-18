@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilityService } from 'src/shared/services/utility.service';
 import { UserService } from 'src/shared/services/user.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-change-password',
@@ -11,7 +12,8 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(
     private utilityService: UtilityService,
-    private userService: UserService
+    private userService: UserService,
+    private ngxService: NgxUiLoaderService,
   ) { }
 
   object : {email: string, oldPassword: string, newPassword: string} = {
@@ -21,6 +23,10 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.ngxService.start()
+    setInterval(() => {
+      this.ngxService.stop()
+    }, 1000);
     this.object.email = sessionStorage.getItem("partyEmail");
   }
 

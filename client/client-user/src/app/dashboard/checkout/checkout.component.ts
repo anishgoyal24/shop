@@ -5,6 +5,7 @@ import { OrdersService } from 'src/shared/services/orders.service'
 import { UserService } from 'src/shared/services/user.service';
 import { Router } from '@angular/router';
 import { SocketService } from 'src/shared/services/socket.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-checkout',
@@ -19,7 +20,8 @@ export class CheckoutComponent implements OnInit {
     private cartService: CartService,
     private userService: UserService,
     private router: Router,
-    private socketService: SocketService
+    // private socketService: SocketService,
+    private ngxService: NgxUiLoaderService,
   ) { }
 
 
@@ -60,6 +62,10 @@ export class CheckoutComponent implements OnInit {
   discountedPrice: number;
 
   ngOnInit() {
+    this.ngxService.start()
+    setInterval(() => {
+      this.ngxService.stop()
+    }, 1000);
     this.partyId = Number(sessionStorage.getItem("partyId"));
     this.state = sessionStorage.getItem("state");
     this.partyName = sessionStorage.getItem("partyName");
@@ -142,7 +148,7 @@ export class CheckoutComponent implements OnInit {
             this.cartService.getCartCount(this.partyId).then((res)=>{
               this.cartService.updateCartNumber(res['data']);
             })
-            this.socketService.onOrderPlace(this.pincode);
+            // this.socketService.onOrderPlace(this.pincode);
             resolve(this.utilityService.resolveAsyncPromise("Successfully Placed Order!"));
             this.router.navigate(['dashboard', 'orders']);
           }

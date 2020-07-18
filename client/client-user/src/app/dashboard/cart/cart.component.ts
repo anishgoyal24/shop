@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/shared/services/cart.service';
 import { UtilityService } from 'src/shared/services/utility.service';
 import { Router } from '@angular/router'
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +14,8 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private utilityService: UtilityService,
-    private router: Router
+    private router: Router,
+    private ngxService: NgxUiLoaderService,
   ) { }
 
   cartItems = [];
@@ -21,6 +23,10 @@ export class CartComponent implements OnInit {
   partyId: string;
 
   ngOnInit() {
+    this.ngxService.start()
+    setInterval(() => {
+      this.ngxService.stop()
+    }, 1000);
     this.getCart();
   }
 

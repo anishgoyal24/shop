@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilityService } from 'src/shared/services/utility.service';
 import { OrdersService } from 'src/shared/services/orders.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-orders',
@@ -11,7 +12,8 @@ export class OrdersComponent implements OnInit {
 
   constructor(
     private utilityService: UtilityService,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private ngxService: NgxUiLoaderService,
   ) { }
 
   orderItems:any = [];
@@ -23,6 +25,10 @@ export class OrdersComponent implements OnInit {
   moreToLoad: boolean = true;
 
   ngOnInit() {
+    this.ngxService.start()
+    setInterval(() => {
+      this.ngxService.stop()
+    }, 1000);
     this.partyId = sessionStorage.getItem("partyId");
     this.getOrders(this.partyId, this.page);
   }

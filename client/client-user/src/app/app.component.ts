@@ -9,11 +9,7 @@ import { SocketService } from 'src/shared/services/socket.service';
 export class AppComponent {
   title = 'client-user';
 
-  constructor(
-    private socketService: SocketService
-  ){ 
-    this.socketService.onConnect().subscribe(data => console.log(data['message']));
-    this.socketService.orderStatus().subscribe(data => console.log(data));
+  constructor(){ 
   }
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/shared/services/user.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-account-details',
@@ -11,10 +12,15 @@ export class AccountDetailsComponent implements OnInit {
   partyDetails: any;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private ngxService: NgxUiLoaderService,
   ) { }
 
   ngOnInit() {
+    this.ngxService.start()
+    setInterval(() => {
+      this.ngxService.stop()
+    }, 1000);
     const email = sessionStorage.getItem("partyEmail");
     this.getAccountDetails(email);
   }

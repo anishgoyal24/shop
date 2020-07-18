@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/shared/services/product.service';
 import { UtilityService } from 'src/shared/services/utility.service';
 import { OrdersService } from 'src/shared/services/orders.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-products',
@@ -21,10 +22,15 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private utilityService: UtilityService,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private ngxService: NgxUiLoaderService,
   ) { }
 
   ngOnInit() {
+    this.ngxService.start()
+    setInterval(() => {
+      this.ngxService.stop()
+    }, 1000);
     this.findWarehouseByPincode();
   }
 
