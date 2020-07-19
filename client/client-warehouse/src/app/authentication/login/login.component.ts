@@ -58,16 +58,16 @@ export class LoginComponent implements OnInit {
                 resolve(this.utilityService.resolveAsyncPromise(`Welcome back ${warehouseName}` + "!"));
               }).catch((err)=>{
                 sessionStorage.clear();
-                reject(this.utilityService.resolveAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
+                reject(this.utilityService.rejectAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
               });
             }
             else{
               sessionStorage.clear();
-              reject(this.utilityService.resolveAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
+              reject(this.utilityService.rejectAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
             }
           },)
           .catch( (err)=>{
-            reject(this.utilityService.resolveAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
+            reject(this.utilityService.rejectAsyncPromise(`Oops some error has occured, while logging you in, please try again later!`));
           })
         }))
       }

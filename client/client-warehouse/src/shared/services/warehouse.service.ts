@@ -65,10 +65,10 @@ export class WarehouseService {
 
   /**
    * Reset password
-   * @param email 
+   * @param phone 
    */
-  forgotPassword(email: string){
-    return this._http.post(environment.BASE_URL_API + '/warehouse/forgotpassword', email).toPromise();
+  forgotPassword(phone: string){
+    return this._http.post(environment.BASE_URL_API + '/warehouse/forgotpassword', phone).toPromise();
   }
 
 

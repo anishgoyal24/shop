@@ -11,7 +11,7 @@ import { WarehouseService } from 'src/shared/services/warehouse.service';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  email: string = "";
+  phone: string = "";
 
   constructor(
     private _location: Location,
@@ -34,7 +34,7 @@ export class ForgotPasswordComponent implements OnInit {
   forgotPassword(){
     try {
       this.utilityService.asyncNotification("Changing password...", new Promise((resolve, reject)=>{
-        this.warehouseService.forgotPassword(this.email)
+        this.warehouseService.forgotPassword(this.phone)
         .then((res)=>{
           if (res['message']=='success'){
             resolve(this.utilityService.resolveAsyncPromise("Successfully reset passsword! Please check your email."));

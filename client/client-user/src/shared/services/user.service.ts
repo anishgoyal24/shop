@@ -53,10 +53,10 @@ export class UserService {
 
   /**
    * Reset password
-   * @param email 
+   * @param phone 
    */
-  forgotPassword(email: string){
-    return this.http.post(environment.BASE_URL_API + '/customer/forgotpassword', email).toPromise();
+  forgotPassword(phone: string){
+    return this.http.post(environment.BASE_URL_API + '/customer/forgotpassword', phone).toPromise();
   }
 
 }
