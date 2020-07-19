@@ -83,8 +83,8 @@ public class WarehouseDetailsController {
     //  Reset password for a warehouse
     @PostMapping(value = "/forgotpassword")
     @PreAuthorize("hasAnyAuthority('ROLE_ANONYMOUS')")
-    public HashMap<String, Object> forgotPassword(@RequestBody String email){
-        return warehouseDetailsService.forgotPassword(email);
+    public HashMap<String, Object> forgotPassword(@RequestBody String phone){
+        return warehouseDetailsService.forgotPassword(phone);
     }
 
 }

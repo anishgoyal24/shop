@@ -211,15 +211,15 @@ public class WarehouseDetailsService {
     }
 
     @Transactional(rollbackFor=Exception.class)
-    public HashMap<String, Object> forgotPassword(String email) {
+    public HashMap<String, Object> forgotPassword(String phone) {
         returnObject = new HashMap<>();
-        WarehouseDetails found = warehouseRepository.findByWarehouseEmail(email);
+        WarehouseDetails found = warehouseRepository.findByPrimaryPhone(phone);
         if (found!=null){
             String generatedPassword = new GeneratePassword().generatePassword();
             String encodedPassword = bCryptPasswordEncoder.encode(generatedPassword);
             found.setPassword(encodedPassword);
             warehouseRepository.save(found);
-            UserDetails userDetails = userAuthRepository.findByUsername(email);
+            UserDetails userDetails = userAuthRepository.findByUsername(phone);
             userDetails.setPassword(encodedPassword);
             userAuthRepository.save(userDetails);
             // Send Email

@@ -212,15 +212,15 @@ public class PartyDetailsService {
 //    }
 
     @Transactional(rollbackFor=Exception.class)
-    public HashMap<String, Object> forgotPassword(String email) {
+    public HashMap<String, Object> forgotPassword(String phone) {
         returnObject = new HashMap<>();
-        PartyDetails found = detailsRepository.findByPartyEmail(email);
+        PartyDetails found = detailsRepository.findByPrimaryPhone(phone);
         if (found!=null){
             String generatedPassword = new GeneratePassword().generatePassword();
             String encodedPassword = bCryptPasswordEncoder.encode(generatedPassword);
             found.setPassword(encodedPassword);
             detailsRepository.save(found);
-            UserDetails userDetails = userAuthRepository.findByUsername(email);
+            UserDetails userDetails = userAuthRepository.findByUsername(phone);
             userDetails.setPassword(encodedPassword);
             userAuthRepository.save(userDetails);
             // Send Email
