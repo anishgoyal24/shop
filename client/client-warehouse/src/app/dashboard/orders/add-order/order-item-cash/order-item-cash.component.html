@@ -37,7 +37,7 @@
     </table>
 
     <div class="text-center">
-        <button class="btn btn-secondary" (click)="setOrderDetail()" *ngIf="selectedProduct!=null && quantity>0 && saveHidden==false">Save</button>
+        <button class="btn btn-secondary" (click)="setOrderDetail()" *ngIf="selectedProduct!=null && quantity>0 && saveHidden==false && quantity <= selectedProduct.quantity">Save</button>
         <button class="btn btn-danger" (click)="deleteDetail()">Delete</button>
     </div>
 </div>
