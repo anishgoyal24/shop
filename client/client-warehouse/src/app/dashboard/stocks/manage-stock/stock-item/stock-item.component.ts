@@ -11,6 +11,7 @@ export class StockItemComponent implements OnInit {
 
   @Input() stockItem: any;
   @Input() selectedWarehouse: number;
+  @Input() transfer: boolean = true;
   constructor(
     private stockService: StockService,
     private utilityService: UtilityService
@@ -80,6 +81,12 @@ export class StockItemComponent implements OnInit {
         reject(this.utilityService.rejectAsyncPromise('There was some error transferring the stock. Please try again later!'));
       })
     }))
-}
+  }
+
+
+  disabled(){
+    if (!(this.quantity>0) && !(this.quantity <= this.stockItem['quantity']))return true;
+    else return false;
+  }
 
 }

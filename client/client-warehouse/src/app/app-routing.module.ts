@@ -36,6 +36,7 @@ import { ChangePasswordComponent } from './dashboard/change-password/change-pass
 // !!!----- GUARDS -----!!!
 import { AuthGuard } from 'src/shared/guards/auth.guard';
 import { NavigationGuard } from 'src/shared/guards/navigation.guard';
+import { ViewStocksComponent } from './dashboard/stocks/view-stocks/view-stocks.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -54,7 +55,8 @@ const routes: Routes = [
         children: [
           { path: 'home', component: StocksHomeComponent },
           { path: 'add', component: AddStockComponent },
-          { path: 'manage', component: ManageStockComponent }
+          { path: 'manage', component: ManageStockComponent },
+          { path: 'view', component: ViewStocksComponent }
         ]
     },
 

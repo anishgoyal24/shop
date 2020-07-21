@@ -7,11 +7,14 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/dashboard', 'stock', 'home']" routerLinkActive="router-link-active" >Home</a>
                   </li>
-              <li class="nav-item">
+              <li class="nav-item" *ngIf="type=='main'">
                 <a class="nav-link" [routerLink]="['/dashboard', 'stock', 'add']" routerLinkActive="router-link-active" >Add New Stock</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/dashboard', 'stock', 'manage']" routerLinkActive="router-link-active" >Transfer Existing Stock</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/dashboard', 'stock', 'view']" routerLinkActive="router-link-active" >View Existing Stock</a>
               </li>
             </ul>
         </div>

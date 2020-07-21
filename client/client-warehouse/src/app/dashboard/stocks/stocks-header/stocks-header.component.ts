@@ -9,7 +9,10 @@ export class StocksHeaderComponent implements OnInit {
 
   constructor() { }
 
+  type: string;
+
   ngOnInit() {
+    this.type = sessionStorage.getItem("type");
   }
 
 }

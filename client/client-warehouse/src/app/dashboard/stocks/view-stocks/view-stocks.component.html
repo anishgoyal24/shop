@@ -1,0 +1,6 @@
+<div class="container">
+    <h1>View Stocks</h1>
+    <div *ngFor="let item of stocks">
+        <app-stock-item [stockItem]="item" [transfer]="false"></app-stock-item>
+    </div>
+</div>

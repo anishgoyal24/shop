@@ -7,7 +7,7 @@
                 <th>Packing Size (kg)</th>
                 <th>Price Per Piece (Rs.)</th>
                 <th>Total Quantity</th>
-                <th>Quantity to be transfered</th>
+                <th *ngIf="transfer == true">Quantity to be transfered</th>
             </tr>
         </thead>
         <tbody>
@@ -16,7 +16,7 @@
                 <td>{{ stockItem['itemPackingDetails']['size'] + ' kg' }}</td>
                 <td>{{ stockItem['price'] }}</td>
                 <td>{{ stockItem['quantity'] }}</td>
-                <td>
+                <td *ngIf="transfer == true">
                     <button class="btn" (click)="decrement()">-</button>
                     <input type="number" style="max-width: 40px;" [(ngModel)]="quantity" class="text-center"
                         id="quantity" min="0" max="{{ stockItem['quantity'] }}">
@@ -26,7 +26,7 @@
         </tbody>
     </table>
 
-    <button class="btn btn-primary btn-sm float-right" [disabled]="!(quantity>0)" (click)="transferStock()">Transfer</button>
+    <button *ngIf="transfer == true" class="btn btn-primary btn-sm float-right" [disabled]="disabled()" (click)="transferStock()">Transfer</button>
 
     <!-- <div class="media card-tile user-list">
         <div class="media-body">

@@ -17,11 +17,6 @@
         </ng-container>
       </div>   
 
-      <div class="container" *ngIf="selectedWarehouse">
-        <div *ngFor="let item of stocks">
-            <app-stock-item [stockItem]="item" [selectedWarehouse]="selectedWarehouse"></app-stock-item>
-        </div>
-    </div>
 
       <div class="container list-warehouse" *ngIf="warehouseList.length > 0">
         <div class="media card-tile user-list" id="list" *ngFor="let warehouse of warehouseList; let  i = index" [hidden]="warehouseListHidden">
@@ -29,7 +24,7 @@
             <div class="media-body">
                 <div class="float-left">
                     <h4>{{ warehouse?.warehouseName }}</h4>
-                    <p><strong>Email: </strong>{{ warehouse?.warehouseEmail }}</p>
+                    <p><strong>Phone: </strong>{{ warehouse?.warehouseEmail.split("@")[0] }}</p>
                 </div>
                 <div class="float-right">
                     <button class="btn btn-sm btn-primary" (click)="this.selectedWarehouse = warehouse?.id; toggleList(); this.selectedWarehouseName = warehouse.warehouseName">Select</button>
@@ -37,4 +32,14 @@
             </div>
           </div>
       </div>
+
+      <div class="container" *ngIf="selectedWarehouseName">
+        <p><strong>Selected Warehouse: </strong>{{ selectedWarehouseName }}</p>
+      </div>
+
+      <div class="container" *ngIf="selectedWarehouse">
+        <div *ngFor="let item of stocks">
+            <app-stock-item [stockItem]="item" [selectedWarehouse]="selectedWarehouse"></app-stock-item>
+        </div>
+    </div>
 <!-- </div> -->
